@@ -4,10 +4,10 @@
 		include_once '../../lib/j/j.func.php';
 	}
 	checaAcceso(50);
-	$nivel = $_SESSION['IU']['admin']['nivel'];
+	$nivel = $_SESSION['CM']['admin']['nivel'];
 
 	include_once raiz().'lib/php/usrInt.php';
-	$usrId = $_SESSION['IU']['admin']['usrId'];
+	$usrId = $_SESSION['CM']['admin']['usrId'];
 	$usr = new Usuario($usrId);
 
 	$revisores = $db->query("SELECT id as val, CONCAT(nombre,' ',aPat,' ',aMat) as nom, 'clase' as clase 

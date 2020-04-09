@@ -5,18 +5,18 @@ include_once '../../lib/j/j.func.php';
 include_once raiz().'lib/php/checklist.php';
 include_once raiz().'lib/php/calcCuest.php';
 
-$uId = $_SESSION['IU']['admin']['usrId'];
+$uId = $_SESSION['CM']['admin']['usrId'];
 // print2($_POST);
 $bId = str_replace('a_', '', $_POST['abId']);
 $aId = $_POST['aId'];
 $pId = $_POST['pId'];
 // print2($pId);
-if( !isset($_SESSION['IU']['chk'][$_POST['vId']]) ){
+if( !isset($_SESSION['CM']['chk'][$_POST['vId']]) ){
 	exit;
 }
 
-$est = $_SESSION['IU']['chk'][$_POST['vId']]['est'];
-$res = $_SESSION['IU']['chk'][$_POST['vId']]['res'];
+$est = $_SESSION['CM']['chk'][$_POST['vId']]['est'];
+$res = $_SESSION['CM']['chk'][$_POST['vId']]['res'];
 
 $preguntas = $est['bloques'][$bId]['areas'][$_POST['aId']]['preguntas'];
 // print2($preguntas);
@@ -47,13 +47,13 @@ $rP = regresar($pId,$est,$res);
 
 $respuestas = array();
 if($p['tipo'] == 'mult'){
-	if(  empty( $_SESSION['IU']['chk'][$_POST['vId']]['respuestas'][$pId] )  ){
+	if(  empty( $_SESSION['CM']['chk'][$_POST['vId']]['respuestas'][$pId] )  ){
 		$respuestas = $db->query("SELECT * FROM Respuestas 
 			WHERE preguntasId = $p[id] AND (elim IS NULL OR elim != 1)")->fetchAll(PDO::FETCH_ASSOC);
 
-		$_SESSION['IU']['chk'][$_POST['vId']]['respuestas'][$pId] = $respuestas;	
+		$_SESSION['CM']['chk'][$_POST['vId']]['respuestas'][$pId] = $respuestas;	
 	}else{
-		$respuestas = $_SESSION['IU']['chk'][$_POST['vId']]['respuestas'][$pId];
+		$respuestas = $_SESSION['CM']['chk'][$_POST['vId']]['respuestas'][$pId];
 	}
 }
 

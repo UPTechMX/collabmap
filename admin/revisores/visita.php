@@ -1,7 +1,7 @@
 <?php  
 
 	session_start();
-	if($_SESSION['IU']['admin']['nivel'] <10){
+	if($_SESSION['CM']['admin']['nivel'] <10){
 		exit('No tienes acceso');
 	}
 

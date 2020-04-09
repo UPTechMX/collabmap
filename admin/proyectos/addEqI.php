@@ -21,7 +21,7 @@
 	$fecha = !empty($datC['fecha'])?$datC['fecha']:$_POST['fecha'];
 	// print2($fecha);
 
-	$nivel = $_SESSION['IU']['admin']['nivel'];
+	$nivel = $_SESSION['CM']['admin']['nivel'];
 	if($nivel<50){
 		exit('No tienes acceso a esta área');
 	}

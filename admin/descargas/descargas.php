@@ -6,7 +6,7 @@
 	checaAcceso(50);
 
 	include_once raiz().'lib/php/usrInt.php';
-	$usrId = $_SESSION['IU']['admin']['usrId'];
+	$usrId = $_SESSION['CM']['admin']['usrId'];
 	$usr = new Usuario($usrId);
 
 	// print2($_POST);

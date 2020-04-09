@@ -1,7 +1,7 @@
 <?php  
 	include_once '../../../lib/j/j.func.php';
 	session_start();
-	$uId = $_SESSION['IU']['admin']['usrId'];
+	$uId = $_SESSION['CM']['admin']['usrId'];
 
 	switch ($_POST['opt']) {
 		case 1:

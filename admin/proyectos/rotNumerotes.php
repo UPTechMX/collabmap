@@ -5,8 +5,8 @@
 	checaAcceso(49);
 
 
-	$usrId = $_SESSION['IU']['admin']['usrId'];
-	$nivel = $_SESSION['IU']['admin']['nivel'];
+	$usrId = $_SESSION['CM']['admin']['usrId'];
+	$nivel = $_SESSION['CM']['admin']['nivel'];
 
 	$pId = $_POST['pryId'];
 

@@ -3,7 +3,7 @@
 	if(!function_exists('raiz')){
 		include_once '../lib/j/j.func.php';
 		include_once raiz().'lib/php/usrInt.php';
-		$usrId = $_SESSION['IU']['admin']['usrId'];
+		$usrId = $_SESSION['CM']['admin']['usrId'];
 		$usr = new Usuario($usrId);
 	}
 	checaAcceso(50);

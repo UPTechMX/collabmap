@@ -4,7 +4,7 @@ include_once '../../../lib/j/j.func.php';
 // include_once raiz().'lib/php/shoppers.php';
 
 session_start();
-$uId = $_SESSION['IU']['admin']['usrId'];
+$uId = $_SESSION['CM']['admin']['usrId'];
 
 
 switch ($_POST['acc']) {

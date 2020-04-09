@@ -17,8 +17,8 @@
 
 <?php
 	// print2($_SESSION);
-	$nivel = $_SESSION['IU']['admin']['nivel'];
-	$uId = $_SESSION['IU']['admin']['usrId'];
+	$nivel = $_SESSION['CM']['admin']['nivel'];
+	$uId = $_SESSION['CM']['admin']['usrId'];
 	if($nivel != 10){
 		exit('No tienes acceso');
 	}

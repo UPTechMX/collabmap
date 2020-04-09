@@ -1,6 +1,6 @@
 <?php  
 
-	$nivel = $_SESSION['IU']['admin']['nivel'];
+	$nivel = $_SESSION['CM']['admin']['nivel'];
 	// print2($_SESSION);
 ?>
 

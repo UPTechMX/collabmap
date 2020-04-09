@@ -38,7 +38,7 @@
 
 <?php
 
-$nivel = $_SESSION['IU']['admin']['nivel'];
+$nivel = $_SESSION['CM']['admin']['nivel'];
 if($nivel<60){
 	exit('No tienes acceso a esta área');
 }

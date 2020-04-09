@@ -3,9 +3,9 @@ include_once '../lib/j/j.func.php';
 // include_once raiz().'lib/php/shoppers.php';
 include_once raiz().'campo/seguridad/seguridad.php';
 checaAcceso(30);
-$uId = $_SESSION['IU']['admin']['usrId'];
+$uId = $_SESSION['CM']['admin']['usrId'];
 // $shopper = new Shopper($uId);
-// print2($_SESSION['IU']);
+// print2($_SESSION['CM']);
 
 // echo encriptaUsr(123);
 ?>

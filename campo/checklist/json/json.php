@@ -5,11 +5,11 @@ include_once raiz().'lib/php/calcCuest.php';
 include_once raiz().'lib/php/checklist.php';
 session_start();
 
-$uId = $_SESSION['IU']['admin']['usrId'];
+$uId = $_SESSION['CM']['admin']['usrId'];
 
 // print2($_POST);
 
-$sCHK = $_SESSION['IU']['chk'][$_POST['vId']];
+$sCHK = $_SESSION['CM']['chk'][$_POST['vId']];
 
 if( empty( $sCHK ) ){
 	exit('{"ok":"0"}');

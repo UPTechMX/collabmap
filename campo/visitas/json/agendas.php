@@ -2,7 +2,7 @@
 session_start();
 include_once '../../../lib/j/j.func.php';
 checaAcceso(30);
-$usrId = $_SESSION['IU']['admin']['usrId'];
+$usrId = $_SESSION['CM']['admin']['usrId'];
 
 
 switch ($_POST['acc']) {

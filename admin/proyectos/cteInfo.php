@@ -4,7 +4,7 @@
 	include_once '../../lib/php/creaTokens.php';
 
 	checaAcceso(30);
-	$nivel = $_SESSION['IU']['admin']['nivel'];
+	$nivel = $_SESSION['CM']['admin']['nivel'];
 	// print2($nivel);
 
 	if($_POST['eleId'] != ''){

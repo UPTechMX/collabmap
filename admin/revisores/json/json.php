@@ -4,10 +4,10 @@ session_start();
 include_once '../../../lib/j/j.func.php';
 include_once '../../../lib/php/checklist.php';
 include_once '../../../lib/php/calcCuest.php';
-$uId = $_SESSION['IU']['admin']['usrId'];
-$nivel = $_SESSION['IU']['admin']['nivel'];
+$uId = $_SESSION['CM']['admin']['usrId'];
+$nivel = $_SESSION['CM']['admin']['nivel'];
 
-// print2($_SESSION['IU']['admin']);
+// print2($_SESSION['CM']['admin']);
 
 if( empty( $uId ) ){
 	exit('{"ok":"0","err":"no logueado"}');

@@ -12,7 +12,7 @@ if(!empty($_POST['ajenos'])) {
 	// return;
 	$file = 'cambios/cambios.cmb';
 	if(is_file($file)){
-		$where .= " AND userId != ".$_SESSION['IU']['admin']['usrId']; 
+		$where .= " AND userId != ".$_SESSION['CM']['admin']['usrId']; 
 		// echo "SELECT * FROM Cambios LEFT JOIN Clientes ON Cambios.clientesId = Clientes.id WHERE $where";
 		$cambios = $db->query("SELECT a.id, a.clientesId, a.timestamp, a.proyectosId, a.userId, b.aPat, b.aMat, b.nombre, b.token FROM Cambios a LEFT JOIN Clientes b ON a.clientesId = b.id WHERE $where")->fetchAll(PDO::FETCH_ASSOC);
 		// print2($cambios);

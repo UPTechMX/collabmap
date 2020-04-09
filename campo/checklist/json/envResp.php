@@ -2,7 +2,7 @@
 
 include_once '../../../lib/j/j.func.php';
 session_start();
-$uId = $_SESSION['IU']['admin']['usrId'];
+$uId = $_SESSION['CM']['admin']['usrId'];
 
 
 $h = "NL-".$_POST['datos']['visitasId']."-".$uId."-".$_POST['datos']['preguntasId']."-$_POST[pId]";
@@ -13,7 +13,7 @@ if(!$vh){
 	exit('{"ok":"0"}');
 }
 
-$sCHK = $_SESSION['IU']['chk'][$_POST['datos']['visitasId']];
+$sCHK = $_SESSION['CM']['chk'][$_POST['datos']['visitasId']];
 
 if( !isset( $sCHK['res'][$_POST['pId']] ) ){
 	exit('{"ok":"0"}');
@@ -26,10 +26,10 @@ try {
 		justificacion = :justificacion, identificador = :identificador");
 	$inserta->execute($_POST['datos']);
 
-	$_SESSION['IU']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['respuesta'] = $_POST['datos']['respuesta'];
-	$_SESSION['IU']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['justificacion'] = $_POST['datos']['justificacion'];
-	$_SESSION['IU']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['valResp'] = $_POST['valResp'];
-	// print2( $_SESSION['IU']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']] ) ;
+	$_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['respuesta'] = $_POST['datos']['respuesta'];
+	$_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['justificacion'] = $_POST['datos']['justificacion'];
+	$_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['valResp'] = $_POST['valResp'];
+	// print2( $_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']] ) ;
 	exit('{"ok":"1"}');
 } catch (PDOException $e) {
 	echo $e->getMessage()."<br/>";

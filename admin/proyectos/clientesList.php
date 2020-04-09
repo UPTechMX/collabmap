@@ -6,8 +6,8 @@
 
 	// include_once raiz().'/lib/php/usrInt.php';
 	// print2($_SESSION);
-	$usrId = $_SESSION['IU']['admin']['usrId'];
-	$nivel = $_SESSION['IU']['admin']['nivel'];
+	$usrId = $_SESSION['CM']['admin']['usrId'];
+	$nivel = $_SESSION['CM']['admin']['nivel'];
 	// $usr = new Usuario($usrId);
 
 	// print2($_POST);

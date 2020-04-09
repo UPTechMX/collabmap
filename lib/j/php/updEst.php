@@ -2,7 +2,7 @@
 
 session_start();
 include_once '../j.func.php';
-$usrId = $_SESSION['IU']['admin']['usrId'];
+$usrId = $_SESSION['CM']['admin']['usrId'];
 
 // echo "usrId: $usrId\n";
 // print2($_POST);

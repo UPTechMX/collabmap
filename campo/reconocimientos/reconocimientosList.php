@@ -4,7 +4,7 @@ if (!function_exists('raiz')) {
 	include_once '../../lib/j/j.func.php';
 }
 session_start();
-$uId = $_SESSION['IU']['admin']['usrId'];
+$uId = $_SESSION['CM']['admin']['usrId'];
 
 $elementos = $db->query(" SELECT * FROM Reconocimientos WHERE usuariosId = $uId") -> fetchAll(PDO::FETCH_ASSOC);
 

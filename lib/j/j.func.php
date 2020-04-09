@@ -33,7 +33,7 @@ if(!function_exists('raiz')){
 		    @session_start();
 		}
 
-		if(empty($_SESSION['IU']['raiz'])){
+		if(empty($_SESSION['CM']['raiz'])){
 			$dir = getcwd();
 			$dirE = explode('/',$dir);
 			$ciclos = count($dirE);
@@ -43,7 +43,7 @@ if(!function_exists('raiz')){
 					$dN .= $dirE[$j].'/';
 				}
 				if(file_exists($dN.'/raiz')){
-					$_SESSION['IU']['raiz'] = $dN;
+					$_SESSION['CM']['raiz'] = $dN;
 					return $dN;
 				}else{
 					if($i == 1){
@@ -52,7 +52,7 @@ if(!function_exists('raiz')){
 				}
 			}
 		}else{
-			return $_SESSION['IU']['raiz'];
+			return $_SESSION['CM']['raiz'];
 		}
 	}
 	$rz = raiz();
@@ -68,7 +68,7 @@ if(!function_exists('raiz')){
 	function aRaiz(){
 
 		session_start();
-		if(empty($_SESSION['IU']['aRaiz'])){
+		if(empty($_SESSION['CM']['aRaiz'])){
 			$dir = getcwd();
 			$dirE = explode('/',$dir);
 			$ciclos = count($dirE);
@@ -84,7 +84,7 @@ if(!function_exists('raiz')){
 				$dN .= '../';
 				// }
 				if(file_exists($dN.'/raiz')){
-					$_SESSION['IU']['aRaiz'] = $dN;
+					$_SESSION['CM']['aRaiz'] = $dN;
 					return $dN;
 				}else{
 					if($i == 1){
@@ -93,14 +93,14 @@ if(!function_exists('raiz')){
 				}
 			}
 		}else{
-			return $_SESSION['IU']['aRaiz'];
+			return $_SESSION['CM']['aRaiz'];
 		}
 	}
 
 	function aRaizHtml(){
 
 		session_start();
-		if(empty($_SESSION['IU']['aRaizHtml'])){
+		if(empty($_SESSION['CM']['aRaizHtml'])){
 
 			$dirH = $_SERVER['REQUEST_URI'];
 			$dirEH = explode('/',$dirH);
@@ -140,7 +140,7 @@ if(!function_exists('raiz')){
 			$dN = '';
 			// echo 'dir = '.$dir.'<br/>';
 			if(file_exists($dir.'/raiz')){
-				$_SESSION['IU']['aRaizHtml'] = './';
+				$_SESSION['CM']['aRaizHtml'] = './';
 				return './';		
 			}
 			
@@ -156,7 +156,7 @@ if(!function_exists('raiz')){
 				// print2($tmp);
 				// }
 				if(file_exists($tmp.'raiz')){
-					$_SESSION['IU']['aRaizHtml'] = $dN;
+					$_SESSION['CM']['aRaizHtml'] = $dN;
 					return $dN;
 				}else{
 					if($i == 1){
@@ -165,7 +165,7 @@ if(!function_exists('raiz')){
 				}
 			}
 		}else{
-			return $_SESSION['IU']['aRaizHtml'];
+			return $_SESSION['CM']['aRaizHtml'];
 		}
 	}
 
@@ -1235,7 +1235,7 @@ function resize_image($file, $w, $h, $crop=FALSE) {
 
 function checaAcceso($nivelPerm){
 	session_start();
-	$nivel = $_SESSION['IU']['admin']['nivel'];
+	$nivel = $_SESSION['CM']['admin']['nivel'];
 	if($nivel<$nivelPerm){
 		session_destroy();
 		exit('No tienes acceso');
@@ -1245,7 +1245,7 @@ function checaAcceso($nivelPerm){
 
 function checaAccesoExt($nivelPerm){
 	session_start();
-	$nivel = $_SESSION['IU']['externo']['nivel'];
+	$nivel = $_SESSION['CM']['externo']['nivel'];
 	if($nivel<$nivelPerm){
 		exit('No tienes acceso');
 	}
@@ -1486,7 +1486,7 @@ function creaCambio($tabla, $id){
 	global $db;
 
 	session_start();
-	$usrId = $_SESSION['IU']['admin']['usrId'];
+	$usrId = $_SESSION['CM']['admin']['usrId'];
 
 	if($tabla == 'Clientes'){
 		$cId = $id;

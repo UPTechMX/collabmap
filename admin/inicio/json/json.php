@@ -4,7 +4,7 @@ include_once '../../../lib/j/j.func.php';
 include_once raiz().'lib/php/usrInt.php';
 checaAcceso(50);
 
-$usrId = $_SESSION['IU']['admin']['usrId'];
+$usrId = $_SESSION['CM']['admin']['usrId'];
 $usr = new Usuario($usrId);
 
 

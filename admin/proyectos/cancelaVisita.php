@@ -3,7 +3,7 @@
 	include_once '../../lib/j/j.func.php';
 	session_start();
 	checaAcceso(49);
-	$usrId = $_SESSION['IU']['admin']['usrId'];
+	$usrId = $_SESSION['CM']['admin']['usrId'];
 	// echo $usrId;
 	$fechaHoy = date("Y-m-d");
 	// echo $fechaHoy;

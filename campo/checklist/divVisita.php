@@ -37,7 +37,7 @@ $instOk = !empty($inst);
 <div class="divVisita">
 	<?php include 'visita.php'; ?>
 </div>
-<?php $p = $_SESSION['IU']['chk'][$_POST['vId']]['res'][$faltaPreg]; ?>
+<?php $p = $_SESSION['CM']['chk'][$_POST['vId']]['res'][$faltaPreg]; ?>
 
 <div style="text-align:center;width: 96%;margin-top: 5px;">
 	<span id="regresar" class="btn btn-sm btn-shop">< Regresar</span>	

@@ -2,8 +2,8 @@
 
 include_once '../../../lib/j/j.func.php';
 session_start();
-$uId = $_SESSION['IU']['admin']['usrId'];
-$nivel = $_SESSION['IU']['admin']['nivel'];
+$uId = $_SESSION['CM']['admin']['usrId'];
+$nivel = $_SESSION['CM']['admin']['nivel'];
 
 $visita = $db->query("SELECT v.*, c.token as cToken
 	FROM Visitas v

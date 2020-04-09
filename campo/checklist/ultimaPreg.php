@@ -10,23 +10,23 @@ $vId = isset($_POST['vId'])?$_POST['vId']:14112;
 $chk = new Checklist($vId);
 // echo "vId:$vId";
 
-$_SESSION['IU']['chk'][$vId] = array();
-$_SESSION['IU']['chk'][$vId]['chkId'] = $chk->id;
+$_SESSION['CM']['chk'][$vId] = array();
+$_SESSION['CM']['chk'][$vId]['chkId'] = $chk->id;
 
 
-if( empty( $_SESSION['IU']['chk'][$vId]['est'] ) ){
+if( empty( $_SESSION['CM']['chk'][$vId]['est'] ) ){
 	$est = $chk->getEstructura();
-	$_SESSION['IU']['chk'][$vId]['est'] = $est;
+	$_SESSION['CM']['chk'][$vId]['est'] = $est;
 }else{
-	$est =  $_SESSION['IU']['chk'][$vId]['est'];
+	$est =  $_SESSION['CM']['chk'][$vId]['est'];
 }
 
-if( empty( $_SESSION['IU']['chk'][$vId]['res'] ) ){
+if( empty( $_SESSION['CM']['chk'][$vId]['res'] ) ){
 	$res = $chk->getResultados($vId);
 	// print2($res);
-	$_SESSION['IU']['chk'][$vId]['res']  = $res;
+	$_SESSION['CM']['chk'][$vId]['res']  = $res;
 }else{
-	$res =  $_SESSION['IU']['chk'][$vId]['res'];
+	$res =  $_SESSION['CM']['chk'][$vId]['res'];
 }
 
 $areas = array();

@@ -571,7 +571,7 @@
 <div class="modal-footer">
 	<div style="text-align: right;">
 		<?php
-		$nivelTmp = $_SESSION['IU']['admin']['nivel'];
+		$nivelTmp = $_SESSION['CM']['admin']['nivel'];
 		// echo "nivel: ".$nivelTmp;
 		if($nivelTmp>=49){
 			?>

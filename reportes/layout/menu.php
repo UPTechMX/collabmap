@@ -32,7 +32,7 @@
 		<ul class="navbar-nav mr-auto">
 			<li id="clientEmp" class="nav-item">
 				<div style="position: relative;display: block;padding: 10px 15px;margin-top: 3px;">
-					Bienvenido :  <?php echo $_SESSION['IU']['pub']['nombre']; ?>
+					Bienvenido :  <?php echo $_SESSION['CM']['pub']['nombre']; ?>
 				</div>
 			</li>
 			<!-- <li id="clientEmp" class="nav-item">

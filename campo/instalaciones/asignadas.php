@@ -5,7 +5,7 @@ if(!function_exists('raiz')){
 }
 // print2($_SESSION);
 include_once raiz().'lib/php/campo.php';
-$uId = $_SESSION['IU']['admin']['usrId'];
+$uId = $_SESSION['CM']['admin']['usrId'];
 // print2($uId);
 // echo "usuario : $uId<br/>";
 $usuario = new campo($uId);

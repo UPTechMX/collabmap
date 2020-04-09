@@ -4,10 +4,10 @@ include_once '../../../lib/j/j.func.php';
 include_once raiz().'lib/php/calcCuest.php';
 include_once raiz().'lib/php/checklist.php';
 session_start();
-$uId = $_SESSION['IU']['admin']['usrId'];
-$nivel = $_SESSION['IU']['admin']['nivel'];
+$uId = $_SESSION['CM']['admin']['usrId'];
+$nivel = $_SESSION['CM']['admin']['nivel'];
 
-// print2($_SESSION['IU']['admin']);
+// print2($_SESSION['CM']['admin']);
 // print2($_POST);
 
 $vId = $_POST['datos']['visitasId'];

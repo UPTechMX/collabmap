@@ -9,7 +9,7 @@
 		case '1':
 			$post['tabla'] = 'Shoppers';
 			$post['datos']['pwd'] = encriptaUsr($_POST['pwd']);
-			$post['datos']['id'] = $_SESSION['IU']['admin']['usrId'];
+			$post['datos']['id'] = $_SESSION['CM']['admin']['usrId'];
 			// print2($post);
 
 			break;

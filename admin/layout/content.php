@@ -3,7 +3,7 @@
 
 // include_once '../seguridad/seguridad.php';
 
-$nivel = $_SESSION['IU']['admin']['nivel'];
+$nivel = $_SESSION['CM']['admin']['nivel'];
 $Act = $_REQUEST['Act'];
 
 switch ($Act) {

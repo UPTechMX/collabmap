@@ -5,13 +5,13 @@
 	include_once raiz().'lib/php/checklist.php';
 	include_once raiz().'lib/php/calcCuest.php';
 
-	$uId = $_SESSION['IU']['admin']['usrId'];
+	$uId = $_SESSION['CM']['admin']['usrId'];
 	// print2($_POST);
 	$bId = $_POST['datos']['bloque'];
 	$aId = $_POST['datos']['area'];
 	$pId = $_POST['datos']['identificador'];
 
-	if( $_SESSION['IU']['admin']['nivel'] < 10){
+	if( $_SESSION['CM']['admin']['nivel'] < 10){
 		exit('No tienes acceso');
 	}
 

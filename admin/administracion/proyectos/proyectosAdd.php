@@ -6,7 +6,7 @@
 	if($_POST['eleId'] != ''){
 		$datC = $db-> query("SELECT * FROM Proyectos WHERE id = $_POST[eleId]")->fetchAll(PDO::FETCH_ASSOC)[0];
 	}
-	$nivel = $_SESSION['IU']['admin']['nivel'];
+	$nivel = $_SESSION['CM']['admin']['nivel'];
 	if($nivel<50){
 		exit('No tienes acceso a esta área');
 	}

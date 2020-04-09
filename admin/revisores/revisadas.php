@@ -2,8 +2,8 @@
 if($_POST['ajax'] == 1){
 	session_start();
 	include_once '../../lib/j/j.func.php';
-	$nivel = $_SESSION['IU']['admin']['nivel'];
-	$uId = $_SESSION['IU']['admin']['usrId'];
+	$nivel = $_SESSION['CM']['admin']['nivel'];
+	$uId = $_SESSION['CM']['admin']['usrId'];
 	if($nivel != 10){
 		exit('No tienes acceso');
 	}

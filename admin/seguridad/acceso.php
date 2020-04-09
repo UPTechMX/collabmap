@@ -8,13 +8,13 @@ if($_POST['usuario'] != "") {
  if($v['verif'] && $v['nivel']>=5) {
   // echo "aaa";
  	
-    $_SESSION['IU']['admin']['usrId']  = $v['usrId'];
-    $_SESSION['IU']['admin']['nombre']  = $v['nombre'];
-    $_SESSION['IU']['admin']['activo'] = ($v['nivel']>=5?1:0);
-    $_SESSION['IU']['admin']['nivel'] = $v['nivel'];
-    // $_SESSION['IU']['admin']['privs'] = (count($v['priv'])>0?$v['priv'] :array());
+    $_SESSION['CM']['admin']['usrId']  = $v['usrId'];
+    $_SESSION['CM']['admin']['nombre']  = $v['nombre'];
+    $_SESSION['CM']['admin']['activo'] = ($v['nivel']>=5?1:0);
+    $_SESSION['CM']['admin']['nivel'] = $v['nivel'];
+    // $_SESSION['CM']['admin']['privs'] = (count($v['priv'])>0?$v['priv'] :array());
   }else{
-    unset($_SESSION['IU']['admin']);
+    unset($_SESSION['CM']['admin']);
   }
   // print2($_SESSION);
 }
@@ -24,7 +24,7 @@ if($_POST['usuario'] != "") {
 
 
 if (isset($_REQUEST['logout'])) {
-  unset($_SESSION['IU']['admin']);
+  unset($_SESSION['CM']['admin']);
   session_destroy();
 
   

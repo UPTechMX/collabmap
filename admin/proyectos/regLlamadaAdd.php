@@ -36,7 +36,7 @@
 	include_once '../../lib/j/j.func.php';
 	session_start();
 	checaAcceso(49);
-	$usrId = $_SESSION['IU']['admin']['usrId'];
+	$usrId = $_SESSION['CM']['admin']['usrId'];
 	// echo $usrId;
 	$datCte = $db->query("SELECT * FROM Clientes WHERE id = $_POST[cteId]")->fetchAll(PDO::FETCH_ASSOC)[0];
 
