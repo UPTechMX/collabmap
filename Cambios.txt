@@ -1,0 +1,168 @@
+Cambios
+
+
+Diapositivas negras
+*	No se despliega la información de junta y lider en la información del usuario
+*	Restringir números telefónicos a 10 dígitos
+-*	Desde el subsistema de usuarios no aparece la ubicación asignada desde administración
+* J	Poder ver los cuestionarios en la fase siguiente (siempre se ven)
+* J	Cambiar cliente por usuario
+* J	Revisar cuestionarios al momento de desplegarlos (está mal armado el cuestionario)
+* J 	Cambiar banner y nombre del sistema (D69)
+* J	Poder buscar usuarios por id de Junta
+* J	Cambiar a que se puedan agendar visitas sin la documentación
+* J-D	Agregar un autocompletar de lider comunitario en los reconocimientos y ubicaciones
+* D	Hacer un sistemita para que el financiador pueda autorizar la documentación
+* D	Que se autorice la documentación de un solo chingadazo / que el botón diga documentación y trámites administrativos finalizados
+* D	Los usuarios no deben saber a que proyecto pertenecen (quitarlo de su acceso)
+* D	Cambiar el menú del subsistema de usuarios a modo vertical en lugar de lista desplegable
+* D	Los usuarios sólo se pueden registrar a través personal de IU
+* D	El lider se asigna a través de la junta
+
+*** Menú de administración
+*	Reacomodo de secciones
+*	Cambiar el nombre "Ubicaciones" -> "Sitios de interés"
+*	Cambiar el nombre "Mapa de estatus" -> "Logística"
+*	Cambiar el nombre "Clientes" -> "Usuarios"
+*	Cambiar el nombre "Administración" -> "Gestión"
+*	Cambiar el nombre "Usuarios internos" -> "Integrantes IU"
+*	Cambiar el nombre "Proyectos" -> "Gestión de proyectos"
+*	Cambiar el nombre "Equipos de instalción" -> "Catálogo de componentes"
+
+J Admin/Proyectos
+√	Cambiar los contadores de estatus
+
+*** Mapa de Logística
+*	Que se pueda escribir el identificador de la junta comunitaria en los filtros
+
+*** D Sitios de interés
+*	Agregar búsqueda
+*	Agregar multimedia
+
+****D Líderes comunitarios
+*	Agregar búsqueda
+*		Por ranking
+*		Por municipio
+*		Por colonia
+*   Agregar foto del lider
+*	Agregar campos de dirección del Líder comunitario
+*	Agregar campo de función/cargo
+*	Manú de juntas comunitarias relacionadas
+*	Menú de usuarios relacionados
+*	Menú Actividades relacionadas con IU (D. 18) para referencia
+
+*** D Juntas comunitarias
+*	Agregar búsqueda (D. 19)
+*	     estado
+*	     munic
+*	     cp
+*	     colonia
+*	Desplegar en la info principal de la junta 
+*		Municipio
+*		colonia
+*		Asistentes
+*		Asistentes registrados
+*	Cambiar el nombre "Ubicaciones" -> "Sitios de interés"
+*	Faltan apellidos en el selector del lider
+*	Campos numéricos en los asistentes y registrados
+*	Agregar información de usuarios registrados
+*	Agregar multimedia
+*	Verificar mapa (funciona en juntas de prueba nl, no en la de sedema...)
+
+
+*** D Usuarios y preregistro
+*	CUANDO SON 2 0 MAS SUGERENCIAS DE DIRECCIÓN, SOLO DA LA OPCIÓN DE RECALCULAR UNA DE ELLAS, LO IDEAL ES QUE SE PUEDA RECALCULAR POR CADA SUGERENCIA.
+*	Cambiar mecanismo de registro entre preregistro -> registro por asignación de junta o por asignación directa.
+
+
+
+*** D Sistema de financiadores
+*	Problemas con los proyectos desplegados (creo que permite seleccionar proyectos en los que no participa)
+*	restringir costos
+	
+>>>>>>>>>>>	OTROS TEMAS EN LA DIAP. 38
+	        y Diap 12
+
+
+***D Sistema de usuarios
+*	error de session (D63)
+
+***D Poder ver los motivos de cancelación en los informes
+
+***D En el informe de administración/proyectos, están desfasadas las columnas.
+
+
+
+J Vehícilos
+√	Agregar campos (D. 15)
+
+J Reconocimientos
+√	Agregar búsqueda (D. 16)
+√	Agregar el apellido de quien hizo el reconocimiento
+√	Cambiar el nombre "Ubicaciones" -> "Sitios de interés"
+√	Agregar la sección Lídres comumitarios 
+
+J Gestion de proyectos
+√	Ponerle fotos a los proyectos y que se puedan ver las fotos en la lista de proyectos (algo así como logipo)
+
+J Campo
+√	Agregar identificador de usuario, id junta, usuario (nombre) en las listas
+√	Agregar botones de ver info de usuario
+√	Reagendar visita técnica (D42)
+	- En la visualización de cuestionarios
+√		Nombre del visitante (quien llenó el formulario)
+√		Tipo de sistema sugerido para instaladores
+√	(Está mal el cuestionario)	Problemas en la visualización de cuestionarios, no jalan bien las condicionales (D45)
+√	No se ve la hora en las listas (Instaladores)
+
+J Dirección de instalación
+√	Cambiar usernames por nombre y apellido del usuario 
+
+J Resumen de instalación
+√	El usuario permite el uso de la imágen (D53)
+√	Datos del vehículo y de la cuadrilla de instalación
+√	Agregar listado de fotos que deben subir
+√	Jefe de cuadrilla (D55)
+
+J En admin/clientes (ahora usuarios)
+√	ponerle un scroll a la lista de usuarios
+
+J En admin/proyectos
+√	cambiar un poquito el diseño (D65)
+√	en la lista de los usuarios poner tooltips
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+Cuestionarios (Multiopción)(D46 - D49)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

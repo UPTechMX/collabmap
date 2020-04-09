@@ -1,0 +1,110 @@
+
+
+
+
+D - Acceso a adminstrativos
+
+
+
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::  Nuevas funcionalidades a desarrollar :::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+Exportación de datos masivos a CSV-Excel. (Falta precisar exactamente los datos requeridos para esta funcionalidad, se pensó agregar una nueva sección en el portal administrativo para incluir el conjunto de estas funcionalidades. Se discutieron posibles descargas de datos para Clientes, Vehículos, Juntas Comunitarias y respuestas a los cuestionarios; quedamos a la espera de las precisiones para definir la complejidad de cada funcionalidad).   Aquí tiene que estar incluido el poder bajar los datos de los que están en Reparación o ya están con estatus de Reparado
+
+
+*** Importación de CSV-Excel de pre-registros*, se desea incorporar la capacidad de cargar archivos pre-formateados para llenar pre-registros* automáticamente en vez de tener que ingresarlos manualmente uno a uno en la plataforma (Se requiere la definición de campos necesarios por parte de IU). *Donde dice pre-registros debe decir $#$%^##$%#@@#$%#@#$%@# clientes... 
+
+
+*** En las secciones “Dashboard de proyecto” y “Logística” agregar la hora a la que se tiene asignada una visita para facilitar asignaciones múltiples.
+
+
+*** Modificar el comportamiento del proceso de avance de instalación de manera que ofrezca simultáneamente la posibilidad de realizar la encuesta de seguimiento en campo y la encuesta de seguimiento telefónico sin importar el orden. Adaptar la plataforma web para que permita la asignación de cualquiera de estas dos encuestas sin necesidad de haber cumplido una primero. 
+
+
+*** Adecuar el funcionamiento del sistema de forma que una reparación sea asignada automáticamente al integrante IU que haya llevado a cabo la instalación del mismo. Además, desplegar la información de quién es el integrante IU que llevará a cabo dicha reparación en el dashboard de proyectos y en el renglón informativo de la sección de Logística.  Cuando ya está reparado, se tendrá que poder cambiar al estatus reparado.  
+
+
+*** Agregar en los info-bubbles (popups) del mapa de logística y en el dashboard de proyectos la información del tipo de sistema sugerido para cada cliente.
+
+
+*** En la plataforma, agregar la funcionalidad para poder editar la información de los cuestionarios técnicos y de instalación.
+
+
+*** Modificar el comportamiento del proceso de avance de instalación de manera que ofrezca simultáneamente la posibilidad de realizar la encuesta de seguimiento en campo y la encuesta de seguimiento telefónico sin importar el orden. Adaptar la plataforma web para que permita la asignación de cualquiera de estas dos encuestas sin necesidad de haber cumplido una primero.
+
+
+
+
+
+
+
+
+
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::  Bugs por solucionar ::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+**** D - Área de Logística, refrescar vista automáticamente después de cancelado de una visita u otras modificaciones en el estatus de un cliente (mapa y renglón informativo).
+
+*** Verificación, adecuación y arreglo de error cuando se realizan múltiples asignaciones de tareas consecutivamente en sección de logística.
+
+JM - Corrección del problema definido como “Salto en fases”, se detectó que en algunas ocasiones algunos
+usuarios se saltan fases y terminan marcados como en fase de Seguimiento sin haber pasado por la fase
+de instalación u otras, se ofrecieron ejemplos para facilitar la investigación del error. (Canek Alexis Sosa Andrade en proyecto cosecha /// Atanasio Santana Mejía en proy: presupuestos participativos tlalpan 2020)
+
+*** D - Solucionar error en la búsqueda por colonias en el buscador de Juntas Comunitarias, está mostrando juntas sin definición de colonia así como otras definidas en colonias diferentes; se usó como ejemplo la colonia Santa Cecilia Tepetlapa en Xochimilco.
+
+*** D - Revisión del funcionamiento en definición de direcciones físicas en “Sitios de Interés”, se reporta que no pueden modificar municipios.
+
+*** J - Corregir error en sincronización de aplicación móvil. Permite ingresar dos clientes con el mismo nombre y dirección.
+
+**** D - En registro de proyectos, se ordenarán las ubicaciones en orden alfabético y se corregirán las búsquedas para solamente presentar las ubicaciones relevantes al proyecto siendo modificado.
+
+*** D - Corregir el error que permite agregar más de una junta comunitaria / actividad con el mismo identificador.
+
+*** D - Corregir el filtrado en la sección de Logística que regresa clientes sin Junta comunitaria asociada al buscar por un ID de Junta, 
+
+*** D Cuando ya se hizo un filtro y se cambia el Estatus del proceso de instalación... regresa a buscar sobre todos los clientes... >>> ya solo falta ajustar el contador para que refleje el cambio de estatus también
+
+
+**********Se reporta un bug en la operación de la sección de logística que detiene el funcionamiento del portal, investigar y corregir.
+
+*********** JM - Corregir los calendarios para que no permita ingresar fechas de visita o instalación previas a la fecha
+actual (actualmente permite agendar el día anterior).
+
+******** Corregir medición de compromisos, se verificará que el porcentaje de cumplimiento de compromisos
+sea correcto. 
+
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::: Nuevas adaptaciones ofrecidas gratuitamente ::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+*** Nuevas ordenaciones alfabéticas en los selectores (en lugar de la ordenación actual por tiempo de inserción al sistema) para facilitar las búsquedas visuales y selecciones de datos.
+
+********* JM - Se buscará desplegar la fecha y hora de cancelación en el renglón informativo de los clientes cancelados.
+
+***** D - En selectores de “Juntas comunitarias” que solamente muestran el identificador de la misma, se agregarán otros datos entre paréntesis para ayudar a facilitar la identificación de las juntas.
+
+********** Cambiar el título de menú actual de “Juntas Comunitarias” a “Actividades”, así como las referencias a este mismo dato en otras partes de la plataforma.
+
+***** D - Agregar entre paréntesis el tipo de actividad al que se refiere lo que hasta ahora se entendía como una junta comunitaria (talleres, juntas, etc.)
+
+****** JM/D - En la aplicación móvil desbloquear los campos de latitud y longitud de forma que el personal pueda agregar los mismos manualmente, se considerará que los datos se reciben en grados norte y grados oeste respectivamente y en su representación decimal.
+
+***** D - En la plataforma, sección de Clientes, se agregará el nombre en dónde solamente se especifican los identificadores (y viceversa) para facilitar la utilización.
+
+***********Como se definió en la última reunión, en la sección de Juntas Comunitarias se cambiará el título de “Lista de asistentes” por “Lista de registros asociados”.
+
+
+
+
+
+
+
