@@ -10,10 +10,6 @@
 
 	include_once '../../lib/j/j.func.php';
 
-	$p = $_POST;
-	// print2($_POST);
-	$edos = $db->query("SELECT * FROM Estados")->fetchAll(PDO::FETCH_ASSOC);
-
 	if($_POST['usuarioId'] != ''){
 		$datC = $db-> query("SELECT * FROM Usuarios WHERE id = $_POST[usuarioId]")->fetch(PDO::FETCH_ASSOC);
 	}
@@ -51,7 +47,7 @@
 <div class="modal-header nuevo" >
 	<div style="text-align: center;">
 		<h4 class="modal-title">
-			Cambiar contraseña
+			<?php echo TR('chPwd'); ?>
 		</h4>
 	</div>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -64,12 +60,12 @@
 	<form id="nEmp">
 		<table class="table" border="0">
 		<tr>
-				<td>Contraseña</td>
+				<td><?php echo TR('password'); ?></td>
 				<td><input type="password" name="pwd" id="pwd" class="form-control oblig"></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>Repetir contraseña</td>
+				<td><?php echo TR('repeatpwd') ?></td>
 				<td><input type="password" id="pwd2" class="form-control oblig"></td>
 				<td valign="middle" style="font-size: large;vertical-align: middle;">
 					<i id="pwdChk" style="display: none;" class="glyphicon"></i>

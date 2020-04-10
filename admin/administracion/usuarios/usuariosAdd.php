@@ -4,7 +4,6 @@
 	checaAcceso(60);
 	$p = $_POST;
 	// print2($_POST);
-	$edos = $db->query("SELECT * FROM Estados")->fetchAll(PDO::FETCH_ASSOC);
 
 	if($_POST['usuarioId'] != ''){
 		$datC = $db-> query("SELECT * FROM usrAdmin WHERE id = $_POST[usuarioId]")->fetch(PDO::FETCH_ASSOC);

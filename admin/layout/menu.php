@@ -141,10 +141,10 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li class="nav-item">
-				<a href="#" id="chPwd" class="nav-link">Cambiar contraseña</a>
+				<a href="#" id="chPwd" class="nav-link"><?php echo TR('chPwd') ?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo $_SERVER['PHP_SELF'];?>?logout=1">Cerrar sesión</a>
+				<a class="nav-link" href="<?php echo $_SERVER['PHP_SELF'];?>?logout=1"><?php echo TR('close_session'); ?></a>
 			</li>
 		</ul>
 

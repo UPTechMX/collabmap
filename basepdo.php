@@ -4,7 +4,7 @@ $host 		= 'localhost';
 $DBuser		= 'pba';
 $DBpassw	= '123';
 // $DB	        = 'notland_IU2';
-$DB	        = 'iu';
+$DB	        = 'collabmap';
 
 // $host 		= 'notland.mx';
 // $DBuser		= 'notland_pba';

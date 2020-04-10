@@ -56,6 +56,9 @@ if(!function_exists('raiz')){
 		}
 	}
 	$rz = raiz();
+
+	include_once $rz.'lib/php/i18n_setup.php';
+
 	/**
 	* Busca archivo raiz
 	*

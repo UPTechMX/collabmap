@@ -76,7 +76,7 @@ switch ($Act) {
 			include_once raiz().'admin/descargas/index.php';
 		break;
 	default:
-		include_once raiz().'admin/proyectos/index.php';
+		// include_once raiz().'admin/proyectos/index.php';
 		break;			
 }
 

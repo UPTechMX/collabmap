@@ -6,16 +6,8 @@ checaAcceso(49);
 
 // print2(datCodigoPostal('85203'));;
 // print2($_SESSION);
-$municipios = $db->query("SELECT m.estadosId, m.id as val, m.nombre as nom, 'clase' as clase 
-	FROM Municipios m ORDER BY m.nombre")->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
 
-$proyectos = $db->query("SELECT id as val, nombre as nom, 'clase' as clase 
-	FROM Proyectos 
-	WHERE (inactivo != 1 OR inactivo IS NULL) ORDER BY nombre")->fetchAll(PDO::FETCH_ASSOC);
-
-$estados = $db->query("SELECT  e.id as val, e.nombre as nom, 'clase' as clase 
-	FROM Estados e ORDER BY e.nombre")->fetchAll(PDO::FETCH_ASSOC);
-
+// echo $_TRANSLATE['pollHealth'];
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -24,7 +16,7 @@ $estados = $db->query("SELECT  e.id as val, e.nombre as nom, 'clase' as clase
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
 
-	<title>Hábitat IU</title>
+	<title>CollabMap Admin</title>
 	
 	<!-- LIBRERIAS CSS -->
 	<link href="../lib/js/bootstrap4/css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -81,9 +73,6 @@ $estados = $db->query("SELECT  e.id as val, e.nombre as nom, 'clase' as clase
 	  gtag('config', 'UA-129367922-1');
 	</script>
 	<script type="text/javascript">
-		var estados = <?php echo atj($estados); ?>;
-		var municipios = <?php echo atj($municipios); ?>;
-		var proyectos = <?php echo atj($proyectos); ?>;
 	</script>
 
 	
