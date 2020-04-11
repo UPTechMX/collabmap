@@ -22,7 +22,7 @@
 			var elemId = $(this).closest('.medPI').attr('id').split('_')[1];
 			var recId = "<?php echo $_POST['eleId']; ?>";
 			conf('¿Estás seguro que deseas eliminar este medio por implementar del reconocimiento?',{elemId:elemId,recId:recId},function(e){
-				var rj = jsonF('admin/administracion/reconocimientos/json/json.php',{elemId:e.elemId,pryId:e.pryId,acc:5,opt:4});
+				var rj = jsonF('admin/administration/reconocimientos/json/json.php',{elemId:e.elemId,pryId:e.pryId,acc:5,opt:4});
 				// console.log(rj);
 				var r = $.parseJSON(rj);
 				if(r.ok == 1){

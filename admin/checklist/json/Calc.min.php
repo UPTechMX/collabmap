@@ -1,4 +1,6 @@
 <?php
+include_once '../../../lib/j/j.func.php';
+checaAcceso(50); // checaAcceso Checklist
 
 class EvalMath {
 

@@ -96,5 +96,37 @@
   "underconstruction": "Este cuestionario está en construcción y no es posible avanzar",
   "ok": "Aceptar",
   "syncsuccessful" : "La sincronización se realizó correctamente",
-  "pollHealth": "Cuestionario de salud"
+  "pollHealth": "Cuestionario de salud",
+  "search": "Buscar",
+  "yes": "Sí",
+  "no": "No",
+  "add": "Agregar",
+  "alert":"Alerta",
+
+  "administration": "Administración",
+  
+  "targets": "Objetivos",
+  "target": "Objetivo",
+  "description": "Descripción",
+
+  "users": "Usuarios",
+  "user": "Usuario",
+  "internalUsers": "Usuarios internos",
+
+  "externalUsers": "Usuarios externos",
+  "externalUser": "Usuario externo",
+  "userInfo": "Información de usuario",
+  "confirmed": "Confirmado",
+  "validate": "Validar",
+  "validated": "Validado",
+  "targetAlert": "El objetivo que quieres agregar ya existe para este usuario",
+
+  "surveys": "Encuestas",
+  "survey": "Encuesta",
+
+  "project": "Proyecto",
+  "projects": "Proyectos",
+  "inactive": "Desactivado"
+
+
 }

@@ -1,8 +1,7 @@
 <?php  
 
 	include_once '../../lib/j/j.func.php';
-	checaAcceso(50);
-	$p = $_POST;
+	checaAcceso(50); // checaAcceso Checklist	$p = $_POST;
 	// print2($_POST);
 
 	if($_POST['areaId'] != ''){
@@ -123,7 +122,7 @@
 				</td>
 				<td></td>
 			</tr>
-			<?php if(isset($_POST['areaId'])): ?>
+			<?php if(isset($_POST['areaId'])){ ?>
 				<tr>
 					<td><span class="btn btn-sm btn-default" id="chkIdentificador">Cambiar identificador</span></td>
 					<td>
@@ -132,7 +131,7 @@
 					</td>
 					<td></td>
 				</tr>
-			<?php endif; ?>
+			<?php }; ?>
 
 		</table>		
 	</form>

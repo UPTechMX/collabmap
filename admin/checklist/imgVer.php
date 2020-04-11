@@ -1,7 +1,7 @@
 <?php  
 
 	include_once '../../lib/j/j.func.php';
-	checaAcceso(50);
+	checaAcceso(50); // checaAcceso Checklist
 
 	$img = $db->query("SELECT * FROM ChecklistImagenes WHERE id = $_POST[imgId]")->fetch(PDO::FETCH_ASSOC);
 	// print2($img);

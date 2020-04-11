@@ -2,7 +2,7 @@
 
 	include_once '../../lib/j/j.func.php';
 	// print2($_POST);
-	checaAcceso(50);
+	checaAcceso(50); // checaAcceso Checklist
 	$chk = $db -> query("SELECT * FROM Checklist WHERE id = $_POST[chkId]")->fetchAll(PDO::FETCH_ASSOC)[0];
 
 	// print2($chk);

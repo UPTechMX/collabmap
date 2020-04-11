@@ -21,7 +21,7 @@
 			var elemId = $(this).closest('.col').attr('id').split('_')[1];
 			var recId = "<?php echo $_POST['eleId']; ?>";
 			conf('¿Estás seguro que deseas eliminar esta ubicacion del reconocimiento?',{elemId:elemId,recId:recId},function(e){
-				var rj = jsonF('admin/administracion/reconocimientos/json/json.php',{elemId:e.elemId,pryId:e.pryId,acc:6,opt:5});
+				var rj = jsonF('admin/administration/reconocimientos/json/json.php',{elemId:e.elemId,pryId:e.pryId,acc:6,opt:5});
 				console.log(rj);
 				var r = $.parseJSON(rj);
 				if(r.ok == 1){

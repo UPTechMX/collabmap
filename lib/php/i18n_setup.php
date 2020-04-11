@@ -40,7 +40,7 @@ $_TR = json_decode($jsonLang, true);
 function TR($strId){
     global $_TR;
     if (empty($_TR[$strId])) {
-        return $strId;
+        return "*** $strId ***";
     }else{
         return $_TR[$strId];
     }

@@ -3,7 +3,7 @@
 	if($_POST['ajax'] == 1){
 		include_once '../../lib/j/j.func.php';
 	}
-	checaAcceso(50);
+	checaAcceso(50); // checaAcceso Checklist
 	$resps = $db->query("SELECT * FROM Respuestas 
 		WHERE preguntasId = $_POST[pregId] AND (elim != 1  OR elim IS NULL) ORDER BY orden")->fetchAll(PDO::FETCH_ASSOC);
 

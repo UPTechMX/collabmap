@@ -3,7 +3,7 @@
 	// if($_POST['ajax'] == 1){
 		include_once '../../lib/j/j.func.php';
 	// }
-	checaAcceso(50);
+		checaAcceso(50); // checaAcceso Checklist
 
 	$bloques = $db->query("SELECT * FROM Bloques 
 		WHERE checklistId = $_POST[checklistId] AND (elim IS NULL OR elim != 1) 

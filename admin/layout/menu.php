@@ -63,13 +63,13 @@
 			if ($nivel >=50){ 
 				?>	
 				<li id="clientEmp" class="nav-item">
-					<a class="nav-link" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=juntasCom">Actividades</a>
+					<a class="nav-link" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=extUsr"><?php echo TR('externalUsers'); ?></a>
 				</li>
 				<?php 
 			} 
 			if ($nivel >=49){ 
 				?>
-				<li class="nav-item dropdown">
+<!-- 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Usuarios/Preregistro<span class="caret"></span>
@@ -91,39 +91,29 @@
 				</div>
 
 			</li>
-
+ -->
 			<?php if ($nivel >=50){ ?>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Gestión<span class="caret"></span>
+						<?php echo TR('administration') ?><span class="caret"></span>
 					</a>
 
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<?php if ($nivel >=50){ ?>
 							<?php if ($nivel >=60){ ?>
 							<a class="dropdown-item" id="usrInt" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=usrInt">
-								Integrantes IU
+								<?php echo TR('internalUsers') ?>
 							</a>
 							<?php } ?>
-							<a class="dropdown-item" id="financ" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=financ">
-								Financiadores
+							<a class="dropdown-item" id="trgs" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=trg">
+								<?php echo TR('targets') ?>
 							</a>
-							<a class="dropdown-item" id="admPry" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=admPry">
-								Gestión de proyectos
-							</a>
-							<a class="dropdown-item" id="equ" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=equ">
-								Catálogo de componentes
-							</a>
-							<a class="dropdown-item" id="veh" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=veh">
-								Vehículos
+							<a class="dropdown-item" id="prjs" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=prjs">
+								<?php echo TR('projects') ?>
 							</a>
 							<a class="dropdown-item" id="chk" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=chk">
-								Cuestionarios
-							</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" id="chk" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=dwls">
-								Descargas
+								<?php echo TR('surveys') ?>
 							</a>
 						<?php } ?>
 

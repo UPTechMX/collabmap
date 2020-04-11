@@ -3,7 +3,7 @@
 	if($_POST['ajax'] == 1){
 		include_once '../../../lib/j/j.func.php';
 	}
-	checaAcceso(50);
+	checaAcceso(50); // checaAcceso Checklist
 	$proyectos = $db->query("SELECT c.*, m.nombre as mNom FROM Checklist c 
 		LEFT JOIN Marcas m ON m.id = c.marcasId
 		WHERE repeticionesId = $_POST[repId] ORDER BY nombre")->fetchAll(PDO::FETCH_ASSOC);

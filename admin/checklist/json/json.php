@@ -1,6 +1,7 @@
 <?php  
 
 include_once '../../../lib/j/j.func.php';
+checaAcceso(50); // checaAcceso Checklist
 
 // print2($_POST);
 // $aaa = array_map('trim', $_POST);

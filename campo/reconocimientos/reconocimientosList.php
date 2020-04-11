@@ -15,12 +15,12 @@ $elementos = $db->query(" SELECT * FROM Reconocimientos WHERE usuariosId = $uId"
 		$('.edtEle').click(function(event) {
 			var eleId = $(this).closest('tr').attr('id').split('_')[1];
 			// console.log(eleId);
-			popUp('admin/administracion/reconocimientos/reconocimientosAdd.php',{eleId:eleId},function(){},{});
+			popUp('admin/administration/reconocimientos/reconocimientosAdd.php',{eleId:eleId},function(){},{});
 		});
 		$('.verEle').click(function(event) {
 			var eleId = $(this).closest('tr').attr('id').split('_')[1];
 			// console.log(eleId);
-			$('#infoEle').load(rz+'admin/administracion/reconocimientos/reconocimientosInfo.php',{eleId:eleId})
+			$('#infoEle').load(rz+'admin/administration/reconocimientos/reconocimientosInfo.php',{eleId:eleId})
 		});
 	});
 </script>

@@ -3,7 +3,7 @@
 	if($_POST['ajax'] == 1){
 		include_once '../../lib/j/j.func.php';
 	}
-	checaAcceso(50);
+	checaAcceso(50); // checaAcceso Checklist
 
 	// print2($_POST);
 	$pregs = $db->query("SELECT p.*, t.siglas as tsiglas, t.nombre as nTipo FROM Preguntas p

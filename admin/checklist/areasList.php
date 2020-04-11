@@ -3,8 +3,7 @@
 	// if($_POST['ajax'] == 1){
 		include_once '../../lib/j/j.func.php';
 	// }
-	checaAcceso(50);
-
+		checaAcceso(50); // checaAcceso Checklist
 
 
 	$areas = $db->query("SELECT * FROM Areas 

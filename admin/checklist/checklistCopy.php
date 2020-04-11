@@ -1,6 +1,7 @@
 <?php  
 
 	include_once '../../lib/j/j.func.php';
+	checaAcceso(50); // checaAcceso Checklist
 
 	// $clientes = $db-> query("SELECT * FROM Clientes")->fetchAll(PDO::FETCH_ASSOC);
 	$etapas = $db->query("SELECT * FROM Etapas ORDER BY orden")->fetchAll(PDO::FETCH_ASSOC);

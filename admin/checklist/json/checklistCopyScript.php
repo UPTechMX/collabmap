@@ -3,6 +3,8 @@
 if(!isset($_POST['include'])){
 	include_once '../../../lib/j/j.func.php';
 }
+checaAcceso(50); // checaAcceso Checklist
+
 
 
 // print2($_POST);

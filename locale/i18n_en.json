@@ -96,6 +96,37 @@
   "underconstruction": "This survey is underconstruction, there is not possible forward",
   "ok" : "OK",
   "syncsuccessful" : "Synchronization was successful",
-  "pollHealth": "Health quiz"
+  "pollHealth": "Health quiz",
+  "search": "Search",
+  "yes": "Yes",
+  "no": "No",
+  "add": "Add",
+  "alert":"Alert",
+
+  "administration": "Administration",
+
+  "targets": "Targets",
+  "target": "Target",
+  "description": "Description",
+  
+  "users": "Users",
+  "user": "User",
+  "internalUsers": "Internal users",
+  
+  "externalUsers": "External users",
+  "externalUser": "External user",
+  "userInfo": "User information",
+  "confirmed": "Confirmed",
+  "validate": "Validate",
+  "validated": "Validated",
+  "targetAlert": "The target you want to add already exists for this user",
+
+  "surveys": "Surveys",
+  "survey": "Survey",
+
+  "project": "Project",
+  "projects": "Projects",
+  "inactive": "Inactive"
+
 
 }

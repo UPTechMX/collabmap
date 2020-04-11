@@ -1,7 +1,7 @@
 <?php  
 
 	include_once '../../lib/j/j.func.php';
-	checaAcceso(50);
+	checaAcceso(50); // checaAcceso Checklist
 
 	$tipos = $db->query("SELECT * FROM Tipos WHERE tabla = 'Preguntas'")->fetchAll(PDO::FETCH_ASSOC);
 	if($_POST['pregId'] != ''){

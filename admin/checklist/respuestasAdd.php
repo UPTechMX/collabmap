@@ -1,7 +1,7 @@
 <?php  
 
 	include_once '../../lib/j/j.func.php';
-	checaAcceso(50);
+	checaAcceso(50); // checaAcceso Checklist
 	if($_POST['respId'] != ''){
 		$datP = $db-> query("SELECT * FROM Respuestas WHERE id = $_POST[respId]")->fetch(PDO::FETCH_ASSOC);
 	}

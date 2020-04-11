@@ -1,17 +1,17 @@
 
 .btn-shop {
-  /*background-color: #2bc5ff;*/
-  background: #00aeef; /* Old browsers */
-  background: -moz-linear-gradient(left,  #00aeef 0%, #2bc5ff 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left,  #00aeef 0%,#2bc5ff 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right,  #00aeef 0%,#2bc5ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00aeef', endColorstr='#2bc5ff',GradientType=1 ); /* IE6-9 */
+  /*background-color: #1f31a0;*/
+  background: #1f31a0; /* Old browsers */
+  background: -moz-linear-gradient(left,  #1f31a0 0%, #1f31a0 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #1f31a0 0%,#1f31a0 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #1f31a0 0%,#1f31a0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f31a0', endColorstr='#1f31a0',GradientType=1 ); /* IE6-9 */
   font-family: Verdana;
   color: whitesmoke;
 }
 
 .btn-shop:hover {
-  background-color: #00aeef;
+  background-color: #1f31a0;
   color: whitesmoke ;
 }
 
@@ -73,8 +73,8 @@
 }
 
 .nuevo{
-	background-color:#00aeef; 
-	color:black;
+	background-color:#1f31a0; 
+	color:white;
 	text-align: center;
 	border-radius:0px;
 	padding: 10px;
@@ -191,7 +191,7 @@
 }
 
 .negro{
-	background-color: #00aeef;
+	background-color: #1f31a0;
 	color:#000;
 	vertical-align: middle;
 }
@@ -278,7 +278,7 @@
 .nomSubArea{
 	font-size: 1.7em;
 	text-align: center;
-	background-color: #00aeef;
+	background-color: #1f31a0;
 	padding: 5px;
 	border-radius: 2px;
 }

@@ -3,7 +3,7 @@
 	if($_POST['ajax'] == 1){
 		include_once '../../lib/j/j.func.php';
 	}
-	checaAcceso(50);
+	checaAcceso(50); // checaAcceso Checklist
 	$subpregs = $db->query("SELECT p.*, t.siglas as tsiglas, t.nombre as nTipo FROM Preguntas p
 		LEFT JOIN Tipos t ON t.id = p.tiposId
 		WHERE subareasId = $_POST[pregId]  AND (elim != 1 OR elim IS NULL)

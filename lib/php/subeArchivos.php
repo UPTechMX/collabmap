@@ -10,7 +10,7 @@ switch ($_POST['rutaId']) {
 		$dir = 'img/checklist';
 		break;
 	case 3:
-		$dir = 'admin/administracion/vehiculos/img';
+		$dir = 'admin/administration/vehiculos/img';
 		break;
 	case 4:
 		$dir = 'archivos';
@@ -22,7 +22,7 @@ switch ($_POST['rutaId']) {
 		$dir = 'videosCap';
 		break;
 	case 7:
-		$dir = 'admin/administracion/equipos/archivos';
+		$dir = 'admin/administration/equipos/archivos';
 		break;
 	case 8:
 		$dir = 'archivos/tmp';

@@ -3,8 +3,7 @@
 	if(!function_exists('raiz')){
 		include_once '../../lib/j/j.func.php';
 	}
-	checaAcceso(50);
-
+	checaAcceso(50); // checaAcceso Checklist
 ?>
 <script type="text/javascript">
 	$(document).ready(function() {

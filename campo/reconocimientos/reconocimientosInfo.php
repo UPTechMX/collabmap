@@ -113,7 +113,7 @@ if($nivel<60){
 			// }
 
 			if(dat.colonia != '' && dat.estadosId != ''&& dat.municipiosId != ''){
-				var rj = jsonF('admin/administracion/reconocimientos/json/json.php',{datos:dat,acc:2,opt:1});
+				var rj = jsonF('admin/administration/reconocimientos/json/json.php',{datos:dat,acc:2,opt:1});
 				try{
 					var r = $.parseJSON(rj);
 				}catch(e){
@@ -124,7 +124,7 @@ if($nivel<60){
 
 				if(r.ok == 1){
 					alertar('Los datos han sido guardados correctamente',function(){},{})
-					// $('#pryColsList').load(rz+'admin/administracion/reconocimientos/recColsList.php',{eleId:dat.reconocimientosId});
+					// $('#pryColsList').load(rz+'admin/administration/reconocimientos/recColsList.php',{eleId:dat.reconocimientosId});
 				}
 			}else{
 				alertar('Los datos de estado, municipio y colonia no pueden estar vacíos',function(){},{})
@@ -164,7 +164,7 @@ if($nivel<60){
 
 			// console.log(datMed);
 			
-			var rj = jsonF('admin/administracion/reconocimientos/json/json.php',{acc:4,datos:datMed,recId:recId});
+			var rj = jsonF('admin/administration/reconocimientos/json/json.php',{acc:4,datos:datMed,recId:recId});
 			try{
 				var r = $.parseJSON(rj);
 				// console.log(rj);
@@ -215,7 +215,7 @@ if($nivel<60){
 				return;
 			}
 
-			var rj = jsonF('admin/administracion/reconocimientos/json/json.php',{datos:dat,opt:2,acc:1})
+			var rj = jsonF('admin/administration/reconocimientos/json/json.php',{datos:dat,opt:2,acc:1})
 			// console.log(dat);
 			try{
 				var r = $.parseJSON(rj);
@@ -227,7 +227,7 @@ if($nivel<60){
 			}
 			if(r.ok == 1){
 				alertar('La información ha sido guardada correctamente',function(){},{});
-				$('#recMedsList').load(rz+'admin/administracion/reconocimientos/recMedsList.php',{eleId:dat.reconocimientosId});
+				$('#recMedsList').load(rz+'admin/administration/reconocimientos/recMedsList.php',{eleId:dat.reconocimientosId});
 				$('#addMedPI').show();
 				obs.setText('');
 				$('#medioPI').val('');
@@ -248,7 +248,7 @@ if($nivel<60){
 			dat.id = <?php echo $_POST['eleId']; ?>;
 			dat.observaciones = observaciones.root.innerHTML.trim();
 
-			var rj = jsonF('admin/administracion/reconocimientos/json/json.php',{datos:dat,opt:1,acc:2})
+			var rj = jsonF('admin/administration/reconocimientos/json/json.php',{datos:dat,opt:1,acc:2})
 
 			try{
 				var r = $.parseJSON(rj);
@@ -280,7 +280,7 @@ if($nivel<60){
 				alertar('La ubicación ya está dada de alta en este reconocimiento',function(){},{});
 			}else{			
 				if(dat.ubicacionesId != '' ){
-					var rj = jsonF('admin/administracion/reconocimientos/json/json.php',{datos:dat,acc:1,opt:5});
+					var rj = jsonF('admin/administration/reconocimientos/json/json.php',{datos:dat,acc:1,opt:5});
 					try{
 						var r = $.parseJSON(rj);
 					}catch(e){
@@ -291,7 +291,7 @@ if($nivel<60){
 					console.log(rj);
 					if(r.ok == 1){
 						// alertar('Los datos han sido guardados correctamente',function(){},{})
-						$('#recUbicList').load(rz+'admin/administracion/reconocimientos/recUbicList.php',{eleId:dat.reconocimientosId});
+						$('#recUbicList').load(rz+'admin/administration/reconocimientos/recUbicList.php',{eleId:dat.reconocimientosId});
 					}
 				}else{
 					alertar('Debes seleccionar una ubicacion.',function(){},{})
