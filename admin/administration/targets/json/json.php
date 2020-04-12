@@ -8,7 +8,7 @@
 			$post['tabla'] = 'Targets';
 			break;
 		case 2:
-			$post['tabla'] = '';
+			$post['tabla'] = 'TargetsChecklist';
 			break;
 		case 3:
 		

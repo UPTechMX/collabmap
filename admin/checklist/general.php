@@ -81,13 +81,13 @@
 		<?php echo $chkInf[0]['nombre']; ?>
 	</div>
 </div>
-<div class="col-md-12">
+<!-- <div class="col-md-12">
 	<div class="nuevo">Resumen</div>
 	<textarea name="resumen" id="resumen" class="form-control txAreaGral"><?php echo $resumen ?></textarea>
 	<div style="text-align: right;margin-top: 5px;">
 		<span class="btn btn-sm btn-shop" style="" id="gResumen">Guardar resumen</span>
 	</div>
-</div>
+</div> -->
 <!-- <div class="col-md-6">
 	<div class="nuevo">Imágenes</div>
 	<table>

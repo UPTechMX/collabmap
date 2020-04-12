@@ -39,7 +39,7 @@
 			var bloqueId = this.id.split('_')[1];
 			// console.log(bloqueId);
 
-			conf('¿Está seguro que desea elilminar el bloque del checklist?',{bloqueId:bloqueId},function(e){
+			conf('<?php echo TR('delBlockMessage') ?>',{bloqueId:bloqueId},function(e){
 				var rj = jsonF('admin/checklist/json/json.php',{datos:{id:e.bloqueId,elim:1},acc:2,opt:5,chkId:checklistId});
 				var r = $.parseJSON(rj);
 				if(r.ok == 1){

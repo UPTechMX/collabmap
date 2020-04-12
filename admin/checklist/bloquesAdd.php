@@ -38,7 +38,7 @@
 					$('#identificador').val("<?php echo $datM['identificador'];?>")
 					$('#identificador').toggle();
 				}else{
-					conf('Cambiar el identificador modifica las asociaciones entre bloques de distintos checklist',{},function(){
+					conf('<?php echo TR("chIdBlockMessage"); ?>',{},function(){
 						$('#identificador').toggle();
 					});
 				}
@@ -82,12 +82,7 @@
 <div class="modal-header nuevo" >
 	<div style="text-align: center;">
 		<h4 class="modal-title">
-			<?php if(isset($_POST['bloqueId'])): ?>
-				Editar 
-			<?php else: ?>
-				Nuevo 
-			<?php endif; ?>
-			bloque
+			<?php echo TR('block'); ?>
 		</h4>
 	</div>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -101,14 +96,14 @@
 	<form id="nEmp">
 		<table class="table" border="0">
 			<tr>
-				<td>Nombre</td>
+				<td><?php echo TR('name'); ?></td>
 				<td>
 					<input type="text" value="<?php echo $datM['nombre']; ?>" name="nombre" id="nombre" class="form-control oblig" >
 				</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>Tipo del promedio</td>
+				<td><?php echo TR('avgType'); ?></td>
 				<td>
 					<select class="form-control" id="tipoProm" name="tipoProm">
 						<option value="1" <?php echo $datM['tipoProm'] == 1 ? 'selected':''; ?> >Por preguntas</option>
@@ -119,7 +114,7 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td>Ponderador del bloque</td>
+				<td><?php echo TR('blockWeighting'); ?></td>
 				<td>
 					<input type="text" value="<?php echo $datM['valMax'] != ''?$datM['valMax']:100; ?>" 
 						name="valMax" id="valMax" class="form-control" >
@@ -127,7 +122,7 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td>Encabezado</td>
+				<td><?php echo TR('blockHeader'); ?></td>
 				<td>
 					<input type="checkbox" value="1" name="encabezado" id="encabezado"  <?php echo $datM['encabezado'] == 1?'checked':''; ?>>
 				</td>
@@ -135,7 +130,7 @@
 			</tr>
 			<?php if(isset($_POST['bloqueId'])): ?>
 				<tr>
-					<td><span class="btn btn-sm btn-default" id="chkIdentificador">Cambiar identificador</span></td>
+					<td><span class="btn btn-sm btn-default" id="chkIdentificador"><?php echo TR('chId'); ?></span></td>
 					<td>
 						<input type="text" value="<?php echo $datM['identificador']; ?>" 
 						name="identificador" id="identificador" class="form-control oblig" style="display: none;" />
@@ -148,8 +143,8 @@
 </div>
 <div class="modal-footer">
 	<div style="text-align: right;">
-		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel">Cancelar</span>
-		<span id="env" class="btn btn-sm btn-shop">Enviar</span>
+		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel"><?php echo TR("cancel"); ?></span>
+		<span id="env" class="btn btn-sm btn-shop"><?php echo TR('send'); ?></span>
 	</div>
 </div>
 

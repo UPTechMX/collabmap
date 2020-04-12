@@ -35,7 +35,7 @@
 	Bloques
 </div>
 	<span class="btn btn-shop btn-sm" id="addBloque">
-		<i class="glyphicon glyphicon-plus">&nbsp;</i>Agregar un bloque
+		<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('addBlock'); ?>
 	</span>
 	<span class="btn btn-shop btn-sm" id="saveBloqueOrden" style="display:none">
 		<i class="glyphicon glyphicon-floppy-disk">&nbsp;</i>Guardar orden

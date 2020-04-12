@@ -31,44 +31,21 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<?php if ($nivel >=49){ ?>
-				<li id="mEmp" class="nav-item">
+				<!-- <li id="mEmp" class="nav-item">
 					<a class="nav-link" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=pry">Proyectos</a>
-				</li>
+				</li> -->
 			<?php } ?>
-			<?php if ($nivel >=49){ ?>
-				<li id="clientEmp" class="nav-item">
+
+				<!-- <li id="clientEmp" class="nav-item">
 					<a class="nav-link" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=mapaStatus">Logística</a>
-				</li>
-				<?php 
-			} 
-			if ($nivel >=50){ 
-				?>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				</li> -->
 
-					Reconocimientos<span class="caret"></span></a>
-
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" id="rec" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=rec">Reconocimientos</a>
-						<a class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=ubics">Sitios de interés</a>
-						<a class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=lideresCom">Líderes Comunitarios</a>
-						<div class="dropdown-divider"></div>
-					</div>
-
-				</li>
-
-				<?php 
-			} 
-			if ($nivel >=50){ 
-				?>	
+			<?php if ($nivel >=50){ ?>	
 				<li id="clientEmp" class="nav-item">
 					<a class="nav-link" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=extUsr"><?php echo TR('externalUsers'); ?></a>
 				</li>
-				<?php 
-			} 
-			if ($nivel >=49){ 
-				?>
+			<?php } ?>
+			<?php if ($nivel >=49){ ?>
 <!-- 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

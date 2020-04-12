@@ -10,5 +10,6 @@
 <div style="margin-top: 10px">
 	<div class="row">
 		<div class="col-6"><?php include_once 'targets.php'; ?></div>
+		<div class="col-6" id="targetsInfo"></div>
 	</div>
 </div>

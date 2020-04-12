@@ -25,7 +25,7 @@ $elementos = $db->query("SELECT t.*, p.name as pName
 
 		$(".trgtInfo").click(function(event) {
 			var targetId = $(this).closest('tr').attr('id').split('_')[1];
-			console.log('targetId: '+targetId,", FALTA GENERAR ACCIÓN PARA LA INFORMACIÓN DEL TARGET");
+			$('#targetsInfo').load(rz+'admin/administration/targets/targetsInfo.php',{targetId:targetId});
 		});
 	});
 </script>

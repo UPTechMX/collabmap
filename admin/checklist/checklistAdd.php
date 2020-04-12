@@ -10,7 +10,7 @@
 		$datM = $db-> query("SELECT * FROM Checklist WHERE id = $_POST[checklistId]")->fetch(PDO::FETCH_ASSOC);
 	}
 
-	$etapas = $db->query("SELECT * FROM Etapas ORDER BY orden")->fetchAll(PDO::FETCH_ASSOC);
+	// $etapas = $db->query("SELECT * FROM Etapas ORDER BY orden")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -72,8 +72,11 @@
 				// console.log(r);
 				if(r.ok == 1){
 
+					var o = new Option(dat.nombre,r.nId);
+					$('#chkSel').append(o);
+					$('#chkSel').val(r.nId).trigger('change');
+
 					$('#popUp').modal('toggle');
-					$('#etapasSel').trigger('change');
 					// $('#checklistList').load(rz+'admin/proyectos/checklist/checklistList.php',{ajax:1});
 				}
 			}
@@ -117,22 +120,6 @@
 				<td><input type="text" value="<?php echo $datM['siglas']; ?>" name="siglas" id="siglas" class="form-control oblig"></td>
 				<td></td>
 			</tr>
-			<?php if($_POST['checklistId'] == ''){ ?>
-				<tr>
-					<td>Etapa</td>
-					<td>
-						<select id="etapa" name="etapa" class="form-control oblig">
-							<option value="">- - - Etapa - - -</option>
-							<?php foreach ($etapas as $e){ ?>
-								<option value="<?php echo $e['nomInt']; ?>" <?php echo $e['nomInt'] == $datM['etapa']?'selected':''; ?>>
-									<?php echo $e['nombre']; ?>
-								</option>
-							<?php } ?>
-						</select>
-					</td>
-					<td></td>
-				</tr>
-			<?php } ?>
 		</table>		
 	</form>
 </div>

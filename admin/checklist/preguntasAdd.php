@@ -180,20 +180,6 @@
 				<td><input type="checkbox" name="justif" id="justif" <?php echo $datP['justif'] == 1?'checked':''; ?> ></td>
 				<td></td>
 			</tr>
-			
-			<tr>
-				<td>Presentar en ficha técnica</td>
-				<td><input type="checkbox" name="fichaTec" id="fichaTec" <?php echo $datP['fichaTec'] == 1?'checked':''; ?> ></td>
-				<td></td>
-			</tr>
-			<tr id="trDatTec" style="display: none;">
-				<td style="vertical-align: middle;">Dato en ficha técnica</td>
-				<td>
-					<textarea name="datTec" id="datTec" class="form-control txArea"><?php echo $datP['datTec'] ?></textarea>
-				</td>
-				<td></td>
-			</tr>
-
 			<?php if(isset($_POST['pregId'])): ?>
 				<tr>
 					<td><span class="btn btn-sm btn-default" id="chkIdentificador">Cambiar identificador</span></td>
@@ -204,7 +190,6 @@
 					<td></td>
 				</tr>
 			<?php endif; ?>
-
 		</table>		
 	</form>
 </div>

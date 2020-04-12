@@ -5,6 +5,7 @@
 	}
 	checaAcceso(50); // checaAcceso Checklist
 
+	$checklist = $db->query("SELECT * FROM Checklist ORDER BY nombre") -> fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -13,46 +14,23 @@
 	var checklistId = '';
 	$(document).ready(function() {
 
-		$('#checklistsSel').change(function(event) {
-			var checklistId = $(this).val();
-			if(checklistId != ""){
-				$('#edtChklist').show();
+		$('#chkSel').change(function(event) {
+			event.preventDefault();
+			checklistId = $(this).val();
+			if(checklistId != ''){			
+				$('#chkMods').load(rz+'admin/checklist/chkMods.php',{checklistId:checklistId});
+				$('#bloques').load(rz+'admin/checklist/bloques.php',{checklistId:checklistId});
+				$('#general').load(rz+'admin/checklist/general.php',{checklistId:checklistId});
+				$('#areas').empty();
+				$('#preguntas').empty();
 			}else{
-				$('#edtChklist').hide();
+				$('#chkMods').empty();
+				$('#bloques').empty();
+				$('#general').empty();
+				$('#areas').empty();
+				$('#preguntas').empty();
 			}
 		});
-
-		$('#checklists').on('click', '.edtInfoChk', function(event) {
-			event.preventDefault();
-			checklistId = $(this).closest('li').attr('id').split('_')[1];
-			// console.log(checklistId);
-			popUp('admin/checklist/checklistAdd.php',{checklistId:checklistId},function(e){},{});
-
-		});
-
-		$('#checklists').on('click', '.edtChk', function(event) {
-			event.preventDefault();
-			checklistId = $(this).closest('li').attr('id').split('_')[1];
-			$('#bloques').load(rz+'admin/checklist/bloques.php',{checklistId:checklistId});
-			$('#general').load(rz+'admin/checklist/general.php',{checklistId:checklistId});
-			$('#areas').empty();
-			$('#preguntas').empty();
-		});
-
-		$('#checklists').on('click', '.condChk', function(event) {
-			event.preventDefault();
-			var checklistId = $(this).closest('li').attr('id').split('_')[1];
-			popUp('admin/checklist/condiciones.php',{eleId:checklistId,aplicacion:'chk'},function(e){},{});
-		});
-
-		$('#checklists').on('click', '.tPromChk', function(event) {
-			event.preventDefault();
-			var checklistId = $(this).closest('li').attr('id').split('_')[1];
-			popUp('admin/checklist/chkTipoProm.php',{chkId:checklistId},function(e){},{});
-		});
-
-		var coord = <?php echo $coord; ?>;
-		// console.log(coord);
 
 		$('#addChk').click(function(event) {
 			popUp('admin/checklist/checklistAdd.php',{},function(e){},{});
@@ -64,28 +42,26 @@
 
 	});
 </script>
-<div class="row">
-	<div class="col-3">
-		<div class="nuevo">Etapa</div>
-		<select class="form-control" id="etapasSel">
-			<option value="">- - - - - - - -</option>
-			<?php foreach ($etapas as $e){ ?>
-				<option value="<?php echo $e['nomInt']; ?>"><?php echo $e['nombre']; ?></option>
-			<?php } ?>
-		</select>
-		<span id="addChk" class="btn btn-sm btn-shop" style="margin: 10px 0px;">Agregar Cuestionario</span>
-		<span id="dupChk" class="btn btn-sm btn-shop">Duplicar Cuestionario</span>
-	</div>
-	<div class="col-3" >
-		<div class="nuevo">Checklist</div>
-		<div style="height: 150px;overflow-y: auto;">			
-			<ul class="list-group" id="checklists">			
-			</ul>
+<div class="row" style="margin-top: 10px;">
+	<div class="col-5" >
+		<div class="nuevo"><?php echo TR('surveys'); ?></div>
+		<div>
+			<select class="form-control" id="chkSel">
+				<option value="">- - - <?php echo TR('surveys'); ?> - - -</option>
+				<?php foreach ($checklist as $c){ ?>
+					<option value="<?php echo $c['id'] ?>"><?php echo $c['nombre']; ?></option>
+				<?php } ?>
+			</select>
+			<span id="addChk" class="btn btn-sm btn-shop" style="margin: 10px 0px;">
+				<i class="glyphicon glyphicon-plus"></i> &nbsp;<?php echo TR('survey'); ?>
+			</span>
+			<span id="dupChk" class="btn btn-sm btn-shop"><?php echo TR('duplicateSurvey'); ?></span>
 		</div>
 	</div>
+	<div class="col-7" id="chkMods"></div>
 </div>
 <hr/>
-<div class="row" id="general" style="margin-top:20px;margin-bottom: 20px;"></div>
+<div class="row" id="general" style="margin-top:20px;margin-bottom: 10px;"></div>
 <div class="row">
 	<div class="col-md-6" style="min-height: 350px;max-height: 350px;overflow-y: auto;" id="bloques"></div>
 	<div class="col-md-6" style="min-height: 350px;max-height: 350px;overflow-y: auto;" id="areas"></div>

@@ -21,7 +21,7 @@
 
 	</div>
 	<div style ="none:none 1px;font-size:x-small;color:#333;" id="botonesAct">
-		&#169;&nbsp;<?php echo $y?>. Isla Urbana.
+		&#169;&nbsp;<?php echo $y?>. CAPSUS.
 	</div>
 </div>
 <br/>

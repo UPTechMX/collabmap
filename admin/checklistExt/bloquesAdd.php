@@ -39,7 +39,7 @@
 					$('#identificador').val("<?php echo $datM['identificador'];?>")
 					$('#identificador').toggle();
 				}else{
-					conf('Cambiar el identificador modifica las asociaciones entre bloques de distintos checklist',{},function(){
+					conf('<?php echo TR("chIdBlockMessage"); ?>',{},function(){
 						$('#identificador').toggle();
 					});
 				}
