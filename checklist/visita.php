@@ -135,7 +135,7 @@
 		<div>
 
 			<!-- Datos de la visita -->
-			<div style="text-align: center;" class="nuevo">
+			<div style="text-align: center;margin-top: 10px;" class="nuevo">
 				<h2>Respuestas del cuestionario</h2>
 			</div>
 

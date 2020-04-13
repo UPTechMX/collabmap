@@ -42,42 +42,64 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#tableUT_<?php echo $utId; ?> .newVisita').click(function(event) {
-			var checklistId = $(this).closest('td').attr('id').split('_')[2];
-			var targetsElemId = $(this).closest('td').attr('id').split('_')[1];
-			var targetId = $(this).closest('.divTrgt').attr('id').split('_')[1];
-			console.log(targetId);
-			var rj = jsonF('questionnaires/targets/json/json.php',{acc:3,checklistId:checklistId,targetsElemId:targetsElemId});
+
+		$('#tableUT_<?php echo $utId; ?> .action').click(function(event) {
+			var ids = $(this).closest('td').attr('id').split('_');
+			var teId = ids[1]
+			var cId = ids[2]
+			
+			var rj = jsonF('questionnaires/targets/json/json.php',{acc:4,cId:cId,teId:teId });
+			// console.log(rj);
+
 			var r = $.parseJSON(rj);
+			// console.log(r);
 
-			if(r.ok == 1){
-				var vId = r.nId;
-				popUpCuest('questionnaires/checklist/answer.php',{vId:r.vId},function(){})
-				setTimeout(function(){
-					$('#contentCuest').load(rz+'checklist/cuestionario.php',{vId:vId},function(){});
-				},500);
+			switch(r.acc){
+				case 'newVisita':
+					var checklistId = cId;
+					var targetsElemId = teId;
+					var targetId = $(this).closest('.divTrgt').attr('id').split('_')[1];
+					// console.log(targetId);
+					var rj = jsonF('questionnaires/targets/json/json.php',{acc:3,checklistId:checklistId,targetsElemId:targetsElemId});
+					var r = $.parseJSON(rj);
 
-				$(this)
-				.closest('.targetTable')
-				.load(rz+'questionnaires/targets/targetTable.php',{targetId:targetId});
+					if(r.ok == 1){
+						var vId = r.nId;
+						popUpCuest('questionnaires/checklist/answer.php',{vId:r.vId},function(){})
+						setTimeout(function(){
+							$('#contentCuest').load(rz+'checklist/cuestionario.php',{vId:vId},function(){});
+						},500);
+
+						$(this)
+						.closest('.targetTable')
+						.load(rz+'questionnaires/targets/targetTable.php',{targetId:targetId});
+					}
+
+					break;
+				case 'contVisita':
+					var vId = r.vId;
+					popUpCuest('questionnaires/checklist/answer.php',{vId:vId},function(){})
+					setTimeout(function(){
+						$('#contentCuest').load(rz+'checklist/cuestionario.php',{vId:vId},function(){});
+					},500);
+
+					break;
+				case 'seeResults':
+					var vId = this.id.split('_')[1];
+					popUpCuest('questionnaires/checklist/seeAnswers.php',{vId:vId,div:1},function(){})
+					break;
+				default:
+					break;
 			}
-		});
 
-		$('#tableUT_<?php echo $utId; ?> .contVisita').click(function(event) {
-			var vId = this.id.split('_')[1];
-			popUpCuest('questionnaires/checklist/answer.php',{vId:vId},function(){})
-			setTimeout(function(){
-				$('#contentCuest').load(rz+'checklist/cuestionario.php',{vId:vId},function(){});
-			},500);
-		});
-
-		$('#tableUT_<?php echo $utId; ?> .seeResults').click(function(event) {
-			var vId = this.id.split('_')[1];
-			popUpCuest('questionnaires/checklist/seeAnswers.php',{vId:vId,div:1},function(){})
+			// popUpCuest('questionnaires/checklist/seeAnswers.php',{vId:vId,div:1},function(){})
 			// setTimeout(function(){
 			// 	$('#contentCuest').load(rz+'checklist/cuestionario.php',{vId:vId},function(){});
 			// },500);
 		});
+
+
+
 	});
 </script>
 
@@ -111,11 +133,11 @@
 					<td id='tdTrgtChk_<?php echo "$te[id]_$tc[cId]" ?>' style="text-align: center;" >
 						
 						<?php if (empty($vis)){ ?>
-							<span class="newVisita manita" style="color:grey;">
+							<span class="newVisita manita action" style="color:grey;">
 								<?php echo TR('answerSurvey'); ?>
 							</span>							
 						<?php }elseif(empty($vis['finalizada'])){ ?>
-							<span class="contVisita manita" style="color:grey;"  id="idVis_<?php echo $vis['id']; ?>">
+							<span class="contVisita manita action" style="color:grey;"  id="idVis_<?php echo $vis['id']; ?>">
 								<?php echo TR('continue'); ?>
 							</span>							
 						<?php 
@@ -163,23 +185,21 @@
 								<span style="font-size: x-small;">
 									<?php echo TR('sended').": ".$visDate; ?>
 								</span><br/>
-								<span class="seeResults manita" style="color:grey;"  id="idVis_<?php echo $vis['id']; ?>">
+								<span class="seeResults manita action" style="color:grey;"  id="idVis_<?php echo $vis['id']; ?>">
 									<?php echo TR('seeResults'); ?>
 								</span>							
 							<?php }elseif($today >= $nextDate){ ?>
-								<span class="newVisita manita" style="color:grey;">
+								<span class="newVisita manita action" style="color:grey;">
 									<?php echo TR('answerSurvey'); ?>
 								</span>							
 							<?php }elseif($today < $nextDate){ ?>
 								<span style="font-size: x-small;">
 									<?php echo TR('sended').": ".$visDate; ?>
 								</span><br/>
-								<span class="seeResults manita" style="color:grey;"  id="idVis_<?php echo $vis['id']; ?>">
+								<span class="seeResults manita action" style="color:grey;"  id="idVis_<?php echo $vis['id']; ?>">
 									<?php echo TR('seeResults'); ?>
 								</span>							
 							<?php } ?>
-
-
 						<?php } ?>
 					</td>
 				<?php } ?>
