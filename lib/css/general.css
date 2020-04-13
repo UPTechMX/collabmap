@@ -1,17 +1,17 @@
 
 .btn-shop {
   /*background-color: #1f31a0;*/
-  background: #1f31a0; /* Old browsers */
-  background: -moz-linear-gradient(left,  #1f31a0 0%, #1f31a0 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left,  #1f31a0 0%,#1f31a0 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right,  #1f31a0 0%,#1f31a0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f31a0', endColorstr='#1f31a0',GradientType=1 ); /* IE6-9 */
+  background: #e37886; /* Old browsers */
+  background: -moz-linear-gradient(left,  #e37886 0%, #e37886 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #e37886 0%,#e37886 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #e37886 0%,#e37886 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e37886', endColorstr='#e37886',GradientType=1 ); /* IE6-9 */
   font-family: Verdana;
   color: whitesmoke;
 }
 
 .btn-shop:hover {
-  background-color: #1f31a0;
+  background-color: #e37886;
   color: whitesmoke ;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .nuevo{
-	background-color:#1f31a0; 
+	background-color:#e37886; 
 	color:white;
 	text-align: center;
 	border-radius:0px;
@@ -191,7 +191,7 @@
 }
 
 .negro{
-	background-color: #1f31a0;
+	background-color: #dcdcdc;
 	color:#000;
 	vertical-align: middle;
 }
