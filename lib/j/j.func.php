@@ -100,10 +100,10 @@ if(!function_exists('raiz')){
 		}
 	}
 
-	function aRaizHtml(){
+	function aRaizHtml($location){
 
 		session_start();
-		if(empty($_SESSION['CM']['aRaizHtml'])){
+		if(empty($_SESSION['CM']['aRaizHtml'][$location])){
 
 			$dirH = $_SERVER['REQUEST_URI'];
 			$dirEH = explode('/',$dirH);
@@ -143,7 +143,9 @@ if(!function_exists('raiz')){
 			$dN = '';
 			// echo 'dir = '.$dir.'<br/>';
 			if(file_exists($dir.'/raiz')){
-				$_SESSION['CM']['aRaizHtml'] = './';
+				// echo "$location - - - -<br/>";
+				
+				$_SESSION['CM']['aRaizHtml'][$location] = './';
 				return './';		
 			}
 			
@@ -159,7 +161,7 @@ if(!function_exists('raiz')){
 				// print2($tmp);
 				// }
 				if(file_exists($tmp.'raiz')){
-					$_SESSION['CM']['aRaizHtml'] = $dN;
+					$_SESSION['CM']['aRaizHtml'][$location] = $dN;
 					return $dN;
 				}else{
 					if($i == 1){
@@ -168,7 +170,7 @@ if(!function_exists('raiz')){
 				}
 			}
 		}else{
-			return $_SESSION['CM']['aRaizHtml'];
+			return $_SESSION['CM']['aRaizHtml'][$location];
 		}
 	}
 
@@ -429,14 +431,10 @@ function verifPWD($usr,$pwd,$acceso){
 		case 'admin':
 			$stmt = $db->prepare("SELECT * FROM usrAdmin WHERE username = ? AND nivel > 0");
 			break;
-		case 'ext':
-			$stmt = $db->prepare("SELECT u.*, c.logotipo 
-				FROM Usuarios u
-				LEFT JOIN Clientes c ON c.id = u.clientesId
+		case 'questionnaires':
+			$stmt = $db->prepare("SELECT u.*
+				FROM Users u
 				WHERE username = ?");
-			break;
-		case 'shopper':
-			$stmt = $db->prepare("SELECT * FROM Shoppers WHERE username = ? AND confirmado = 1");
 			break;
 		
 		default:
@@ -450,40 +448,15 @@ function verifPWD($usr,$pwd,$acceso){
 	$r['verif'] = password_verify($pwd,$usrInf['pwd']);
 	if($r['verif']){
 		$r['usrId'] = $usrInf['id'];
-		$r['nombre'] = "$usrInf[nombre] $usrInf[aPat] $usrInf[aMat] ";
-		$r['estatusId'] = $usrInf['estatus'];
-		$r['clientesId'] = $usrInf['clientesId'];
-		$r['logotipo'] = $usrInf['logotipo'];
-		if($acceso == 'reportes'){			// echo $sql;
-			$r['priv'] = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-		}elseif($acceso == 'admin'){
+		if($acceso == 'admin'){
+			$r['nombre'] = "$usrInf[nombre] $usrInf[aPat] $usrInf[aMat] ";
+			$r['estatusId'] = $usrInf['estatus'];
 			$r['nivel'] = $usrInf['nivel'];
 			// print2($r['priv']);
-		}else{
+		}elseif($acceso == 'questionnaires'){
+			$r['name'] = "$usrInf[name] $usrInf[lastname]";
+			$r['validated'] = $usrInf['validated'];
 		}
-	}
-
-	return $r;
-}
-
-
-function verifPWDExterno($usr,$pwd){
-	global $db;
-
-	$stmt = $db->prepare("SELECT * FROM Clientes WHERE token = ?");
-
-	$stmt ->execute(array($usr));
-
-	$usrInf = $stmt -> fetch(PDO::FETCH_ASSOC);
-
-	$r['verif'] = password_verify($pwd,$usrInf['pwd']);
-	if($r['verif']){
-		$r['clientesId'] = $usrInf['id'];
-		$r['token'] = $usrInf['token'];
-		$r['nombre'] = "$usrInf[nombre] $usrInf[aPat] $usrInf[aMat] ";
-		$r['estatusId'] = $usrInf['estatus'];
-		$r['nivel'] = 8;
-
 	}
 
 	return $r;
@@ -508,38 +481,6 @@ function privUsr($usrId){
 	return $ps;
 }
 
-function informe($id,$fecha,$periodo,$tipo,$subcond){
-
-	global $db;
-	if($subcond){
-		$tabla = 'InformesSubcondiciones';
-		$campo = 'subcondicionesId';
-	}else{
-		$tabla = 'Informes';
-		$campo = 'condicionesId';
-	}
-
-	$sql = "SELECT COUNT(*) FROM $tabla 
-		WHERE $campo = $id AND periodo = $periodo AND tipo = $tipo AND (elim IS NULL OR elim != 1)";
-		// echo $sql;
-	$cuenta = $db -> query($sql) -> fetch(PDO::FETCH_NUM);
-
-	if($cuenta[0]>0){
-		$r = 'entregado';
-		$valid = $db -> query("SELECT COUNT(*) FROM $tabla 
-			WHERE $campo = $id AND periodo = $periodo AND tipo = $tipo AND validacion >= 1 AND (elim IS NULL OR elim != 1)") -> fetch(PDO::FETCH_NUM);
-		if($valid[0] > 0){
-			if($cuenta[0] == $valid[0]){
-				$r = 'validado';
-			}else{
-				$r = 'revision';
-			}
-		}
-	}else{
-		$r = 'falta';
-	}
-	return $r;
-}
 
 function icono($estado){
 	switch ($estado) {
@@ -678,99 +619,6 @@ function nomDiaSem($dia){
 	}
 }
 
-function updEstatusVis($vId,$estatus,$uId,$sId,$estatusPago,$comentarios){
-	global $db;
-	// echo "$vId\n";
-	// $estatusPago = empty($estatusPago)?NULL:$estatusPago;
-
-	try {
-		$vInf = $db->query("SELECT * FROM Visitas WHERE id = $vId")->fetchAll(PDO::FETCH_ASSOC)[0];
-		$visita = $db->prepare("UPDATE Visitas SET aceptada = :estatus WHERE id = :vId");
-		
-			$visHist = $db->prepare("INSERT INTO VisitasHistorial 
-					SET visitasId = :vId, estatus = :estatus,
-					timestamp = NOW(), usuariosId = $uId, shoppersId = :sId, comentarios = :comentarios");
-
-		$visUsr = $db->prepare("UPDATE VisitasUsuarios SET estatus = :estatus
-			WHERE visitasId = :vId");
-
-		$visRev = $db -> prepare("UPDATE VisitasRevisores SET estatus = :estatus
-			WHERE visitasId = :vId");
-
-		// $revId = $db->query("SELECT usuariosId FROM VisitasUsuarios WHERE visitasId = $vId ")->fetchAll(PDO::FETCH_NUM)[0][0];
-
-		$visUsrArr = array("vId" => $vId, "estatus" => $estatus);
-		$visUsr -> execute($visUsrArr);
-		$visRevArr = array("vId" => $vId, "estatus" => $estatus);
-		$visRev -> execute($visRevArr);
-
-
-		// Mueve asignación a revisores quizás modificar sólo para estatus chiquitos.
-		if($estatus < 70){
-			$visUsr = $db->prepare("DELETE FROM VisitasUsuarios WHERE visitasId = :vId");
-			$visUsrArr = array("vId" => $vId);
-			$visUsr -> execute($visUsrArr);
-		}
-
-		if($estatus < 20){
-			include raiz().'lib/cron/alertaCanc.php';
-		}
-
-		if(is_array($estatusPago)){
-			$estPago = $db->prepare("UPDATE Pagos SET estatus = :estatus WHERE concepto = :concepto AND visitasId = :vId");
-			foreach ($estatusPago as $concepto => $ep) {
-				$estPago -> execute(array('vId'=>$vId,'estatus'=>$ep,'concepto'=>$concepto));
-			}
-		}
-
-		// if($estatus <)
-		
-		$shopHist = $db->prepare("UPDATE ShoppersHistorial SET estatus = :estatus 
-			WHERE visitasId = :vId");
-
-			$arrHistVis = array('vId'=>$vId,'estatus'=>$estatus,'sId'=>$sId, 'comentarios' => $comentarios);
-			$arrVis = array('vId'=>$vId,'estatus'=>$estatus);
-
-		$arrShop = array('vId'=>$vId,'estatus'=>$estatus);
-
-		// print2($arrVis);
-		$visHist -> execute($arrHistVis);
-		$visita -> execute($arrVis);
-		$shopHist -> execute($arrShop);
-
-		$rj = updEstatusRot($vInf['rotacionesId'],$estatus,$uId,$sId,$comentarios);
-		$r = json_decode($rj,true);
-
-		if($r['ok'] == 1){
-			return '{"ok":"1"}';
-		}else{
-			return '{"ok":"0","err":"Error al actualizar el estatus de la visita Err: EUR237"}';
-		}
-
-	} catch (PDOException $e) {
-		// print2($e->getMessage());
-		// print2($e);
-		return '{"ok":"0","err":"Error al actualizar el estatus de la visita Err: EUV234"}';
-	}
-}
-
-function updRotVis($rotId,$vId,$estatus,$estatusPago,$uId,$sId,$comentarios){
-	global $db;
-	if(!empty($vId)){
-		return updEstatusVis($vId,$estatus,$uId,$sId,$estatusPago,$comentarios);
-	}else{
-		$vId = $db->query("SELECT visitaAct FROM Rotaciones WHERE id = $rotId")->fetchAll(PDO::FETCH_NUM)[0][0];
-		if(!empty($vId)){
-			// echo 'BB';
-			return updEstatusVis($vId,$estatus,$uId,$sId,$estatusPago,$comentarios);
-		}else{
-			// echo 'CC';
-			return updEstatusRot($rotId,$estatus,$uId,$sId,$comentarios);
-		}
-
-	}
-}
-
 function filtrosShoppers($repId,$rotId){
 	global $db;
 
@@ -891,321 +739,11 @@ function genereaSQLFiltros($filtros,$rotInf = null){
 	return $r;
 }
 
-function getShoppersDisp($rotId,$actFilt,$all,$uId = null,$meses = 6){
-	global $db;
-
-	if($all){
-		$whereAll = " AND 1 ";
-	}else{
-		$whereAll = " AND 0 ";
-	}
-
-	if(!empty($uId)){
-		$whereUid = " AND s.id = $uId";
-	}else{
-		$whereUid = "";
-	}
-
-	$rotInf = $db -> query("SELECT t.id as tId, t.municipio, t.estado, r.fecha, 
-		repeticionesId as repId, mp.id as mpId, cmp.capacitacionesId as cId
-		FROM Rotaciones r 
-		LEFT JOIN Tiendas t ON t.id = r.tiendasId
-		LEFT JOIN Repeticiones rep ON rep.id = r.repeticionesId
-		LEFT JOIN MarcasProyectos mp ON mp.marcasId = t.marcasId AND mp.proyectosId = rep.proyectosId
-		LEFT JOIN CapacitacionesMarcasProyectos cmp ON cmp.marcasProyectosId = mp.id
-		WHERE r.id = $rotId")->fetchAll(PDO::FETCH_ASSOC)[0];
-	// print2($rotInf);
-
-	$fecha = $rotInf['fecha'];
-	$d = new DateTime($rotInf['fecha']);
-	$d->modify('first day of this month');
-	$fecha = $d->format('Y-m-d');
-
-
-	// $fecha = date('Y-m-d');
-	// $fecha = date('Y-m-d',strtotime("+4 day", strtotime($fecha)));
-	$fecha1 = date('Y-m-d',strtotime("-1 month", strtotime($fecha)));
-	$d = new DateTime($fecha1);
-	$d->modify('last day of this month');
-	$fechaFin = $d->format('Y-m-d');
-
-	$restaMeses = $meses === null ?0:$meses;
-	$fecha6 = date('Y-m-d',strtotime("-$meses month", strtotime($fecha)));
-	
-	if($actFilt){
-		$filtro = filtrosShoppers($rotInf['repId'],$rotId);
-	}else{
-		$filtro = filtrosShoppers(-1,-1);
-	}
-	// print2($filtro);
-
-	$sqlMunc = "SELECT s.id, s.username, s.nombre, s.aPat, s.aMat, sm.municipio as smMunc,
-			CONCAT(s.nombre,' ', s.aPat,' ', s.aMat) as nom, s.id as val, 'clase' as clase,
-			COUNT( DISTINCT sh1.id) as vCount1, COUNT( DISTINCT sh6.id) as vCount6
-			FROM Shoppers s
-			LEFT JOIN ShoppersHistorial sh1 ON sh1.shoppersId = s.id AND (sh1.fecha >= '$fecha')
-
-			LEFT JOIN Capacitaciones c ON c.id = '$rotInf[cId]'
-			LEFT JOIN ShoppersCapacitacionesCalif scc ON scc.capacitacionesId = c.id AND scc.shoppersId = s.id
-			LEFT JOIN ShoppersCapacitaciones sc ON sc.id = scc.intentoId
-
-			LEFT JOIN ShoppersHistorial sh6 ON sh6.shoppersId = s.id 
-				AND sh6.tiendasId = $rotInf[tId] AND (sh6.fecha >= '$fecha6' AND sh6.fecha <= '$rotInf[fecha]')
-			LEFT JOIN ShoppersMunicipios sm ON sm.shoppersId = s.id AND sm.municipio = $rotInf[municipio]
-			$filtro[joins]
-			WHERE (scc.fecha IS NULL OR (scc.calificacion*10>=c.minimo) OR sc.intento != 2 OR ( ADDDATE(LAST_DAY(scc.fecha), 1) <= NOW() ) )
-			AND (s.username != '' AND s.username IS NOT NULL AND s.estatus >= 10) $filtro[where] $whereUid
-			GROUP BY s.id";
-
-	$sqlEdo = $sql = "SELECT s.id, s.username, s.nombre, s.aPat, s.aMat, sm.municipio as smMunc,
-			CONCAT(s.nombre,' ', s.aPat,' ', s.aMat) as nom, s.id as val, 'clase' as clase,
-			COUNT( DISTINCT sh1.id) as vCount1, COUNT( DISTINCT sh6.id) as vCount6
-			FROM Shoppers s
-			LEFT JOIN ShoppersHistorial sh1 ON sh1.shoppersId = s.id AND (sh1.fecha >= '$fecha')
-
-			LEFT JOIN Capacitaciones c ON c.id = '$rotInf[cId]'
-			LEFT JOIN ShoppersCapacitacionesCalif scc ON scc.capacitacionesId = c.id AND scc.shoppersId = s.id
-			LEFT JOIN ShoppersCapacitaciones sc ON sc.id = scc.intentoId
-
-			LEFT JOIN ShoppersHistorial sh6 ON sh6.shoppersId = s.id 
-				AND sh6.tiendasId = $rotInf[tId] AND (sh6.fecha >= '$fecha6' AND sh6.fecha <= '$rotInf[fecha]')
-			LEFT JOIN Municipios m ON m.estadosId = $rotInf[estado]
-			LEFT JOIN ShoppersMunicipios sm ON sm.shoppersId = s.id AND sm.municipio = m.id
-			$filtro[joins]
-			WHERE (scc.fecha IS NULL OR (scc.calificacion*10>=c.minimo) OR sc.intento != 2 OR ( ADDDATE(LAST_DAY(scc.fecha), 1) <= NOW() ) )
-			AND (s.username != '' AND s.username IS NOT NULL AND s.estatus >= 10) AND sm.municipio IS NOT NULL $filtro[where] $whereUid
-			GROUP BY s.id";
-			// echo $rotInf['fecha'];
-	$sqlAll = $sql = "SELECT s.id, s.username, s.nombre, s.aPat, s.aMat, 1 as smMunc,
-			CONCAT(s.nombre,' ', s.aPat,' ', s.aMat) as nom, s.id as val, 'clase' as clase,
-			COUNT( DISTINCT sh1.id) as vCount1, COUNT( DISTINCT sh6.id) as vCount6
-			FROM Shoppers s
-			LEFT JOIN ShoppersHistorial sh1 ON sh1.shoppersId = s.id AND (sh1.fecha >= '$fecha')
-
-			LEFT JOIN Capacitaciones c ON c.id = '$rotInf[cId]'
-			LEFT JOIN ShoppersCapacitacionesCalif scc ON scc.capacitacionesId = c.id AND scc.shoppersId = s.id
-			LEFT JOIN ShoppersCapacitaciones sc ON sc.id = scc.intentoId
-
-			LEFT JOIN ShoppersHistorial sh6 ON sh6.shoppersId = s.id 
-				AND sh6.tiendasId = $rotInf[tId] AND (sh6.fecha >= '$fecha6' AND sh6.fecha <= '$rotInf[fecha]')
-			$filtro[joins]
-			WHERE (scc.fecha IS NULL OR (scc.calificacion*10>=c.minimo) OR sc.intento != 2 OR ( ADDDATE(LAST_DAY(scc.fecha), 1) <= NOW() ) )
-			AND (s.username != '' AND s.username IS NOT NULL AND s.estatus >= 10) $filtro[where] $whereAll $whereUid
-			GROUP BY s.id";
-
-
-	$caso = null;
-	if($rotInf['municipio'] != ""){
-		$sql = $sqlMunc;
-		$wLugar = "AND smMunc IS NOT NULL";
-		$caso = 0;
-	}elseif($rotInf['estado'] != ""){
-		$sql = $sqlEdo;
-		$wLugar = "AND smMunc IS NOT NULL";
-		$caso = 1;
-	}else{
-		$sql =$sqlAll;
-		$wLugar = "";
-		$caso = 2;
-	}
-
-	// echo $sql;
-
-	if($meses !== null){
-		$wVCount = "vCount6 < 1";
-	}else{
-		$wVCount = '1';
-	}
-
-	$stm = $db->prepare("SELECT * FROM ($sql) as busq WHERE $wVCount $wLugar");
-	$stm->execute( $filtro['arreglo'] );
-	$shoppers = $stm -> fetchAll(PDO::FETCH_ASSOC);
-
-	if(count($shoppers) == 0){
-		switch ($caso) {
-			case 0:
-				$sql = $sqlEdo;
-				$wLugar = "AND smMunc IS NOT NULL";
-				$caso = 3;
-				break;
-			case 1:
-				$sql = $sqlAll;
-				$caso = 4;
-				$wLugar = "";
-				break;
-			default:
-				$sql =$sqlAll;
-				$wLugar = "";
-				$caso = 4;
-				break;
-		}
-
-		$stm = $db->prepare("SELECT * FROM ($sql) as busq WHERE $wVCount $wLugar");
-		$stm->execute( $filtro['arreglo'] );
-		$shoppers = $stm -> fetchAll(PDO::FETCH_ASSOC);
-	}
-
-	if(count($shoppers) == 0){
-		switch ($caso) {
-			case 3:
-				$sql = $sqlAll;
-				$wLugar = "AND smMunc IS NOT NULL";
-				$caso = 5;
-				break;
-			case 4:
-				$sql = $sqlAll;
-				$wLugar = "";
-				$caso = 5;
-				break;
-			default:
-				break;
-		}
-		$stm = $db->prepare("SELECT * FROM ($sql) as busq WHERE $wVCount $wLugar");
-		$stm->execute( $filtro['arreglo'] );
-		$shoppers = $stm -> fetchAll(PDO::FETCH_ASSOC);
-	}
-
-	// echo $sql;
-
-	switch ($caso) {
-		case 0:
-			$msg = 'Los siguientes shoppers han seleccionado el municipio del POS para efectuar visitas';
-			break;
-		case 1:
-			$msg = 'El POS no cuenta con datos del municipio, 
-				los siguientes shoppers han seleccionado municipios en el mismo estado del POS';
-			break;
-		case 2:
-			$msg = 'El POS no cuenta con información de estado y municipio, se mostrarán todos los shoppers registrados en el sistema';
-			break;
-		case 3:
-			$msg = 'No se encontraron shoppers en el mismo municipio que el POS, 
-				se mostrarán todos los shoppers que eligieron un municipio en el mismo estado del POS';
-			break;
-		case 4:
-			$msg = 'No se encontraron shoppers en el mismo estado del POS, se mostrarán todos los shoppers registrados en el sistema';
-			break;
-		case 5:
-			$msg = 'No se encontraron shoppers con selección de municipios cercanos al POS, se mostrarán todos los shoppers';
-			break;
-		default:
-			# code...
-			break;
-	}
-
-	$r['shoppers'] = $shoppers;
-	$r['caso'] = $caso;
-	$r['msg'] = $msg;
-	$r['numFiltros'] = $filtro['numFiltros'];
-
-	return $r;
-}
-
 function cumpleFiltros($filtros,$uId){
 	$cumple = false;
 
 	foreach ($filtros as $f) {
 		
-	}
-}
-
-function asignaVisita($usrAdmin,$shoppersId,$estatus,$rotId){
-	global $db;
-	$p['tabla'] = "Visitas";
-	$p['datos']['rotacionesId'] = $rotId;
-	$p['datos']['shoppersId'] = $shoppersId;
-	$p['datos']['aceptada'] = $estatus;
-
-	$rj = inserta($p);
-	$r = json_decode($rj,true);
-
-	unset($p);
-	$ok = true;
-	if($r['ok'] == 1){
-		$ph['tabla'] = "ShoppersHistorial";
-		$ph['datos']['rotacionesId'] = $rotId;
-		$ph['datos']['shoppersId'] = $shoppersId;
-		$ph['datos']['visitasId'] = $r['nId'];
-		$ph['datos']['estatus'] = $estatus;
-		$rhj = inserta($ph);
-		$rh = json_decode($rhj,true);
-		// print2($rh);
-	}else{
-		$ok = false;
-		$err = "Error al generar la visita err: EGV021";
-	}
-
-	if($ok){
-		$vId = $r['nId'];
-
-		$rj = updEstatusVis($vId,$estatus,$usrAdmin,$shoppersId,null,null);
-		$r = json_decode($rj,true);
-		if($r['ok'] != 1){
-			$ok = false;
-			$err = "Error al generar la visita err: EUE221".$r['err'];
-		}
-
-	}else{
-		$ok = false;
-		$err = "Error al generar la visita err: EHVS041";
-	}
-
-	if($ok){
-		$pr['tabla'] = 'Rotaciones';
-		$pr['datos']['id'] = $rotId;
-		$pr['datos']['visitaAct'] = $vId;
-		
-		$rrj = upd($pr);
-
-		$rr = json_decode($rrj);
-
-		$ok = $rr->ok;
-		$err = $rr->err;
-	}
-
-	if($ok){
-		$db->query("INSERT INTO Pagos SET visitasId = $vId, concepto = 1, estatus = 0, usuariosId = $usrAdmin");
-		$db->query("INSERT INTO Pagos SET visitasId = $vId, concepto = 2, estatus = 0, usuariosId = $usrAdmin");
-		$db->query("INSERT INTO Pagos SET visitasId = $vId, concepto = 3, estatus = 0, usuariosId = $usrAdmin");
-	}
-
-
-	if($ok){
-		// $db->commit();
-		return '{"ok":"1"}';
-	}else{
-		return '{"ok":"0","err":"'.$err.'"}';
-	}
-}
-
-function coloresEstatus($estatus){
-	switch ($estatus) {
-		case 0: // creada
-		case 1:// Cancelada
-		case 2:// Cancelada por el shopper
-		case 3:// Cancelada por cliente (Se realiza nuevamente)
-		case 4:// Cancelada por cliente (No se realizará)
-		case 19: //Cancelada después de entregada
-			return '';
-		case 17: //Pedida
-		case 20: //Asignada
-		case 21: //Asignada desde administración
-		case 22: //Pedida
-		case 23: //Aceptada
-		case 40: //En campo
-		case 50: //Monitoreada
-		case 60: //Recibida
-			return '#FFA500';
-		case 70: //Asisgnada a revisión
-		case 80: //Revisión
-		case 90: //Revisada
-			return '#ADFF2F';
-		case 91: //Revisada
-			return '#B7220E';
-		case 100: //Validada/Publicada
-			return '#6B8E23';
-		default:
-			return '';
 	}
 }
 
@@ -1246,374 +784,12 @@ function checaAcceso($nivelPerm){
 }
 
 
-function checaAccesoExt($nivelPerm){
+function checaAccesoQuest(){
 	session_start();
-	$nivel = $_SESSION['CM']['externo']['nivel'];
-	if($nivel<$nivelPerm){
+	$nivel = $_SESSION['CM']['questionnaires']['validated'];
+	if($nivel != 1){
 		exit('No tienes acceso');
 	}
-}
-
-
-function defEstatusPago($estatus){
-	switch ($estatus) {
-		case 1:
-		case 3:
-		case 10: // NO PAGA REEMBOLSO Y NO PAGA VISITA
-			$estatusPago[1] = 1;
-			$estatusPago[2] = 1;
-			break;
-		case 4:
-		case 6:
-		case 7:
-			return null; // NO MODIFICA EL ESTATUS DEL PAGO (SE PAGA)
-			break;
-		case 8: // PAGA REEMBOLSO PERO NO PAGA VISITA
-			$estatusPago[1] = 10;
-			$estatusPago[2] = 1;
-			break;
-		default:
-			return null;
-			break;
-	}
-	return $estatusPago;
-}
-
-function estatusPagoTexto($estatusPago){
-	switch ($estatusPago) {
-		case 0:
-			return 'En espera de información';
-			break;
-		case 1:
-			return 'Pago cancelado';
-			break;
-		case 5:
-			return 'Por pagar sólo reembolso';
-			break;
-		case 10:
-			return 'Por pagar';
-			break;
-		case 11:
-			return 'Pago rechazado';
-			break;
-		case 30:
-			return 'Pagada';
-			break;
-		default:
-			return "";
-			break;
-	}
-}
-
-function datCodigoPostal($cp,$all = false){
-	global $db;
-	$cp = str_pad($cp, 5, "0", STR_PAD_LEFT);
-
-	$completo = $all?', cp.*':'';
-	// echo $completo;
-	$prepare = $db->prepare("
-		SELECT cp.d_codigo as CP, cp.d_asenta as colonia, e.nombre as estado,
-		cp.c_estado as estadosId, m.nombre as municipio, cp.c_mnpio as c_mnpio, m.id as municipiosId $completo
-		FROM CodigosPostales cp
-		LEFT JOIN Estados e ON e.id = cp.c_estado
-		LEFT JOIN Municipios m ON m.c_mnpio = cp.c_mnpio AND m.estadosId = e.id
-		WHERE cp.d_codigo = ? ORDER BY cp.d_asenta
-	");
-	
-	$prepare -> execute(array($cp));
-	
-	$resp = $prepare -> fetchAll(PDO::FETCH_ASSOC);
-
-	return $resp;
-}
-
-function datosEquip($elem){
-	global $db;
-
-
-	$d = $db->query("SELECT a.nombre, COUNT(*) as numDim
-		FROM Dimensiones d
-		LEFT JOIN DimensionesElem de ON de.dimensionesId = d.id
-		LEFT JOIN AreasEquipos a ON a.id = d.areasId
-		LEFT JOIN Dimensiones dd ON dd.areasId = a.id
-		WHERE de.id = $elem 
-		GROUP BY a.id") -> fetchAll(PDO::FETCH_ASSOC)[0];
-
-	// print2($d);
-
-	$numDim = $d['numDim'];
-
-
-
-	$LJ = '';
-	$fields = '';
-
-	for ($i=0; $i < $numDim ; $i++) {
-		if($i == 0){
-			// $LJ .= " LEFT JOIN DimensionesElem de0 ON de0.id = ae.dimensionesElemId 
-			// 		 LEFT JOIN Dimensiones d0 ON d0.id = de0.dimensionesId ";
-			// $fields .= "d0.nombre as d0, de0.nombre as de0";
-		}else{
-			$LJ .= " LEFT JOIN DimensionesElem de$i ON de$i.id = de".($i-1).".padre
-					 LEFT JOIN Dimensiones d$i ON d$i.id = de$i.dimensionesId";
-			$fields .= ",d$i.nombre as d$i, de$i.nombre as de$i";
-		}
-	}
-
-
-	$sql = "SELECT de0.nombre as de0, d0.nombre as d0, de0.variables, de0.unidad  $fields FROM DimensionesElem de0 
-		LEFT JOIN Dimensiones d0 ON d0.id = de0.dimensionesId
-		$LJ
-		WHERE de0.id = $elem";
-
-	// echo $sql."<br/>";
-	$dims = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC)[0];
-
-	// print2($dims);
-	$r['area'] = $d['nombre'];
-	$r['numDim'] = $d['numDim'];
-	$r['arbol'] = $dims;
-
-	return $r;
-}
-
-function updEstCliente($cteId,$estatus,$usrId,$vId=null,$comentario=null){
-	global $db;
-	// echo "\naaaaa: ($cteId,$estatus,$usrId) \n";
-
-	$pCte['tabla'] = 'Clientes';
-	$pCte['datos']['estatus'] = $estatus;
-	$pCte['datos']['id'] = $cteId;
-	if(!empty($vId)){
-		$pCte['datos']['visitasId'] = $vId;
-	}
-
-	$rj = upd($pCte);
-
-	$ok = true;
-	$r = json_decode($rj,true);
-	if($r['ok'] != 1){
-		return '{"ok":"0","err":"Error al actualizar el estatus del cliente Err:UEC001 "}';
-	}
-
-	$pHist['tabla'] = 'estatusHist';
-	$pHist['datos']['clientesId'] = $cteId;
-	$pHist['datos']['estatus'] = $estatus;
-	$pHist['datos']['usuarioId'] = $usrId;
-	if(!empty($vId)){
-		$pHist['datos']['visitasId'] = $vId;
-	}
-	$pHist['datos']['comentario'] = $comentario;
-	$pHist['timestamp'] = 'timestamp';
-
-
-	creaCambio('Clientes', $cteId);
-
-	return atj(inserta($pHist));
-}
-
-function updEstVisita($vId,$estatus,$uId){
-	global $db;
-
-	$pVis['tabla'] = 'Visitas';
-	$pVis['datos']['id'] = $vId;
-	$pVis['datos']['estatus'] = $estatus;
-
-	$rj = atj(upd($pVis));
-	$r = json_decode($rj,true);
-	if($r['ok'] != 1){
-		return '{"ok":"0","errFn":"'.$r['err'].'","err":"Error al actualizar el estatus de la visita Err:UEV001"}';
-	}
-
-	return '{"ok":"1"}';
-
-	// $p
-}
-
-function updEstVisCte($vId,$estatus,$uId,$comentario=''){
-	global $db;
-	// echo "\nbbbbbbb: ($vId,$estatus,$uId) \n";
-	$visInfo = $db->query("SELECT * FROM Visitas WHERE id = $vId")->fetchAll(PDO::FETCH_ASSOC)[0];
-
-
-	$rj = updEstCliente($visInfo['clientesId'],$estatus,$uId,$vId,$comentario);
-	$ok = true;
-	$r = json_decode($rj,true);
-	if($r['ok'] != 1){
-		return '{"ok":"0","err":"'.$r['err'].'"}';
-	}
-
-	$rj = atj(updEstVisita($vId,$estatus,$uId));
-	$r = json_decode($rj,true);
-	if($r['ok'] != 1){
-		return '{"ok":"0","errFn":"'.$r['err'].'","err":"Error al actualizar el estatus de la visita Err:UEV002"}';
-	}
-
-	return '{"ok":"1"}';
-}
-
-function getPryTotales($pId){
-	global $db;
-
-	$sql = "SELECT 
-		CASE
-			WHEN r.estatus >= 0 AND r.estatus < 5 THEN 'canceladas'
-			WHEN r.estatus >= 5 AND r.estatus < 11 AND r.estatus != 4 THEN 'enRegistro'
-			WHEN r.estatus >= 30 AND r.estatus < 40 THEN 'enVisita'
-			WHEN r.estatus >= 40 AND r.estatus < 50 THEN 'enInstalacion'
-			WHEN r.estatus >= 60 THEN 'enSeguimiento'
-			ELSE 'algo'
-		END as eGroup,
-		COUNT(*) as cuenta, estatus
-		FROM Clientes r 
-		WHERE proyectosId = $pId
-		GROUP BY eGroup";
-	// echo $sql."<br/>";
-	$gpos = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
-
-	$total = 0;
-	foreach ($gpos as $g) {
-		$total += $g[0]['cuenta'];
-	}
-	$gpos['total'] = $total;
-	// $rotTotales = $this->cuentas($gpos);
-
-	// $rotTotales['gpos'] = $gpos;
-
-	// $this->rotTotales[$pId] = $rotTotales;
-	// print2($rotTotales);
-	return $gpos;
-}
-
-function creaCambio($tabla, $id){
-	global $db;
-
-	session_start();
-	$usrId = $_SESSION['CM']['admin']['usrId'];
-
-	if($tabla == 'Clientes'){
-		$cId = $id;
-		$pryId = $db->query("SELECT v.proyectosId FROM Clientes v WHERE v.id = $id")->fetchAll(PDO::FETCH_NUM)[0][0];
-		$file = raiz().'admin/proyectos/json/cambios/cambios.cmb';
-		if(!is_file($file)){
-		    file_put_contents($file, '1');
-		}
-	}elseif($tabla == 'Visitas'){
-		$visInf = $db->query("SELECT v.proyectosId, v.clientesId FROM Visitas v WHERE v.id = $id")->fetchAll(PDO::FETCH_NUM)[0]; 
-		$pryId = $visInf[0];
-		$cId = $visInf[1];
-
-		$file = raiz().'admin/proyectos/json/cambios/cambios.cmb';
-		if(!is_file($file)){
-		    file_put_contents($file, '1');
-		}
-	}
-
-	$db->query("INSERT INTO Cambios SET proyectosId = $pryId, clientesId = $cId, timestamp = NOW(), userId = $usrId;  ");
-}
-
-function instalaciones($fecha = null,$pryId){
-	global $db;
-
-	$LJP = "
-		LEFT JOIN Visitas vInst ON vInst.clientesId = c.id AND vInst.etapa = 'instalacion' 
-			AND vInst.id = (SELECT id FROM Visitas k 
-				WHERE k.clientesId = vInst.clientesId 
-				AND k.etapa = 'instalacion' AND (k.estatus >= 44 AND k.estatus <= 60)
-				ORDER BY k.fechaRealizacion DESC 
-				LIMIT 1)
-	";
-
-	if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$fecha)) {
-	    $fBien = true;
-	} else {
-	    $fBien = false;
-	}
-
-	if(!empty($fecha) && $fBien){
-		$WP = "
-			AND vInst.fecha = '$fecha'
-		";
-		$WI = "
-			AND vInst.fechaRealizacion = '$fecha'
-		";
-	}else{
-		$resp['programadasMat'] = 0;
-		$resp['programadas'] = 0;
-		$resp['programadasVesp'] = 0;
-		$resp['realizadas'] = 0;
-		return $resp;
-	}
-
-	// echo "pryId: $pryId;\n<br/> fecha:$fecha\n<br/>";
-	$sql = "SELECT COUNT(*) 
-		FROM Clientes c
-		$LJP
-		WHERE (c.instalacionRealizada IS NOT NULL) AND c.proyectosId = $pryId $WI";
-	// echo $sql."\n<br/>";
-
-	$realizadas = $db->query($sql)->fetchAll(PDO::FETCH_NUM)[0][0];
-	
-
-	$sql = "SELECT COUNT(*) 
-		FROM Clientes c
-		$LJP
-		WHERE (c.estatus >= 44 AND c.estatus < 48) AND vInst.horario = 1 AND c.proyectosId = $pryId $WP ";
-	
-	// echo $sql."\n<br/>";
-	$programadasMat = $db->query($sql)->fetchAll(PDO::FETCH_NUM)[0][0];
-
-	$sql = "SELECT COUNT(*) 
-		FROM Clientes c
-		$LJP
-		WHERE (c.estatus >= 44 AND c.estatus < 48) AND c.proyectosId = $pryId $WP ";
-	
-	// echo $sql."\n<br/>";
-	$programadas = $db->query($sql)->fetchAll(PDO::FETCH_NUM)[0][0];
-
-	$sql = "SELECT COUNT(*) 
-		FROM Clientes c
-		$LJP
-		WHERE (c.estatus >= 44 AND c.estatus < 48) AND vInst.horario = 2 AND c.proyectosId = $pryId $WP ";
-	
-	// echo $sql."\n<br/>";
-	$programadasVesp = $db->query($sql)->fetchAll(PDO::FETCH_NUM)[0][0];
-
-
-	$resp['programadasMat'] = $programadasMat;
-	$resp['programadas'] = $programadas;
-	$resp['programadasVesp'] = $programadasVesp;
-	$resp['realizadas'] = $realizadas;
-
-	return $resp;
-
-
-}
-
-function imprimeInstalacion($iId){
-	global $db;
-
-	$sql = "SELECT * FROM InstalacionesEquipos WHERE instalacionesId = $iId";
-	// echo $sql;
-
-	$eqInst = $db -> query($sql)->fetchAll(PDO::FETCH_ASSOC);
-	foreach ($eqInst as $e){ 
-		$datEle = datosEquip($e['dimensionesElemId']); 
-		$html = "<strong> $datEle[area] :</strong><br/>";
-		$arbol = $datEle['arbol'];
-		for ($i=$datEle['numDim']-1; $i >= 0; $i--) { 
-
-			// echo $i."<br/>";
-			$html .= $arbol["d$i"]." : ".$arbol["de$i"];
-			if ($i==0) {
-				continue;
-			}
-			$html .= "&nbsp;<i class='glyphicon glyphicon-chevron-right'></i>&nbsp;";
-		}
-		$componentes .= "$html<br/></br/>";
-	}
-
-	return $componentes;
 }
 
 

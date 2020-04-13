@@ -121,13 +121,13 @@
 				</td>
 				<td></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td><?php echo TR('blockHeader'); ?></td>
 				<td>
 					<input type="checkbox" value="1" name="encabezado" id="encabezado"  <?php echo $datM['encabezado'] == 1?'checked':''; ?>>
 				</td>
 				<td></td>
-			</tr>
+			</tr> -->
 			<?php if(isset($_POST['bloqueId'])): ?>
 				<tr>
 					<td><span class="btn btn-sm btn-default" id="chkIdentificador"><?php echo TR('chId'); ?></span></td>

@@ -135,7 +135,7 @@
   "6months": "6 months",
   "yearly": "Yearly",
   "surveyAlert": "The survey you want to add already exists for this target",
-
+  "surveyDelAlert": "Do you want to remove the survey from this target?",
 
   "surveys": "Surveys",
   "survey": "Survey",
@@ -155,7 +155,13 @@
 
   "project": "Project",
   "projects": "Projects",
-  "inactive": "Inactive"
+  "inactive": "Inactive",
+
+  "identifier": "Identifier",
+  "answerSurvey": "Answer",
+  "continue": "Continue",
+  "seeResults": "See answers",
+  "sended": "Sended"
 
 
 }

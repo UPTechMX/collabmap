@@ -58,9 +58,8 @@ class Checklist {
 	public function getVisita(){
 		global $db;
 		if(empty($this->visita[$vId])){
-			$visita = $db->query("SELECT v.*, c.permiso, c.instalacionSug, c.instalacionRealizada
+			$visita = $db->query("SELECT v.*
 				FROM Visitas v
-				LEFT JOIN Clientes c ON c.id = v.clientesId
 				WHERE v.id = $this->vId")->fetchAll(PDO::FETCH_ASSOC)[0];
 			$this->visita = $visita;
 			return $visita;

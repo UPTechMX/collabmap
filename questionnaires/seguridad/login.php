@@ -1,18 +1,27 @@
+<?php
+	include_once root().'lib/j/j.func.php';
+	$location = empty($location)?'questionnaires':$location;
+	$rootLoginQuest = aRaizHtml($location);
+
+
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Admin Login</title>
+	<title>Questionnaires</title>
 	<!-- LIBRERIAS CSS -->
-	<link href="<?php echo aRaiz(); ?>lib/js/bootstrap4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo aRaiz(); ?>lib/j/j.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo aRaiz(); ?>lib/css/general.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo aRaiz(); ?>seguridad/loginCSS.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo $rootLoginQuest; ?>lib/js/bootstrap4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo $rootLoginQuest; ?>lib/j/j.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo $rootLoginQuest; ?>lib/css/general.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo $rootLoginQuest; ?>questionnaires/seguridad/loginCSS.css" rel="stylesheet" type="text/css" />
 	
 	
 	<!-- LIBRERIAS JAVASCRIPT -->
-	<script src="<?php echo aRaiz(); ?>lib/js/jquery-3.1.1.min.js"></script>
-	<script src="<?php echo aRaiz(); ?>lib/js/bootstrap4/js/bootstrap.min.js"></script>
+	<script src="<?php echo $rootLoginQuest; ?>lib/js/jquery-3.1.1.min.js"></script>
+	<script src="<?php echo $rootLoginQuest; ?>lib/js/bootstrap4/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -21,7 +30,7 @@
 	<div class="container">
 		<div class="header">
 		</div>
-		<img src="<?php echo aRaiz(); ?>img/marquesina.png"  style="width:100%;" >
+		<img src="<?php echo $rootLoginQuest; ?>img/marquesina.png"  style="width:100%;" >
 		<hr />
 		<div class="content" style="margin:5%">
 			<div class="row">
@@ -57,7 +66,7 @@
 			</div>
 
 		</div>
-		<div class="footer"><?php include aRaiz().'admin/layout/footer.php'; ?></div>
+		<div class="footer"><?php include $rootLoginQuest.'admin/layout/footer.php'; ?></div>
 
 	</div>
 </body>

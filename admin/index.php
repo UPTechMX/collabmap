@@ -10,6 +10,7 @@ checaAcceso(49);
 // echo $_TRANSLATE['pollHealth'];
 
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -25,16 +26,15 @@ checaAcceso(49);
 	<link href="../lib/js/selectpicker/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
 	<link href="../lib/js/jquery-upload-file/css/uploadfile.css " rel="stylesheet" type="text/css" />
 	<link href="../lib/css/general.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo aRaizHtml();?>lib/css/font-awesome.min.css " rel="stylesheet" type="text/css" />
-	<link href="<?php echo aRaizHtml();?>lib/js/sumoselect/sumoselect.css " rel="stylesheet" type="text/css" />
-	<link href="<?php echo aRaizHtml();?>lib/js/starrr/starrr.css " rel="stylesheet" type="text/css" />
+	<link href="../lib/css/font-awesome.min.css " rel="stylesheet" type="text/css" />
+	<link href="../lib/js/sumoselect/sumoselect.css " rel="stylesheet" type="text/css" />
+	<link href="../lib/js/starrr/starrr.css " rel="stylesheet" type="text/css" />
 
 
 	<!-- <link href="../lib/D/D.css" rel="stylesheet" type="text/css" /> -->
 	<!-- <link href="../lib/js/jstree/themes/default/style.css" rel="stylesheet" type="text/css" /> -->
 	<!-- <link href="../lib/js/jqueryUI/jquery-ui.css" rel="stylesheet" type="text/css" /> -->
 	<link href="../lib/js/jqueryUI/jquery-ui.css" rel="stylesheet" type="text/css" />
-	
 	<!-- LIBRERIAS JAVASCRIPT -->
 	<script src="../lib/js/jquery-3.1.1.min.js"></script>
 	<script src="../lib/js/popper.min.js"></script>
@@ -43,8 +43,8 @@ checaAcceso(49);
 	<script src="../lib/js/jquery-upload-file/js/jquery.uploadfile.js"></script>
 	<script src="../lib/js/selectpicker/dist/js/bootstrap-select.js"></script>
 	<script src="../lib/js/jQuery-TE/jquery-te-1.4.0.min.js"></script>
-	<script src="<?php echo aRaizHtml();?>lib/js/sumoselect/jquery.sumoselect.js"></script>
-	<script src="<?php echo aRaizHtml();?>lib/js/starrr/starrr.js"></script>
+	<script src="../lib/js/sumoselect/jquery.sumoselect.js"></script>
+	<script src="../lib/js/starrr/starrr.js"></script>
 	<script src="../lib/j/j.js" charset="utf-8"></script>
 
 	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">

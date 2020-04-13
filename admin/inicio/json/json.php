@@ -5,9 +5,8 @@ include_once raiz().'lib/php/usrInt.php';
 checaAcceso(50);
 
 $usrId = $_SESSION['CM']['admin']['usrId'];
-$usr = new Usuario($usrId);
 
-
+// print2($_POST);
 switch ($_POST['opt']) {
 	case '1':
 		$post['tabla'] = 'usrAdmin';
@@ -23,20 +22,7 @@ switch ($_POST['opt']) {
 
 
 switch ($_POST['acc']) {
-	case 1:
-		
-		$rep = $db->query("SELECT * FROM Repeticiones WHERE id = $_POST[repId]")->fetchAll(PDO::FETCH_ASSOC)[0];
-		$rotTotales = $usr->getRotTotales($_POST['repId']);
-		// print2($rep);
-		// print2($rotTotales);
-
-		$rotTotales['fechaIni'] = $rep['fechaIni'];
-		$rotTotales['fechaFin'] = $rep['fechaFin'];
-		$rotTotales['fechaMax'] = $rep['fechaMax'];
-		$rotTotales['fechaMaxFact'] = $rep['fechaMaxFact'];
-		$rotTotales['publica'] = $rep['publica'] == 1 ? 'Sí':'No';
-
-		echo atj($rotTotales);
+	case 1:		
 		break;
 
 	case '2':

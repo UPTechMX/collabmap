@@ -6,6 +6,7 @@ if (!function_exists('raiz')) {
 checaAcceso(60);// checaAcceso Targets
 
 $checklist = $db->query("SELECT * FROM Checklist ORDER BY nombre") -> fetchAll(PDO::FETCH_ASSOC);
+$frequencies = $db->query("SELECT * FROM Frequencies ORDER BY orden")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -50,17 +51,9 @@ $checklist = $db->query("SELECT * FROM Checklist ORDER BY nombre") -> fetchAll(P
 	<div class="col-6">
 		<select class="form-control" id="freqSel">
 			<option value="">- - - <?php echo TR('frequency'); ?> - - -</option>
-			<option value="0"><?php echo TR('oneTime'); ?></option>
-			<option value="1"><?php echo TR('daily'); ?></option>
-			<option value="2"><?php echo TR('weekly'); ?></option>
-			<option value="3"><?php echo TR('2weeks'); ?></option>
-			<option value="4"><?php echo TR('3weeks'); ?></option>
-			<option value="5"><?php echo TR('monthly'); ?></option>
-			<option value="6"><?php echo TR('2months'); ?></option>
-			<option value="7"><?php echo TR('3months'); ?></option>
-			<option value="8"><?php echo TR('4months'); ?></option>
-			<option value="9"><?php echo TR('6months'); ?></option>
-			<option value="10"><?php echo TR('yearly'); ?></option>
+			<?php foreach ($frequencies as $f){ ?>
+				<option value="<?php echo $f['id'] ?>"><?php echo TR($f['code']); ?></option>
+			<?php } ?>
 		</select>
 	</div>
 </div>

@@ -135,6 +135,7 @@
   "6months": "6 meses",
   "yearly": "Anual",
   "surveyAlert": "El cuestionario que quieres agregar ya existe para este objetivo",
+  "surveyDelAlert": "¿Deseas eliminar el cuestionario de este objetivo?",
 
   "surveys": "Encuestas",
   "survey": "Encuesta",
@@ -154,7 +155,12 @@
 
   "project": "Proyecto",
   "projects": "Proyectos",
-  "inactive": "Desactivado"
+  "inactive": "Desactivado",
 
+  "identifier": "Identificador",
+  "answerSurvey": "Contestar",
+  "continue": "Continuar",
+  "seeResults": "Ver respuestas",
+  "sended": "Enviado"
 
 }

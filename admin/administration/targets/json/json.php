@@ -30,8 +30,8 @@
 			break;	
 		case 3:
 			// print2($_POST);
-			$post['tabla'] = '';
-			$post['where'] = "id = $_POST[prvId]";;
+			$post['tabla'] = 'TargetsChecklist';
+			$post['where'] = "id = $_POST[tcId]";;
 
 			echo atj(del($post));
 			break;	

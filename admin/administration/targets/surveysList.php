@@ -6,27 +6,34 @@ if (!function_exists('raiz')) {
 checaAcceso(60);// checaAcceso Targets
 
 // print2($_POST);
-$targetsChecklist = $db->query("SELECT c.nombre, c.id as cId, tc.id as tcId, tc.frequency
+$targetsChecklist = $db->query("SELECT c.nombre, c.id as cId, tc.id as tcId, tc.frequency, f.code
 	FROM TargetsChecklist tc 
 	LEFT JOIN Checklist c ON c.id = tc.checklistId
-
+	LEFT JOIN Frequencies f ON f.id = tc.frequency
 	WHERE tc.targetsId = $_POST[targetId]
 	ORDER BY tc.frequency")->fetchAll(PDO::FETCH_ASSOC);
 
-	// print2($targetsChecklist);
-	$freqNames['0']= TR('oneTime');
-	$freqNames['1']= TR('daily');
-	$freqNames['2']= TR('weekly');
-	$freqNames['3']= TR('2weeks');
-	$freqNames['4']= TR('3weeks');
-	$freqNames['5']= TR('monthly');
-	$freqNames['6']= TR('2months');
-	$freqNames['7']= TR('3months');
-	$freqNames['8']= TR('4months');
-	$freqNames['9']= TR('6months');
-	$freqNames['10']= TR('yearly');
-
 ?>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.delSurv').click(function(event) {
+			var tcId = this.id.split('_')[1];
+			conf('<?php echo TR("surveyDelAlert") ?>',{tcId:tcId,elem:this},function(e){
+				var rj = jsonF('admin/administration/targets/json/json.php',{opt:3,acc:3,tcId:tcId})
+				var r = $.parseJSON(rj);
+				if(r.ok == 1){
+					$(e.elem).closest('tr').remove();
+				}
+			})
+		});
+
+		$('.edtSurv').click(function(event) {
+			var tcId = this.id.split('_')[1];
+			popUp('admin/administration/targets/chFreq.php',{eleId:tcId});
+		});
+	});
+</script>
 
 <table class="table" style="margin-top: 10px;">
 	<thead>
@@ -38,19 +45,25 @@ $targetsChecklist = $db->query("SELECT c.nombre, c.id as cId, tc.id as tcId, tc.
 	</thead>
 	<body>
 		<?php 
-		foreach ($targetsChecklist as $tc){ 
-			// $cuenta = $db->query("SELECT COUNT(*) 
-			// 	FROM Visitas v
-			// 	LEFT JOIN TargetsElems te ON te.id = v.elemId
-			// 	LEFT JOIN TargetsChecklist tc ON tc.targetId = te.targetId
-			// 	WHERE  
-			// ")->fetchAll(PDO::FETCH_NUM)[0][0];
+		foreach ($targetsChecklist as $tc){
+			$cuenta = $db->query("SELECT COUNT(*) 
+				FROM Visitas v
+				LEFT JOIN TargetsElems te ON te.id = v.elemId
+				LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId AND v.checklistId = tc.checklistId
+				WHERE  v.type = 'trgt' AND tc.id = $tc[tcId] 
+			")->fetchAll(PDO::FETCH_NUM)[0][0];
+
 		?>
 			<tr id="trTC_<?php echo $tc['cId'] ?>">
 				<td><?php echo $tc['nombre']; ?></td>
-				<td><?php echo $freqNames[$tc['frequency']]; ?></td>
+				<td><?php echo TR($tc['code']); ?></td>
 				<td>
-					<i class="glyphicon glyphicon-trash rojo manita" id="trashTC_<?php echo $tc['tcId']; ?>"></i>
+					<i class="glyphicon glyphicon-pencil manita edtSurv" id="edtTC_<?php echo $tc['tcId']; ?>"></i>
+				</td>
+				<td>
+					<?php if ($cuenta == 0){ ?>
+						<i class="glyphicon glyphicon-trash rojo manita delSurv" id="trashTC_<?php echo $tc['tcId']; ?>"></i>
+					<?php } ?>
 				</td>
 			</tr>
 		<?php } ?>

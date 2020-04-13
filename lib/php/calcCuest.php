@@ -12,35 +12,7 @@ function getChkId($visita){
 
 	// print2($datVis);
 
-	$sql = "SELECT c.id 
-		FROM ProyectosChecklist pc 
-		LEFT JOIN Checklist c ON c.id = pc.checklistId
-		WHERE pc.proyectosId = $datVis[proyectosId] AND c.etapa = '$datVis[etapa]'
-		AND (elim != 1 OR elim IS NULL)";
-	// echo $sql;
-	$chks = $db->query($sql)->fetchAll(PDO::FETCH_NUM);
-
-
-
-	switch (count($chks)) {
-		case 0:
-			$chkId = 0;
-			break;
-		case 1:
-			$chkId = $chks[0][0];
-			break;
-		default:
-			$sql2 = "SELECT * FROM Checklist 
-				WHERE tipo = '$datVis[tChk]' AND repeticionesId = $datVis[repeticionesId] 
-				AND marcasId = $datVis[mId] AND (elim != 1 OR elim IS NULL)";
-
-			$checklist = $db->query($sql2)->fetch(PDO::FETCH_ASSOC);
-			$chkId = $checklist['id'];
-			break;
-	}
-
-
-	return $chkId;
+	return $datVis['checklistId'];
 }
 
 function estructura($chkId){
