@@ -69,7 +69,7 @@ $chk->getVisita($_POST['vId']);
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:white">×</button>
 	<div style="text-align: center;">
 		<h4>
-			Datos generales
+			<?php echo TR('generalData'); ?>
 		</h4>
 	</div>
 </div>

@@ -157,13 +157,13 @@ foreach ($res as $r) {
 		<div class="collapse navbar-collapse" id="bloquesNav">
 
 			<ul class="navbar-nav mr-auto" id="bloques">
-					<li class="bloqueBtn active nav-item" id="general"><a class="nav-link"  href="#">General</a></li>
+					<li class="bloqueBtn active nav-item" id="general"><a class="nav-link"  href="#"><?php echo TR('general'); ?></a></li>
 				<?php foreach ($est['bloques'] as $bId => $b){ ?>
 					<li class="bloqueBtn disabled nav-item" id="<?php echo $bId; ?>">
 						<a class="nav-link" href="#" ><?php echo $b['nombre']; ?></a>
 					</li>
 				<?php } ?>
-					<li class="bloqueBtn nav-item" id="finalizar"><a class="nav-link" href="#">Finalizar</a></li>
+					<li class="bloqueBtn nav-item" id="finalizar"><a class="nav-link" href="#"><?php echo TR('finalize') ?></a></li>
 			</ul>
 		</div>
 </nav>
@@ -172,7 +172,7 @@ foreach ($res as $r) {
 		<div id="a_general" class="areasBloque">
 			<ul class="list-group">
 				<li class="list-group-item manita areaBtn" id="area_general">
-					Datos generales
+					<?php echo TR('generaldata'); ?>
 				</li>
 			</ul>
 		</div>
