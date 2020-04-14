@@ -136,7 +136,7 @@
 
 			<!-- Datos de la visita -->
 			<div style="text-align: center;margin-top: 10px;" class="nuevo">
-				<h2>Respuestas del cuestionario</h2>
+				<h2><?php echo TR('questionnairePreview'); ?></h2>
 			</div>
 
 			<!-- <table class="table" style="font-size:x-small;">
