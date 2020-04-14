@@ -201,20 +201,10 @@ foreach ($res as $r) {
 		<div id="a_finalizar" class="areasBloque" style="display: none;">
 			<ul class="list-group">
 				<li class="list-group-item manita areaBtn" id="area_archivos">
-					Subir archivos
+					<?php echo TR('uploadFiles'); ?>
 				</li>
-				<?php if ($vInfo['etapa'] == 'visita'){ ?>
-					<li class="list-group-item manita areaBtn" id="area_instSug">
-						Instalación
-					</li>
-				<?php }elseif($vInfo['etapa'] == 'instalacion'){ ?>
-					<li class="list-group-item manita areaBtn" id="area_inst">
-						Instalación
-					</li>
-				<?php }else{ ?>
-				<?php } ?>
 				<li class="list-group-item manita areaBtn" id="area_vistaGral">
-					Vista previa
+					<?php echo TR('preview'); ?>
 				</li>
 			</ul>
 		</div>

@@ -122,12 +122,7 @@ if($nivel<60){
 <div class="modal-header nuevo" >
 	<div style="text-align: center;">
 		<h4 class="modal-title">
-			<?php if(isset($_POST['usuarioId'])): ?>
-				Editar 
-			<?php else: ?>
-				Nuevo 
-			<?php endif; ?>
-			usuario
+			<?php echo TR('user'); ?>
 		</h4>
 	</div>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -152,56 +147,44 @@ if($nivel<60){
 				<td></td>
 			</tr>
 			<tr>
-				<td>Nivel</td>
+				<td><?php echo TR('level'); ?></td>
 				<td>
 					<select id="nivel" class="form-control oblig" name="nivel">
-						<option value="0"  <?php echo $datC['nivel'] ==  0?'selected':''; ?> >Sin acceso al sistema</option>
-						<option value="10" <?php echo $datC['nivel'] == 10?'selected':''; ?> >Reconocedor</option>
-						<option value="30" <?php echo $datC['nivel'] == 30?'selected':''; ?> >Visitador</option>
-						<option value="42" <?php echo $datC['nivel'] == 42?'selected':''; ?> >Aprendiz</option>
-						<option value="44" <?php echo $datC['nivel'] == 44?'selected':''; ?> >Instalador</option>
-						<option value="46" <?php echo $datC['nivel'] == 46?'selected':''; ?> >Jefe de cuadrilla</option>
-						<option value="48" <?php echo $datC['nivel'] == 48?'selected':''; ?> >Director de instalaciones</option>
-						<option value="49" <?php echo $datC['nivel'] == 20?'selected':''; ?> >Administrativo</option>
-						<option value="50" <?php echo $datC['nivel'] == 50?'selected':''; ?> >Administrador</option>
-						<option value="60" <?php echo $datC['nivel'] == 60?'selected':''; ?> >Super Usuario</option>
+						<option value="0"  <?php echo $datC['nivel'] ==  0?'selected':''; ?> ><?php echo TR('noAccess'); ?></option>
+						<option value="50" <?php echo $datC['nivel'] == 50?'selected':''; ?> ><?php echo TR('administrator') ?></option>
+						<option value="60" <?php echo $datC['nivel'] == 60?'selected':''; ?> ><?php echo TR('superuser'); ?></option>
 					</select>
 				</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>Nombre</td>
+				<td><?php echo TR('name'); ?></td>
 				<td>
-					<input type="text" value="<?php echo $datC['nombre']; ?>" name="nombre" id="nombre" class="form-control oblig" >
+					<input type="text" value="<?php echo $datC['name']; ?>" name="name" id="name" class="form-control oblig" >
 				</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>Apellido paterno</td>
-				<td><input type="text" value="<?php echo $datC['aPat']; ?>" name="aPat" id="aPat" class="form-control oblig"></td>
+				<td><?php echo TR('last_name'); ?></td>
+				<td><input type="text" value="<?php echo $datC['lastname']; ?>" name="lastname" id="lastname" class="form-control oblig"></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>Apellido materno</td>
-				<td><input type="text" value="<?php echo $datC['aMat']; ?>" name="aMat" id="aMat" class="form-control oblig"></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>Correo electrónico</td>
+				<td><?php echo TR('email'); ?></td>
 				<td><input type="text" value="<?php echo $datC['mail']; ?>" name="mail" id="mail" class="form-control oblig"></td>
 				<td></td>
 			</tr>
 			<?php if (isset($_POST['usuarioId'])): ?>
 				<tr>
-					<td colspan="3" style="text-align: center;"><span id="chPwd" class="btn btn-sm btn-default">Cambiar contraseña</span></td>
+					<td colspan="3" style="text-align: center;"><span id="chPwd" class="btn btn-sm btn-default"><?php echo TR('chPwd'); ?></span></td>
 				</tr>
 				<tr class="trPwd" style="display: none;">
-					<td>Contraseña</td>
+					<td><?php echo TR('password'); ?></td>
 					<td><input type="password" name="pwd" id="pwd" class="form-control oblig"></td>
 					<td></td>
 				</tr>
 				<tr class="trPwd" style="display: none;">
-					<td>Repetir contraseña</td>
+					<td><?php echo TR('repeatpwd'); ?></td>
 					<td><input type="password" id="pwd2" class="form-control oblig"></td>
 					<td valign="middle" style="font-size: large;vertical-align: middle;">
 						<i id="pwdChk" style="display: none;" class="glyphicon"></i>
@@ -210,12 +193,12 @@ if($nivel<60){
 
 			<?php else: ?>
 				<tr>
-					<td>Contraseña</td>
+					<td><?php echo TR('password'); ?></td>
 					<td><input type="password" name="pwd" id="pwd" class="form-control oblig"></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>Repetir contraseña</td>
+					<td><?php echo TR('repeatpwd'); ?></td>
 					<td><input type="password" id="pwd2" class="form-control oblig"></td>
 					<td valign="middle" style="font-size: large;vertical-align: middle;">
 						<i id="pwdChk" style="display: none;" class="glyphicon"></i>
@@ -228,7 +211,7 @@ if($nivel<60){
 </div>
 <div class="modal-footer">
 	<div style="text-align: right;">
-		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel">Cancelar</span>
-		<span id="env" class="btn btn-sm btn-shop">Enviar</span>
+		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel"><?php echo TR('cancel'); ?></span>
+		<span id="env" class="btn btn-sm btn-shop"><?php echo TR('send'); ?></span>
 	</div>
 </div>
