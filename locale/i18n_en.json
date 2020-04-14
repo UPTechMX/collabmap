@@ -198,6 +198,7 @@
   "sendMessage": "The responses from this visit will be sent for review and can no longer be modified. <br/>Any comment an executive will contact you. <br/>",
   "missFile": "Multimedia files are missing",
   "questionnairePreview": "Questionnaire preview",
+  "general": "General",
 
   "project": "Project",
   "projects": "Projects",
