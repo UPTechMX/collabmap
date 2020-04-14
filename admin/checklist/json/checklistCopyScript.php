@@ -224,7 +224,7 @@ try {
 		$db->rollBack();
 	}
 	// $db->rollBack();
-	echo '{"ok":1}';
+	echo '{"ok":1,"nId":'.$chklist['nId'].'}';
 } catch (PDOException $e) {
 	echo '{"ok":0}';
 	$db->rollBack();

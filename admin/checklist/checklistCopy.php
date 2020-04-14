@@ -3,8 +3,9 @@
 	include_once '../../lib/j/j.func.php';
 	checaAcceso(50); // checaAcceso Checklist
 
+	$checklist = $db->query("SELECT * FROM Checklist ORDER BY nombre")->fetchAll(PDO::FETCH_ASSOC);
 	// $clientes = $db-> query("SELECT * FROM Clientes")->fetchAll(PDO::FETCH_ASSOC);
-	$etapas = $db->query("SELECT * FROM Etapas ORDER BY orden")->fetchAll(PDO::FETCH_ASSOC);
+	// $etapas = $db->query("SELECT * FROM Etapas ORDER BY orden")->fetchAll(PDO::FETCH_ASSOC);
 
 	// print2($_POST);
 ?>
@@ -12,39 +13,21 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		$('#etapa').change(function(event) {
-			var eleId = $(this).val();
-			if(eleId != ""){				
-				var chksj = jsonF('admin/checklist/json/json.php',{opt:4,acc:3,eleId:eleId});
-				var chks = $.parseJSON(chksj);
-				optsSel(chks,$('#checklistsSel'),false,"");
-			}else{
-				$('#checklistsSel').empty()
-				var o = new Option("- - - - - - - -","");
-				$('#checklistsSel').append(o);
-			}
-			$('#checklistsSel').trigger('change');
-		});
-		$('#checklistsSel').change(function(event) {
-			var checklistId = $(this).val();
-			if(checklistId != ""){
-				$('#edtChklist').show();
-			}else{
-				$('#edtChklist').hide();
-			}
-		});
-
-
 
 		$('#env').click(function(event) {
 			var checklistId = $('#checklistsSel').val();
 
-			conf('Se copiará el checklist a esta etapa.',{checklistId:checklistId},function(e){
+			conf('<?php echo TR('copySurveyMessage'); ?>.',{checklistId:checklistId},function(e){
 				var rj = jsonF('admin/checklist/json/checklistCopyScript.php',{checklistId:e.checklistId})
 				// console.log(rj);
 				var r = $.parseJSON(rj);
 				if(r.ok == 1){
+					var chkName = $('#checklistsSel option:selected').text()+'_Copy';
+					var o = new Option(chkName,r.nId);
+					$('#chkSel').append(o);
+					$('#chkSel').val(r.nId).trigger('change');
 					$('#popUp').modal('toggle');
+
 					// $('#checklistList').load(rz+'admin/proyectos/checklist/checklistList.php',{ajax:1});
 				}
 			});
@@ -55,7 +38,7 @@
 <div class="modal-header nuevo" >
 	<div style="text-align: center;">
 		<h4>
-			Copiar checklist
+			<?php echo TR('copySurvey'); ?>
 		</h4>
 	</div>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -68,22 +51,14 @@
 	<form id="nEmp">
 		<table class="table" border="0">
 			<tr>
-				<td>Etapa</td>
-				<td>
-					<select id="etapa" name="etapa" class="form-control oblig">
-						<option value="">- - - Etapa - - -</option>
-						<?php foreach ($etapas as $e){ ?>
-							<option value="<?php echo $e['nomInt']; ?>"><?php echo $e['nombre']; ?></option>
-						<?php } ?>
-					</select>
-				</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>Checklist</td>
+				<td><?php echo TR('survey'); ?></td>
 				<td>
 					<select class="form-control" id="checklistsSel">
 						<option value="">- - - - - - - -</option>
+						<?php foreach ($checklist as $c){ ?>
+							<option value="<?php echo $c['id']; ?>"><?php echo $c['nombre']; ?></option>
+							
+						<?php } ?>
 					</select>
 				</td>
 				<td></td>
@@ -93,7 +68,7 @@
 </div>
 <div class="modal-footer">
 	<div style="text-align: right;">
-		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel">Cancelar</span>
-		<span id="env" class="btn btn-sm btn-shop">Copiar</span>
+		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel"><?php echo TR('cancel'); ?></span>
+		<span id="env" class="btn btn-sm btn-shop"><?php echo TR('copy'); ?></span>
 	</div>
 </div>
