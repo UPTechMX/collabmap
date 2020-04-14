@@ -38,13 +38,13 @@
 	});
 </script>
 <div class="nuevo">
-	Preguntas del área <?php echo $_POST['nomArea']; ?>
+	<?php echo TR('questions'); ?> (<?php echo TR('area').": ".$_POST['nomArea']; ?>)
 </div>
 <span class="btn btn-shop btn-sm" id="addPregs">
-	<i class="glyphicon glyphicon-plus">&nbsp;</i>Agregar pregunta
+	<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('addQuestion'); ?>
 </span>
 <span class="btn btn-shop btn-sm" id="savePregsOrden" style="display: none;">
-	<i class="glyphicon glyphicon-floppy-disk">&nbsp;</i>Guardar orden
+	<i class="glyphicon glyphicon-floppy-disk">&nbsp;</i><?php echo TR('saveOrder'); ?>
 </span>
 <div id="preguntasList"><?php include_once 'preguntasList.php'; ?></div>
 		

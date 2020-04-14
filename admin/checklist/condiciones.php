@@ -75,7 +75,7 @@
 </script>
 <div class="modal-header nuevo" >
 	<div style="text-align: center;">
-		<h4 class="modal-title">Agregar condición</h4>
+		<h4 class="modal-title"><?php echo TR('conditional'); ?></h4>
 	</div>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	  <span aria-hidden="true">&times;</span>
@@ -89,11 +89,11 @@
 
 	<table class="table">
 		<tr>
-			<td>Condición</td>
+			<td><?php echo TR('conditional'); ?></td>
 			<td><input type="text" id="condicion" class="form-control"></td>
 		</tr>
 		<tr>
-			<td>Acción</td>
+			<td><?php echo TR("action"); ?></td>
 			<td>
 				<select class="form-control" id="accion">
 					<option value="">- - - - - - - - -</option>
@@ -105,18 +105,18 @@
 			</td>
 		</tr>
 		<tr>
-			<td>Valor</td>
+			<td><?php echo TR('value'); ?></td>
 			<td>
 				<input type="text" id="valor" class="form-control" style="display: inline;width:70%;"/>
 				<div style="text-align: right;width: 30%;display: inline;">
-					<span class="btn btn-sm btn-shop" id="agregaCond">Agregar</span>
+					<span class="btn btn-sm btn-shop" id="agregaCond"><?php echo TR('add'); ?></span>
 				</div>
 			</td>
 		</tr>
 	</table>
 	<hr/>
 	<div style="text-align: center;" class="nuevo">
-		<h4>Condiciones</h4>
+		<h4><?php echo TR('conditions'); ?></h4>
 	</div>
 	<div id="condicionesList"><?php include 'condicionesList.php'; ?></div>
 </div>
