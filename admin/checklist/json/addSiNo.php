@@ -12,17 +12,17 @@ $p['datos']['preguntasId'] = $_POST['pregId'];
 try {
 	switch ($_POST['opt']) {
 		case '1':
-			$p['datos']['respuesta'] = 'Sí';
+			$p['datos']['respuesta'] = TR('yes');
 			$p['datos']['valor'] = 1;
 			$p['datos']['orden'] = 0;
 			inserta($p);
 
-			$p['datos']['respuesta'] = 'No';
+			$p['datos']['respuesta'] = TR('no');
 			$p['datos']['valor'] = 0;
 			$p['datos']['orden'] = 1;
 			inserta($p);
 
-			$p['datos']['respuesta'] = 'No sé';
+			$p['datos']['respuesta'] = TR('idk');
 			$p['datos']['valor'] = 2;
 			$p['datos']['orden'] = 2;
 			inserta($p);

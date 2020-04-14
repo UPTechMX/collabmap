@@ -118,17 +118,17 @@
 
 <?php if (count($resps) == 0){ ?>
 	<span class="btn btn-shop btn-sm" id="addSiNo" style="margin-top:5px;">
-		<i class="glyphicon glyphicon-plus">&nbsp;</i>Agregar <?php echo TR('yes') ?>/TR('no') ?>/TR('na') ?>
+		<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('add'); ?> <?php echo TR('yes')."/".TR('no')."/".TR('idk') ?>
 	</span>
 	<span class="btn btn-shop btn-sm" id="add1Al10" style="margin-top:5px;">
-		<i class="glyphicon glyphicon-plus">&nbsp;</i>Agregar escala del 0 al 10
+		<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('add'); ?> <?php echo TR('scale'); ?> 0 al 10
 	</span>
-	<span class="btn btn-shop btn-sm" id="addRComp" style="margin-top:5px;">
-		<i class="glyphicon glyphicon-plus">&nbsp;</i>Agregar respuestas compromisos
-	</span>
-	<span class="btn btn-shop btn-sm" id="addRBM" style="margin-top:5px;">
-		<i class="glyphicon glyphicon-plus">&nbsp;</i>Agregar respuestas bueno/malo
-	</span>
+	<!-- <span class="btn btn-shop btn-sm" id="addRComp" style="margin-top:5px;">
+		<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('add'); ?> respuestas compromisos
+	</span> -->
+	<!-- <span class="btn btn-shop btn-sm" id="addRBM" style="margin-top:5px;">
+		<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('add'); ?> respuestas bueno/malo
+	</span> -->
 <?php }else{?>
 	<ul class="list-group respsSort" style="margin-top: 10px;" id="respsSort">
 		<?php foreach ($resps as $r): ?>

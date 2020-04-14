@@ -78,12 +78,7 @@
 <div class="modal-header nuevo" >
 	<div style="text-align: center;">
 		<h4 class="modal-title">
-			<?php if(isset($_POST['respId'])): ?>
-				Editar 
-			<?php else: ?>
-				Nueva 
-			<?php endif; ?>
-			respuesta
+			<?php echo TR('answer'); ?>
 		</h4>
 	</div>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -97,21 +92,21 @@
 	<form id="nEmp">
 		<table class="table" border="0">
 			<tr>
-				<td style="vertical-align: middle;">Respuesta</td>
+				<td style="vertical-align: middle;"><?php echo TR('answer'); ?></td>
 				<td>
 					<textarea name="respuesta" id="respuesta" class="form-control txArea"><?php echo $datP['respuesta'] ?></textarea>
 				</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>Valor</td>
+				<td><?php echo TR('value'); ?></td>
 				<td>
 					<input type="text" value="<?php echo $datP['valor']; ?>" name="valor" id="valor" class="form-control oblig" >
 				</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>Justificar</td>
+				<td><?php echo TR('justify'); ?></td>
 				<td><input type="checkbox" name="justif" id="justif" <?php echo $datP['justif'] == 1?'checked':''; ?> ></td>
 				<td></td>
 			</tr>

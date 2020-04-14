@@ -99,7 +99,7 @@
   "search": "Search",
   "yes": "Yes",
   "no": "No",
-  "na": "No",
+  "idk": "I dont know",
   "add": "Add",
   "alert":"Alert",
   "confAction":"Confirm action",
@@ -186,6 +186,7 @@
   "answer": "Answer",
   "answers": "Answers",
   "addAnswer": "Add answers",
+  "scale": "Scale",
 
   "project": "Project",
   "projects": "Projects",
