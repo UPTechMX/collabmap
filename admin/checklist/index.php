@@ -55,7 +55,7 @@
 			<span id="addChk" class="btn btn-sm btn-shop" style="margin: 10px 0px;">
 				<i class="glyphicon glyphicon-plus"></i> &nbsp;<?php echo TR('survey'); ?>
 			</span>
-			<span id="dupChk" class="btn btn-sm btn-shop"><?php echo TR('duplicateSurvey'); ?></span>
+			<!-- <span id="dupChk" class="btn btn-sm btn-shop"><?php echo TR('duplicateSurvey'); ?></span> -->
 		</div>
 	</div>
 	<div class="col-7" id="chkMods"></div>
