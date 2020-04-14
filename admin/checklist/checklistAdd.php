@@ -71,10 +71,15 @@
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){
+					<?php if(isset($_POST['checklistId'])){ ?>
+						var chkId = <?php echo $_POST['checklistId']; ?>;
+						$('#chkSel').children('option[value="'+chkId+'"]').text(dat.nombre);
+					<?php }else{ ?>					
+						var o = new Option(dat.nombre,r.nId);
+						$('#chkSel').append(o);
+						$('#chkSel').val(r.nId).trigger('change');
+					<?php } ?>
 
-					var o = new Option(dat.nombre,r.nId);
-					$('#chkSel').append(o);
-					$('#chkSel').val(r.nId).trigger('change');
 
 					$('#popUp').modal('toggle');
 					// $('#checklistList').load(rz+'admin/proyectos/checklist/checklistList.php',{ajax:1});
