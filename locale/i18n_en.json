@@ -197,6 +197,7 @@
   "missAnswer": "Missing any unanswered questions, you will be sent to the first missing to be answered",
   "sendMessage": "The responses from this visit will be sent for review and can no longer be modified. <br/>Any comment an executive will contact you. <br/>",
   "missFile": "Multimedia files are missing",
+  "questionnairePreview": "Questionnaire preview",
 
   "project": "Project",
   "projects": "Projects",

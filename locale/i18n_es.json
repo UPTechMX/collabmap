@@ -197,7 +197,8 @@
   "missAnswer": "Falta alguna pregunta por contestar, se te enviará a la primera faltante para que sea contestada",
   "sendMessage": "Las respuestas de esta visita serán enviadas para revisión y ya no podrán ser modificadas.<br/>Cualquier comentario un ejecutivo se pondrá en conctacto contigo.<br/>",
   "missFile": "Faltan archivos multimedia",
-
+  "questionnairePreview": "Respuestas del cuestionario",
+  
   "project": "Proyecto",
   "projects": "Proyectos",
   "inactive": "Desactivado",
