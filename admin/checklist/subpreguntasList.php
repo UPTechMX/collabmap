@@ -83,17 +83,18 @@
 								<?php echo $sp['pregunta']; ?>
 							</div>
 							<hr/>
-							Tipo: <strong><?php echo $sp['nTipo']; ?></strong><br/>
-							Tantos: <strong><?php echo $sp['puntos']; ?></strong><br/>
-							Influye: <strong><?php echo $sp['influyeValor'] == 1?'Sí':'No'; ?></strong><br/>
-							Id pregunta: <strong><?php echo $sp['identificador']; ?></strong><br/>
+							<?php echo TR('type'); ?>: <strong><?php echo TR($sp['tsiglas']); ?></strong><br/>
+							<?php echo TR('points'); ?>: <strong><?php echo $sp['puntos']; ?></strong><br/>
+							<?php echo TR('toRecord'); ?>: <strong><?php echo $sp['influyeValor'] == 1?TR('yes'):TR('no'); ?></strong><br/>
+							Id: <strong><?php echo $sp['identificador']; ?></strong><br/>
 							<i class="glyphicon glyphicon-pencil manita edtSubpreg" id="edtSubpreg_<?php echo $sp['id'];?>"></i>&nbsp;
 							<i class="glyphicon glyphicon-question-sign manita condSubpreg" id="condSubpreg_<?php echo $sp['id'];?>"></i>&nbsp;
 							<i class="glyphicon glyphicon-trash manita rojo delSubpreg" id="delSubpreg_<?php echo $sp['id'];?>"></i>
 						</div>
 						<div class="col-sm-12 col-md-6 col-lg-6">
 							<div class="dResp" id="dResp_<?php echo $sp['id'];?>">
-								Respuestas: <i class="glyphicon glyphicon-chevron-right manita verRespSub" id="verRespSub_<?php echo $sp['id'];?>"></i>
+								<?php echo TR('answers') ?>: 
+								<i class="glyphicon glyphicon-chevron-right manita verRespSub" id="verRespSub_<?php echo $sp['id'];?>"></i>
 							</div>
 							<div class="respuestas" id="respuestas_<?php echo $sp['id'];?>" style="">
 								<?php 
@@ -112,10 +113,10 @@
 								<?php echo $sp['pregunta']; ?>
 							</div>
 							<hr/>
-							Tipo: <strong><?php echo $sp['nTipo']; ?></strong><br/>
-							Tantos: <strong><?php echo $sp['puntos']; ?></strong><br/>
-							Influye: <strong><?php echo $sp['influyeValor'] == 1?'Sí':'No'; ?></strong><br/>
-							Id pregunta: <strong><?php echo $sp['identificador']; ?></strong><br/>
+							<?php echo TR('type') ?>: <strong><?php echo TR($sp['tsiglas']); ?></strong><br/>
+							<?php echo TR('points') ?>: <strong><?php echo $sp['puntos']; ?></strong><br/>
+							<?php echo TR('toRecord') ?>: <strong><?php echo $sp['influyeValor'] == 1?TR('yes'):TR('no'); ?></strong><br/>
+							Id: <strong><?php echo $sp['identificador']; ?></strong><br/>
 							<i class="glyphicon glyphicon-pencil manita edtSubpreg" id="edtSubpreg_<?php echo $sp['id'];?>"></i>&nbsp;
 							<i class="glyphicon glyphicon-question-sign manita condSubpreg" id="condSubpreg_<?php echo $sp['id'];?>"></i>&nbsp;
 							<i class="glyphicon glyphicon-trash manita rojo delSubpreg" id="delSubpreg_<?php echo $sp['id'];?>"></i>
@@ -131,10 +132,10 @@
 							</div>
 
 							<hr/>
-							Tipo: <strong><?php echo $sp['nTipo']; ?></strong><br/>
-							Tantos: <strong><?php echo $sp['puntos']; ?></strong><br/>
-							Influye: <strong><?php echo $sp['influyeValor'] == 1?'Sí':'No'; ?></strong><br/>
-							Id pregunta: <strong><?php echo $sp['identificador']; ?></strong><br/>
+							<?php echo TR('type') ?>: <strong><?php echo TR($sp['tsiglas']); ?></strong><br/>
+							<?php echo TR('points') ?>: <strong><?php echo $sp['puntos']; ?></strong><br/>
+							<?php echo TR('toRecord') ?>: <strong><?php echo $sp['influyeValor'] == 1?TR('yes'):TR('no'); ?></strong><br/>
+							Id: <strong><?php echo $sp['identificador']; ?></strong><br/>
 							<i class="glyphicon glyphicon-pencil manita edtPreg" id="edtPreg_<?php echo $sp['id'];?>"></i>&nbsp;
 							<i class="glyphicon glyphicon-question-sign manita condPreg" id="condPreg_<?php echo $sp['id'];?>"></i>&nbsp;
 							<i class="glyphicon glyphicon-trash manita rojo delPreg" id="delPreg_<?php echo $sp['id'];?>"></i>

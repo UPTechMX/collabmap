@@ -95,12 +95,7 @@
 <div class="modal-header nuevo" >
 	<div style="text-align: center;">
 		<h4 class="modal-title">
-			<?php if(isset($_POST['subpregId'])): ?>
-				Editar 
-			<?php else: ?>
-				Nueva 
-			<?php endif; ?>
-			pregunta
+			<?php echo TR('question'); ?>
 		</h4>
 	</div>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -113,14 +108,14 @@
 	<form id="nEmp">
 		<table class="table" border="0">
 			<tr>
-				<td style="vertical-align: middle;">Pregunta</td>
+				<td style="vertical-align: middle;"><?php echo TR('question'); ?></td>
 				<td>
 					<textarea name="pregunta" id="pregunta" class="form-control txArea"><?php echo $datP['pregunta'] ?></textarea>
 				</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td style="vertical-align: middle;">Comentarios al visitador/instalador</td>
+				<td style="vertical-align: middle;"><?php echo TR('userFeedback'); ?></td>
 				<td>
 					<textarea name="comShopper" id="comShopper" class="form-control txArea"><?php echo $datP['comShopper'] ?></textarea>
 				</td>
@@ -134,14 +129,14 @@
 				<td></td>
 			</tr> -->
 			<tr>
-				<td>Tipo de pregunta</td>
+				<td><?php echo TR('type'); ?></td>
 				<td>
 					<select id="tiposId" name="tiposId" class="form-control oblig">
 						<option value="">- - - - - - - - -</option>
 						<?php foreach ($tipos as $t): ?>
 							<option value="<?php echo $t['id']; ?>" 
 								<?php echo ($t['id'] == $datP['tiposId']?'selected':''); ?> >
-									<?php echo $t['nombre']; ?>
+									<?php echo TR($t['siglas']); ?>
 							</option>
 						<?php endforeach ?>
 					</select>
@@ -149,7 +144,7 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td>Tantos</td>
+				<td><?php echo TR('points'); ?></td>
 				<td>
 					<input type="text" value="<?php echo isset($datP['puntos'])?$datP['puntos']:1; ?>" 
 						name="puntos" id="puntos" class="form-control oblig" >
@@ -157,7 +152,7 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td>Contabilizar valor</td>
+				<td><?php echo TR('toRecord'); ?></td>
 				<td>
 					<?php if ($_POST['subpregId'] != ''): ?>
 						<input type="checkbox" name="influyeValor" id="influyeValor" 
@@ -169,13 +164,13 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td>Justificar</td>
+				<td><?php echo TR('justify'); ?></td>
 				<td><input type="checkbox" name="justif" id="justif" <?php echo $datP['justif'] == 1?'checked':''; ?> ></td>
 				<td></td>
 			</tr>
 			<?php if(isset($_POST['pregId'])): ?>
 				<tr>
-					<td><span class="btn btn-sm btn-default" id="chkIdentificador">Cambiar identificador</span></td>
+					<td><span class="btn btn-sm btn-default" id="chkIdentificador"><?php echo TR('chId'); ?></span></td>
 					<td>
 						<input type="text" value="<?php echo $datP['identificador']; ?>" 
 						name="identificador" id="identificador" class="form-control oblig" style="display: none;" />
@@ -190,7 +185,7 @@
 </div>
 <div class="modal-footer">
 	<div style="text-align: right;">
-		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel">Cancelar</span>
-		<span id="env" class="btn btn-sm btn-shop">Enviar</span>
+		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel"><?php echo TR('cancel'); ?></span>
+		<span id="env" class="btn btn-sm btn-shop"><?php echo TR('send'); ?></span>
 	</div>
 </div>
