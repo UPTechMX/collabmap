@@ -33,13 +33,13 @@
 	});
 </script>
 <div class="nuevo">
-	Areas del bloque <?php echo $_POST['nomBloq']; ?>
+	<?php echo TR('areas'); ?> (<?php echo TR('block').": ". $_POST['nomBloq']; ?>)
 </div>
 	<span class="btn btn-shop btn-sm" id="addArea">
-		<i class="glyphicon glyphicon-plus">&nbsp;</i>Agregar área 
+		<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('addArea'); ?>
 	</span>
 	<span class="btn btn-shop btn-sm" id="saveAreaOrden" style="display:none">
-		<i class="glyphicon glyphicon-floppy-disk">&nbsp;</i>Guardar orden
+		<i class="glyphicon glyphicon-floppy-disk">&nbsp;</i><?php echo TR('saveOrder'); ?>
 	</span>
 
 <div id="areasList"><?php include_once 'areasList.php'; ?></div>

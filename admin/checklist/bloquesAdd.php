@@ -106,9 +106,9 @@
 				<td><?php echo TR('avgType'); ?></td>
 				<td>
 					<select class="form-control" id="tipoProm" name="tipoProm">
-						<option value="1" <?php echo $datM['tipoProm'] == 1 ? 'selected':''; ?> >Por preguntas</option>
-						<option value="2" <?php echo $datM['tipoProm'] == 2 ? 'selected':''; ?> >Suma de promedios de las áreas</option>
-						<option value="3" <?php echo $datM['tipoProm'] == 3 ? 'selected':''; ?> >Promedio de la suma de promedios de las áreas</option>
+						<option value="1" <?php echo $datM['tipoProm'] == 1 ? 'selected':''; ?> ><?php echo TR('averageQuestions'); ?></option>
+						<option value="2" <?php echo $datM['tipoProm'] == 2 ? 'selected':''; ?> ><?php echo TR('averageAreaSum'); ?></option>
+						<option value="3" <?php echo $datM['tipoProm'] == 3 ? 'selected':''; ?> ><?php echo TR('averageAverageAreaSum'); ?></option>
 					</select>
 				</td>
 				<td></td>

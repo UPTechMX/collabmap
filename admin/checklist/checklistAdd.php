@@ -90,12 +90,7 @@
 <div class="modal-header nuevo" >
 	<div style="text-align: center;">
 		<h4 class="modal-title">
-			<?php if(isset($_POST['checklistId'])): ?>
-				Editar 
-			<?php else: ?>
-				Nuevo 
-			<?php endif; ?>
-			cuestionario
+			<?php echo TR("survey"); ?>
 		</h4>
 	</div>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -109,14 +104,14 @@
 	<form id="nEmp">
 		<table class="table" border="0">
 			<tr>
-				<td>Nombre</td>
+				<td><?php echo TR('name'); ?></td>
 				<td>
 					<input type="text" value="<?php echo $datM['nombre']; ?>" name="nombre" id="nombre" class="form-control oblig" >
 				</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>Siglas</td>
+				<td><?php echo TR('code'); ?></td>
 				<td><input type="text" value="<?php echo $datM['siglas']; ?>" name="siglas" id="siglas" class="form-control oblig"></td>
 				<td></td>
 			</tr>

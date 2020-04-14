@@ -39,7 +39,7 @@
 		$('#areasSort .delArea').click(function(event) {
 			var areaId = this.id.split('_')[1];
 			// console.log(areaId);
-			conf('¿Está seguro que desea elilminar el área del bloque?',{areaId:areaId},function(e){
+			conf('<?php echo TR('delAreaMessage'); ?>',{areaId:areaId},function(e){
 				var rj = jsonF('admin/checklist/json/json.php',{datos:{id:e.areaId,elim:1},acc:2,opt:6,chkId:checklistId});
 				// console.log(rj);
 				var r = $.parseJSON(rj);

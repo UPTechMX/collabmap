@@ -32,13 +32,13 @@
 	});
 </script>
 <div class="nuevo">
-	Bloques
+	<?php echo TR('blocks'); ?>
 </div>
 	<span class="btn btn-shop btn-sm" id="addBloque">
 		<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('addBlock'); ?>
 	</span>
 	<span class="btn btn-shop btn-sm" id="saveBloqueOrden" style="display:none">
-		<i class="glyphicon glyphicon-floppy-disk">&nbsp;</i>Guardar orden
+		<i class="glyphicon glyphicon-floppy-disk">&nbsp;</i><?php echo TR('saveOrder') ?>
 	</span>
 
 <div id="bloquesList"><?php include_once 'bloquesList.php'; ?></div>

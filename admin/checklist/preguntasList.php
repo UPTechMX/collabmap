@@ -91,17 +91,19 @@
 								<?php echo $p['pregunta']; ?>
 							</div>
 							<hr/>
-							Tipo: <strong><?php echo $p['nTipo']; ?></strong><br/>
-							Tantos: <strong><?php echo $p['puntos']; ?></strong><br/>
-							Influye: <strong><?php echo $p['influyeValor'] == 1?'Sí':'No'; ?></strong><br/>
-							Id pregunta: <strong><?php echo $p['identificador']; ?></strong><br/>
+
+							<?php echo TR('type'); ?>: <strong><?php echo TR($p['tsiglas']); ?></strong><br/>
+							<?php echo TR('points'); ?>: <strong><?php echo $p['puntos']; ?></strong><br/>
+							<?php echo TR('toRecord'); ?>: <strong><?php echo $p['influyeValor'] == 1?TR('yes'):TR('no'); ?></strong><br/>
+							Id: <strong><?php echo $p['identificador']; ?></strong><br/>
 							<i class="glyphicon glyphicon-pencil manita edtPreg" id="edtPreg_<?php echo $p['id'];?>"></i>&nbsp;
 							<i class="glyphicon glyphicon-question-sign manita condPreg" id="condPreg_<?php echo $p['id'];?>"></i>&nbsp;
 							<i class="glyphicon glyphicon-trash manita rojo delPreg" id="delPreg_<?php echo $p['id'];?>"></i>
 						</div>
 						<div class="col-sm-12 col-md-6 col-lg-6">
 							<div class="dResp" id="dResp_<?php echo $p['id'];?>">
-								Respuestas: <i class="glyphicon glyphicon-chevron-right manita verResp" id="verResp_<?php echo $p['id'];?>"></i>
+								<?php echo TR('answers') ?>: 
+								<i class="glyphicon glyphicon-chevron-right manita verResp" id="verResp_<?php echo $p['id'];?>"></i>
 							</div>
 							<div class="respuestas" id="respuestas_<?php echo $p['id'];?>" style="">
 								<?php 
@@ -124,9 +126,9 @@
 							<?php echo $p['pregunta']; ?>
 						</div>
 						<hr/>
-						Tantos: <strong><?php echo $p['puntos']; ?></strong><br/>
-						Influye: <strong><?php echo $p['influyeValor'] == 1?'Sí':'No'; ?></strong><br/>
-						Id pregunta: <strong><?php echo $p['identificador']; ?></strong><br/>
+						<?php echo TR('points'); ?>: <strong><?php echo $p['puntos']; ?></strong><br/>
+						<?php echo TR('toRecord'); ?>: <strong><?php echo $p['influyeValor'] == 1?'Sí':'No'; ?></strong><br/>
+						Id: <strong><?php echo $p['identificador']; ?></strong><br/>
 						<i class="glyphicon glyphicon-pencil manita edtPreg" id="edtPreg_<?php echo $p['id'];?>"></i>&nbsp;
 						<i class="glyphicon glyphicon-question-sign manita condPreg" id="condPreg_<?php echo $p['id'];?>"></i>&nbsp;
 						<i class="glyphicon glyphicon-trash manita rojo delPreg" id="delPreg_<?php echo $p['id'];?>"></i>
@@ -134,7 +136,8 @@
 					</div>
 					<div class="col-sm-12 col-md-8 col-lg-8">
 						<div class="dResp" id="dResp_<?php echo $p['id'];?>">
-							Preguntas: <i class="glyphicon glyphicon-chevron-right manita verSubpregs" id="verSubpregs_<?php echo $p['id'];?>"></i>
+							<?php echo TR('questions'); ?>: 
+							<i class="glyphicon glyphicon-chevron-right manita verSubpregs" id="verSubpregs_<?php echo $p['id'];?>"></i>
 						</div>
 						<div class="subpreguntas" id="subpreguntas_<?php echo $p['id'];?>" style="display:none;">
 							<?php 
@@ -154,10 +157,10 @@
 								<?php echo $p['pregunta']; ?>
 							</div>
 							<hr/>
-							Tipo: <strong><?php echo $p['nTipo']; ?></strong><br/>
-							Tantos: <strong><?php echo $p['puntos']; ?></strong><br/>
-							Influye: <strong><?php echo $p['influyeValor'] == 1?'Sí':'No'; ?></strong><br/>
-							Id pregunta: <strong><?php echo $p['identificador']; ?></strong><br/>
+							<?php echo TR('type'); ?>: <strong><?php echo $p['nTipo']; ?></strong><br/>
+							<?php echo TR('points'); ?>: <strong><?php echo $p['puntos']; ?></strong><br/>
+							<?php echo TR('toRecord'); ?>: <strong><?php echo $p['influyeValor'] == 1?'Sí':'No'; ?></strong><br/>
+							Id: <strong><?php echo $p['identificador']; ?></strong><br/>
 							<i class="glyphicon glyphicon-pencil manita edtPreg" id="edtPreg_<?php echo $p['id'];?>"></i>&nbsp;
 							<i class="glyphicon glyphicon-question-sign manita condPreg" id="condPreg_<?php echo $p['id'];?>"></i>&nbsp;
 							<i class="glyphicon glyphicon-trash manita rojo delPreg" id="delPreg_<?php echo $p['id'];?>"></i>

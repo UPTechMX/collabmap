@@ -118,7 +118,7 @@
 
 <?php if (count($resps) == 0){ ?>
 	<span class="btn btn-shop btn-sm" id="addSiNo" style="margin-top:5px;">
-		<i class="glyphicon glyphicon-plus">&nbsp;</i>Agregar Sí/No/NA
+		<i class="glyphicon glyphicon-plus">&nbsp;</i>Agregar <?php echo TR('yes') ?>/TR('no') ?>/TR('na') ?>
 	</span>
 	<span class="btn btn-shop btn-sm" id="add1Al10" style="margin-top:5px;">
 		<i class="glyphicon glyphicon-plus">&nbsp;</i>Agregar escala del 0 al 10

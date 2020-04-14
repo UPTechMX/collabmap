@@ -38,12 +38,18 @@
 	});
 </script>
 
-<div class="modal-header nuevo grad-shop-v" >
-	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:white">×</button>
+<div class="modal-header nuevo" >
 	<div style="text-align: center;">
-		<h4>Tipo de promedio del checklist</h4>
+		<h4 class="modal-title">
+		<h4><?php echo TR('chkAverageType'); ?></h4>
+		</h4>
 	</div>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+
 </div>
+
 <div class="modal-body" id='pano' style='width:100%;border: none 1px;'>
 	<br/>
 	<form id="nEmp">
@@ -52,14 +58,14 @@
 				<td>Tipo del promedio</td>
 				<td>
 					<select class="form-control" id="tipoProm">
-						<option value="1" <?php echo $chk['tipoProm'] == 1 ? 'selected':''; ?> >Por preguntas</option>
-						<option value="2" <?php echo $chk['tipoProm'] == 2 ? 'selected':''; ?> >Suma de promedios de los bloques</option>
-						<option value="3" <?php echo $chk['tipoProm'] == 3 ? 'selected':''; ?> >Promedio de la suma de promedios de los bloques</option>
+						<option value="1" <?php echo $chk['tipoProm'] == 1 ? 'selected':''; ?> ><?php echo TR('averageQuestions'); ?></option>
+						<option value="2" <?php echo $chk['tipoProm'] == 2 ? 'selected':''; ?> ><?php echo TR('averageBlockSum'); ?></option>
+						<option value="3" <?php echo $chk['tipoProm'] == 3 ? 'selected':''; ?> ><?php echo TR('averageAverageBlockSum'); ?></option>
 					</select>
 				</td>
 				<td></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td>Tipo de análisis en visita</td>
 				<td>
 					<select class="form-control" id="tipoAnalisis">
@@ -68,7 +74,7 @@
 					</select>
 				</td>
 				<td></td>
-			</tr>
+			</tr> -->
 		</table>		
 	</form>
 </div>

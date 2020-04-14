@@ -40,12 +40,12 @@
 
 
 <span class="btn btn-shop btn-sm" id="addResp" style="margin-top:5px;">
-	<i class="glyphicon glyphicon-plus">&nbsp;</i>Agregar respuesta
+	<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('addAnswer'); ?>
 </span>
 
 
 <span class="btn btn-shop btn-sm" id="saveRespsOrden" style="display: none; margin-top: 5px;">
-	<i class="glyphicon glyphicon-floppy-disk">&nbsp;</i>Guardar orden
+	<i class="glyphicon glyphicon-floppy-disk">&nbsp;</i><?php echo TR('saveOrder'); ?>
 </span>
 
 
