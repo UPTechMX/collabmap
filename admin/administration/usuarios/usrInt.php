@@ -16,9 +16,12 @@
 
 <div class="row">
 	<div class="col-6">
-		<div class="nuevo">Usuarios</div>
+		<div class="nuevo"><?php echo TR("users"); ?></div>
 		<div style="text-align: right;margin:10px 0px;">
-			<span class="btn btn-sm btn-shop" id="addUsr">Agregar usuario</span>
+			<span class="btn btn-sm btn-shop" id="addUsr">
+				<i class="glyphicon glyphicon-plus"></i>
+				<?php echo TR('user'); ?>
+			</span>
 		</div>
 		<div id="usuariosList"><?php include_once 'usuariosList.php'; ?></div>
 	</div>

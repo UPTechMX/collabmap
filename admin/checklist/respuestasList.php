@@ -135,7 +135,7 @@
 			<li class="list-group-item respEle arrastra" id="respEle_<?php echo $r['id'];?>">
 				<div class="row">
 					<div class="col-sm-5 col-md-5 col-lg-5 "><?php echo $r['respuesta']; ?></div>
-					<div class="col-sm-3 col-md-3 col-lg-3 ">Valor: <?php echo $r['valor']; ?></div>
+					<div class="col-sm-3 col-md-3 col-lg-3 "><?php echo TR('value'); ?>: <?php echo $r['valor']; ?></div>
 					<div class="col-sm-4 col-md-4 col-lg-4 ">
 						<i class="glyphicon glyphicon-pencil manita edtResp" id="edtResp_<?php echo $r['id'];?>"></i>&nbsp;
 						<!-- <i class="glyphicon glyphicon-question-sign manita condResp" id="condResp_<?php echo $r['id'];?>"></i>&nbsp; -->

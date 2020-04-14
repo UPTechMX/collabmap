@@ -199,6 +199,7 @@
   "missFile": "Faltan archivos multimedia",
   "questionnairePreview": "Respuestas del cuestionario",
   "general": "General",
+  "uploadFiles": "Subir archivos",
 
   "project": "Proyecto",
   "projects": "Proyectos",
@@ -208,6 +209,12 @@
   "answerSurvey": "Contestar",
   "continue": "Continuar",
   "seeResults": "Ver respuestas",
-  "sended": "Enviado"
+  "sended": "Enviado",
+
+  "noAccess": "Sin acceso al sistema",
+  "administratior": "Aministrador",
+  "superuser": "Superusuario",
+  "level": "Nivel"
+
 
 }

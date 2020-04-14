@@ -199,6 +199,7 @@
   "missFile": "Multimedia files are missing",
   "questionnairePreview": "Questionnaire preview",
   "general": "General",
+  "uploadFiles": "Upload files",
 
   "project": "Project",
   "projects": "Projects",
@@ -208,7 +209,11 @@
   "answerSurvey": "Answer",
   "continue": "Continue",
   "seeResults": "See answers",
-  "sended": "Sended"
+  "sended": "Sended",
 
+  "noAccess": "No access",
+  "administrator": "Administrator",
+  "superuser": "Superuser",
+  "level": "Level"
 
 }
