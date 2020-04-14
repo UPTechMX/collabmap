@@ -301,7 +301,7 @@ if($p['tipo'] == 'mult'){
 		<div class="resp" style="width: 80%;margin-left: auto;margin-right: auto;">
 			<?php if ($p['tipo'] == 'mult'){ ?>
 				<select id="respuesta_<?php echo $pId; ?>" name="respuesta" class="form-control oblig" style="height: 50px;">
-					<option value="">- - - Selecciona una respuesta - - -</option>
+					<option value="">- - - <?php echo TR('selectAnswer'); ?> - - -</option>
 					<?php foreach ($respuestas as $r){ ?>
 						<option value="<?php echo $r['id']; ?>" <?php echo $res[$pId]['respuesta'] == $r['id']?'selected':''; ?> >
 							<?php echo $r['respuesta']; ?>
@@ -324,7 +324,7 @@ if($p['tipo'] == 'mult'){
 
 		<?php if (!empty($p['comShopper'])){ ?>
 			<div style="width: 80%;margin-left: auto;margin-right: auto;margin-top: 5px;">
-				<strong style="color:grey;">Comentarios a considerar:<br/></strong>
+				<strong style="color:grey;"><?php echo TR('userFeedback'); ?>:<br/></strong>
 			</div>
 			<div id="comentario" style="width: 80%;margin-left: auto;margin-right: auto; 
 				background-color: whitesmoke; border-radius: 5px;padding: 5px;
@@ -349,13 +349,13 @@ if($p['tipo'] == 'mult'){
 </div>
 <div style="text-align:center;width: 96%;margin-top: 5px;">
 	<?php if( !empty($rP['pId']) ){ ?>
-	<span id="regresar" class="btn btn-sm btn-shop">< Regresar</span>	
+	<span id="regresar" class="btn btn-sm btn-shop">< <?php echo TR('back'); ?></span>	
 	<?php }else{ ?>
-	<span id="regresaGral" class="btn btn-sm btn-shop">< Regresar</span>	
+	<span id="regresaGral" class="btn btn-sm btn-shop">< <?php echo TR('back'); ?></span>	
 	<?php } ?>
 	<?php if( !empty($sP['pId']) ){ ?>
-	<span id="siguiente" class="btn btn-sm btn-shop">Siguiente ></span>
+	<span id="siguiente" class="btn btn-sm btn-shop"><?php echo TR('next'); ?> ></span>
 	<?php }else{ ?>
-	<span id="goFinalizar" class="btn btn-sm btn-shop">Siguiente ></span>
+	<span id="goFinalizar" class="btn btn-sm btn-shop"><?php echo TR('next'); ?> ></span>
 	<?php } ?>
 </div>
