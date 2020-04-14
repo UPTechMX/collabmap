@@ -39,8 +39,8 @@ $vis = $vInfo;
 <?php $p = $_SESSION['CM']['chk'][$_POST['vId']]['res'][$faltaPreg]; ?>
 
 <div style="text-align:center;width: 96%;margin-top: 5px;">
-	<span id="regresar" class="btn btn-sm btn-shop">< Regresar</span>	
-	<span id="Enviar" class="btn btn-sm btn-shop">Enviar respuestas</span>
+	<span id="regresar" class="btn btn-sm btn-shop">< <?php echo TR('back'); ?></span>	
+	<span id="Enviar" class="btn btn-sm btn-shop"><?php echo TR('sendAnswers'); ?></span>
 </div>
 <?php
 ?>
@@ -53,7 +53,7 @@ $vis = $vInfo;
 		$('#Enviar').click(function(event) {			
 
 			<?php if ($faltaPreg != null){ ?>
-				alertar('Falta alguna pregunta por contestar, se te enviará a la primera faltante para que sea contestada',function(e){
+				alertar('<?php echo TR('missAnswer') ?>',function(e){
 					$('#pregunta').load(rz+'checklist/pregunta.php',{
 						pId: '<?php echo $faltaPreg; ?>',
 						aId: '<?php echo $p['area']; ?>',
@@ -70,13 +70,12 @@ $vis = $vInfo;
 			<?php }else{ ?>
 				
 				<?php if (!$allMult){ ?>
-					var c = alertar('Faltan archivos multimedia',function(){},{});
+					var c = alertar('<?php echo TR('missFile'); ?>',function(){},{});
 				<?php }else{ ?>
 					var vis = <?php echo atj($vis); ?>;
 
 					var html = `
-						Las respuestas de esta visita serán enviadas para revisión y ya no podrán ser modificadas.<br/>
-						Cualquier comentario un ejecutivo se pondrá en conctacto contigo.<br/>
+						<?php echo TR('sendMessage'); ?>
 						<hr/>
 					`;
 					conf(html,{vis:vis}, function(e){

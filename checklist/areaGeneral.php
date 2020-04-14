@@ -54,7 +54,7 @@ $chk->getVisita();
 	});
 </script>
 <form id="tablaGral">
-	<div class="nomSubArea" style="margin-top: 10px;">Resumen</div>
+	<div class="nomSubArea" style="margin-top: 10px;"><?php echo TR('summary'); ?></div>
 	<div style="margin-top: 10px;">
 		<!-- <div style="text-align: right;margin-bottom:5px;" id="revisar">
 			<span class="btn btn-sm btn-shop">Revisar ortografía</span>
@@ -68,5 +68,5 @@ $chk->getVisita();
 </form>
 
 <div style="text-align:center;width: 96%;margin-top: 5px;">
-	<span id="siguienteGral" class="btn btn-sm btn-shop">Siguiente ></span>
+	<span id="siguienteGral" class="btn btn-sm btn-shop"><?php echo TR('next'); ?> ></span>
 </div>

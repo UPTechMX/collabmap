@@ -277,7 +277,7 @@ if($chkGral['photos'] == 1){
 
 	<?php if ( empty($rot['fotografias']) && empty($rot['audio']) && empty($rot['video']) ){ ?>
 		<div class="nomSubArea">
-			Este cuestionario no requiere subir archivos, da click en "Vista previa" para ver tus respuestas y finalizar.
+			<?php echo TR('noFilesRequired'); ?>
 		</div>
 	<?php } ?>
 </div>
@@ -285,13 +285,13 @@ if($chkGral['photos'] == 1){
 
 
 <div style="text-align:center;width: 96%;margin-top: 5px;">
-	<span id="regresarArch" class="btn btn-sm btn-shop">< Regresar</span>	
+	<span id="regresarArch" class="btn btn-sm btn-shop">< <?php echo TR('back'); ?></span>	
 	<?php if ($vInfo['etapa'] == 'visita'){ ?>
-		<span id="verInstalacionSug" class="btn btn-sm btn-shop">Siguiente ></span>
+		<span id="verInstalacionSug" class="btn btn-sm btn-shop"><?php echo TR('next'); ?> ></span>
 	<?php }elseif($vInfo['etapa'] == 'instalacion'){ ?>
-		<span id="verInstalacion" class="btn btn-sm btn-shop">Siguiente ></span>
+		<span id="verInstalacion" class="btn btn-sm btn-shop"><?php echo TR('next'); ?> ></span>
 	<?php }else{ ?>
-		<span id="verResultados" class="btn btn-sm btn-shop">Vista previa ></span>
+		<span id="verResultados" class="btn btn-sm btn-shop"><?php echo TR('preview'); ?> ></span>
 	<?php } ?>
 </div>
 
