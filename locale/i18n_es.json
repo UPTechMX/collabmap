@@ -137,6 +137,9 @@
   "surveyAlert": "El cuestionario que quieres agregar ya existe para este objetivo",
   "surveyDelAlert": "¿Deseas eliminar el cuestionario de este objetivo?",
 
+  "copy": "Copiar",
+  "copySurveyMessage": "Se copiará este cuestionario",
+  "copySurvey": "Copiar cuestionario",
   "surveys": "Encuestas",
   "survey": "Encuesta",
   "duplicateSurvey": "Duplicar encuesta",

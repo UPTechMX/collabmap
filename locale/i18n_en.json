@@ -137,6 +137,9 @@
   "surveyAlert": "The questionnaire you want to add already exists for this community",
   "surveyDelAlert": "Do you want to remove the questionnaire from this community?",
 
+  "copy": "Copiar",
+  "copySurveyMessage": "This questionnaire will be copied",
+  "copySurvey": "Copy questionnaire",
   "surveys": "Questionnaires",
   "survey": "Questionnaire",
   "duplicateSurvey": "Duplicate questionnaire",
