@@ -77,7 +77,7 @@
 </div>
 <div>
 	<div style="text-align: right;">
-		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel">Cancelar</span>
+		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel"><?php echo TR('cancel'); ?></span>
 		<span id="env" class="btn btn-sm btn-shop">Ejecutar importación</span>
 	</div>
 </div>
