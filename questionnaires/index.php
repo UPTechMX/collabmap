@@ -47,7 +47,7 @@ $htmlRoot = aRaizHtml($location);
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
 
-	<title>CollabMap Admin</title>
+	<title><?php echo TR('systemName'); ?></title>
 	
 	<!-- LIBRERIAS CSS -->
 	<link href="<?php echo $htmlRoot; ?>lib/js/bootstrap4/css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -95,14 +95,6 @@ $htmlRoot = aRaizHtml($location);
 
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129367922-1"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-
-	  gtag('config', 'UA-129367922-1');
-	</script>
 	<script type="text/javascript">
 	</script>
 
