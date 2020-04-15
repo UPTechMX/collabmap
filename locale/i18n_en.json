@@ -1,4 +1,5 @@
 {
+  "systemName": "CollabMap",
   "close_session": "Close session",
   "input": "Input",
   "category": "Category",
@@ -103,6 +104,12 @@
   "add": "Add",
   "alert":"Alert",
   "confAction":"Confirm action",
+  "existingUser" : "The username is already registered in the system, try another",
+  "invalidEmail" : "Invalid email. Please correct it",
+  "regConf" : "Thank you for registering, confirm your email to be able to enter the system",
+  "confHashNotFound": "The user was not found, contact the team for a manual confirmation",
+  "userConf": "The user has been confirmed",
+  "userAlreadyConf": "The user has already been confirmed previously",
 
   "administration": "Administration",
 

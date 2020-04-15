@@ -1,4 +1,5 @@
 {
+  "systemName": "CollabMap",
   "close_session": "Cerrar sesión",
   "input": "Entrada",
   "category": "Categoría",
@@ -103,6 +104,12 @@
   "add": "Agregar",
   "alert":"Alerta",
   "confAction":"Confirmar acción",
+  "userExist" : "El nombre de usuario ya está registrado en el sistema, intenta con otro",
+  "invalidEmail" : "Correo electrónico inválido. favor de corregirlo",
+  "regConf" : "Gracias por registrarte, confima tu correo electrónico para poder ingresar a la plataforma",
+  "confHashNotFound": "",
+  "userConf": "",
+  "userAlreadyConf": "",
 
   "administration": "Administración",
   
