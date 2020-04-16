@@ -189,6 +189,10 @@
   "mult": "Multiple",
   "sub": "Subárea",
   "num": "Numérica",
+  "cm": "CollabMap",
+  "map": "Mapa",
+  "maps": "Mapas",
+  
   "points": "Tantos",
   "toRecord": "contabilizar",
   "justify": "Justificar",

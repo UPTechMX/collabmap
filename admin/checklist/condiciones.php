@@ -123,7 +123,7 @@
 <div class="modal-footer">
 
 <!-- 	<div style="text-align: right;">
-		<span id="env" class="btn btn-sm btn-shop">Enviar</span>
+		<span id="env" class="btn btn-sm btn-shop"><?php echo TR('send'); ?></span>
 	</div> -->
 
 </div>

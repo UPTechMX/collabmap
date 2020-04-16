@@ -59,7 +59,7 @@
 	<br/>
 	<form id="nEmp">
 		<table class="table" border="0">
-		<tr>
+			<tr>
 				<td><?php echo TR('password'); ?></td>
 				<td><input type="password" name="pwd" id="pwd" class="form-control oblig"></td>
 				<td></td>
@@ -76,7 +76,7 @@
 </div>
 <div class="modal-footer">
 	<div style="text-align: right;">
-		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel">Cancelar</span>
-		<span id="env" class="btn btn-sm btn-shop">Enviar</span>
+		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel"><?php echo TR('cancel'); ?></span>
+		<span id="env" class="btn btn-sm btn-shop"><?php echo TR('send'); ?></span>
 	</div>
 </div>

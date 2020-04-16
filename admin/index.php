@@ -58,6 +58,51 @@ checaAcceso(49);
 	<link rel="stylesheet" type="text/css" href="../lib/js/jquery-confirm/dist/jquery-confirm.min.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="../lib/js/hereMaps/mapsjs-ui.css" media="screen" />
 
+	<script src="../lib/js/leaflet/leaflet.js"></script>
+	<script src="../lib/js/LeafletHeat/dist/leaflet-heat.js"></script>
+	<link href="../lib/js/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
+
+	<script src="../lib/js/leaflet.draw/Leaflet.draw.js"></script>
+	<script src="../lib/js/leaflet.draw/Leaflet.Draw.Event.js"></script>
+	<link rel="stylesheet" href="../lib/js/leaflet.draw/leaflet.draw.css"/>
+
+	<script src="../lib/js/leaflet.draw/Toolbar.js"></script>
+	<script src="../lib/js/leaflet.draw/Tooltip.js"></script>
+
+	<script src="../lib/js/leaflet.draw/ext/GeometryUtil.js"></script>
+	<script src="../lib/js/leaflet.draw/ext/LatLngUtil.js"></script>
+	<script src="../lib/js/leaflet.draw/ext/LineUtil.Intersect.js"></script>
+	<script src="../lib/js/leaflet.draw/ext/Polygon.Intersect.js"></script>
+	<script src="../lib/js/leaflet.draw/ext/Polyline.Intersect.js"></script>
+	<script src="../lib/js/leaflet.draw/ext/TouchEvents.js"></script>
+
+	<script src="../lib/js/leaflet.draw/draw/DrawToolbar.js"></script>
+	<script src="../lib/js/leaflet.draw/draw/handler/Draw.Feature.js"></script>
+	<script src="../lib/js/leaflet.draw/draw/handler/Draw.SimpleShape.js"></script>
+	<script src="../lib/js/leaflet.draw/draw/handler/Draw.Polyline.js"></script>
+	<script src="../lib/js/leaflet.draw/draw/handler/Draw.Marker.js"></script>
+	<script src="../lib/js/leaflet.draw/draw/handler/Draw.Circle.js"></script>
+	<script src="../lib/js/leaflet.draw/draw/handler/Draw.CircleMarker.js"></script>
+	<script src="../lib/js/leaflet.draw/draw/handler/Draw.Polygon.js"></script>
+	<script src="../lib/js/leaflet.draw/draw/handler/Draw.Rectangle.js"></script>
+
+
+	<script src="../lib/js/leaflet.draw/edit/EditToolbar.js"></script>
+	<script src="../lib/js/leaflet.draw/edit/handler/EditToolbar.Edit.js"></script>
+	<script src="../lib/js/leaflet.draw/edit/handler/EditToolbar.Delete.js"></script>
+
+	<script src="../lib/js/leaflet.draw/Control.Draw.js"></script>
+
+	<script src="../lib/js/leaflet.draw/edit/handler/Edit.Poly.js"></script>
+	<script src="../lib/js/leaflet.draw/edit/handler/Edit.SimpleShape.js"></script>
+	<script src="../lib/js/leaflet.draw/edit/handler/Edit.Rectangle.js"></script>
+	<script src="../lib/js/leaflet.draw/edit/handler/Edit.Marker.js"></script>
+	<script src="../lib/js/leaflet.draw/edit/handler/Edit.CircleMarker.js"></script>
+	<script src="../lib/js/leaflet.draw/edit/handler/Edit.Circle.js"></script>
+
+
+
+
 
 	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 	<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
