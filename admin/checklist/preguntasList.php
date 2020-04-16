@@ -169,7 +169,8 @@
 						break;
 					case 'cm':
 					case 'spatial':
-			?>
+						
+			?>			
 						<div class="col-sm-12 col-md-5 col-lg-5 nombr" id="nombre">
 							<?php include 'mapjs.php'; ?>
 
@@ -195,7 +196,11 @@
 								<div id="map_<?php echo $p['id'];?>" style=" height: 500px;margin-top: 10px;" class="map"></div>
 							</div>
 							<?php if ($p['tsiglas'] == 'spatial'){ break; }?>
-							Collabmap
+							<div>
+								<table class="table">
+									
+								</table>
+							</div>
 						</div>
 						
 			<?php
