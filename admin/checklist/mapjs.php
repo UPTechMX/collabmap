@@ -119,7 +119,7 @@
 		for(var saId in SAs){
 			var points = [];
 			var sa = SAs[saId];
-			console.log(sa);
+			// console.log(sa);
 			for(var i = 0; i<sa.length; i++){
 				// console.log(sa[i]);
 				points.push( [ sa[i]['lat'],sa[i]['lng'] ] );
