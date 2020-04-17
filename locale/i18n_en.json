@@ -3,6 +3,7 @@
   "close_session": "Close session",
   "input": "Input",
   "category": "Category",
+  "categories": "Categories",
   "cancel": "Cancel",
   "send": "Send",
   "describeproblem": "Describe the problem",
@@ -190,8 +191,9 @@
   "sub": "Subarea",
   "num": "Numeric",
   "cm": "CollabMap",
-  "spatial": "Espacial",
+  "spatial": "Spatial",
   "map": "Map",
+  
 
   "points": "Points",
   "toRecord": "To record",

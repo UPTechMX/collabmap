@@ -55,6 +55,9 @@ switch ($_POST['opt']) {
 	case 11:
 		$post['tabla'] = 'Checklist';
 		break;
+	case 12:
+		$post['tabla'] = 'Categories';
+		break;
 	default:
 		break;
 }
@@ -259,6 +262,19 @@ switch ($_POST['acc']) {
 			if(is_numeric($lId)){
 				$db->query("DELETE FROM Studyarea WHERE id = $lId");
 			}
+		}
+
+		break;
+	case 11:
+		// print2($_POST);
+		try{
+
+			if(is_numeric($_POST['catId'])){
+				$db->query("DELETE FROM Categories WHERE id = $_POST[catId]");
+			}
+			echo '{"ok":1}';
+		}catch(PDOException $e){
+			echo '{"ok":0}';
 		}
 
 		break;
