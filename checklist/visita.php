@@ -278,7 +278,7 @@
 																<div class="imgEle" id="imgEle_<?php echo $i['id'];?>">							
 																	<div class="row">
 																		<div class="col-md-10" id="imgNom_<?php echo $img['id'];?>">
-																			<img src="../campo/archivosCuest/<?php echo $img['archivo'];?>" 
+																			<img src="../chkPhotos/<?php echo $img['archivo'];?>" 
 																				height="100px" class="verImg" />
 																		</div>
 																	</div>

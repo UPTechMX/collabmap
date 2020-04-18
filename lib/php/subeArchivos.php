@@ -4,43 +4,10 @@ include '../j/j.func.php';
 
 switch ($_POST['rutaId']) {
 	case 1:
-		$dir = 'campo/archivosCuest';
+		$dir = 'chkPhotos';
 		break;
 	case 2:
-		$dir = 'img/checklist';
-		break;
-	case 3:
-		$dir = 'admin/administration/vehiculos/img';
-		break;
-	case 4:
-		$dir = 'archivos';
-		break;
-	case 5:
-		$dir = 'img/logos';
-		break;
-	case 6:
-		$dir = 'videosCap';
-		break;
-	case 7:
-		$dir = 'admin/administration/equipos/archivos';
-		break;
-	case 8:
-		$dir = 'archivos/tmp';
-		break;
-	case 9:
-		$dir = 'archivos/imgPry';
-		break;
-	case 10:
-		$dir = 'archivos/ubicaciones/foto';
-		break;
-	case 11:
-		$dir = 'archivos/lideres/foto';
-		break;
-	case 12:
-		$dir = 'archivos/juntas/foto';
-		break;
-	case 13:
-		$dir = 'archivos/imports';
+		$dir = 'problemsPhotos';
 		break;
 	
 	default:

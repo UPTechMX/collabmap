@@ -176,7 +176,7 @@ if($chkGral['photos'] == 1){
 				.html(	
 					'<div class="row">'+
 						'<div class="col-md-10" id="imgNom_'+r.nId+'">'+
-							'<img src="'+rz+'campo/archivosCuest/'+e.prefijo+e.nombreArchivo+'" class="verImg" height="100px"/>'+
+							'<img src="'+rz+'chkPhotos/'+e.prefijo+e.nombreArchivo+'" class="verImg" height="100px"/>'+
 						'</div>'+
 						'<div class="col-md-2" style="text-align: right;">'+
 							'<i class="glyphicon glyphicon-trash manita multDel rojo" '+

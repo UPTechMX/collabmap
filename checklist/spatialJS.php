@@ -62,7 +62,9 @@
 			container.style.height = '25px';
 
 			container.onclick = function(){
-
+				if(drawHandler != null){
+					drawHandler.disable();
+				}
 				if(!spatialYa){
 					drawHandler = new L.Draw.Marker(map, drawControl.options.Marker);
 					setTimeout(function(){
@@ -98,6 +100,9 @@
 				container.onclick = function(){
 					// console.log('buttonClicked');
 					if(!spatialYa){
+						if(drawHandler != null){
+							drawHandler.disable();
+						}
 						drawHandler = new L.Draw.Polygon(map, drawControl.options.Polygon);
 						drawHandler.options.allowIntersection = false;
 						drawHandler.enable();
@@ -130,6 +135,9 @@
 
 				container.onclick = function(){
 					if(!spatialYa){
+						if(drawHandler != null){
+							drawHandler.disable();
+						}
 						drawHandler = new L.Draw.Polyline(map, drawControl.options.Polyline);
 						drawHandler.enable();
 					}else{
