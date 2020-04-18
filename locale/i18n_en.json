@@ -88,7 +88,8 @@
   "noticeofprivacy" : "Notice of Privacy",
   "noticeofprivacyAgree" : "I agree the privacy notice",
   "name": "Name",
-  "problem": "Problem",
+  "problem": "Report",
+  "problems": "Reports",
   "mapsfordownload": "Maps for download",
   "userdata": "User information",
   "generaldata": "General information",
@@ -118,6 +119,7 @@
   "target": "Target",
   "description": "Description",
   "targetInfo": "Target information",
+  "dimensions": "Structure",
   
   "users": "Users",
   "user": "User",

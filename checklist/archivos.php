@@ -99,7 +99,7 @@ if($chkGral['photos'] == 1){
 					.html(	
 						'<div class="row">'+
 							'<div class="col-md-10" id="imgNom_'+r.nId+'">'+
-								'<img  class="verImg manita" src="../campo/archivosCuest/'+e.prefijo+e.nombreArchivo+'" height="100px"/>'+
+								'<img  class="verImg manita" src="'+rz+'chkPhotos/'+e.prefijo+e.nombreArchivo+'" height="100px"/>'+
 							'</div>'+
 							'<div class="col-md-2" style="text-align: right;">'+
 								'<i class="glyphicon glyphicon-trash manita multDel rojo" '+
@@ -155,6 +155,17 @@ if($chkGral['photos'] == 1){
 			// console.log(rj);
 
 		});
+
+		$.each($('.imgD'), function(index, val) {
+			var file = $(this).attr('file');
+			if(file != ''){
+				$(this).append(
+					'<img  class="verImg manita" src="'+rz+'chkPhotos/'+file+'" height="100px"/>'
+				)
+			}
+		});
+
+
 	});
 	function subArchInst(idFoto,vId){
 		var elem = $('#subArch_'+idFoto);
@@ -207,10 +218,10 @@ if($chkGral['photos'] == 1){
 
 								foreach ($multimedia['img'] as $i){
 							?>
-								<li class="list-group-item imgEle" id="imgEle_<?php echo $i['id'];?>">
+								<li class="list-group-item imgEle" id="imgEle_<?php echo $i['id'];?>"  >
 									<div class="row">
-										<div class="col-md-10" id="imgNom_<?php echo $i['id'];?>">
-											<img  class='verImg manita' src="../campo/archivosCuest/<?php echo $i['archivo'];?>" height="100px"/>
+										<div class="col-md-10 imgD" id="imgNom_<?php echo $i['id'];?>" file="<?php echo $i['archivo'];?>">
+											
 										</div>
 										<div class="col-md-2" style="text-align: right;">
 											<i class="glyphicon glyphicon-trash manita multDel rojo" 
@@ -252,7 +263,7 @@ if($chkGral['photos'] == 1){
 										<div class="imgEle" id="imgEle_<?php echo $i['id'];?>">							
 											<div class="row">
 												<div class="col-md-10" id="imgNom_<?php echo $img['id'];?>">
-													<img src="./archivosCuest/<?php echo $img['archivo'];?>" 
+													<img src="./chkPhotos/<?php echo $img['archivo'];?>" 
 														height="100px" class="verImg" />
 												</div>
 												<div class="col-md-2" style="text-align: right;">

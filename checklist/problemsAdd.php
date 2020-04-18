@@ -75,13 +75,14 @@
 					var r = $.parseJSON(rj);
 					// console.log(r);
 					if(r.ok == 1){
-						$('#popUpMapa').modal('toggle');
 						layer.dbId = r.prId;
 						drawnItems.addLayer(layer);
 						spatialYa = true;
 					}
 				<?php } ?>
 				if(r.ok == 1){
+					$('#popUpMapa').modal('toggle');
+
 					var vId = <?php echo $_POST['vId']; ?>;
 					var spatial = {};
 					spatial['id'] = "<?php echo $_POST['datos']['preguntasId']; ?>";
@@ -108,25 +109,19 @@
 		subArch($('#photoUpload'),2,
 				'problem_<?php echo $_POST['vId']; ?>_<?php echo $_POST['datos']['preguntasId']; ?>_','jpg,png,gif,jpeg',false,function(e){
 			// console.log(e);
-			var rj = jsonF('checklist/json/json.php',{dat:e,acc:3,tipo:1,vId:<?php echo $_POST['vId']; ?>})
-			console.log(rj);
-			var r = $.parseJSON(rj);
-			if(r.ok == 1){
-
-				$('#photoInput').val(e.prefijo+e.nombreArchivo);
-				$('#photoUpload').hide();
-				$('#photo').show().append(
-				'<div class="row">'+
-					'<div class="col-md-10" id="imgNom_">'+
-						'<img  class="verImg manita" src="'+rz+'problemsPhotos/'+e.prefijo+e.nombreArchivo+'" height="100px"/>'+
-					'</div>'+
-					'<div class="col-md-2" style="text-align: right;">'+
-						'<i class="glyphicon glyphicon-trash manita multDel rojo" '+
-							'id="imgDel_"></i>&nbsp;&nbsp;'+
-					'</div>'+
-				'</div>'
-				);
-			}
+			$('#photoInput').val(e.prefijo+e.nombreArchivo);
+			$('#photoUpload').hide();
+			$('#photo').show().append(
+			'<div class="row">'+
+				'<div class="col-md-10" id="imgNom_">'+
+					'<img  class="verImg manita" src="'+rz+'problemsPhotos/'+e.prefijo+e.nombreArchivo+'" height="100px"/>'+
+				'</div>'+
+				'<div class="col-md-2" style="text-align: right;">'+
+					'<i class="glyphicon glyphicon-trash manita multDel rojo" '+
+						'id="imgDel_"></i>&nbsp;&nbsp;'+
+				'</div>'+
+			'</div>'
+			);
 
 		});
 

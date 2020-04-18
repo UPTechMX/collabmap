@@ -88,7 +88,8 @@
   "noticeofprivacy" : "Aviso de privacidad",
   "noticeofprivacyAgree" : "Acepto el aviso de privacidad",
   "name": "Nombre",
-  "problem": "Problema",
+  "problem": "Report",
+  "problems": "Reports",
   "mapsfordownload": "Mapas para descarga",
   "userdata": "Datos de usuario",
   "generaldata": "Datos generales",
@@ -118,6 +119,7 @@
   "target": "Objetivo",
   "description": "Descripción",
   "targetInfo": "Información del objetivo",
+  "dimensions": "Estructura",
 
   "users": "Usuarios",
   "user": "Usuario",

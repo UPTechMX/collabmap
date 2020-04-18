@@ -13,3 +13,4 @@
 		<div class="col-6" id="targetsInfo"></div>
 	</div>
 </div>
+<div id="targetsDimensions"></div>
