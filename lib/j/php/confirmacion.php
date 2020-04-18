@@ -12,6 +12,6 @@
 </div>
 
 <div class="modal-footer">
-	<a class="btn btn-cancel" data-dismiss="modal" id="cPop"><?php echo TR('cancel'); ?></a>
-	<a class="btn btn-shop" id="envOkModal"><?php echo TR('ok'); ?></a>
+	<a class="btn btn-cancel" data-dismiss="modal" id="cPop" style="color:white;"><?php echo TR('cancel'); ?></a>
+	<a class="btn btn-shop" id="envOkModal" style="color:white;"><?php echo TR('ok'); ?></a>
 </div>

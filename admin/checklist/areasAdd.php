@@ -109,14 +109,14 @@
 				</td>
 				<td></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td><?php echo TR('areaWeighting'); ?></td>
 				<td>
 					<input type="text" value="<?php echo $datM['valMax'] != ''?$datM['valMax']:100; ?>" 
 						name="valMax" id="valMax" class="form-control" >
 				</td>
 				<td></td>
-			</tr>
+			</tr> -->
 			<?php if(isset($_POST['areaId'])){ ?>
 				<tr>
 					<td><span class="btn btn-sm btn-default" id="chkIdentificador"><?php echo TR('chId'); ?></span></td>

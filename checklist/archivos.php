@@ -194,7 +194,7 @@ if($chkGral['photos'] == 1){
 <div id="multimedia">
 	<?php if ($rot['fotografias'] == 1){ ?>
 		<div>
-			<div class="nomSubArea">Archivos fotográficos</div>
+			<div class="nomSubArea"><?php echo TR('uploadPhotos'); ?></div>
 			<div class="row" style="margin-top: 5px;">
 				<?php if ($vInfo['etapa'] != 'instalacion'){ ?>				
 					<div class="col-md-6">

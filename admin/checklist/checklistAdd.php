@@ -54,6 +54,7 @@
 
 		$('#env').click(function(event) {
 			var dat = $('#nEmp').serializeObject();
+			dat.photos = $('#photos').is(':checked')?1:0;
 			var allOk = camposObligatorios('#nEmp');
 			<?php 
 				if(isset($_POST['checklistId'])){
@@ -65,7 +66,7 @@
 			?>
 
 			if(allOk){
-
+				console.log(dat);
 				var rj = jsonF('admin/checklist/json/json.php',{datos:dat,acc:acc,opt:11});
 				console.log(rj);
 				var r = $.parseJSON(rj);
@@ -120,6 +121,12 @@
 				<td><input type="text" value="<?php echo $datM['siglas']; ?>" name="siglas" id="siglas" class="form-control oblig"></td>
 				<td></td>
 			</tr>
+			<tr>
+				<td><?php echo TR('photos'); ?></td>
+				<td><input type="checkbox" id="photos" <?php echo $datM['photos'] == 1?'checked':''; ?>></td>
+				<td></td>
+			</tr>
+
 		</table>		
 	</form>
 </div>
