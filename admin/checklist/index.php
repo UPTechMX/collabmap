@@ -9,9 +9,11 @@
 
 
 ?>
-
+<?php include 'spatial.php'; ?>
 <script type="text/javascript">
 	var checklistId = '';
+	var allPoints = {};
+	
 	$(document).ready(function() {
 
 		$('#chkSel').change(function(event) {

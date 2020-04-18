@@ -4,20 +4,6 @@
 date_default_timezone_set('America/Mexico_City'); 
 // echo date_default_timezone_get();
 
-	$fotosInst['Foto_Recibo_de_Instalación'] = 'Foto Recibo de Instalación';
-	$fotosInst['Foto_Identificación_Oficial'] = 'Foto Identificación Oficial';
-	$fotosInst['Foto_de_Techo_Canalizaciones'] = 'Foto de Techo-Canalizaciones';
-	$fotosInst['Foto_Bajantes'] = 'Foto Bajantes';
-	$fotosInst['Foto_Kit_y_Pastillas'] = 'Foto Kit y Pastillas';
-	$fotosInst['Foto_Pichancha'] = 'Pichancha, Reductor y Dosificador';
-	$fotosInst['Foto_Bomba'] = 'Foto Bomba';
-	$fotosInst['Foto_Prueba_de_Bomba'] = 'Foto Prueba de Bomba';
-	$fotosInst['Foto_Tren_Filtrado'] = 'Foto Tren Filtrado';
-	$fotosInst['Foto_Sistema_Completo_1'] = 'Foto Sistema Completo 1';
-	$fotosInst['Foto_Sistema_Completo_2'] = 'Foto Sistema Completo 2';
-	$fotosInst['Foto_Familiar'] = 'Foto Familiar';
-
-
 if(!function_exists('raiz')){
 	/**
 	* Busca archivo raiz

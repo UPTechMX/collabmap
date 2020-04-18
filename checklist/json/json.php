@@ -11,6 +11,8 @@ $uId = $_SESSION['CM']['admin']['usrId'];
 
 $sCHK = $_SESSION['CM']['chk'][$_POST['vId']];
 
+
+
 if( empty( $sCHK ) ){
 	exit('{"ok":"0"}');
 }
@@ -178,6 +180,149 @@ switch ($_POST['acc']) {
 		echo upd($post);
 		// echo "AAA"
 		break;
+	case 8:
+		// print2($_POST);
+		$uId = $_SESSION['CM']['admin']['usrId'];
+		$h = "NL-".$_POST['datos']['visitasId']."-".$uId."-".$_POST['datos']['preguntasId']."-$_POST[pId]";
+		$vh = password_verify($h,$_POST['hash']);
+		if(!$vh){
+			exit('{"ok":"0"}');
+		}
+		$sCHK = $_SESSION['CM']['chk'][$_POST['datos']['visitasId']];
+		$buscResp = $db->prepare("SELECT * FROM RespuestasVisita WHERE visitasId = :visitasId AND preguntasId = :preguntasId");
+		$arr['visitasId'] = $_POST['datos']['visitasId'];
+		$arr['preguntasId'] = $_POST['datos']['preguntasId'];
+
+		$buscResp -> execute($arr);
+		$result = $buscResp->fetchAll(PDO::FETCH_ASSOC);
+
+		$ok = true;
+		if( empty($result) ){
+			$p['tabla'] = 'RespuestasVisita';
+			$p['datos'] = $_POST['datos'];
+			$p['datos']['respuesta'] = 'spatial';
+			$rj = atj(inserta($p));
+			$r = json_decode($rj,true);
+			$rvId = $r['nId'];
+			$_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['respuesta'] = 'spatial';
+			$_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['justificacion'] = '';
+			$_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['valResp'] = '-';
+			if($r['ok'] != 1){
+				$ok = false;
+				$err = "Error: ERRIR:022";
+			}
+		}else{
+			$rvId = $result[0]['id'];
+			$_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['respuesta'] = 'spatial';
+			$_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['justificacion'] = '';
+			$_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['valResp'] = '-';
+
+		}
+		// print2($_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res']);
+
+		if($ok){
+			$ip['tabla'] = 'Problems';
+			$ip['datos'] = $_POST['problem'];
+			$ip['datos']['respuestasVisitaId'] = $rvId;
+			
+			$rpj = inserta($ip);
+			$rp = json_decode($rpj,true);
+			$prId = $rp['nId'];
+		}
+		if($rp['ok'] != 1){
+			$ok = false;
+			$err = 'Error: ERIP:344';
+		}
+
+		if($ok){
+			$pId = $rp['nId'];
+			$point['tabla'] = 'Points';
+			foreach ($_POST['latlngs'] as $l) {
+				$point['datos'] = $l;
+				$point['datos']['problemsId'] = $pId;
+
+				$respPointJ = inserta($point);
+				$respPoint = json_decode($respPointJ,true);
+				if($respPoint['ok'] != 1){
+					$ok = false;
+					$err = "Error: ERIP:394";
+					echo $respPointJ;
+				}
+
+			}
+		}
+
+		if($ok){
+			echo '{"ok":"1","prId":"'.$prId.'"}';
+		}else{
+			echo '{"ok":"0","err":"'.$err.'"}';
+		}
+
+		// print2($_POST);
+
+
+		break;
+	case 9:
+		// print2($_POST);
+		$sas = $db->query("SELECT sa.id, sa.id as saId, p.*
+			FROM Studyarea sa
+			LEFT JOIN StudyareaPoints p ON p.studyareaId = sa.id
+			WHERE preguntasId = $_POST[pId]")->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
+
+		echo atj($sas);
+		break;
+
+	case 10:
+		// print2($_POST);
+		$sql = "SELECT pr.id, pr.*, p.id as pId, p.lat, p.lng, pr.type
+			FROM RespuestasVisita rv
+			LEFT JOIN Problems pr ON pr.respuestasVisitaId = rv.id
+			LEFT JOIN Points p ON p.problemsId = pr.id
+			WHERE rv.preguntasId = $_POST[pId] AND rv.visitasId = $_POST[vId] ";
+		// echo $sql."\n\n";
+		$prs = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
+
+		echo atj($prs);
+
+		break;
+	case 11:
+
+		if(is_numeric($_POST['prId'])){
+
+			$ok = true;
+			$db->query("DELETE FROM Points WHERE problemsId = $_POST[prId]");
+
+			$pId = $_POST['prId'];
+			$point['tabla'] = 'Points';
+			foreach ($_POST['latlngs'] as $l) {
+				$point['datos'] = $l;
+				$point['datos']['problemsId'] = $pId;
+
+				$respPointJ = inserta($point);
+				$respPoint = json_decode($respPointJ,true);
+				if($respPoint['ok'] != 1){
+					$ok = false;
+					$err = "Error: ERIP:394";
+					echo $respPointJ;
+				}
+			}
+			if($ok){
+				echo '{"ok":"1"}';
+			}
+
+		}
+		break;
+
+	case 12:
+		// print2($_POST);
+		foreach ($_POST['lIds'] as $lId) {
+			if(is_numeric($lId)){
+				$db->query("DELETE FROM Problems WHERE id = $lId");
+			}
+		}
+
+		break;
+
 	default:
 		# code...
 		break;

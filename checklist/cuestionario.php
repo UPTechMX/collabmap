@@ -39,6 +39,8 @@ if( empty( $_SESSION['CM']['chk'][$vId]['res'] ) ){
 	$res =  $_SESSION['CM']['chk'][$vId]['res'];
 }
 
+// print2($res);
+
 $areas = array();
 $bloques = array();
 $aIdU = null;
@@ -46,6 +48,7 @@ $bIdU = null;
 $uPid = null;
 foreach ($res as $r) {
 	if($r['respuesta'] != ''){
+		// print2($r);
 		$areas[$r['area']] = $r['area'];
 		$bloques[$r['bloque']] = $r['bloque'];
 		$aIdU = $r['area'];
@@ -129,19 +132,10 @@ foreach ($res as $r) {
 				}
 			}
 		});
-		$('#area_general').trigger('click');
+		// $('#area_general').trigger('click');
 
 
-		<?php if(!empty($pIdU)){ ?>
-			$('#pregunta').load(rz+'checklist/pregunta.php',{
-				pId: '<?php echo $pIdU; ?>',
-				aId: '<?php echo $aIdU; ?>',
-				chkId:'<?php echo $chk->id; ?>',
-				vId:'<?php echo $_POST['vId']; ?>',
-				abId:'a_<?php echo $bIdU; ?>',
-				direccion:'siguiente'
-			});
-		<?php } ?>
+
 
 
 	});
@@ -157,7 +151,7 @@ foreach ($res as $r) {
 		<div class="collapse navbar-collapse" id="bloquesNav">
 
 			<ul class="navbar-nav mr-auto" id="bloques">
-					<li class="bloqueBtn active nav-item" id="general"><a class="nav-link"  href="#"><?php echo TR('general'); ?></a></li>
+					<!-- <li class="bloqueBtn active nav-item" id="general"><a class="nav-link"  href="#"><?php echo TR('general'); ?></a></li> -->
 				<?php foreach ($est['bloques'] as $bId => $b){ ?>
 					<li class="bloqueBtn disabled nav-item" id="<?php echo $bId; ?>">
 						<a class="nav-link" href="#" ><?php echo $b['nombre']; ?></a>
@@ -217,6 +211,27 @@ foreach ($res as $r) {
 
 <script type="text/javascript">
 	$(function() {
+
+
+		<?php if(!empty($pIdU)){ ?>
+			$('#pregunta').load(rz+'checklist/pregunta.php',{
+				pId: '<?php echo $pIdU; ?>',
+				aId: '<?php echo $aIdU; ?>',
+				chkId:'<?php echo $chk->id; ?>',
+				vId:'<?php echo $_POST['vId']; ?>',
+				abId:'a_<?php echo $bIdU; ?>',
+				direccion:'siguiente'
+			});
+		<?php }else{ ?>
+			$('#pregunta').load(rz+'checklist/pregunta.php',{
+				aId: '<?php echo $primerArea; ?>',
+				chkId:'<?php echo $chk->id; ?>',
+				vId:'<?php echo $vId; ?>',
+				abId:'a_<?php echo $primerbloque;?>'
+			} ,function(){});
+
+		<?php } ?>
+
 
 
 		$('#pregunta').on('click', '#siguienteGral', function(event) {

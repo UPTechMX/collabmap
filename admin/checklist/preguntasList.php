@@ -16,6 +16,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		var mapInit = {};
 		$( ".pregsSort" ).sortable({
 			handle: ".muevePreg",
 			scrollSpeed: 5,
@@ -58,20 +59,38 @@
 		$('.verResp').click(function(event) {
 			var pregId = this.id.split('_')[1];
 			if($('#respuestas_'+pregId).is(':visible')){
-				$(this).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right')
+				$(this).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right');
 			}else{
-				$(this).addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
+				$(this).addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right');
 			}
 				$('#respuestas_'+pregId).slideToggle();
 		});
+
+		$('.verMapa').click(function(event) {
+			var pregId = this.id.split('_')[1];
+			// console.log('aaa:',pregId);
+			if($('#mapDiv_'+pregId).is(':visible')){
+				$(this).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right');
+			}else{
+				$(this).addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right');
+				if(!mapInit[pregId]){
+					mapInit[pregId] = true;
+					setTimeout(function(){
+						initMap(pregId);
+					},500);
+				}
+			}
+			$('#mapDiv_'+pregId).slideToggle();
+		});
+
 		$('.verSubpregs').click(function(event) {
 			var pregId = this.id.split('_')[1];
 			if($('#subpreguntas_'+pregId).is(':visible')){
-				$(this).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right')
+				$(this).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right');
 			}else{
-				$(this).addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right')
+				$(this).addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right');
 			}
-				$('#subpreguntas_'+pregId).slideToggle();
+			$('#subpreguntas_'+pregId).slideToggle();
 		});
 
 
@@ -168,32 +187,58 @@
 			<?php
 						break;
 					case 'cm':
-			?>
+					case 'spatial':
+					case 'op':
+						$spatial = $p;
+
+			?>			
 						<div class="col-sm-12 col-md-5 col-lg-5 nombr" id="nombre">
-							<?php include 'mapjs.php'; ?>
+							
 
 							<div class="muevePreg arrastra">
-								<?php echo $p['pregunta']; ?>
+								<?php echo $spatial['pregunta']; ?>
 							</div>
 							<hr/>
 
-							<?php echo TR('type'); ?>: <strong><?php echo TR($p['tsiglas']); ?></strong><br/>
-							<?php echo TR('points'); ?>: <strong><?php echo $p['puntos']; ?></strong><br/>
-							<?php echo TR('toRecord'); ?>: <strong><?php echo $p['influyeValor'] == 1?TR('yes'):TR('no'); ?></strong><br/>
-							Id: <strong><?php echo $p['identificador']; ?></strong><br/>
-							<i class="glyphicon glyphicon-pencil manita edtPreg" id="edtPreg_<?php echo $p['id'];?>"></i>&nbsp;
-							<i class="glyphicon glyphicon-question-sign manita condPreg" id="condPreg_<?php echo $p['id'];?>"></i>&nbsp;
-							<i class="glyphicon glyphicon-trash manita rojo delPreg" id="delPreg_<?php echo $p['id'];?>"></i>
+							<?php echo TR('type'); ?>: <strong><?php echo TR($spatial['tsiglas']); ?></strong><br/>
+							<?php echo TR('points'); ?>: <strong><?php echo $spatial['puntos']; ?></strong><br/>
+							<?php echo TR('toRecord'); ?>: <strong><?php echo $spatial['influyeValor'] == 1?TR('yes'):TR('no'); ?></strong><br/>
+							Id: <strong><?php echo $spatial['identificador']; ?></strong><br/>
+							<i class="glyphicon glyphicon-pencil manita edtPreg" id="edtPreg_<?php echo $spatial['id'];?>"></i>&nbsp;
+							<i class="glyphicon glyphicon-question-sign manita condPreg" id="condPreg_<?php echo $spatial['id'];?>"></i>&nbsp;
+							<i class="glyphicon glyphicon-trash manita rojo delPreg" id="delPreg_<?php echo $spatial['id'];?>"></i>
 						</div>
 						<div class="col-sm-12 col-md-7 col-lg-7" >
-							<div class="dResp" id="dResp_<?php echo $p['id'];?>">
+							<div class="dResp" id="dResp_<?php echo $spatial['id'];?>">
 								<?php echo TR('map') ?>: 
-								<i class="glyphicon glyphicon-chevron-right manita verResp" id="verResp_<?php echo $p['id'];?>"></i>
+								<i class="glyphicon glyphicon-chevron-right manita verMapa" id="verMapa_<?php echo $spatial['id'];?>"></i>
 							</div>
-							<div class="respuestas" id="respuestas_<?php echo $p['id'];?>" style="">
-								<div id="map_<?php echo $p['id'];?>" style=" height: 500px;margin-top: 10px;" class="map"></div>
+							<div class="mapDiv" id="mapDiv_<?php echo $spatial['id'];?>" style="display:none;">
+								<div id="map_<?php echo $spatial['id'];?>" style=" height: 500px;margin-top: 10px;" class="map"></div>
+								<?php if ($spatial['tsiglas'] == 'spatial' || $spatial['tsiglas'] == 'op'){ break; }?>
+								<?php include 'catsJS.php'; ?>
+								<div style="margin-top: 10px;">
+									<div class="nuevo"><?php echo TR('categories'); ?></div>
+									<div class="row">
+										<div class="col-6" style="text-align: right;">
+											<input type="text" id="catNom_<?php echo $spatial['id'];?>" 
+												class="form-control" placeholder="<?php echo TR('category'); ?>"><br/>
+											<span id="btnCat_<?php echo $spatial['id'];?>" class="btn btn-shop" >
+												<!-- <i class="glyphicon glyphicon-plus"></i> --> &nbsp;<?php echo TR('add'); ?>&nbsp;
+												<i class="glyphicon glyphicon-arrow-right"></i>
+											</span>
+										</div>
+										<div class="col-6" id="catList_<?php echo $spatial['id'];?>" >
+											<?php include 'catList.php'; ?>
+										</div>
+									</div>
+								</div>
+
 							</div>
+							
 						</div>
+
+						
 			<?php
 						break;
 					default:
