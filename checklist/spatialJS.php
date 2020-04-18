@@ -1,3 +1,4 @@
+
 <script type="text/javascript">
 	$(document).ready(function() {});
 
@@ -78,7 +79,7 @@
 		});
 
 
-		<?php if ($spatial['type'] == 'spatial'){ ?>
+		<?php if ($spatial['tipo'] == 'spatial'){ ?>
 			var polygonControl =  L.Control.extend({        
 			  options: {
 				position: 'topleft'
