@@ -113,14 +113,14 @@
 				</td>
 				<td></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td><?php echo TR('blockWeighting'); ?></td>
 				<td>
 					<input type="text" value="<?php echo $datM['valMax'] != ''?$datM['valMax']:100; ?>" 
 						name="valMax" id="valMax" class="form-control" >
 				</td>
 				<td></td>
-			</tr>
+			</tr> -->
 			<!-- <tr>
 				<td><?php echo TR('blockHeader'); ?></td>
 				<td>

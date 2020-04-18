@@ -12,5 +12,5 @@
 </div>
 
 <div class="modal-footer">
-	<a class="btn btn-shop" data-dismiss="modal" id="envOkModal">Aceptar</a>
+	<a class="btn btn-shop" data-dismiss="modal" id="envOkModal" style="color:white;">Aceptar</a>
 </div>
