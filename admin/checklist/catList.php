@@ -24,8 +24,7 @@
 <table class="table" id="tableCat_<?php echo $pId; ?>" >
 	<?php foreach ($categories as $c){ ?>
 		<tr>
-			<td><?php echo $c['name']; ?>
-			</td>
+			<td><?php echo $c['name']; ?></td>
 			<?php if (empty($c['cuenta'])){ ?>
 				<td class="glyphicon glyphicon-trash manita rojo delCat" id="delCat_<?php echo $c['id']; ?>"></td>
 			<?php } ?>

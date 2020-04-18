@@ -781,6 +781,9 @@ function resultadosEXT($visita,$chk){
 							$preguntas[$pidentif]['valResp'] = '-';
 						}
 						break;
+					case 'cm':
+					case 'spatial':
+					case 'op':
 					case 'ab':
 						$preguntas[$pidentif]['respuesta'] = $respuestas[$pidentif][0]['respuesta'];
 						$preguntas[$pidentif]['valResp'] = '-';

@@ -62,7 +62,9 @@ if($p['tipo'] == 'mult'){
 
 <?php if ($pId != null){ ?>
 	<script type="text/javascript">
+		var spatialYa = false;
 		$(document).ready(function() {
+			var preg = <?php echo atj($p); ?>;
 
 			$('#respuesta_<?php echo $pId; ?>').focus();
 			$('#justificacion').keyup(function(event) {
@@ -129,6 +131,8 @@ if($p['tipo'] == 'mult'){
 					var pId = '<?php echo $sP['pId']; ?>';
 					var bId = '<?php echo $sP['bId']; ?>';
 
+					// console.log(preg);
+
 					var allOk = camposObligatorios('#datosPreg');
 					if(allOk){
 						var datos = {};
@@ -148,9 +152,20 @@ if($p['tipo'] == 'mult'){
 						<?php } ?>
 
 						// console.log(datos);
-						var rj = jsonF('checklist/json/envResp.php',{datos:datos,hash:hash,pId:pIdAct,valResp:valResp});
-						// console.log(rj)
-						var r = $.parseJSON(rj);
+						if(preg['tipo'] == 'spatial' || preg['tipo'] == 'cm' || preg['tipo'] == 'op'){
+							var r = {};
+							r['ok'] = 0;
+							// console.log('spatialYa:',spatialYa);
+							if(spatialYa){
+								r['ok'] = 1;
+							}
+
+
+						}else{
+							var rj = jsonF('checklist/json/envResp.php',{datos:datos,hash:hash,pId:pIdAct,valResp:valResp});
+							var r = $.parseJSON(rj);
+
+						}
 
 						if(r.ok == 1){
 							// console.log('aa');
@@ -193,8 +208,24 @@ if($p['tipo'] == 'mult'){
 						<?php } ?>
 
 						// console.log('bbb');
-						var rj = jsonF('checklist/json/envResp.php',{datos:datos,hash:hash,pId:pIdAct,valResp:valResp});
-						var r = $.parseJSON(rj);
+						if(preg['tipo'] == 'spatial' || preg['tipo'] == 'cm' || preg['tipo'] == 'op'){
+							var r = {};
+							r['ok'] = 0;
+							// console.log('spatialYa:',spatialYa);
+							if(spatialYa){
+								r['ok'] = 1;
+							}
+
+						}else{
+							var rj = jsonF('checklist/json/envResp.php',{datos:datos,hash:hash,pId:pIdAct,valResp:valResp});
+							var r = $.parseJSON(rj);
+
+						}
+						if(preg['tipo'] != 'spatial' && preg['tipo'] != 'cm'){
+						}else{
+
+						}
+
 
 						if(r.ok == 1){
 							// console.log('aa');
@@ -236,12 +267,16 @@ if($p['tipo'] == 'mult'){
 							var valResp = datos['respuesta'];
 						<?php } ?>
 
-						var rj = jsonF('checklist/json/envResp.php',{datos:datos,hash:hash,pId:pIdAct,valResp:valResp});
-						var r = $.parseJSON(rj);
+						if(preg['tipo'] == 'spatial' || preg['tipo'] == 'cm' || preg['tipo'] == 'op'){
+							var r = {};
+							r['ok'] = 1;
 
-						// if(r.ok == 1){
+						}else{
+							var rj = jsonF('checklist/json/envResp.php',{datos:datos,hash:hash,pId:pIdAct,valResp:valResp});
+							var r = $.parseJSON(rj);
 
-						// }
+						}
+
 						
 					}
 
@@ -316,6 +351,28 @@ if($p['tipo'] == 'mult'){
 					style="display: block;width: 100%;height: 50px;padding: 6px 12px;font-size: 14px;line-height: 
 						1.42857143;color: #555;background-color: #fff;background-image: none;border: 1px 
 						solid #ccc;border-radius: 4px;"><?php echo $p['respuesta']; ?></textarea>			
+			<?php }elseif($p['tipo'] == 'spatial'){ $spatial = $p; ?>
+				<?php include 'spatialJS.php'; ?>
+				<script type="text/javascript">
+					$(document).ready(function() {
+
+						initMap(<?php echo $spatial['id']; ?>,<?php echo $_POST['vId']; ?>);
+
+					});
+				</script>
+
+				<div id="map_<?php echo $spatial['id'];?>" style=" height: 500px;margin-top: 10px;" class="map"></div>
+			<?php }elseif($p['tipo'] == 'op'){ $spatial = $p; ?>
+				<?php include 'spatialJS.php'; ?>
+				<script type="text/javascript">
+					$(document).ready(function() {
+
+						initMap(<?php echo $spatial['id']; ?>,<?php echo $_POST['vId']; ?>);
+
+					});
+				</script>
+
+				<div id="map_<?php echo $spatial['id'];?>" style=" height: 500px;margin-top: 10px;" class="map"></div>
 			<?php }else{ ?>
 				<input type="text" id="respuesta_<?php echo $pId; ?>" name="respuesta" class="form-control oblig" 
 					style="height: 50px;" value="<?php echo $res[$pId]['respuesta']; ?>">
@@ -351,7 +408,7 @@ if($p['tipo'] == 'mult'){
 	<?php if( !empty($rP['pId']) ){ ?>
 	<span id="regresar" class="btn btn-sm btn-shop">< <?php echo TR('back'); ?></span>	
 	<?php }else{ ?>
-	<span id="regresaGral" class="btn btn-sm btn-shop">< <?php echo TR('back'); ?></span>	
+	<!-- <span id="regresaGral" class="btn btn-sm btn-shop">< <?php echo TR('back'); ?>2</span>	 -->
 	<?php } ?>
 	<?php if( !empty($sP['pId']) ){ ?>
 	<span id="siguiente" class="btn btn-sm btn-shop"><?php echo TR('next'); ?> ></span>
