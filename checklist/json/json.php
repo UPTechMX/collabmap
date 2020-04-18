@@ -315,11 +315,24 @@ switch ($_POST['acc']) {
 
 	case 12:
 		// print2($_POST);
+		if(is_numeric($_POST['lIds'][0])){
+			$prId = $_POST['lIds'][0];
+			$rvId = $db->query("SELECT * FROM Problems WHERE id = $prId")->fetchAll(PDO::FETCH_ASSOC)[0]['respuestasVisitaId'];
+		}
+
 		foreach ($_POST['lIds'] as $lId) {
 			if(is_numeric($lId)){
 				$db->query("DELETE FROM Problems WHERE id = $lId");
 			}
 		}
+
+		$count = $db->query("SELECT COUNT(*) as cuenta FROM Problems WHERE respuestasVisitaId = $rvId  ")->fetchAll(PDO::FETCH_NUM)[0][0];
+		if($count == 0){
+			$db -> query("DELETE FROM RespuestasVisita WHERE id = $rvId");
+			unset($_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]);
+		}
+
+		echo '{"ok":"1","count":"'.$count.'"}';
 
 		break;
 

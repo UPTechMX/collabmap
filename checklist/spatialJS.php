@@ -78,7 +78,7 @@
 		  }
 		});
 
-
+		/// This if removes polyline and polygon tools if the question is not spatial
 		<?php if ($spatial['tipo'] == 'spatial'){ ?>
 			var polygonControl =  L.Control.extend({        
 			  options: {
@@ -152,6 +152,7 @@
 		map.addControl(drawControl);
 
 
+		// check if point is in study area.
 		map.on('draw:drawvertex', function (e) {
 
 			// console.log('aaa');
@@ -184,6 +185,9 @@
 		});
 
 
+		// Add Study Areas
+
+
 		var getSA = jsonF('checklist/json/json.php',{acc:9,pId:pregId,vId:vId});
 		var SAs = $.parseJSON(getSA);
 		
@@ -200,6 +204,12 @@
 			}
 
 			var polygon = L.polygon(points);
+			polygon.setStyle({
+				fillColor: '#000000',
+				fillOpacity: .2,
+				weight: 1,
+				color: 'grey'
+			});
 			polygon.dbId = saId;
 
 			studyArea.addLayer(polygon);
@@ -209,6 +219,7 @@
 			map.fitBounds(group.getBounds());
 		}
 
+		//// Add answered geometries
 		var getPRs = jsonF('checklist/json/json.php',{acc:10,pId:pregId,vId:vId});
 		var PRs = $.parseJSON(getPRs);
 		// console.log('PRs',PRs);
@@ -288,19 +299,22 @@
 				var latlngs = [];
 				var type = event.layerType;
 				switch(type){
-					case 'polyline':
-						var lns = layer._latlngs;
-						for(var i = 0; i< lns.length; i++){
-							latlngs.push({lat:lns[i]['lat'],lng:lns[i]['lng']});
-						}
+					/// This if removes polyline and polygon tools if the question is not spatial
+					<?php if ($spatial['tipo'] == 'spatial'){ ?>
+						case 'polyline':
+							var lns = layer._latlngs;
+							for(var i = 0; i< lns.length; i++){
+								latlngs.push({lat:lns[i]['lat'],lng:lns[i]['lng']});
+							}
 
-						break;
-					case 'polygon':
-						var lns = layer._latlngs[0];
-						for(var i = 0; i< lns.length; i++){
-							latlngs.push({lat:lns[i]['lat'],lng:lns[i]['lng']});
-						}
-						break;
+							break;
+						case 'polygon':
+							var lns = layer._latlngs[0];
+							for(var i = 0; i< lns.length; i++){
+								latlngs.push({lat:lns[i]['lat'],lng:lns[i]['lng']});
+							}
+							break;
+					<?php } ?>
 					case 'marker':
 						var lns = layer._latlng;
 						// console.log('Layer:',layer);
@@ -394,12 +408,20 @@
 				lIds.push(layers[i].dbId);
 			}
 
+			var pId = <?php echo $p['id']; ?>;
+
 			if(lIds.length != 0){
-				var rj = jsonF('checklist/json/json.php',{acc:12,lIds:lIds,vId:vId});
-				
-				console.log(rj);
+				var rj = jsonF('checklist/json/json.php',{acc:12,lIds:lIds,vId:vId,pId:pId});
+					
+				// console.log(rj);
+
+				var r = $.parseJSON(rj);
+				// console.log('R: ',r)
+				if(r.count == 0){
+					spatialYa = false;
+				}
 			}
-			spatialYa = false;
+
 
 		});
 
