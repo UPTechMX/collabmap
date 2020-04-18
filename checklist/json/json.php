@@ -16,7 +16,6 @@ $sCHK = $_SESSION['CM']['chk'][$_POST['vId']];
 if( empty( $sCHK ) ){
 	exit('{"ok":"0"}');
 }
-// echo "ZZZ";
 
 switch ($_POST['acc']) {
 	case 1:
@@ -113,7 +112,7 @@ switch ($_POST['acc']) {
 	case 4:
 		$multimedia = $db->query("SELECT * FROM Multimedia WHERE id = $_POST[mId]")->fetchAll(PDO::FETCH_ASSOC)[0];
 		$db->exec("DELETE FROM Multimedia WHERE id = $_POST[mId]");
-		unlink(raiz()."campo/archivosCuest/$multimedia[archivo]");
+		unlink(raiz()."chkPhotos/$multimedia[archivo]");
 		// print2($multimedia);
 		echo '{"ok":"1"}';
 		break;
@@ -335,6 +334,13 @@ switch ($_POST['acc']) {
 		echo '{"ok":"1","count":"'.$count.'"}';
 
 		break;
+	case 13:
+		$post['tabla'] = 'Problems';
+		$post['datos'] = $_POST['datos'];
+		// print2($post);
+		echo atj(upd($post));
+		break;	
+
 
 	default:
 		# code...

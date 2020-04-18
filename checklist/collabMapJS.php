@@ -1,5 +1,7 @@
 
 <script type="text/javascript">
+	var layer;
+	var drawnItems;
 	$(document).ready(function() {});
 
 	function initMap(pregId,vId,identif){
@@ -11,7 +13,7 @@
 		var osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 		var osm = L.tileLayer(osmUrl, { maxZoom: 18, attribution: osmAttrib });
 		var map = new L.Map('map_'+pregId, { center: new L.LatLng(0, 0), zoom: 2 });
-		var drawnItems = L.featureGroup().addTo(map);
+		drawnItems = L.featureGroup().addTo(map);
 		var studyArea = L.featureGroup().addTo(map);
 
 		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoieHBla3RybyIsImEiOiJjazkzbDAzbWYwMTh1M2ZtbTBmOTlobDBpIn0.3lV0q43I-oC7mBSVzzBAXA', {
@@ -65,14 +67,10 @@
 				if(drawHandler != null){
 					drawHandler.disable();
 				}
-				if(!spatialYa){
-					drawHandler = new L.Draw.Marker(map, drawControl.options.Marker);
-					setTimeout(function(){
-						drawHandler.enable();
-					},100);
-				}else{
-					alertar('<?php echo TR("onlyOneGeometry"); ?>')
-				}
+				drawHandler = new L.Draw.Marker(map, drawControl.options.Marker);
+				setTimeout(function(){
+					drawHandler.enable();
+				},100);
 
 			}
 
@@ -80,80 +78,71 @@
 		  }
 		});
 
-		/// This if removes polyline and polygon tools if the question is not spatial
-		<?php if ($spatial['tipo'] == 'spatial'){ ?>
-			var polygonControl =  L.Control.extend({        
-			  options: {
-				position: 'topleft'
-			  },
+		var polygonControl =  L.Control.extend({        
+		  options: {
+			position: 'topleft'
+		  },
 
-			  onAdd: function (map) {
-				var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+		  onAdd: function (map) {
+			var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
 
-				container.style.backgroundColor = 'white';     
-				container.style.backgroundImage = "url("+rz+"img/ico/polygon.png)";
-				container.style.backgroundSize = "25px 25px";
-				container.style.backgroundRepeat = "no";
-				container.style.width = '25px';
-				container.style.height = '25px';
+			container.style.backgroundColor = 'white';     
+			container.style.backgroundImage = "url("+rz+"img/ico/polygon.png)";
+			container.style.backgroundSize = "25px 25px";
+			container.style.backgroundRepeat = "no";
+			container.style.width = '25px';
+			container.style.height = '25px';
 
-				container.onclick = function(){
-					// console.log('buttonClicked');
-					if(!spatialYa){
-						if(drawHandler != null){
-							drawHandler.disable();
-						}
-						drawHandler = new L.Draw.Polygon(map, drawControl.options.Polygon);
-						drawHandler.options.allowIntersection = false;
-						drawHandler.enable();
-					}else{
-						alertar('<?php echo TR("onlyOneGeometry"); ?>')
-					}
-
+			container.onclick = function(){
+				// console.log('buttonClicked');
+				if(drawHandler != null){
+					drawHandler.disable();
 				}
+				drawHandler = new L.Draw.Polygon(map, drawControl.options.Polygon);
+				drawHandler.options.allowIntersection = false;
+				drawHandler.enable();
 
-				return container;
-			  }
-			});
+			}
+
+			return container;
+		  }
+		});
 
 
 
-			var PolylineControl =  L.Control.extend({        
-			  options: {
-				position: 'topleft'
-			  },
+		var PolylineControl =  L.Control.extend({        
+		  options: {
+			position: 'topleft'
+		  },
 
-			  onAdd: function (map) {
-				var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+		  onAdd: function (map) {
+			var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
 
-				container.style.backgroundColor = 'white';     
-				container.style.backgroundImage = "url("+rz+"img/ico/polyline.png)";
-				container.style.backgroundSize = "25px 25px";
-				container.style.backgroundRepeat = "no";
-				container.style.width = '25px';
-				container.style.height = '25px';
+			container.style.backgroundColor = 'white';     
+			container.style.backgroundImage = "url("+rz+"img/ico/polyline.png)";
+			container.style.backgroundSize = "25px 25px";
+			container.style.backgroundRepeat = "no";
+			container.style.width = '25px';
+			container.style.height = '25px';
 
-				container.onclick = function(){
-					if(!spatialYa){
-						if(drawHandler != null){
-							drawHandler.disable();
-						}
-						drawHandler = new L.Draw.Polyline(map, drawControl.options.Polyline);
-						drawHandler.enable();
-					}else{
-						alertar('<?php echo TR("onlyOneGeometry"); ?>')
-					}
+			container.onclick = function(){
+				// console.log('buttonClicked');
+				if(drawHandler != null){
+					drawHandler.disable();
 				}
+				drawHandler = new L.Draw.Polyline(map, drawControl.options.Polyline);
+				drawHandler.enable();
 
-				return container;
-			  }
-			});
+			}
 
-			map.addControl(new polygonControl());
-			map.addControl(new PolylineControl());
 
-		<?php } ?>
 
+			return container;
+		  }
+		});
+
+		map.addControl(new polygonControl());
+		map.addControl(new PolylineControl());
 
 		
 		map.addControl(new MarkerControl());
@@ -282,10 +271,12 @@
 		//////// Funcionalidades a DB ////////
 
 
-
+		
 		map.on(L.Draw.Event.CREATED, function (event) {
-			var layer = event.layer;
-			
+			layer = event.layer;
+
+			console.log('layerJS:',layer);
+
 			var cont = false;
 			if(event.layerType == 'marker'){
 				for(var j in studyArea._layers){
@@ -307,22 +298,19 @@
 				var latlngs = [];
 				var type = event.layerType;
 				switch(type){
-					/// This if removes polyline and polygon tools if the question is not spatial
-					<?php if ($spatial['tipo'] == 'spatial'){ ?>
-						case 'polyline':
-							var lns = layer._latlngs;
-							for(var i = 0; i< lns.length; i++){
-								latlngs.push({lat:lns[i]['lat'],lng:lns[i]['lng']});
-							}
+					case 'polyline':
+						var lns = layer._latlngs;
+						for(var i = 0; i< lns.length; i++){
+							latlngs.push({lat:lns[i]['lat'],lng:lns[i]['lng']});
+						}
 
-							break;
-						case 'polygon':
-							var lns = layer._latlngs[0];
-							for(var i = 0; i< lns.length; i++){
-								latlngs.push({lat:lns[i]['lat'],lng:lns[i]['lng']});
-							}
-							break;
-					<?php } ?>
+						break;
+					case 'polygon':
+						var lns = layer._latlngs[0];
+						for(var i = 0; i< lns.length; i++){
+							latlngs.push({lat:lns[i]['lat'],lng:lns[i]['lng']});
+						}
+						break;
 					case 'marker':
 						var lns = layer._latlng;
 						// console.log('Layer:',layer);
@@ -345,24 +333,15 @@
 				var problem = {};
 				problem['type'] = type;
 
-				var rj = jsonF('checklist/json/json.php',{
+				popUpMapa('checklist/problemsAdd.php',{
 					datos:datos,
 					hash:hash,
-					pId:pIdAct,
+					pIdAct:pIdAct,
 					acc:8,
 					vId:datos['visitasId'],
 					problem:problem,
-					latlngs: latlngs
+					latlngs: latlngs,
 				});
-				console.log(rj);
-				var r = $.parseJSON(rj);
-				if(r.ok == 1){
-					layer.dbId = r.prId;
-					drawnItems.addLayer(layer);
-					spatialYa = true;
-				}
-				// console.log(event);
-				// console.log(latlngs);
 			}
 
 		});

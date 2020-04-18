@@ -373,6 +373,17 @@ if($p['tipo'] == 'mult'){
 				</script>
 
 				<div id="map_<?php echo $spatial['id'];?>" style=" height: 500px;margin-top: 10px;" class="map"></div>
+			<?php }elseif($p['tipo'] == 'cm'){ $spatial = $p; ?>
+				<?php include 'collabMapJS.php'; ?>
+				<script type="text/javascript">
+					$(document).ready(function() {
+
+						initMap(<?php echo $spatial['id']; ?>,<?php echo $_POST['vId']; ?>);
+
+					});
+				</script>
+				<div id="map_<?php echo $spatial['id'];?>" style=" height: 500px;margin-top: 10px;" class="map"></div>
+				<div id="problems_<?php echo $spatial['id'];?>"><?php include 'problems.php'; ?></div>
 			<?php }else{ ?>
 				<input type="text" id="respuesta_<?php echo $pId; ?>" name="respuesta" class="form-control oblig" 
 					style="height: 50px;" value="<?php echo $res[$pId]['respuesta']; ?>">
