@@ -125,6 +125,59 @@
 			echo '{"acc":"'.$acc.'","vId":"'.$vId.'"}';
 
 			break;
+		case 5:
+			// print2($_POST);
+			$dimensionesElemId = $_POST['datos']['dimensionesElemId'];
+			if(!is_numeric($dimensionesElemId)){
+				exit();
+			}
+			$count = $db->query("SELECT COUNT(*) FROM TargetsElems 
+				WHERE dimensionesElemId = $dimensionesElemId AND usersId = $usrId
+			")->fetchAll(PDO::FETCH_NUM)[0][0];
+
+			if($count > 0){
+				exit('{"ok":2}');
+			}
+			$p['tabla'] = 'TargetsElems';
+			$p['datos'] = $_POST['datos'];
+			$p['datos']['usersId'] = $usrId;
+
+			echo atj(inserta($p));
+
+			break;
+		case 6:
+			$padre = $_POST['datos']['padre'];
+			if(!is_numeric($padre) || !is_numeric($_POST['targetId'])){
+				exit('{"ok":0}');
+			}
+			
+			$dimension = $db->query("SELECT d.nivel
+				FROM DimensionesElem de
+				LEFT JOIN Dimensiones d ON d.id = de.dimensionesId 
+				WHERE de.id = $padre")->fetchAll(PDO::FETCH_ASSOC)[0];
+
+			$target = $db->query("SELECT * FROM Targets WHERE id = $_POST[targetId]")->fetchAll(PDO::FETCH_ASSOC)[0];
+			$dimensiones = $db->query("SELECT *
+				FROM Dimensiones 
+				WHERE type = 'structure' AND elemId = $_POST[targetId]
+				ORDER BY nivel")->fetchAll(PDO::FETCH_ASSOC);
+
+			$numDim = count($dimensiones);
+
+			if($dimension['nivel'] == $numDim -1 && $target['addStructure'] == 1){
+				$p['tabla'] = 'DimensionesElem';
+				$p['datos']['padre'] = $padre;
+				$p['datos']['nombre'] = $_POST['datos']['nombre'];
+				$p['datos']['dimensionesId'] = $dimensiones[$numDim-1]['id'];
+
+				echo atj(inserta($p));
+
+			}else{
+				echo '{"ok":2}';
+			}
+
+			
+			break;
 
 		default:
 			# code...

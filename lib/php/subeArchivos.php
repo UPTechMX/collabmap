@@ -9,6 +9,9 @@ switch ($_POST['rutaId']) {
 	case 2:
 		$dir = 'problemsPhotos';
 		break;
+	case 3:
+		$dir = 'externalFiles';
+		break;
 	
 	default:
 		# code...

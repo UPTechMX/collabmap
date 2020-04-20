@@ -26,6 +26,7 @@ $elementos = $db->query("SELECT t.*, p.name as pName
 		$(".trgtInfo").click(function(event) {
 			var targetId = $(this).closest('tr').attr('id').split('_')[1];
 			$('#targetsInfo').load(rz+'admin/administration/targets/targetsInfo.php',{targetId:targetId});
+			$('#targetsStructure').load(rz+'admin/administration/targets/targetsStructure.php',{targetsId:targetId});
 		});
 	});
 </script>

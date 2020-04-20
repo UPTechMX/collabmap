@@ -33,7 +33,9 @@
 	// print($targetsChecklist);
 	$utId = $targetsChecklist[0]['utId'];
 
-	$TargetsElems = $db->query("SELECT * FROM TargetsElems te 
+	$TargetsElems = $db->query("SELECT te.*, de.nombre as deName, de.id as deId
+		FROM TargetsElems te 
+		LEFT JOIN DimensionesElem de ON de.id = te.dimensionesElemId
 		WHERE te.usersTargetsId = $utId ORDER BY name")->fetchAll(PDO::FETCH_ASSOC);
 	// print2($_SESSION);
 
@@ -115,9 +117,9 @@
 	</thead>
 	<tbody>
 		<?php foreach ($TargetsElems as $te){ ?>
-			<tr>
+			<tr id="trDimElem_<?php echo $te['deId']; ?>">
 				<td>
-					<?php echo $te['name']; ?>
+					<?php echo $te['deName']; ?>
 				</td>
 				<?php 
 				foreach ($targetsChecklist as $tc){ 
