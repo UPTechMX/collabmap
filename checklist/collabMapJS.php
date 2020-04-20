@@ -275,7 +275,7 @@
 		map.on(L.Draw.Event.CREATED, function (event) {
 			layer = event.layer;
 
-			console.log('layerJS:',layer);
+			// console.log('layerJS:',layer);
 
 			var cont = false;
 			if(event.layerType == 'marker'){

@@ -45,6 +45,7 @@ switch ($_POST['opt']) {
 
 switch ($_POST['acc']) {
 	case '1':
+	
 		$post['datos'] = $_POST['datos'];
 		// print2($post);
 		echo atj(inserta($post));
@@ -98,7 +99,7 @@ switch ($_POST['acc']) {
 	case 8:
 		$multimedia = $db->query("SELECT * FROM ProyectosArchivos WHERE id = $_POST[fId]")->fetchAll(PDO::FETCH_ASSOC)[0];
 		$db->exec("DELETE FROM ProyectosArchivos WHERE id = $_POST[fId]");
-		@unlink(raiz()."admin/administracion/targets/structure/archivos/$multimedia[archivo]");
+		@unlink(raiz()."admin/administration/targets/structure/archivos/$multimedia[archivo]");
 		// print2($multimedia);
 		echo '{"ok":"1"}';
 		break;

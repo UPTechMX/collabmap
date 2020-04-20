@@ -105,7 +105,7 @@ if($nivel<60){
 
 			if(allOk){
 				var rj = jsonF('admin/administration/usuarios/json/json.php',{datos:dat,acc:acc,opt:1});
-				console.log(rj);
+				// console.log(rj);
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){

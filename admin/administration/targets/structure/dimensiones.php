@@ -9,36 +9,30 @@ if (!function_exists('raiz')) {
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#addDim").click(function(event) {
-			var areasId = <?php echo $_POST['areasId']; ?>;
-			popUp('admin/administracion/targets/structure/dimensionesAdd.php',{areasId:areasId},function(e){},{});
+			var targetsId = <?php echo $_POST['targetsId']; ?>;
+			popUp('admin/administration/targets/structure/dimensionesAdd.php',{targetsId:targetsId},function(e){},{});
 
 		});
 		// $("#cpDim").click(function(event) {
-		// 	var areasId = <?php echo $_POST['areasId']; ?>;
-		// 	popUp('admin/administracion/targets/structure/dimensionesCopy.php',{areasId:areasId,areasId},function(e){},{});
+		// 	var targetsId = <?php echo $_POST['targetsId']; ?>;
+		// 	popUp('admin/administration/targets/structure/dimensionesCopy.php',{targetsId:targetsId,targetsId},function(e){},{});
 		// });
 	});
 </script>
-<br/>
-
-<div class="row">
+<div class="row" style="margin-top: 10px;">
 	<div class="col-md-3">
 		<div class="nuevo">
-			Categorías
+			<?php echo TR('level'); ?>
 		</div>
 		<span class="btn btn-shop btn-sm" id="addDim">
-			<i class="glyphicon glyphicon-plus">&nbsp;</i>Agregar categoría 
+			<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('addLevel'); ?> 
 		</span>
-<!-- 		<span class="btn btn-shop btn-sm" id="cpDim">
-			<i class="glyphicon glyphicon-copy">&nbsp;</i>Copiar 
-		</span>
- -->		<div id="dimensionesList"><?php include_once 'dimensionesList.php'; ?></div>
-
+		<div id="dimensionesList" style="margin-top: 10px;"><?php include_once 'dimensionesList.php'; ?></div>
 	</div>
 
 	<div class="col-md-9" >
 		<div class="nuevo">
-			Elementos
+			<?php echo TR('elements'); ?>
 		</div>
 		<div class="" id="dimensionesArbol"><?php include_once 'dimensionesArbol.php'; ?></div>
 	</div>

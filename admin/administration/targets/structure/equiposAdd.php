@@ -50,8 +50,8 @@ if($nivel<50){
 			?>
 
 			if(allOk){
-				var rj = jsonF('admin/administracion/targets/structure/json/json.php',{datos:dat,acc:acc,opt:1});
-				console.log(rj);
+				var rj = jsonF('admin/administration/targets/structure/json/json.php',{datos:dat,acc:acc,opt:1});
+				// console.log(rj);
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){
@@ -60,7 +60,7 @@ if($nivel<50){
 					$('#areasId').append(o);
 					$('#areasId').val(r.nId);
 					$('#areasId').trigger('change');
-					// $('#equiposList').load(rz+'admin/administracion/targets/structure/equiposList.php',{ajax:1});
+					// $('#equiposList').load(rz+'admin/administration/targets/structure/equiposList.php',{ajax:1});
 				}
 			}
 

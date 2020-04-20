@@ -25,7 +25,7 @@ $frequencies = $db->query("SELECT * FROM Frequencies ORDER BY orden")->fetchAll(
 					dat.targetsId = <?php echo $_POST['targetId']; ?>;
 					
 					var rj = jsonF('admin/administration/targets/json/json.php',{opt:2,acc:1,datos:dat});
-					console.log(rj);
+					// console.log(rj);
 					var r = $.parseJSON(rj);
 
 					if(r.ok == 1){

@@ -27,6 +27,7 @@
 
 		$('#env').click(function(event) {
 			var dat = $('#nEmp').serializeObject();
+			dat.addStructure = $('#addStructure').is(':checked')?1:0;
 			var allOk = camposObligatorios('#nEmp');
 
 			<?php 
@@ -41,7 +42,7 @@
 
 			if(allOk){
 				var rj = jsonF('admin/administration/targets/json/json.php',{datos:dat,acc:acc,opt:1});
-				console.log(rj);
+				// console.log(rj);
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){
@@ -93,6 +94,11 @@
 			<tr>
 				<td><?php echo TR('description'); ?></td>
 				<td><input type="text" value="<?php echo $datC['description']; ?>" name="description" id="description" class="form-control oblig"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><?php echo TR('addStructure'); ?></td>
+				<td><input type="checkbox" id="addStructure" <?php echo $datC['addStructure'] == 1?'checked':''; ?>></td>
 				<td></td>
 			</tr>
 		</table>		

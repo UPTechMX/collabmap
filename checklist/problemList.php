@@ -62,6 +62,37 @@
 			});
 		});
 
+		$('.delPrb').click(function(event) {
+			var prbId = $(this).closest('tr').attr('id').split('_')[1];
+			var layers = drawnItems._layers;
+
+
+
+			conf("<?php echo TR('deleteProblem'); ?>",{prbId:prbId,elem:this},function(e){
+				var rj = jsonF('checklist/json/json.php',{acc:12,lIds:[e.prbId],vId:<?php echo $_POST['vId']; ?>});
+				var r = $.parseJSON(rj);
+
+				if(r.ok == 1){
+
+					$(e.elem).closest('tr').remove();
+					for(var i in layers){
+						var layer = layers[i];
+						// console.log(layer);
+
+						if(layer.dbId == prbId){
+							delLayer = layer;
+							break;
+						}
+					}
+					drawnItems.removeLayer(delLayer);
+
+					if(r.count == 0){
+						spatialYa = false;
+					}
+				}
+			});
+		});
+
 	});
 </script>
 

@@ -340,6 +340,16 @@ switch ($_POST['acc']) {
 		// print2($post);
 		echo atj(upd($post));
 		break;	
+	case 14:
+		
+		if(!is_numeric($_POST['prbId'])){
+			exit('{"ok":0}');
+		}
+		$p['tabla'] = 'Problems';
+		$p['where'] = "id = $_POST[prbId]";
+		echo atj(del($p));
+
+		break;	
 
 
 	default:

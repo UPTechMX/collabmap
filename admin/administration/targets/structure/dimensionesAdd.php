@@ -47,23 +47,24 @@
 					echo "delete dat.nivel;";
 				}else{
 					echo 'var acc = 1;';
-					echo "dat.areasId = $_POST[areasId];";
+					echo "dat.elemId = $_POST[targetsId];";
+					echo "dat.type = 'structure'";
 				}
 			?>
 			// console.log(dat);
 			if(allOk){
 
-				var rj = jsonF('admin/administracion/targets/structure/json/json.php',{datos:dat,acc:acc,opt:4});
-				console.log(rj);
+				var rj = jsonF('admin/administration/targets/structure/json/json.php',{datos:dat,acc:acc,opt:4});
+				// console.log(rj);
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){
 					$('#popUp').modal('toggle');
-					$('#dimensionesList').load(rz+'admin/administracion/targets/structure/dimensionesList.php',{ajax:1,areasId:<?php echo $_POST['areasId']; ?>});
+					$('#dimensionesList').load(rz+'admin/administration/targets/structure/dimensionesList.php',{ajax:1,targetsId:<?php echo $_POST['targetsId']; ?>});
 					<?php if(isset($_POST['dimensionId'])): ?>
 						$("#dimCol_<?php echo $_POST['dimensionId'];?>").text(dat.nombre);
 					<?php else:?>
-						$('#dimensionesArbol').load(rz+'admin/administracion/targets/structure/dimensionesArbol.php',{ajax:1,areasId:<?php echo $_POST['areasId']; ?>});
+						$('#dimensionesArbol').load(rz+'admin/administration/targets/structure/dimensionesArbol.php',{ajax:1,targetsId:<?php echo $_POST['targetsId']; ?>});
 					<?php endif;?>
 				}
 			}
@@ -77,12 +78,7 @@
 <div class="modal-header nuevo" >
 	<div style="text-align: center;">
 		<h4 class="modal-title">
-			<?php if(isset($_POST['dimensionId'])): ?>
-				Editar 
-			<?php else: ?>
-				Nuevo 
-			<?php endif; ?>
-			nivel de equipo
+			<?php echo TR('level'); ?>
 		</h4>
 	</div>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -95,7 +91,7 @@
 	<form id="nEmp">
 		<table class="table" border="0">
 			<tr>
-				<td>Nombre</td>
+				<td><?php echo TR('name'); ?></td>
 				<td>
 					<input type="text" value="<?php echo $datM['nombre']; ?>" name="nombre" id="nombre" class="form-control oblig" >
 				</td>
@@ -106,7 +102,7 @@
 </div>
 <div class="modal-footer">
 	<div style="text-align: right;">
-		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel">Cancelar</span>
-		<span id="env" class="btn btn-sm btn-shop">Enviar</span>
+		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel"><?php echo TR('cancel'); ?></span>
+		<span id="env" class="btn btn-sm btn-shop"><?php echo TR('send'); ?></span>
 	</div>
 </div>

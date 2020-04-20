@@ -9,8 +9,8 @@
 	$dimElem = $db->query("SELECT de.* 
 		FROM DimensionesElem de
 		LEFT JOIN Dimensiones d ON de.dimensionesId = d.id
-		WHERE d.areasId = $_POST[areasId] AND de.padre = $_POST[padreId] ORDER BY id")->fetchAll(PDO::FETCH_ASSOC);
-	$dims = $db->query("SELECT id FROM Dimensiones WHERE areasId = $_POST[areasId] ORDER BY id")->fetchAll(PDO::FETCH_NUM);
+		WHERE elemId = $_POST[targetsId] AND type = 'structure' AND de.padre = $_POST[padreId] ORDER BY nombre")->fetchAll(PDO::FETCH_ASSOC);
+	$dims = $db->query("SELECT id FROM Dimensiones WHERE elemId = $_POST[targetsId] AND type = 'structure' ORDER BY id")->fetchAll(PDO::FETCH_NUM);
 	// print2($dims);
 	$numDims = count($dims);
 	for($i = 0;$i<$numDims;$i++){
@@ -26,9 +26,9 @@
 	$(document).ready(function() {
 		$('#dimensionesElemList_<?php echo $_POST['dimensionId'];?> .edtDimElem').click(function(event) {
 			var dimensionElemId = this.id.split('_')[1];
-			popUp('admin/administracion/targets/structure/dimensionesElemAdd.php',{
+			popUp('admin/administration/targets/structure/dimensionesElemAdd.php',{
 				dimensionElemId:dimensionElemId,
-				areasId:<?php echo $_POST['areasId']; ?>,
+				targetsId:<?php echo $_POST['targetsId']; ?>,
 				dimensionId:<?php echo $_POST['dimensionId']; ?>,
 				padreId:<?php echo $_POST['padreId']; ?>,
 			},function(e){},{});
@@ -40,7 +40,7 @@
 			// console.log(elemId);
 			conf('¿Estás seguro que deseas borrar el elemento?<br/> '+
 				'Se perderá toda la información relacionada.',{elemId:elemId,elem:$(this)},function(e){
-					var rj = jsonF('admin/administracion/targets/structure/json/json.php',{acc:6,elemId:e.elemId});
+					var rj = jsonF('admin/administration/targets/structure/json/json.php',{acc:6,elemId:e.elemId});
 					// console.log(rj);
 					var r = $.parseJSON(rj);
 					if(r.ok == 1){
@@ -68,9 +68,9 @@
 				var dimensionElemId = this.id.split('_')[1];
 				// console.log('aa');
 				$('#dimensionesElems_'+<?php echo $dimSig; ?>)
-				.load(rz+'admin/administracion/targets/structure/dimensionesElems.php',{
+				.load(rz+'admin/administration/targets/structure/dimensionesElems.php',{
 					ajax:1,
-					areasId:<?php echo $_POST['areasId']; ?>,
+					targetsId:<?php echo $_POST['targetsId']; ?>,
 					padreId:dimensionElemId,
 					dimensionId:<?php echo $dimSig; ?>
 				});
@@ -96,10 +96,10 @@
 
 </script>
 
-<table class="table">
+<table class="table" style="margin-top: 10px;">
 	<thead>
 		<tr>
-			<th>Nombre</th>
+			<th><?php echo TR('name'); ?></th>
 			<th></th>
 			<th></th>
 			<th></th>

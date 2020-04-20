@@ -66,9 +66,9 @@
 			?>
 
 			if(allOk){
-				console.log(dat);
+				// console.log(dat);
 				var rj = jsonF('admin/checklist/json/json.php',{datos:dat,acc:acc,opt:11});
-				console.log(rj);
+				// console.log(rj);
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){

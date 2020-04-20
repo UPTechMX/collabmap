@@ -4,16 +4,20 @@
 		include_once '../../../../lib/j/j.func.php';
 	}
 
-	print2($_POST);
-	$dimensiones = $db->query("SELECT * FROM Dimensiones WHERE targetsId = $_POST[areasId]")->fetchAll(PDO::FETCH_ASSOC);
-	// $datC = $db-> query("SELECT * FROM Clientes WHERE id = $_POST[areasId]")->fetch(PDO::FETCH_ASSOC);
+	// print2($_POST);
+	$dimensiones = $db->query("SELECT * FROM Dimensiones 
+		WHERE elemId = $_POST[targetsId] AND type = 'structure'
+	")->fetchAll(PDO::FETCH_ASSOC);
+	// $datC = $db-> query("SELECT * FROM Clientes WHERE id = $_POST[targetsId]")->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.edtDim').click(function(event) {
 			var dimensionId = this.id.split('_')[1];
-			popUp('admin/administracion/targets/structure/dimensionesAdd.php',{dimensionId:dimensionId,areasId:<?php echo $_POST['areasId']; ?>},function(e){},{});
+			popUp('admin/administration/targets/structure/dimensionesAdd.php',
+				{dimensionId:dimensionId,targetsId:<?php echo $_POST['targetsId']; ?>},
+				function(e){},{});
 		});
 
 	});
@@ -21,7 +25,7 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>Nombre</th>
+			<th><?php echo TR('name'); ?></th>
 			<th></th>
 			<!-- <th></th> -->
 			<!-- <th></th> -->
