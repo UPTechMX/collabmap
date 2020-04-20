@@ -188,7 +188,11 @@ switch ($_POST['acc']) {
 			exit('{"ok":"0"}');
 		}
 		$sCHK = $_SESSION['CM']['chk'][$_POST['datos']['visitasId']];
-		$buscResp = $db->prepare("SELECT * FROM RespuestasVisita WHERE visitasId = :visitasId AND preguntasId = :preguntasId");
+		$buscResp = $db->prepare("SELECT rv.*, t.siglas as tPreg
+			FROM RespuestasVisita rv
+			LEFT JOIN Preguntas p ON p.id = rv.preguntasId
+			LEFT JOIN Tipos t ON t.id = p.tiposId
+			WHERE rv.visitasId = :visitasId AND rv.preguntasId = :preguntasId");
 		$arr['visitasId'] = $_POST['datos']['visitasId'];
 		$arr['preguntasId'] = $_POST['datos']['preguntasId'];
 
@@ -212,11 +216,26 @@ switch ($_POST['acc']) {
 			}
 		}else{
 			$rvId = $result[0]['id'];
+			$tPreg = $result[0]['tPreg'];
 			$_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['respuesta'] = 'spatial';
 			$_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['justificacion'] = '';
 			$_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['valResp'] = '-';
 
+			// print2($tPreg);
+			if($tPreg == 'op' || $tPreg == 'spatial'){
+				$cuenta = $db->query("SELECT COUNT(*) as cuenta
+					FROM Problems 
+					WHERE respuestasVisitaId = $rvId")->fetchAll(PDO::FETCH_NUM)[0][0];
+
+				if($cuenta > 0){
+					exit ('{"ok":2}');
+				}
+			}
+
 		}
+
+
+
 		// print2($_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res']);
 
 		if($ok){

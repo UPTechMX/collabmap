@@ -59,7 +59,7 @@
 						acc:acc,
 						vId:<?php echo $_POST['vId']; ?>,
 					});
-					
+					console.log(rj);
 					var r = $.parseJSON(rj);
 				<?php }else{ ?>
 					var rj = jsonF('checklist/json/json.php',{
