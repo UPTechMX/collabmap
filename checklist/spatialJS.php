@@ -354,12 +354,15 @@
 					problem:problem,
 					latlngs: latlngs
 				});
-				console.log(rj);
+				// console.log(rj);
 				var r = $.parseJSON(rj);
 				if(r.ok == 1){
 					layer.dbId = r.prId;
 					drawnItems.addLayer(layer);
 					spatialYa = true;
+				}else if(r.ok == 2){
+					spatialYa = true;
+					alertar('<?php echo TR("onlyOneGeometry"); ?>');
 				}
 				// console.log(event);
 				// console.log(latlngs);

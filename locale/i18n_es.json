@@ -36,7 +36,7 @@
   "email": "Correo electrónico",
   "first_name": "Nombre",
   "last_name": "Apellido",
-  "Age": "Edad",
+  "age": "Edad",
   "gender": "Género",
   "new_user": "Nuevo usuario",
   "draft": "Guardar",
@@ -249,6 +249,9 @@
   "continue": "Continuar",
   "seeResults": "Ver respuestas",
   "sended": "Enviado",
+
+  "analysis": "Analisis",
+  "chChk": "Cambiar cuestionario",
 
   "noAccess": "Sin acceso al sistema",
   "administratior": "Aministrador",

@@ -118,7 +118,7 @@
   "targets": "Communities",
   "target": "Community",
   "description": "Description",
-  "targetInfo": "Target information",
+  "targetInfo": "Community information",
   "structure": "Structure",
   "level": "Level",
   "addLevel": "Add level",
@@ -250,14 +250,9 @@
   "seeResults": "See answers",
   "sended": "Sended",
 
-  "analysis": "Analysis",
-  "chChk": "Change questionnaire",
-
   "noAccess": "No access",
   "administrator": "Administrator",
   "superuser": "Superuser",
   "level": "Level"
-
-
 
 }
