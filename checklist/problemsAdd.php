@@ -32,7 +32,7 @@
 			$(this).css({backgroundColor:''});
 		});
 
-		$('#env').click(function(event) {
+		$('#envCM').click(function(event) {
 			var dat = $('#nPrb').serializeObject();
 			dat.type = "<?php echo $_POST['problem']['type']; ?>";
 			var allOk = camposObligatorios('#nEmp');
@@ -47,6 +47,7 @@
 			?>
 
 
+					console.log('ASASAS');
 			if(allOk){
 				// console.log(dat);
 				<?php if (isset($_POST['eleId'])){ ?>
@@ -71,7 +72,7 @@
 						problem:dat,
 						latlngs: <?php echo atj($_POST['latlngs']); ?>
 					});
-					// console.log(rj);
+					console.log(rj);
 					var r = $.parseJSON(rj);
 					// console.log(r);
 					if(r.ok == 1){
@@ -207,6 +208,6 @@
 <div class="modal-footer">
 	<div style="text-align: right;">
 		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel"><?php echo TR('cancel'); ?></span>
-		<span id="env" class="btn btn-sm btn-shop"><?php echo TR('send'); ?></span>
+		<span id="envCM" class="btn btn-sm btn-shop"><?php echo TR('send'); ?></span>
 	</div>
 </div>

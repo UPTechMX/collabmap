@@ -55,7 +55,11 @@
 				dat.nombre = $('#name').val();
 
 				var sels = $('.dimSelAdd');
-				dat.padre = $(sels[sels.length - 1]).val();
+				if(sels.length == 0){
+					dat.padre = 0;
+				}else{
+					dat.padre = $(sels[sels.length - 1]).val();
+				}
 				dat.nivel = sels.length+1;
 				
 				var targetId = <?php echo $_POST['targetId']; ?>;
@@ -73,6 +77,11 @@
 					if(r.ok == 1){
 						$('#popUp').modal('toggle');
 						$('#divTrgt_'+targetId+'_'+usersTargetsId+' #dimSel_1').val('').trigger('change');
+
+						if(sels.length == 0){
+							var o = new Option(dat.nombre,r.nId);
+							$('#divTrgt_'+targetId+'_'+usersTargetsId+' #dimSel_1').append(o);							
+						}
 
 						var dat = {targetsId:targetId,usersTargetsId:usersTargetsId,dimensionesElemId:r.nId};
 						var rrj = jsonF('questionnaires/targets/json/json.php',{datos:dat,acc:5});

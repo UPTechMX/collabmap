@@ -341,3 +341,37 @@ li.disabled a{
 	border-top-color:#006060 !important;
 }
 
+/* ANALYSIS*/
+
+.bloqueAnalysis{
+	font-size: 1.2em;
+	background-color: grey;
+	padding: 8px;
+	font-weight: bold;
+	color:black;
+}
+
+.areaAnalysis{
+	font-size: 1.2em;
+	background-color: #CCC;
+	padding: 8px;
+	font-weight: bold;
+	color:black;
+}
+
+.preguntaAnalysis{
+	font-size: 1.2em;
+	background-color: #EEE;
+	padding: 8px;
+	font-weight: bold;
+	color:black;
+}
+
+.subpreguntaAnalysis{
+	font-size: 1.2em;
+	background-color: #DDD;
+	padding: 8px;
+	font-weight: bold;
+	color:black;
+}
+
