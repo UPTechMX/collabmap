@@ -30,6 +30,8 @@ function root(){
 
 include_once root().'lib/j/j.func.php';
 include_once 'seguridad/seguridad.php';
+checaAcceso(50); // checaAcceso analysis;
+
 
 $location = empty($location)?'analysis':$location;
 $htmlRoot = aRaizHtml($location);
@@ -137,6 +139,17 @@ $htmlRoot = aRaizHtml($location);
 
 	<script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
 
+
+	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/highcharts.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/highcharts-more.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/modules/solid-gauge.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/modules/exporting.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/modules/data.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/modules/drilldown.js"></script>
+	<script src="<?php echo $htmlRoot; ?>analysis/analysis.php"></script>
+	<script src="<?php echo $htmlRoot; ?>analysis/socialMon/chartSMJS.js"></script>
+
+
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script type="text/javascript">
 	</script>
@@ -150,7 +163,6 @@ $htmlRoot = aRaizHtml($location);
 		<div>
 			<div class="content" style="min-height:30px;" id="content">
 				<?php include raiz().'analysis/layout/content.php'; ?>
-
 			</div>
 			<br/>
 			<div class="footerL"><?php include 'layout/footer.php'; ?></div>

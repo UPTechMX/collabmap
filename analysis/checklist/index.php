@@ -1,0 +1,140 @@
+<?php
+	// print2($_GET);
+	include_once raiz().'lib/php/checklist.php';
+	checaAcceso(50); // checaAcceso analysis;
+
+	$targetChecklist = $db->query("SELECT * FROM TargetsChecklist WHERE id = $_GET[trgtChk]")->fetchAll(PDO::FETCH_ASSOC)[0];
+	if(empty($targetChecklist)){
+		exit('EXIT');
+	}
+
+	$checklistId = $targetChecklist['checklistId'];
+
+	// print2($targetChecklist);
+	$findEst = $db->query("SELECT * FROM ChecklistEst WHERE checklistId = $checklistId")->fetchAll(PDO::FETCH_ASSOC);
+	if(empty($findEst)){
+		// echo "AQUI";
+		$estExt = estructuraEXT($checklistId);
+		$prep = $db->prepare("INSERT INTO ChecklistEst SET checklistId = $checklistId, estructura = ?");
+		$prep -> execute(array(atj($estExt)));
+		$estj = atj($estExt);
+	}else{
+		// echo "ACA";
+		$estj = $findEst[0]['estructura'];
+	}
+
+	$est = json_decode($estj,true);
+?>
+
+<script type="text/javascript">
+	var pregsDesp = {};
+	$(document).ready(function() {
+		$('.bloqueAnalysis').click(function(event) {
+			var divAreas = $($(this).closest('.divBlock').find('.divAreas')[0])
+			divAreas.toggle();
+			if($(divAreas).is(":visible")){
+				$(this).find('.chevron').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down')
+			}else{
+				$(this).find('.chevron').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right')
+			}
+		});
+
+		$('.areaAnalysis').click(function(event) {
+			var divArea = $($(this).closest('.divAreas').find('.divArea')[0])
+			divArea.toggle();
+			if($(divArea).is(":visible")){
+				$(this).find('.chevron').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down')
+			}else{
+				$(this).find('.chevron').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right')
+			}
+		});
+
+		$('.preguntaAnalysis').click(function(event) {
+			var datoPreg = $($(this).closest('.divPregunta').find('.datoPreg')[0])
+			datoPreg.toggle();
+			var pId = this.id.split('_')[1];
+			var trgtChk = <?php echo $_GET['trgtChk']; ?>;
+			if($(datoPreg).is(":visible")){
+				if(typeof pregsDesp[pId] == 'undefined'){
+					// console.log('carga');
+					$(datoPreg).load(rz+'analysis/checklist/pregunta.php',{trgtChk:trgtChk,pId:pId});
+					pregsDesp[pId] = 1;
+				}
+				$(this).find('.chevron').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down')
+			}else{
+				$(this).find('.chevron').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right')
+			}
+		});
+
+		$('.subpreguntaAnalysis').click(function(event) {
+			var divSubpreguntasCont = $($(this).closest('.divSubpregunta').find('.divSubpreguntasCont')[0])
+			divSubpreguntasCont.toggle();
+			
+			if($(divSubpreguntasCont).is(":visible")){
+				$(this).find('.chevron').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down')
+			}else{
+				$(this).find('.chevron').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right')
+			}
+		});
+	});
+</script>
+<?php foreach ($est['bloques'] as $b){ ?>
+	<div class="divBlock" style="margin-top: 10px;">
+		<div class="bloqueAnalysis manita" >
+			<?php echo TR('block'); ?>: <?php echo $b['nombre']; ?>&nbsp;
+			<i class="glyphicon glyphicon-chevron-down chevron"></i>
+		</div>
+		<div class="divAreas" style="padding-left: 50px;margin-top: 10px;">
+			<?php foreach ($b['areas'] as $a){ ?>
+				<div class="areaAnalysis manita" >
+					<?php echo TR('area'); ?>: <?php echo $a['nombre']; ?>&nbsp;
+					<i class="glyphicon glyphicon-chevron-down chevron"></i>
+				</div>
+				<div class="divArea">
+					<div class="divPreguntas" style="padding-left: 50px;margin-top: 10px;">
+						<?php
+						foreach ($a['preguntas'] as $p){ 
+							$preg = $p;
+						?>
+							<?php if ($p['tipo'] != 'sub'){ ?>
+								<div class="divPregunta" style="margin-top: 10px;">
+									<div class="preguntaAnalysis manita" id="pregId_<?php echo $preg['id']; ?>">
+										<?php echo $preg['pregunta']; ?>
+										<i class="glyphicon glyphicon-chevron-right chevron"></i>
+									</div>
+									<div class="datoPreg" style="display: none;"></div>
+								</div>
+							<?php }else{ ?>
+								<div class="divSubpregunta manita" style="margin-top: 10px;">
+									<div class="subpreguntaAnalysis">
+										<?php echo $preg['pregunta']; ?>
+										<i class="glyphicon glyphicon-chevron-right chevron"></i>
+									</div>
+									<div class="divSubpreguntasCont" style="display: none;padding-left: 50px;">
+										<?php 
+										foreach ($p['subpregs'] as $sp){ 
+											$preg = $sp;
+										?>
+											<div class="divPregunta" style="margin-top: 10px;">
+												<div class="preguntaAnalysis manita" id="pregId_<?php echo $preg['id']; ?>">
+													<?php echo $preg['pregunta']; ?>
+													<i class="glyphicon glyphicon-chevron-right chevron"></i>
+												</div>
+												<div class="datoPreg" style="display: none;"></div>
+											</div>
+										<?php } ?>
+									</div>
+								</div>
+							<?php } ?>
+						<?php } ?>
+					</div>
+				</div>
+			<?php } ?>
+		</div>
+	</div>
+	
+
+<?php } ?>
+
+
+

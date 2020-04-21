@@ -22,7 +22,7 @@
 		});
 		$('#chChk').click(function(event) {
 			// console.log('chPwd');
-			popUp('analysis/inicio/chPwd.php',{},function(){},{});
+			popUp('analysis/inicio/chChk.php',{},function(){},{});
 		});
 
 	});

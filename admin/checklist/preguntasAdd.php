@@ -171,7 +171,7 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td>Justificar</td>
+				<td><?php echo TR('justify'); ?></td>
 				<td><input type="checkbox" name="justif" id="justif" <?php echo $datP['justif'] == 1?'checked':''; ?> ></td>
 				<td></td>
 			</tr>
