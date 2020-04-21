@@ -32,6 +32,34 @@ $targetsChecklist = $db->query("SELECT c.nombre, c.id as cId, tc.id as tcId, tc.
 			var tcId = this.id.split('_')[1];
 			popUp('admin/administration/targets/chFreq.php',{eleId:tcId});
 		});
+
+		$('.dwlSurv').click(function(event) {
+			var checklistId = $(this).closest('tr').attr('id').split('_')[1];
+			var targetsId = <?php echo $_POST['targetId']; ?>;
+
+			$('<form>')
+			.attr({
+				id: 'descPrueba',
+				action: rz+'lib/php/dwlCheckList.php',
+				target:'_blank',
+				method:'post'
+			})
+			.html(
+				'<input type="text" name="chkId" value="'+checklistId+'"\>'+
+				'<input type="text" name="targetsId" value="'+targetsId+'"\>'
+			)
+			.appendTo(document.body)
+			.submit()
+			.remove();
+		});
+
+		$('.uplSurv').click(function(event) {
+			var checklistId = $(this).closest('tr').attr('id').split('_')[1];
+			var targetsId = <?php echo $_POST['targetId']; ?>;
+			popUp('admin/administration/targets/uploadChecklist.php',{checklistId:checklistId,targetsId:targetsId});
+
+		});
+
 	});
 </script>
 
@@ -40,6 +68,9 @@ $targetsChecklist = $db->query("SELECT c.nombre, c.id as cId, tc.id as tcId, tc.
 		<tr>
 			<th><?php echo TR('survey'); ?></th>
 			<th><?php echo TR('frequency'); ?></th>
+			<th></th>
+			<th></th>
+			<th></th>
 			<th></th>
 		</tr>
 	</thead>
@@ -59,6 +90,12 @@ $targetsChecklist = $db->query("SELECT c.nombre, c.id as cId, tc.id as tcId, tc.
 				<td><?php echo TR($tc['code']); ?></td>
 				<td>
 					<i class="glyphicon glyphicon-pencil manita edtSurv" id="edtTC_<?php echo $tc['tcId']; ?>"></i>
+				</td>
+				<td>
+					<i class="glyphicon glyphicon-download-alt manita dwlSurv" id="dwlTC_<?php echo $tc['tcId']; ?>"></i>
+				</td>
+				<td>
+					<i class="glyphicon glyphicon-upload manita uplSurv" id="uplTC_<?php echo $tc['tcId']; ?>"></i>
 				</td>
 				<td>
 					<?php if ($cuenta == 0){ ?>

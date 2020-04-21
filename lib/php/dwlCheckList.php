@@ -3,22 +3,33 @@
 include_once '../j/j.func.php';
 // print2($_POST);
 $chkId = $_POST['chkId'];
-$datChk = $db->query("SELECT CONCAT(c.nombre,' (',r.fechaIni,' al ',r.fechaFin,') ',m.nombre,' (',c.tipo,')'), m.id as mId, m.clientesId as cId 
+$datChk = $db->query("SELECT c.nombre
 	FROM Checklist c 
-	LEFT JOIN Repeticiones r ON c.repeticionesId = r.id
-	LEFT JOIN Marcas m ON c.marcasId = m.id
 	WHERE c.id = $chkId")->fetch(PDO::FETCH_NUM);
-// print2($datChk);
+// print2($_POST);
+
+$datTarget = $db->query("SELECT * FROM Targets WHERE id = $_POST[targetsId]")->fetchAll(PDO::FETCH_ASSOC)[0];
 
 header('Content-Type: text/html; charset=utf-8'); 
 header("Content-type: application/octet-stream");
-header("Content-Disposition: attachment; filename='$datChk[0].csv'");
+header("Content-Disposition: attachment; filename=$datTarget[name] - $datChk[0].csv");
+$dims = $db->query("SELECT * FROM Dimensiones 
+	WHERE type = 'structure' AND elemId = $_POST[targetsId] 
+	ORDER BY nivel
+")->fetchAll(PDO::FETCH_ASSOC);
 
+// print2($dims);
 
 
 $bloques = $db->query("SELECT * FROM Bloques 
 	WHERE checklistId = $chkId AND (elim != 1 OR elim IS NULL) ORDER BY orden")->fetchAll(PDO::FETCH_ASSOC);
-$csv = '"POS","fecha","hora entrada","hora salida", "nombre","resumen",';
+$csv = '';
+foreach ($dims as $d) {
+	$csv .= '"'.$d['nombre'].'", ';
+}
+$csv.= '"***EOS***",';
+$csv.= '"'.TR("date").'",';
+// $csv = '"POS","fecha","hora entrada","hora salida", "nombre","resumen",';
 foreach ($bloques as $b) {
 	$csv .= '"BLOQUE",';
 	$csv .= '"'.$b['nombre'].'",';
@@ -53,6 +64,10 @@ foreach ($bloques as $b) {
 									$csv .= '"justificacion",';
 								}
 								break;
+							case 'op':
+								$csv .= '"'.trim(str_replace('"', '', $sp['pregunta'])).'","lat","lng",';
+
+								break;
 							
 							default:
 								$csv .= '"'.trim(str_replace('"', '', $sp['pregunta'])).'",';
@@ -63,6 +78,9 @@ foreach ($bloques as $b) {
 					break;
 				case 'mult':
 					$csv .= '"'.trim(str_replace('"', '', $p['pregunta'])).'","justificacion",';
+					break;
+				case 'op':
+					$csv .= '"'.trim(str_replace('"', '', $p['pregunta'])).'","lat","lng",';
 					break;
 				case 'num':
 					$csv .= '"'.trim(str_replace('"', '', $p['pregunta'])).'",';
@@ -87,12 +105,8 @@ $csv = str_replace('</u>', ' ', $csv);
 $csv = str_replace('&nbsp;', ' ', $csv);
 $csv = rtrim($csv,',');
 $csv .= "\n";
-
+// 
 if(true){
-	$tiendas = $db->query("SELECT t.POS FROM Tiendas t 
-		LEFT JOIN Marcas m ON t.marcasId = m.id
-		LEFT JOIN Clientes c ON m.clientesId = c.id
-		WHERE c.id = $datChk[2] AND m.id = $datChk[1]")->fetchAll(PDO::FETCH_NUM);
 
 	$est = array();
 	foreach ($bloques as $b) {
@@ -154,9 +168,62 @@ if(true){
 		}
 	}
 	// echo $csv;
+
+	$LJ = '';
+	$nivelMax = 0;
+	$fields = "";
+	$numDim = count($dims);
+	for ($i=$nivelMax; $i <$numDim ; $i++) { 
+		if($i == $nivelMax){
+			$LJ .= " LEFT JOIN DimensionesElem de$i ON te.dimensionesElemId = de$i.id";
+			$fields .= ", de$i.nombre as de$i"."_"."nombre";
+		}else{
+			$LJ .= " LEFT JOIN DimensionesElem de$i ON de$i.id = de".($i-1).".padre";
+			$fields .= ", de$i.nombre as de$i"."_"."nombre";
+		}
+		if($i == $numDim - 2){
+		}
+		if($i == $numDim - 1){
+			
+			$wDE = " de$i.padre = 0";
+		}
+	}
+
+	$sql = "
+		SELECT 1 as num $fields
+		FROM TargetsElems te
+		$LJ
+		WHERE te.targetsId = $_POST[targetsId] AND $wDE
+		
+	";
+	// echo $sql."<br/>";
+	if($numDim > 0){
+		$allDims = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+	}else{
+		$allDims = [];
+	}
+	// print2($allDims);
+	// foreach ($allDims as $d) {
+	// 	for($i = $numDim-1;$i>=0;$i--){
+	// 		$nom = $d['de'.$i.'_nombre'];
+	// 		echo "$nom<br/>";
+	// 	}
+	// }
+	
+
+
 	// exit;
-	foreach ($tiendas as $t) {
-		$lin = '"'.$t[0].'","2000-12-31","13:02","14:44", "SHOPPER DE PRUEBA","",';
+
+
+	foreach ($allDims as $d) {
+		$lin = '';
+		for($i = $numDim-1;$i>=0;$i--){
+			$nom = $d['de'.$i.'_nombre'];
+			$lin .= '"'.$nom.'",';
+		}
+		// $lin = '"'.$t[0].'","2000-12-31","13:02","14:44", "SHOPPER DE PRUEBA","",';
+		$lin .= '"",';
+		$lin .= '"AAAA-MM-DD",';
 		foreach ($est as $b => $areas) {
 			$lin .= '"",';
 			$lin .= '"",';
@@ -206,9 +273,17 @@ if(true){
 									case 'ab':
 										$lin .= '"'.$spId.'",';
 										break;
+									case 'spatial':
+									case 'cm':
+										$lin .= '"spatial",';
+										break;
 
+									case 'op':
+										// print2($p);
+										$lin .= '"spatial","lat","lng",';
+										break;
 									default:
-										# code...
+										$lin .= '"",';
 										break;
 								}
 							}
@@ -217,15 +292,23 @@ if(true){
 							$a = rand(0,10);
 							$lin .= '"'.$a.'",';
 							if($p['justif'] == 1){
-								$lin .= '"'.$pId.'",';
+								$lin .= '"TEXT-'.$pId.'",';
 							}
 							break;
 						case 'ab':
 							// print2($p);
-							$lin .= '"'.$pId.'",';
+							$lin .= '"TEXT-'.$pId.'",';
+							break;
+						case 'spatial':
+						case 'cm':
+							$lin .= '"spatial",';
+							break;
+						case 'op':
+							// print2($p);
+							$lin .= '"spatial","lat","lng",';
 							break;
 						default:
-							# code...
+							$lin .= '"",';
 							break;
 					}
 

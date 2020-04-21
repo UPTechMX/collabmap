@@ -25,7 +25,7 @@
 
 		});
 
-		$('#chPrjSel').change(function(event) {
+		$('#chTrgtSel').change(function(event) {
 			var trgtId = $(this).val();
 			var r = [];
 			if(trgtId != ''){

@@ -357,6 +357,8 @@ function barChartSMnum(elem, series, cats,name){
 }
 
 function barChartSMmult(elem, series, cats, name, catsY){
+	var xOffset = 28/3*(catsY.length+1);
+	console.log('xOffset',xOffset, catsY.length);
 	elem.highcharts({
 
 		chart: {
