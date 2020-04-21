@@ -16,16 +16,16 @@
 <h3></h3>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link " id="home-tab" data-toggle="tab" 
+    <a class="nav-link active" id="home-tab" data-toggle="tab" 
     	href="#home" role="tab" aria-controls="home" aria-selected="true"><?php echo TR('surveyAnalysis'); ?></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" id="profile-tab" data-toggle="tab" 
+    <a class="nav-link " id="profile-tab" data-toggle="tab" 
     	href="#profile" role="tab" aria-controls="profile" aria-selected="false"><?php echo TR('socialMon'); ?></a>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
   	<div style="margin-top: 10px;">			  		
 	  	<h3>
 	  		<?php echo "[$chkInf[pName]] $chkInf[tName] - $chkInf[cName] (".TR($chkInf['code']).")" ?><br/>
@@ -34,7 +34,7 @@
 	  	<?php include raiz().'analysis/checklist/index.php'; ?>
   	</div>
   </div>
-  <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
   	<div style="margin-top: 10px;">			  		
 	  	<h3>
 	  		<?php echo "[$chkInf[pName]] $chkInf[tName] - $chkInf[cName] (".TR($chkInf['code']).") " ?><br/>

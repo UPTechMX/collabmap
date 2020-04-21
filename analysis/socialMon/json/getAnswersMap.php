@@ -41,39 +41,39 @@
 	}
 
 	$frequency = $targetchecklsit['fCode'];
-	$today = date('Y-m-d H:m:s');
+	$today = date('Y-m-d 23:59:59');
 	// print2($today);
 
 	switch ($frequency) {
 		case "daily":
-			$prevDate = date('Y-m-d H:m:s', strtotime($today . ' -1 day'));
+			$prevDate = date('Y-m-d 00:00:00', strtotime($today . ' -1 day'));
 			break;
 		case "weekly":
-			$prevDate = date('Y-m-d H:m:s', strtotime($today . ' -1 week'));
+			$prevDate = date('Y-m-d 00:00:00', strtotime($today . ' -1 week'));
 			break;
 		case "2weeks":
-			$prevDate = date('Y-m-d H:m:s', strtotime($today . ' -2 week'));
+			$prevDate = date('Y-m-d 00:00:00', strtotime($today . ' -2 week'));
 			break;
 		case "3weeks":
-			$prevDate = date('Y-m-d H:m:s', strtotime($today . ' -3 week'));
+			$prevDate = date('Y-m-d 00:00:00', strtotime($today . ' -3 week'));
 			break;
 		case "monthly":
-			$prevDate = date('Y-m-d H:m:s', strtotime($today . ' -1 month'));
+			$prevDate = date('Y-m-d 00:00:00', strtotime($today . ' -1 month'));
 			break;
 		case "2months":
-			$prevDate = date('Y-m-d H:m:s', strtotime($today . ' -2 month'));
+			$prevDate = date('Y-m-d 00:00:00', strtotime($today . ' -2 month'));
 			break;
 		case "3months":
-			$prevDate = date('Y-m-d H:m:s', strtotime($today . ' -3 month'));
+			$prevDate = date('Y-m-d 00:00:00', strtotime($today . ' -3 month'));
 			break;
 		case "4months":
-			$prevDate = date('Y-m-d H:m:s', strtotime($today . ' -4 month'));
+			$prevDate = date('Y-m-d 00:00:00', strtotime($today . ' -4 month'));
 			break;
 		case "6months":
-			$prevDate = date('Y-m-d H:m:s', strtotime($today . ' -6 month'));
+			$prevDate = date('Y-m-d 00:00:00', strtotime($today . ' -6 month'));
 			break;
 		case "yearly":
-			$prevDate = date('Y-m-d H:m:s', strtotime($today . ' -1 year'));
+			$prevDate = date('Y-m-d 00:00:00', strtotime($today . ' -1 year'));
 			break;
 		default:
 			# code...

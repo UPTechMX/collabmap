@@ -36,7 +36,9 @@ foreach ($est['bloques'] as $b) {
 		foreach ($a['preguntas'] as $p) {
 			if($p['tipo'] == 'sub'){
 				foreach ($p['subpregs'] as $sp) {
-					if($sp['tipo'] == 'op'){
+
+					// if($sp['tipo'] == 'op' || $sp['tipo'] == 'spatial' || $sp['tipo'] == 'cm'){
+					if($sp['tipo'] == 'op' ){
 						$pregsSp[] = $sp;
 					}		
 					if($sp['tipo'] == 'num' || $sp['tipo'] == 'mult'){
@@ -44,6 +46,8 @@ foreach ($est['bloques'] as $b) {
 					}		
 				}
 			}
+
+			// if($p['tipo'] == 'op' || $p['tipo'] == 'spatial' || $p['tipo'] == 'cm'){
 			if($p['tipo'] == 'op'){
 				$pregsSp[] = $p;
 			}
@@ -285,7 +289,7 @@ include_once 'spatialSMJS.php';
 							var preg = pregsNumMult[index];
 							var catsY = [];
 							var catsYIndex = {};
-							catsY.push(0);
+							catsY.push('');
 							console.log(preg.respuestas);
 							var k = 1;
 							for(var i in preg.respuestas){
@@ -321,7 +325,7 @@ include_once 'spatialSMJS.php';
 									if(type == 'num'){
 										tmpS.y = parseInt(resp.rvDatValue);
 									}else if(type == 'mult'){
-										console.log('catsYIndex[resp.respName]',resp.respName,catsYIndex[resp.respName]);
+										// console.log('catsYIndex[resp.respName]',resp.respName,catsYIndex[resp.respName]);
 										tmpS.y = catsYIndex[resp.respName];
 										tmpS.name = resp.respName;
 									}
@@ -343,15 +347,16 @@ include_once 'spatialSMJS.php';
 						// console.log('series',series);
 						// console.log('cats',cats);
 						// console.log('catsIndex',catsIndex);
-						console.log(r.answers);
+						// console.log(r.answers);
 					}catch(e){
-						// console.log('Error de parso');
-						// console.log(e);
-						// console.log(rj);
+						console.log('Error de parso');
+						console.log(e);
+						console.log(rj);
 					}
 
-
+					// console.log('asasas: ',type);
 					if(type == 'num'){
+						// console.log(seriesFinal, cats);
 						barChartSMnum($('#chartSM'), seriesFinal, cats,'');
 					}else if(type == 'mult'){
 						barChartSMmult($('#chartSM'), seriesFinal, cats,'',catsY);

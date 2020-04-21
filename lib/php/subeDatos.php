@@ -9,6 +9,8 @@
 
  	// $_POST['archChk'] = 'test.csv';
  	$chkId = $_POST['chkId'];
+
+ 	
 	$bloques = $db->query("SELECT * FROM Bloques 
 		WHERE checklistId = $chkId AND (elim != 1 OR elim IS NULL) ORDER BY orden")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -17,11 +19,20 @@
 	$mId = $chkDat[0]['marcasId'];
 	$rId = $chkDat[0]['repeticionesId'];
 	$cTipo = $chkDat[0]['tipo'];
-	$sql = "SELECT COUNT(*) FROM Checklist WHERE marcasId = $mId AND repeticionesId = $rId";
-	// echo "$sql\n";
+	$sql = "SELECT COUNT(*) FROM Checklist";
 	$cuantosChk = $db->query($sql)->fetchAll(PDO::FETCH_NUM);
 
-	$col = 6;
+	$dimensiones = $db->query("SELECT * FROM Dimensiones WHERE type = 'structure' AND elemId = $_POST[targetsId]")->fetchAll(PDO::FETCH_ASSOC);
+	// print2($dimensiones);
+	$targetsId = $_POST['targetsId'];
+	$col = 2;
+
+	foreach ($dimensiones as $d) {
+		$col++;
+	}
+	// echo "$sql\n";
+
+	// $col = 6;
 	$est = array();
 	foreach ($bloques as $b) {
 		$col = $col + 2;
@@ -66,6 +77,22 @@
 									}
 									$col++;
 									break;
+								case 'spatial':
+								case 'cm':
+									$est[$col]['pId'] = $p['id'];
+									$est[$col]['tipo'] = $p['tsiglas'];
+									// echo "$col <br/>";
+									$col++;
+									break;
+								case 'op':
+									$est[$col]['pId'] = $sp['id'];
+									$est[$col]['tipo'] = $sp['tsiglas'];
+									$est[$col]['lat'] = $col+1;
+									$est[$col]['lng'] = $col+2;
+									// echo "$col <br/>";
+									$col = $col+3;
+									break;
+
 
 								default:
 									$col++;
@@ -87,6 +114,21 @@
 						$est[$col]['tipo'] = $p['tsiglas'];
 						// echo "$col <br/>";
 						$col++;
+						break;
+					case 'spatial':
+					case 'cm':
+						$est[$col]['pId'] = $p['id'];
+						$est[$col]['tipo'] = $p['tsiglas'];
+						// echo "$col <br/>";
+						$col++;
+						break;
+					case 'op':
+						$est[$col]['pId'] = $p['id'];
+						$est[$col]['tipo'] = $p['tsiglas'];
+						$est[$col]['lat'] = $col+1;
+						$est[$col]['lng'] = $col+2;
+						// echo "$col <br/>";
+						$col = $col+3;
 						break;
 					case 'mult':
 						// echo "$col <br/>";
@@ -114,6 +156,11 @@
 		}
 	}
 
+
+	$insDims = $db->prepare("INSERT INTO Dimensiones SET elemId = ?, nombre = ?,nivel = ?, type='structure'");
+	$buscElemDim = $db->prepare("SELECT id FROM DimensionesElem WHERE nombre = ? AND dimensionesId = ?");
+	$insDimElem = $db->prepare("INSERT INTO DimensionesElem SET  nombre = ?, dimensionesId = ?, padre = ?");
+
 	$chkInfo = $db->query("SELECT * FROM Checklist WHERE id = $chkId")->fetch(PDO::FETCH_ASSOC);
 	// print2($est);
 	$db->beginTransaction();
@@ -121,218 +168,230 @@
 		$ok = true;
 		$row = 0;
 		// echo raiz()."lib/archivos/$_POST[archChk] \n";
-		if (($handle = fopen(raiz()."lib/archivos/$_POST[archChk]", "r")) !== FALSE) {
+		$numDims = 0;
+		if (($handle = fopen(raiz()."externalFiles/$_POST[archChk]", "r")) !== FALSE) {
 			while (($col = fgetcsv($handle, 0, ",")) !== FALSE) {
 				if($row == 0){
-					$row++;
-					continue;
-				}
+					
+					for($i = 0;$i<count($col);$i++){
+						if($col[$i] == '***EOS***'){
+							$numDims = $i;
+							break;
+						}
+					}
 
+					$dims = array();
+					$j = 0;
+					for($i = 0;$i<$numDims;$i++){
+						$dims[$j++] = $col[$i];
+					}
 
-				// Crear rotación
-				// usa repeticionesId, tiendasId, fecha, fechaLimite, estatus
-				// echo "SELECT id FROM Tiendas WHERE POS = $col[0] <br/>";
-				if($col[0] == ''){
-					continue;
-				}
-				// echo $col[0]."\n";
-				$sql ="SELECT id, tipo FROM Tiendas WHERE POS = '$col[0]' AND marcasId = $mId";
+					$buscaDims = $db->query("SELECT id FROM Dimensiones 
+						WHERE elemId = $targetsId AND type = 'structure'
+						ORDER BY nivel") -> fetchAll(PDO::FETCH_NUM);
 
-				$tienda = $db->query($sql)->fetchAll(PDO::FETCH_NUM);
-				$tId = $tienda[0][0];
-				$tTipo = $tienda[0][1];
-				if(!isset($tId)){
-					$ok = false;
-					$err = "El POS $col[0] no fue encontrado.";
-					break;
-				}
-
-				// echo "cTipo: $cTipo --- tTipo: $tTipo\n";
-				if($cuantosChk[0][0] > 1 && $tienda[0][1] != $chkDat[0]['tipo']){
-					$ok = false;
-					$err = "El tipo del POS $col[0] no coincide con el tipo del checklist.";
-					break;
-				}
-
-				// echo "bbb\n";
-				// echo "$col[0] -=-=-=-=$tId \n";
-
-				$sql = "SELECT r.id 
-					FROM Rotaciones r
-					LEFT JOIN Visitas v ON v.rotacionesId = r.id
-					WHERE r.tiendasId = $tId AND r.repeticionesId = $chkInfo[repeticionesId] 
-					AND r.fecha = '$col[1]' AND v.hora = '$col[2]'";
-
-				// echo $sql."\n";
-				$rotInf = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC)[0];
-
-				// print2($rotInf);
-
-
-				if(!empty($rotInf['id'])){
-					$db->query("DELETE FROM Rotaciones WHERE id = '$rotInf[id]'");
+					if(count($buscaDims) > 0){
+						if(count($buscaDims) == $numDims){
+							// print2($buscaDims);
+							foreach ($buscaDims as $k => $d) {
+								$dimsTarget[$k] = $d[0];
+							}
+						}else{
+							$ok = false;
+							$cuenta = count($buscaDims);
+							$err = "El cliente ya tiene dimensiones en el sistema ".
+								"y no coinciden con las del archivo. En el sistema existen $cuenta dimensiones";
+							exit('{"ok":0:"err":"'.$err.'"}');
+						}
+					}else{
+						foreach ($dims as $k => $dim) {
+							$insDims -> execute(array($targetsId,$dim,$k+1));
+							$dimsTarget[$k] = $db->lastInsertId();
+						}
+					}
+					
 				}else{
-					// $db->query("DELETE FROM Rotaciones 
-					// 	WHERE tiendasId = $tId AND repeticionesId = $chkInfo[repeticionesId] AND fecha = '$col[1]'");
-				}
-				if($col[3] == 'eliminado'){
-					continue;
-				}
 
-				$datRot = array();
-				$datRot['repeticionesId'] = $chkInfo['repeticionesId'];
-				$datRot['tiendasId'] = $tId;
-				$datRot['fecha'] = $col[1];
-				$datRot['fechaLimite'] = $col[1];
-				$datRot['estatus'] = 100;
+					for($i = 0;$i<$numDims;$i++){
+						if(empty($col[$i])){
+							continue 2;
+						}
+						if( !isset($dimsElems[$i][$col[$i]]) ){
+							$buscElemDim -> execute([$col[$i],$dimsTarget[$i]]);
+							$elemDim = $buscElemDim -> fetchAll(PDO::FETCH_NUM);
+							if(!empty($elemDim)){
+								$dimsElems[$i][$col[$i]] = $elemDim[0][0];
+							}else{
+								// $insDimElem = $db->prepare("INSERT INTO DimensionesElem SET  nombre = ?, dimensionesId = ?, padre = ?");
+								$padre = $i == 0?0:$dimsElems[$i-1][$col[$i-1]];
+								$insDimElem -> execute([ $col[$i],$dimsTarget[$i], $padre]);
+								$dimsElems[$i][$col[$i]] = $db->lastInsertId();
+							}
+						}
 
-				$pr['tabla'] = 'Rotaciones';
-				$pr['datos'] = $datRot;
+					}
 
+					// print2($dimsElems);
 
-				$rrj = inserta($pr);
-				$rr = json_decode($rrj,true);
+					$pte['tabla'] = 'TargetsElems';
+					$pte['datos']['targetsId'] = $targetsId;
+					$pte['datos']['dimensionesElemId'] = $dimsElems[$numDims-1][$col[$numDims-1]];
 
-				if($rr['ok'] != 1){
-					$ok = false;
-					$err = $rr['e'];
-					break;
-				}
-				
-				$rotacionesId = $rr['nId'];
+					$rtj = atj(inserta($pte));
+					$rt = json_decode($rtj,true);
 
-				// crear shopper
-				// usa nombre
-				$buscaShopper = $db->query("SELECT id FROM Shoppers WHERE nombre = '$col[4]'")->fetchAll(PDO::FETCH_NUM)[0];
-				// print2($buscaShopper);
-				$buscaShopper[0] = is_array($buscaShopper[0])?$buscaShopper[0]:array();
-				if(count($buscaShopper[0]) > 0){
-					$shoppersId = $buscaShopper[0];
-				}else{
-					$datShop = array();
-					$datShop['nombre'] = $col[4];
-
-					$ps['tabla'] = 'Shoppers';
-					$ps['datos'] = $datShop;
-
-					$rsj = inserta($ps);
-					$rs = json_decode($rsj,true);
-
-					if($rs['ok'] != 1){
+					if($rt['ok'] != 1){
+						// echo $rtj;
+						
 						$ok = false;
-						$err = $rr['e'];
+						$err = $rt['e'];
 						break;
 					}
 
-					$shoppersId = $rs['nId'];
-				}
 
-				// crear visita 
-				// usa rotacionesId, shopperId, fecha, aceptada, hora
-
-				$datVis = array();
-				$datVis['rotacionesId'] = $rotacionesId;
-				$datVis['shoppersId'] = $shoppersId;
-				$datVis['fecha'] = $col[1];
-				$datVis['aceptada'] = 100;
-				$datVis['hora'] = $col[2];
-				$datVis['horaSalida'] = $col[3];
-				$datVis['resumen'] = $col[5];
-
-				$pv['tabla'] = 'Visitas';
-				$pv['datos'] = $datVis;
-
-				$rvj = inserta($pv);
-				$rv = json_decode($rvj,true);
-
-				if($rv['ok'] != 1){
-					$ok = false;
-					$err = $rv['e'];
-					break;
-				}
+					// print2($pte);
 
 
-				$visitasId = $rv['nId'];
-
-				if($ok){
-					$pr['tabla'] = 'Rotaciones';
-					$pr['datos']['id'] = $rotacionesId;
-					$pr['datos']['visitaAct'] = $visitasId;
+					// Crear rotación
+					// usa repeticionesId, tiendasId, fecha, fechaLimite, estatus
+					// echo "SELECT id FROM Tiendas WHERE POS = $col[0] <br/>";
+					// echo $col[0]."\n";
 					
-					$rrj = upd($pr);
 
-					$rr = json_decode($rrj);
+					// crear visita 
+					// usa rotacionesId, shopperId, fecha, aceptada, hora
+					// echo "fecha: ".$col[$numDims+1]."\n";
 
-					$ok = $rr->ok;
-					$err = $rr->err;
-				}
+					// echo "fValid: ".."\n";;
 
-				// echo "$visitasId<br/>";
+					$datVis = array();
+					$datVis['finishDate'] = validateDate($col[$numDims+1])?$col[$numDims+1]." 00:00:00":date('Y-m-d H:m:s');;
+					$datVis['finalizada'] = 1;
+					$datVis['checklistId'] = $chkId;
+					$datVis['type'] = 'trgt';
+					$datVis['elemId'] = $rt['nId'];
 
-				$pp['tabla'] = 'RespuestasVisita';
-				foreach ($est as $preg => $p) {
-					// echo "$preg <br/>";
-					$datR = array();
-					$datR['preguntasId'] = $p['pId'];
-					$datR['visitasId'] = $visitasId;
-					switch ($p['tipo']) {
-						case 'mult':
-							if(!isset($p['respuestas'][$col[$preg]]) && $col[$preg] != ''){
-								$ok = false;
-								$pregunta = $est[$preg]['pregunta'];
-								$respuesta = $col[$preg];
-								$err = " Respuesta no encontrada fila: $row, POS: $col[0], ".
-									"para la pregunta $pregunta. <br/>Se intentó ingresar '$respuesta' -- columna : $preg";
-								break 3;
+					$pv['tabla'] = 'Visitas';
+					$pv['timestamp'] = 'timestamp';
+					$pv['datos'] = $datVis;
 
-							}elseif ($col[$preg] == '') {
-								$ok = false;
-								$pregunta = $est[$preg]['pregunta'];
-								$respuesta = $col[$preg];
-								$err = " Respuesta vacía en la fila: $row, POS: $col[0], ".
-									"para la pregunta $pregunta. <br/>Se intentó ingresar '' -- columna : $preg";
-								break 3;
-							}
-							$datR['respuesta'] = $p['respuestas'][$col[$preg]];
-							$datR['justificacion'] = $col[$p['justif']];
-							// print2($datR);
-							break;
-						case 'num':
-							$datR['respuesta'] = is_numeric($col[$preg])?$col[$preg]:'-';
-							if(isset($p['justif'])){
-								$datR['justificacion'] = $col[$p['justif']];
-							}
-							break;
-						case 'ab':
-							$datR['respuesta'] = $col[$preg];
-						default:
-							# code...
-							break;
-					}
-					$pp['datos'] = $datR;
-					$rpj = inserta($pp);
-					$rp = json_decode($rpj,true);
+					// print2($pv);
+					// continue;
 
-					if($rp['ok'] != 1){
 
+					$rvj = inserta($pv);
+					$rv = json_decode($rvj,true);
+
+					if($rv['ok'] != 1){
 						$ok = false;
-						$err = $rp['e'];
-						break 2;
+						$err = $rv['e'];
+						break;
+					}
+
+
+					$visitasId = $rv['nId'];
+
+					// echo "$visitasId<br/>";
+
+					$pp['tabla'] = 'RespuestasVisita';
+					foreach ($est as $preg => $p) {
+						// echo "$preg <br/>";
+						// echo "\n\n\n";
+						// print2($p);
+						$datR = array();
+						$datR['preguntasId'] = $p['pId'];
+						$datR['visitasId'] = $visitasId;
+						switch ($p['tipo']) {
+							case 'mult':
+								if(!isset($p['respuestas'][$col[$preg]]) && $col[$preg] != ''){
+									$ok = false;
+									$pregunta = $est[$preg]['pregunta'];
+									$respuesta = $col[$preg];
+									$err = " Respuesta no encontrada fila: $row, POS: $col[0], ".
+										"para la pregunta $pregunta. <br/>Se intentó ingresar '$respuesta' -- columna : $preg";
+									break 3;
+
+								}elseif ($col[$preg] == '') {
+									$ok = false;
+									$pregunta = $est[$preg]['pregunta'];
+									$respuesta = $col[$preg];
+									$err = " Respuesta vacía en la fila: $row, POS: $col[0], ".
+										"para la pregunta $pregunta. <br/>Se intentó ingresar '' -- columna : $preg";
+									break 3;
+								}
+								$datR['respuesta'] = $p['respuestas'][$col[$preg]];
+								$datR['justificacion'] = $col[$p['justif']];
+								// print2($datR);
+								break;
+							case 'num':
+								$datR['respuesta'] = is_numeric($col[$preg])?$col[$preg]:'-';
+								// echo "respNum: ".$datR['respuesta']."\n";
+								if(isset($p['justif'])){
+									$datR['justificacion'] = $col[$p['justif']];
+								}
+								break;
+							case 'spatial':
+							case 'cm':
+							case 'op':
+							case 'ab':
+								$datR['respuesta'] = $col[$preg];
+								// echo "respOTRA: ".$datR['respuesta']."\n";
+								break;
+
+							default:
+								# code...
+								break;
+						}
+						$pp['datos'] = $datR;
+						$rpj = inserta($pp);
+						$rp = json_decode($rpj,true);
+
+						if($rp['ok'] != 1){
+
+							$ok = false;
+							$err = $rp['e'];
+							break 2;
+						}else{
+							if($p['tipo'] == 'op'){
+								$rvId = $rp['nId'];
+								if( is_numeric($col[$preg+1]) && is_numeric($col[$preg+2]) ){
+									// echo "ENTRA \n";
+									$ppr['tabla'] = 'Problems';
+									$ppr['datos']['type'] = 'marker';
+									$ppr['datos']['respuestasVisitaId'] = $rvId;
+
+									$prj = atj(inserta($ppr));
+									$pr = json_decode($prj,true);
+									if($pr['ok'] == 1){
+										$ppo['tabla'] = 'Points';
+										$ppo['datos']['lat'] = $col[$preg+1];
+										$ppo['datos']['lng'] = $col[$preg+2];
+										$ppo['datos']['problemsId'] = $pr['nId'];
+										inserta($ppo);
+										// print2($ppo);
+									}
+
+								}
+							}
+						}
+
+					}
+					$rc = insertaCacheVisita($visitasId);
+
+					if($rc['ok'] != 1){
+						$ok = false;
+						$err = $rc['e'];
+						break;
 					}
 
 				}
-				$rc = insertaCacheVisita($visitasId);
 
-				if($rc['ok'] != 1){
-					$ok = false;
-					$err = $rc['e'];
-					break;
-				}
 				$row++;
 			}
 		}
 		if($ok){
 			$db->commit();
+			// $db->rollBack();
 			echo '{"ok":"1"}';
 		}else{
 			$err = str_replace('"', '\\"', $err);

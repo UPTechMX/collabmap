@@ -19,8 +19,10 @@ if(!is_numeric($_POST['pId']) && !is_numeric($_POST['trgtChk'])){
 			var respuesta = parseFloat(answers[i].respuesta);
 			var cuenta = parseInt(answers[i].cuenta);
 			// console.log('respuesta: '+respuesta, 'cuenta: '+cuenta);
-			for(var j = 0;j<cuenta;j++){
-				datos.push(respuesta);
+			if(!isNaN(respuesta)){
+				for(var j = 0;j<cuenta;j++){
+					datos.push(respuesta);
+				}
 			}
 		}
 		// console.log(datos);
