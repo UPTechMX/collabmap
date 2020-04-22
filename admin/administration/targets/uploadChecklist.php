@@ -12,7 +12,7 @@
 
 		var archChk = '';
 		$('#env').click(function(event) {
-			// $('#popUp').modal('toggle');
+			$('#popUp').modal('toggle');
 
 			if(archChk != ''){
 				loading();
@@ -44,7 +44,7 @@
 
 			}, 100);
 
-			removeLoading();
+			// removeLoading();
 		});
 
 		subArch($('#archivoChk'),3,'<?php echo $_POST['checklistId'];?>_CHK_','csv,jpg,png,svg',false,function(a){
