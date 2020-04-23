@@ -190,7 +190,6 @@
 					case 'spatial':
 					case 'op':
 						$spatial = $p;
-
 			?>			
 						<div class="col-sm-12 col-md-5 col-lg-5 nombr" id="nombre">
 							
@@ -214,7 +213,19 @@
 								<i class="glyphicon glyphicon-chevron-right manita verMapa" id="verMapa_<?php echo $spatial['id'];?>"></i>
 							</div>
 							<div class="mapDiv" id="mapDiv_<?php echo $spatial['id'];?>" style="display:none;">
-								<div id="map_<?php echo $spatial['id'];?>" style=" height: 500px;margin-top: 10px;" class="map"></div>
+								<table class="table">
+									<tr>
+										<td>
+											<?php echo TR('uplStudyArea'); ?>
+										</td>
+										<td>
+											<div id="uplStudyArea_<?php echo $spatial['id']; ?>"></div>
+										</td>
+									</tr>
+								</table>
+								<div>
+									<div id="map_<?php echo $spatial['id'];?>" style=" height: 500px;margin-top: 10px;" class="map"></div>
+								</div>
 								<?php if ($spatial['tsiglas'] == 'spatial' || $spatial['tsiglas'] == 'op'){ break; }?>
 								<?php include 'catsJS.php'; ?>
 								<div style="margin-top: 10px;">

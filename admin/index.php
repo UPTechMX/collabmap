@@ -104,8 +104,8 @@ checaAcceso(49);
 
 
 
-	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-	<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+	<script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
+	<link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
 
 	<script type="text/javascript">
 	</script>

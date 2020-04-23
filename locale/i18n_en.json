@@ -212,6 +212,7 @@
   "op":"One point",
   "map": "Map",
   "maps": "Maps",
+  "uplStudyArea": "Upload study",
   "outside":"The point you are trying to enter is outside of the study area",
   "onlyOneGeometry":"This question allows only one geographical entry. <br/>Delete the old one and try again",
 

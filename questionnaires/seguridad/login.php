@@ -85,7 +85,7 @@
 			</div>
 			<div id="signupContent" style="display: none;" ><?php include_once raiz().'register/signupForm.php'; ?></div>
 		</div>
-		<div class="footer"><?php include $rootLoginQuest.'admin/layout/footer.php'; ?></div>
+		<div class="footer"><?php include $rootLoginQuest.'questionnaires/layout/footer.php'; ?></div>
 
 	</div>
 	<div class="modal fade" id="alertas" role="dialog" style="overflow-y: auto !important;" >

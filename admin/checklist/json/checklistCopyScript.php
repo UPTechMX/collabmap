@@ -118,6 +118,32 @@ try {
 										}
 									}
 								}
+								$studyareas = $db->query("SELECT * FROM Studyarea 
+									WHERE preguntasId = $p[id] 
+								")->fetchAll(PDO::FETCH_ASSOC);
+
+								foreach ($studyareas as $s) {
+									$pr['tabla'] = 'Studyarea';
+									$pr['datos'] = $s;
+									unset($pr['datos']['id']);
+									$pr['datos']['preguntasId'] = $p['nId'];
+									$rrj = inserta($pr);
+									$rr = json_decode($rrj,true);
+									if($rr['ok'] == 1){
+										$sa['nId'] = $rr['nId'];
+										$saPoints = $db->query("SELECT * FROM StudyareaPoints 
+											WHERE studyareaId = $s[id]")->fetchAll(PDO::FETCH_ASSOC);
+										// print2($saPoints);
+										foreach ($saPoints as $saP) {
+											$pc['tabla'] = 'StudyareaPoints';
+											$pc['datos']=$saP;
+											unset($pc['datos']['id']);
+											$pc['datos']['studyareaId'] = $sa['nId'];
+											inserta($pc);
+											// print2($c);
+										}
+									}
+								}
 								$subpregs = $db->query("SELECT p.* FROM Preguntas p
 									WHERE subareasId = $p[id] 
 									ORDER BY orden")->fetchAll(PDO::FETCH_ASSOC);
@@ -170,6 +196,32 @@ try {
 												}
 											}
 										}
+										$studyareas = $db->query("SELECT * FROM Studyarea 
+											WHERE preguntasId = $sp[id] 
+										")->fetchAll(PDO::FETCH_ASSOC);
+
+										foreach ($studyareas as $s) {
+											$pr['tabla'] = 'Studyarea';
+											$pr['datos'] = $s;
+											unset($pr['datos']['id']);
+											$pr['datos']['preguntasId'] = $sp['nId'];
+											$rrj = inserta($pr);
+											$rr = json_decode($rrj,true);
+											if($rr['ok'] == 1){
+												$sa['nId'] = $rr['nId'];
+												$saPoints = $db->query("SELECT * FROM StudyareaPoints 
+													WHERE studyareaId = $s[id]")->fetchAll(PDO::FETCH_ASSOC);
+												foreach ($saPoints as $saP) {
+													$pc['tabla'] = 'StudyareaPoints';
+													$pc['datos']=$saP;
+													unset($pc['datos']['id']);
+													$pc['datos']['studyareaId'] = $sa['nId'];
+													inserta($pc);
+													// print2($c);
+												}
+											}
+										}
+
 									}else{
 										$ok = false;
 									}
@@ -226,7 +278,8 @@ try {
 	// $db->rollBack();
 	echo '{"ok":1,"nId":'.$chklist['nId'].'}';
 } catch (PDOException $e) {
-	echo '{"ok":0}';
+	print2($e);
+	echo '{"ok":0,"err":"'.$e->getMessage().'"}';
 	$db->rollBack();
 }
 
