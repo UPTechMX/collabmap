@@ -129,7 +129,7 @@
 			var r = $.parseJSON(rj);
 			if(r.ok == 1){
 				drawnItems.clearLayers();
-				var allPoints = addSA(drawnItems,pregId);
+				var allPoints = addSA(drawnItems,'admin/checklist/json/json.php',9,pregId);
 
 				if(allPoints.length != 0){
 					var group = new L.featureGroup(allPoints);
