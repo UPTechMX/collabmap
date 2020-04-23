@@ -151,7 +151,7 @@
 			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
 			LEFT JOIN RespuestasVisita rvDat ON rvDat.visitasId = rvSpatial.visitasId
 			WHERE tc.id = $_POST[trgtChk] AND $wDE AND rvSpatial.preguntasId = $_POST[spatialQuestion] AND rvDat.preguntasId = $_POST[pId]
-				-- AND (rvDat.respuesta $_POST[inequality] $_POST[value]) 
+				AND (rvDat.respuesta $_POST[inequality] $_POST[value]) 
 				AND (v.finishDate > '$prevDate' && v.finishDate < '$today')
 				AND v.type ='trgt'
 			ORDER BY v.finishDate DESC
@@ -171,6 +171,7 @@
 			LEFT JOIN RespuestasVisita rvDat ON rvDat.visitasId = rvSpatial.visitasId
 			LEFT JOIN Respuestas r ON r.id = rvDat.respuesta
 			WHERE tc.id = $_POST[trgtChk] AND $wDE AND rvSpatial.preguntasId = $_POST[spatialQuestion] AND rvDat.preguntasId = $_POST[pId]
+				AND (rvDat.respuesta = $_POST[ans]) 
 				AND (v.finishDate > '$prevDate' && v.finishDate < '$today')
 				AND v.type ='trgt'
 			ORDER BY v.finishDate DESC

@@ -26,35 +26,15 @@
 
 
 		// Add Study Areas
-
-
-		var getSA = jsonF('analysis/checklist/json/json.php',{acc:9,pId:pregId});
-		// console.log(getSA);
-		var SAs = $.parseJSON(getSA);
-		
-		var allPoints = [];
-		for(var saId in SAs){
-			var points = [];
-			var sa = SAs[saId];
-			// console.log(sa);
-			for(var i = 0; i<sa.length; i++){
-				// console.log(sa[i]);
-				allPoints.push(L.marker([ sa[i]['lat'],sa[i]['lng'] ]));
-				points.push( [ sa[i]['lat'],sa[i]['lng'] ] );
-			// 	// points.push([sa[i]['lat'],sa[id]['lng']]);
-			}
-
-			var polygon = L.polygon(points);
-			polygon.setStyle({
-				fillColor: '#000000',
-				fillOpacity: .2,
-				weight: 1,
-				color: 'grey'
-			});
-			polygon.dbId = saId;
-
-			studyArea.addLayer(polygon);
+		style = {
+			fillColor: '#000000',
+			fillOpacity: .2,
+			weight: 1,
+			color: 'grey'
 		}
+
+		var allPoints = addSA(studyArea,'analysis/checklist/json/json.php',9,pregId,0,style);
+		var getSA = jsonF('analysis/checklist/json/json.php',{acc:9,pId:pregId});
 		if(allPoints.length != 0){
 			var group = new L.featureGroup(allPoints);
 			map.fitBounds(group.getBounds());
@@ -64,6 +44,7 @@
 		// var getPRs = problems;
 		var PRs = PRBs;
 		// console.log('PRs',PRs);
+		var heatPoints = [];
 		for(var prId in PRs){
 			var points = [];
 			var sa = PRs[prId];
@@ -73,6 +54,8 @@
 					continue;
 				}
 				points.push( [ sa[i]['lat'],sa[i]['lng'] ] );
+				heatPoints.push( [ sa[i]['lat'],sa[i]['lng'] ] );
+
 			// 	// points.push([sa[i]['lat'],sa[id]['lng']]);
 			}
 			var type = PRs[prId][0].type;
@@ -108,9 +91,25 @@
 			}
 
 		}
+		layerHeatSM = L.heatLayer(heatPoints, {radius: 25});
 
+		function pintaPuntos(){
+			map.removeLayer(layerHeatSM)
+			map.addLayer(problems)
+		}
 
+		function pintaCalor(){
+			map.removeLayer(problems)
+			map.addLayer(layerHeatSM)
+		}
 
-			
+		$('#heat_'+pregId).click(function(event) {
+			pintaCalor();
+		});
+
+		$('#markers_'+pregId).click(function(event) {
+			pintaPuntos();
+		});
+
 	}
 </script>

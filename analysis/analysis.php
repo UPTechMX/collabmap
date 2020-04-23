@@ -235,9 +235,16 @@ function arreglaDatos(datos){  
 	var resp = {};
 
 	resp['disp'] = Object.values(mapDisp);
+	let sum;
+	let avg;
+	if(datos.length == 0){
+		sum = 0;
+		avg = 0;
+	}else{
 
-	let sum = datos.reduce((previous, current) => current += previous);
-	let avg = sum / datos.length;
+		sum = datos.reduce((previous, current) => current += previous);
+		avg = sum / datos.length;
+	}
 
 	resp['avg'] = avg;
 

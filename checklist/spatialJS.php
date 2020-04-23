@@ -194,34 +194,15 @@
 
 
 		// Add Study Areas
+		style = {
+			fillColor: '#000000',
+			fillOpacity: .2,
+			weight: 1,
+			color: 'grey'
+		};
 
+		var allPoints = addSA(studyArea,'checklist/json/json.php',9,pregId,vId,style);
 
-		var getSA = jsonF('checklist/json/json.php',{acc:9,pId:pregId,vId:vId});
-		var SAs = $.parseJSON(getSA);
-		
-		var allPoints = [];
-		for(var saId in SAs){
-			var points = [];
-			var sa = SAs[saId];
-			// console.log(sa);
-			for(var i = 0; i<sa.length; i++){
-				// console.log(sa[i]);
-				allPoints.push(L.marker([ sa[i]['lat'],sa[i]['lng'] ]));
-				points.push( [ sa[i]['lat'],sa[i]['lng'] ] );
-			// 	// points.push([sa[i]['lat'],sa[id]['lng']]);
-			}
-
-			var polygon = L.polygon(points);
-			polygon.setStyle({
-				fillColor: '#000000',
-				fillOpacity: .2,
-				weight: 1,
-				color: 'grey'
-			});
-			polygon.dbId = saId;
-
-			studyArea.addLayer(polygon);
-		}
 		if(allPoints.length != 0){
 			var group = new L.featureGroup(allPoints);
 			map.fitBounds(group.getBounds());

@@ -1,8 +1,7 @@
 <script type="text/javascript">
-	$(document).ready(function() {});
 
 	function initMap(pregId){
-
+		// console.log('aaa');
 		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	    var osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 	    var osm = L.tileLayer(osmUrl, { maxZoom: 18, attribution: osmAttrib });
@@ -112,31 +111,34 @@
 		    // console.log(event);
 		});
 
-		var getSA = jsonF('admin/checklist/json/json.php',{acc:9,pId:pregId});
-		// console.log(getSA);
-		var SAs = $.parseJSON(getSA);
+		var allPoints = addSA(drawnItems,'admin/checklist/json/json.php',9,pregId);
+		// var allPoints = drawSA(drawnItems,pregId);
 
-		var allPoints = [];
-		for(var saId in SAs){
-			var points = [];
-			var sa = SAs[saId];
-			// console.log(sa);
-			for(var i = 0; i<sa.length; i++){
-				// console.log(sa[i]);
-				allPoints.push(L.marker([ sa[i]['lat'],sa[i]['lng'] ]));
-				points.push( [ sa[i]['lat'],sa[i]['lng'] ] );
-			// 	// points.push([sa[i]['lat'],sa[id]['lng']]);
-			}
-
-			var polygon = L.polygon(points);
-			polygon.dbId = saId;
-
-			drawnItems.addLayer(polygon);
-		}
 		if(allPoints.length != 0){
 			var group = new L.featureGroup(allPoints);
 			map.fitBounds(group.getBounds());
 		}
+
+		subArch($('#uplStudyArea_'+pregId),3,'studyArea_'+pregId+'_','kml',false,function(a){
+			// console.log('vvv');
+			file = a.prefijo+a.nombreArchivo;
+			// console.log(file,drawnItems);
+			// $('#nomArch').text(a.nombreArchivo);
+			var rj = jsonF('admin/checklist/json/importKML.php',{file:file,pregId:pregId});
+			// console.log(rj);
+			var r = $.parseJSON(rj);
+			if(r.ok == 1){
+				drawnItems.clearLayers();
+				var allPoints = drawSA(drawnItems,pregId);
+
+				if(allPoints.length != 0){
+					var group = new L.featureGroup(allPoints);
+					map.fitBounds(group.getBounds());
+				}
+			}
+
+		},false,"<?php echo TR('select'); ?>","<?php echo TR('extErrorStr'); ?>")
 			
 	}
+
 </script>

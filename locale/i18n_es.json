@@ -212,6 +212,7 @@
   "op": "Un punto",
   "map": "Mapa",
   "maps": "Mapas",
+  "uplStudyArea": "cargar area de estudio",
   "outside":"El punto al que intenta ingresar está fuera del área de estudio",
   "onlyOneGeometry":"Esta pregunta sólo permite una entrada geográfica. <br/>Elimina la anterior e inténtalo de nuevo",
   

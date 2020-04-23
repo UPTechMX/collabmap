@@ -388,8 +388,15 @@ include_once 'spatialSMJS.php';
 	});
 </script>
 
+<?php 
+	$displayStruct = count($dims) == 1? 'display:none;':'';
+
+?>
+
+
 <div id="socialMon">
-	<div style="background-color: whitesmoke;padding: 10px;border-radius: 5px;" id="SMStructureFilter">
+
+	<div style="background-color: whitesmoke;padding: 10px;border-radius: 5px;<?php echo $displayStruct; ?>" id="SMStructureFilter">
 		<h4><?php echo TR('structureFilter'); ?></h4>
 		<div class='row'>
 			<?php 

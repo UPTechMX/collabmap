@@ -123,6 +123,7 @@ if(!function_exists('raiz')){
 			}
 
 			$dir = $dTmp;
+			$dir = $j == 0?'.':$dTmp;
 			// print2($dir);
 			$dirE = explode('/',$dir);
 			$ciclos = count($dirE);

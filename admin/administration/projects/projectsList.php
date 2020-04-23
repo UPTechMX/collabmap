@@ -14,7 +14,7 @@ $elementos = $db->query(" SELECT * FROM Projects ORDER BY name") -> fetchAll(PDO
 	$(document).ready(function() {
 		$('#projectsTable .edtEle').click(function(event) {
 			var eleId = $(this).closest('tr').attr('id').split('_')[1];
-			console.log(eleId);
+			// console.log(eleId);
 			popUp('admin/administration/projects/projectsAdd.php',{eleId:eleId},function(){},{});
 			// $('#infoFinanciador').load(rz+'admin/administration/financiadores/financiadoresAdd.php',{eleId:eleId})
 		});
