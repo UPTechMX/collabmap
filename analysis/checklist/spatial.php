@@ -15,7 +15,6 @@ include 'spatialJS.php';
 		var answers = <?php echo atj($answers); ?>;
 		// console.log(answers);
 		setTimeout(function(){
-
 			initMap(<?php echo $_POST['pId']; ?>,answers);		
 		},500);
 		
