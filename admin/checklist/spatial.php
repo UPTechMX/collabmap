@@ -129,7 +129,7 @@
 			var r = $.parseJSON(rj);
 			if(r.ok == 1){
 				drawnItems.clearLayers();
-				var allPoints = drawSA(drawnItems,pregId);
+				var allPoints = addSA(drawnItems,pregId);
 
 				if(allPoints.length != 0){
 					var group = new L.featureGroup(allPoints);
