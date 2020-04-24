@@ -6,61 +6,24 @@
 	$xml = simplexml_load_file(raiz().'externalFiles/'.$_POST['file']);
 	$childs = $xml->Document->Folder->children();
 
+
 	// print2($childs);
 	$ok = true;
 	$db->beginTransaction();
 	foreach ($childs as $c) {
 
-		if(empty($c->Polygon)){
+		if(empty($c->Polygon) && empty($c->MultiGeometry)){
 			continue;
 		}
-		
-		
-		$pSA['tabla'] = 'Studyarea';
-		$pSA['datos']['preguntasId'] = $_POST['pregId'];
-		$pSA['datos']['type'] = 'polygon';
 
-		$rSAj = atj(inserta($pSA));
-		$rSA = json_decode($rSAj,true);
-		if($rSA['ok'] != 1){
-			$ok = false;
-			$err = 'ERR: RISA 4434';
-		}
-
-		if($ok){
-			$saId = $rSA['nId'];
-			$coordinates = $c->Polygon->outerBoundaryIs->LinearRing->coordinates;
-			$coords = $coordinates->__toString();
-			$cc = explode("\n", $coords);
-			$pp['tabla'] = 'StudyareaPoints';
-			$pp['datos']['studyareaId'] = $saId;
-				// print2($cc);
-
-			foreach ($cc as $k => $c) {
-
-				if($k == count($cc)-1){
-					continue;
-				}
-				$latlng = explode(',', $c);
-				$lat = trim($latlng[1]);
-				$lng = trim($latlng[0]);
-				$pp['datos']['lat'] = $lat;
-				$pp['datos']['lng'] = $lng;
-				if(empty($lat) || empty($lng)){
-					continue;
-				}
-
-				// print2($pp);
-				$rppj = atj(inserta($pp));
-				$rpp = json_decode($rppj,true);
-				if($rpp['ok'] != 1){
-					// print2($rppj);
-					$ok = false;
-					$err = "ERR: IPSA 7679";
-					break 2;
-				}
+		if(!empty($c->Polygon)){
+			$rj = PolygonInsert($_POST['pregId'],$c->Polygon);
+			$r = json_decode($rj,true);
+			if($r['ok'] != 1){
+				$ok = false;
 			}
 		}
+		
 	}
 
 	if($ok){
@@ -72,5 +35,48 @@
 
 	}
 
+	function PolygonInsert($pregId,$polygon){
+		global $db;
+
+		$pSA['tabla'] = 'Studyarea';
+		$pSA['datos']['preguntasId'] = $pregId;
+		$pSA['datos']['type'] = 'polygon';
+
+		// print2($polygon);
+
+		$coordinates = $polygon->outerBoundaryIs->LinearRing->coordinates;
+		$coords = $coordinates->__toString();
+		$cc = explode("\n", $coords);
+		$latlngs = array();
+		foreach ($cc as $k => $c) {
+
+			if($k == count($cc)-1){
+				continue;
+			}
+			$latlng = explode(',', $c);
+			$lat = trim($latlng[1]);
+			$lng = trim($latlng[0]);
+
+			if(empty($lat) || empty($lng)){
+				continue;
+			}
+
+			$tmp['lat'] = $lat;
+			$tmp['lng'] = $lng;
+			$latlngs[] = $tmp;
+
+		}
+
+		// print2($latlngs);
+		$pSA['geo']['type'] = 'polygon';
+		$pSA['geo']['field'] = 'geometry';
+		$pSA['geo']['latlngs'] = atj([$latlngs]);
+
+		// print2($pSA);
+
+		return atj(inserta($pSA));
+
+
+	}
 
 ?>
