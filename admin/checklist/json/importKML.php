@@ -11,10 +11,10 @@
 	$ok = true;
 	$db->beginTransaction();
 	foreach ($childs as $c) {
-
 		if(empty($c->Polygon) && empty($c->MultiGeometry)){
 			continue;
 		}
+
 
 		if(!empty($c->Polygon)){
 			$rj = PolygonInsert($_POST['pregId'],$c->Polygon);
@@ -23,6 +23,20 @@
 				$ok = false;
 			}
 		}
+		if(!empty($c->MultiGeometry)){
+			// print2($c->MultiGeometry);
+			$mg = $c->MultiGeometry;
+
+			foreach ($mg as $g) {
+				// print2($mg);
+				$rj = PolygonInsert($_POST['pregId'],$g->Polygon);
+				$r = json_decode($rj,true);
+				if($r['ok'] != 1){
+					$ok = false;
+				}
+			}
+		}
+
 		
 	}
 
@@ -45,11 +59,20 @@
 		// print2($polygon);
 
 		$coordinates = $polygon->outerBoundaryIs->LinearRing->coordinates;
+		// print2($coordinates);
 		$coords = $coordinates->__toString();
-		$cc = explode("\n", $coords);
+		$coords = str_replace("\n", '', $coords);
+		$coords = preg_replace("/ +/", " ", $coords);
+		$coords = preg_replace("/\t+/", "", $coords);
+		$coords = trim($coords);
+		// echo "\n\n=-=-=-=\n\n";
+		// echo $coords;
+		// echo "\n\n=-=-=-=\n\n";
+
+		$cc = explode(" ", $coords);
 		$latlngs = array();
 		foreach ($cc as $k => $c) {
-
+			// echo "$k - $c\n";
 			if($k == count($cc)-1){
 				continue;
 			}

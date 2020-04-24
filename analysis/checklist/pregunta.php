@@ -11,7 +11,39 @@ $preg = $db->query("SELECT p.*, t.siglas as tSiglas
 	LEFT JOIN Tipos t ON t.id = p.tiposId
 	WHERE p.id = $_POST[pId]")->fetchAll(PDO::FETCH_ASSOC)[0];
 
-// print2($preg);
+// print2($_POST);
+
+$targetchecklsit = $db->query("SELECT te.*, f.code as fCode
+	FROM TargetsChecklist te 
+	LEFT JOIN Frequencies f ON f.id = te.frequency
+	WHERE te.id = $_REQUEST[trgtChk]")->fetchAll(PDO::FETCH_ASSOC)[0];
+$numDim = $db->query("SELECT COUNT(*) FROM Dimensiones 
+	WHERE elemId = $targetchecklsit[targetsId] AND type='structure' ")->fetchAll(PDO::FETCH_NUM)[0][0];
+
+
+$LJ = '';
+$nivelMax = isset($_POST['nivelMax'])?$_POST['nivelMax']:0;
+$padre = isset($_POST['padre'])?$_POST['padre']:0;
+for ($i=$nivelMax; $i <$numDim ; $i++) { 
+	if($i == $nivelMax){
+		$LJ .= " LEFT JOIN DimensionesElem de$i ON te.dimensionesElemId = de$i.id";
+	}else{
+		$LJ .= " LEFT JOIN DimensionesElem de$i ON de$i.id = de".($i-1).".padre";
+	}
+	if($i == $numDim - 2){
+	}
+	if($i == $numDim - 1){
+		$fields = ", de$i.nombre as nombreHijo, de$i.id as idHijo";
+		$wDE = " de$i.padre = $padre";
+	}
+}
+
+// echo "nivelMax: $nivelMax<br/>";
+// echo "padre: $padre<br/>";
+// echo "LJ: $LJ<br/>";
+// echo "wDE: $wDE<br/>";
+
+
 switch ($preg['tSiglas']) {
 	case 'mult':
 		
@@ -22,7 +54,8 @@ switch ($preg['tSiglas']) {
 			LEFT JOIN TargetsElems te ON te.id = v.elemId
 			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
 			LEFT JOIN Respuestas r ON r.id = rv.respuesta
-			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt'
+			$LJ
+			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt' AND $wDE
 			GROUP BY rv.respuesta
 		")->fetchALL(PDO::FETCH_ASSOC);
 		include 'mult.php';
@@ -36,7 +69,8 @@ switch ($preg['tSiglas']) {
 			LEFT JOIN Visitas v ON rv.visitasId = v.id AND type = 'trgt'
 			LEFT JOIN TargetsElems te ON te.id = v.elemId
 			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
-			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt'
+			$LJ
+			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt' AND $wDE
 			GROUP BY rv.respuesta
 		")->fetchALL(PDO::FETCH_ASSOC);
 		include 'num.php';
@@ -51,7 +85,8 @@ switch ($preg['tSiglas']) {
 			LEFT JOIN Visitas v ON rv.visitasId = v.id AND v.type = 'trgt'
 			LEFT JOIN TargetsElems te ON te.id = v.elemId
 			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
-			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt'
+			$LJ
+			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt' AND $wDE
 		")->fetchALL(PDO::FETCH_ASSOC);
 		include 'spatial.php';
 
@@ -64,7 +99,8 @@ switch ($preg['tSiglas']) {
 			LEFT JOIN Visitas v ON rv.visitasId = v.id AND v.type = 'trgt'
 			LEFT JOIN TargetsElems te ON te.id = v.elemId
 			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
-			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt'
+			$LJ
+			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt' AND $wDE
 		")->fetchALL(PDO::FETCH_ASSOC);
 		include 'spatial.php';
 
