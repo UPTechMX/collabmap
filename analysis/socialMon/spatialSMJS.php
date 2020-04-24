@@ -91,7 +91,7 @@
 					break;
 			}
 
-			prLyr = L.geoJSON(geometry);
+			prLyr = L.geoJSON(geometry).bindPopup("<strong>"+sa.deName+"</strong><br/>value: "+sa.respName);;
 			prLyr.dbId = sa['id'];
 			prLyr.type = type.toLowerCase();
 			layerPointsSM.addLayer(prLyr);
