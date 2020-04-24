@@ -204,7 +204,9 @@ switch ($_POST['acc']) {
 			$p['tabla'] = 'RespuestasVisita';
 			$p['datos'] = $_POST['datos'];
 			$p['datos']['respuesta'] = 'spatial';
+
 			$rj = atj(inserta($p));
+			// echo $rj;
 			$r = json_decode($rj,true);
 			$rvId = $r['nId'];
 			$_SESSION['CM']['chk'][$_POST['datos']['visitasId']]['res'][$_POST['pId']]['respuesta'] = 'spatial';
@@ -242,6 +244,9 @@ switch ($_POST['acc']) {
 			$ip['tabla'] = 'Problems';
 			$ip['datos'] = $_POST['problem'];
 			$ip['datos']['respuestasVisitaId'] = $rvId;
+			$ip['geo'] = $_POST['geo'];
+			$ip['geo']['field'] = 'geometry';
+
 			
 			$rpj = inserta($ip);
 			$rp = json_decode($rpj,true);
@@ -250,24 +255,6 @@ switch ($_POST['acc']) {
 		if($rp['ok'] != 1){
 			$ok = false;
 			$err = 'Error: ERIP:344';
-		}
-
-		if($ok){
-			$pId = $rp['nId'];
-			$point['tabla'] = 'Points';
-			foreach ($_POST['latlngs'] as $l) {
-				$point['datos'] = $l;
-				$point['datos']['problemsId'] = $pId;
-
-				$respPointJ = inserta($point);
-				$respPoint = json_decode($respPointJ,true);
-				if($respPoint['ok'] != 1){
-					$ok = false;
-					$err = "Error: ERIP:394";
-					echo $respPointJ;
-				}
-
-			}
 		}
 
 		if($ok){
@@ -282,23 +269,21 @@ switch ($_POST['acc']) {
 		break;
 	case 9:
 		// print2($_POST);
-		$sas = $db->query("SELECT sa.id, sa.id as saId, p.*
+		$sas = $db->query("SELECT sa.id, ST_AsGeoJSON(sa.geometry) as geometry
 			FROM Studyarea sa
-			LEFT JOIN StudyareaPoints p ON p.studyareaId = sa.id
-			WHERE preguntasId = $_POST[pId]")->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
+			WHERE preguntasId = $_POST[pId]")->fetchAll(PDO::FETCH_ASSOC);
 
 		echo atj($sas);
 		break;
 
 	case 10:
 		// print2($_POST);
-		$sql = "SELECT pr.id, pr.*, p.id as pId, p.lat, p.lng, pr.type
+		$sql = "SELECT pr.id, ST_AsGeoJSON(pr.geometry) as geometry
 			FROM RespuestasVisita rv
 			LEFT JOIN Problems pr ON pr.respuestasVisitaId = rv.id
-			LEFT JOIN Points p ON p.problemsId = pr.id
 			WHERE rv.preguntasId = $_POST[pId] AND rv.visitasId = $_POST[vId] ";
 		// echo $sql."\n\n";
-		$prs = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
+		$prs = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 		echo atj($prs);
 
@@ -308,25 +293,15 @@ switch ($_POST['acc']) {
 		if(is_numeric($_POST['prId'])){
 
 			$ok = true;
-			$db->query("DELETE FROM Points WHERE problemsId = $_POST[prId]");
+			// $db->query("DELETE FROM Points WHERE problemsId = $_POST[prId]");
+			// print2($_POST);
 
-			$pId = $_POST['prId'];
-			$point['tabla'] = 'Points';
-			foreach ($_POST['latlngs'] as $l) {
-				$point['datos'] = $l;
-				$point['datos']['problemsId'] = $pId;
-
-				$respPointJ = inserta($point);
-				$respPoint = json_decode($respPointJ,true);
-				if($respPoint['ok'] != 1){
-					$ok = false;
-					$err = "Error: ERIP:394";
-					echo $respPointJ;
-				}
-			}
-			if($ok){
-				echo '{"ok":"1"}';
-			}
+			$p['tabla'] = 'Problems';
+			$p['geo'] = $_POST['geo'];
+			$p['geo']['field'] = 'geometry';
+			$p['where'] = "id = $_POST[prId]";
+			// print2($p);
+			echo atj(upd($p));
 
 		}
 		break;

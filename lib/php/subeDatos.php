@@ -167,7 +167,6 @@
 	try {
 		$ok = true;
 		$row = 0;
-		// echo raiz()."lib/archivos/$_POST[archChk] \n";
 		$numDims = 0;
 		if (($handle = fopen(raiz()."externalFiles/$_POST[archChk]", "r")) !== FALSE) {
 			while (($col = fgetcsv($handle, 0, ",")) !== FALSE) {
@@ -249,20 +248,6 @@
 					}
 
 
-					// print2($pte);
-
-
-					// Crear rotación
-					// usa repeticionesId, tiendasId, fecha, fechaLimite, estatus
-					// echo "SELECT id FROM Tiendas WHERE POS = $col[0] <br/>";
-					// echo $col[0]."\n";
-					
-
-					// crear visita 
-					// usa rotacionesId, shopperId, fecha, aceptada, hora
-					// echo "fecha: ".$col[$numDims+1]."\n";
-
-					// echo "fValid: ".."\n";;
 
 					$datVis = array();
 					$datVis['finishDate'] = validateDate($col[$numDims+1])?$col[$numDims+1]." 00:00:00":date('Y-m-d H:m:s');;
@@ -359,17 +344,11 @@
 									$ppr['tabla'] = 'Problems';
 									$ppr['datos']['type'] = 'marker';
 									$ppr['datos']['respuestasVisitaId'] = $rvId;
+									$ppr['geo']['type'] = 'marker';
+									$ppr['geo']['field'] = 'geometry';
+									$ppr['geo']['latlngs'] = '{"lat":'.$col[$preg+1].',"lng":'.$col[$preg+2].'}';
 
 									$prj = atj(inserta($ppr));
-									$pr = json_decode($prj,true);
-									if($pr['ok'] == 1){
-										$ppo['tabla'] = 'Points';
-										$ppo['datos']['lat'] = $col[$preg+1];
-										$ppo['datos']['lng'] = $col[$preg+2];
-										$ppo['datos']['problemsId'] = $pr['nId'];
-										inserta($ppo);
-										// print2($ppo);
-									}
 
 								}
 							}

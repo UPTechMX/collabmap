@@ -198,6 +198,7 @@ switch ($_POST['acc']) {
 		break;
 	case '8':
 		// print2($_POST);
+		// exit();
 
 		$ok = true;
 
@@ -205,30 +206,27 @@ switch ($_POST['acc']) {
 		if($_POST['n'] == 1){		
 			$p['tabla'] = 'Studyarea';
 			$p['datos']['preguntasId'] = $_POST['pId'];
+			$p['geo'] = $_POST['geo'];
+			$p['geo']['field'] = 'geometry';
 			$rj = atj(inserta($p));
 			$r = json_decode($rj,true);
 		}else{
 			$r['ok'] = 1;
 			$r['nId'] = $_POST['saId'];
-			$db->query("DELETE FROM StudyareaPoints WHERE studyareaId = $_POST[saId]");
+
+			$p['tabla'] = 'Studyarea';
+			// $p['datos']['id'] = $_POST['saId'];
+			$p['where'] = "id = $_POST[saId]";
+			$p['geo'] = $_POST['geo'];
+			$p['geo']['field'] = 'geometry';
+			upd($p);
+			// print2($_POST);
+			// $db->query("DELETE FROM StudyareaPoints WHERE studyareaId = $_POST[saId]");
 		}
 
 
 		if($r['ok'] == 1){
 			$saId = $r['nId'];
-			$pp['tabla'] = 'StudyareaPoints';
-			foreach ($_POST['latlngs'] as $latlng) {
-				$pp['datos'] = $latlng;
-				$pp['datos']['studyareaId'] = $saId;
-				$rjl = atj(inserta($pp));
-				$jl = json_decode($rjl,true);
-				if($jl['ok'] != 1){
-					$ok = false;
-					$err = "Error al insertar punto, Err: SA:240";
-					echo $rjl;
-					break;
-				}
-			}
 		}else{
 			$ok = false;
 			$err = "Error al crear studyarea, Err: SA:200";
@@ -245,10 +243,9 @@ switch ($_POST['acc']) {
 
 		break;
 	case 9:
-		$sas = $db->query("SELECT sa.id, sa.id as saId, p.*
+		$sas = $db->query("SELECT sa.id, ST_AsGeoJSON(sa.geometry) as geometry
 			FROM Studyarea sa
-			LEFT JOIN StudyareaPoints p ON p.studyareaId = sa.id
-			WHERE preguntasId = $_POST[pId]")->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
+			WHERE preguntasId = $_POST[pId]")->fetchAll(PDO::FETCH_ASSOC);
 
 		echo atj($sas);
 

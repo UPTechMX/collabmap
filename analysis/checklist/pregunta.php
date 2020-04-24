@@ -45,29 +45,27 @@ switch ($preg['tSiglas']) {
 	case 'spatial':
 	case 'op':
 		$answers = $db->query("
-			SELECT p.id as pId,p.id as prId, p.type, pts.*
+			SELECT p.id, ST_AsGeoJSON(p.geometry) as geometry
 			FROM RespuestasVisita rv
 			LEFT JOIN Problems p ON p.respuestasVisitaId = rv.id
-			LEFT JOIN Points pts ON pts.problemsId = p.id
 			LEFT JOIN Visitas v ON rv.visitasId = v.id AND v.type = 'trgt'
 			LEFT JOIN TargetsElems te ON te.id = v.elemId
 			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
 			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt'
-		")->fetchALL(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
+		")->fetchALL(PDO::FETCH_ASSOC);
 		include 'spatial.php';
 
 		break;
 	case 'cm':
 		$answers = $db->query("
-			SELECT p.id as pId,p.id as prId, p.type, pts.*
+			SELECT p.id, ST_AsGeoJSON(p.geometry) as geometry
 			FROM RespuestasVisita rv
 			LEFT JOIN Problems p ON p.respuestasVisitaId = rv.id
-			LEFT JOIN Points pts ON pts.problemsId = p.id
 			LEFT JOIN Visitas v ON rv.visitasId = v.id AND v.type = 'trgt'
 			LEFT JOIN TargetsElems te ON te.id = v.elemId
 			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
 			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt'
-		")->fetchALL(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
+		")->fetchALL(PDO::FETCH_ASSOC);
 		include 'spatial.php';
 
 		break;

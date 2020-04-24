@@ -184,17 +184,18 @@ include_once 'spatialSMJS.php';
 						trgtChk:trgtChk
 					})
 					// console.log(rj);
-					try{
-
 						var r = $.parseJSON(rj);
 						// console.log(r);
 						$('#tipoMapaSMCont').show();
 						$('#mapSM').remove();
 						$('#mapContSM').append('<div id="mapSM"style=" height: 500px;margin-top: 10px;" class="map"></div>');
 						mapSM = initMapMS(spatialQuestion, r);
+					try{
+
 					}catch(e){
 						console.log('Error de parso');
 						console.log(rj);
+						console.log(e);
 					}
 
 					var tipoMapaSM = $('input[name="tipoMapaSM"]:checked').val();
