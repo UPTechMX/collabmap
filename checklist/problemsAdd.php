@@ -15,6 +15,7 @@
 	if($_POST['eleId'] != ''){
 		$datC = $db-> query("SELECT * FROM Problems WHERE id = $_POST[eleId]")->fetch(PDO::FETCH_ASSOC);
 	}
+	// print2($_POST);
 ?>
 
 <script type="text/javascript">
@@ -70,7 +71,7 @@
 						acc:acc,
 						vId:<?php echo $_POST['vId']; ?>,
 						problem:dat,
-						latlngs: <?php echo atj($_POST['latlngs']); ?>
+						geo: <?php echo atj($_POST['geo']); ?>,
 					});
 					console.log(rj);
 					var r = $.parseJSON(rj);

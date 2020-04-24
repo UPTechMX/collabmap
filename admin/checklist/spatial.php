@@ -44,17 +44,33 @@
 
 		    var pId = pregId;
 
-		    var lns = layer._latlngs[0];
-		    var latlngs = [];
-		    for(var i = 0; i< lns.length; i++){
-		    	latlngs.push({lat:lns[i]['lat'],lng:lns[i]['lng']});
+		    var type = event.layerType;
+		    switch(type){
+		    	case 'polyline':
+		    		var ll = layer._latlngs;
+		    		break;
+		    	case 'polygon':
+		    		var ll = layer._latlngs;
+		    		break;
+		    	case 'marker':
+		    		var ll = layer._latlng;
+		    		break;
+		    	default:
+		    		break;
 		    }
-		    var rj = jsonF('admin/checklist/json/json.php',{acc:8,latlngs:latlngs,n:1,pId:pId});
-		    // console.log(rj);
+
+		    var lls = JSON.stringify(ll);
+		    var geo = {};
+		    geo['latlngs'] = JSON.stringify(ll);
+		    geo['type'] = type;
+
+		    var rj = jsonF('admin/checklist/json/json.php',{acc:8,geo:geo,n:1,pId:pId});
+		    console.log(rj);
 
 		    var r = $.parseJSON(rj);
 		    if(r.ok == 1){
 		    	layer.dbId = r.saId;
+		    	layer.type = type;
 		    	drawnItems.addLayer(layer);
 		    }
 
@@ -68,17 +84,38 @@
 			
 			var layer = layers[lId];
 
-			// console.log('layer: ',layer);
+			console.log('event: ',event);
+			console.log('layer: ',layer);
 			if(typeof layer != 'undefined'){
 				var saId = layer.dbId;
 
-				var lns = layer._latlngs[0];
-				var latlngs = [];			
-				for(var i = 0; i< lns.length; i++){
-					latlngs.push({lat:lns[i]['lat'],lng:lns[i]['lng']});
+				var type = layer.type;
+				switch(type){
+					case 'linestring':
+					case 'polyline':
+						type = 'polyline';
+						var ll = layer._latlngs;
+						break;
+					case 'polygon':
+						var ll = layer._latlngs;
+						break;
+					case 'marker':
+						var ll = layer._latlng;
+						break;
+					default:
+						break;
 				}
 
-				var rj = jsonF('admin/checklist/json/json.php',{acc:8,latlngs:latlngs,n:0,saId:saId});
+				var lls = JSON.stringify(ll);
+				var geo = {};
+				geo['latlngs'] = JSON.stringify(ll);
+				geo['type'] = type;
+				console.log(geo);
+				var rj = jsonF('admin/checklist/json/json.php',{acc:8,latlngs:lls,n:0,saId:saId,geo:geo});
+				// var rj = jsonF('admin/checklist/json/json.php',{acc:8,latlngs:lls,n:0,saId:saId});
+				console.log(rj);
+
+
 				// console.log(rj);
 
 				var r = $.parseJSON(rj);
@@ -125,7 +162,7 @@
 			// console.log(file,drawnItems);
 			// $('#nomArch').text(a.nombreArchivo);
 			var rj = jsonF('admin/checklist/json/importKML.php',{file:file,pregId:pregId});
-			// console.log(rj);
+			console.log(rj);
 			var r = $.parseJSON(rj);
 			if(r.ok == 1){
 				drawnItems.clearLayers();

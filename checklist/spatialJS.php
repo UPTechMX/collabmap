@@ -210,50 +210,50 @@
 
 		//// Add answered geometries
 		var getPRs = jsonF('checklist/json/json.php',{acc:10,pId:pregId,vId:vId});
+		// console.log('getPRs',getPRs);
 		var PRs = $.parseJSON(getPRs);
 		// console.log('PRs',PRs);
 		for(var prId in PRs){
 			var points = [];
 			var sa = PRs[prId];
-			// console.log(sa);
-			for(var i = 0; i<sa.length; i++){
-				if(sa[i]['lat'] == null || sa[i]['lng'] == null){
-					continue;
-				}
-				points.push( [ sa[i]['lat'],sa[i]['lng'] ] );
-			// 	// points.push([sa[i]['lat'],sa[id]['lng']]);
-			}
-			var type = PRs[prId][0].type;
-			// console.log('type: ',type);
-			// console.log(points);
-			var prLyr;
-			// if(type == null){
-			// 	continue;
-			// }
 
+			if(sa.geometry == null){
+				continue;
+			}
+			var prLyr;
+			var geometry = $.parseJSON(sa.geometry);
+			var type = geometry.type.toLowerCase();
+			// console.log('type',type);
 			switch(type){
+				case 'point':
 				case 'marker':
-					prLyr = L.marker(points[0]);
+					type = 'marker';
+					// console.log([ geometry.coordinates[1],geometry.coordinates[0] ]);
+					prLyr = L.marker( [ geometry.coordinates[1],geometry.coordinates[0] ] );
 					break;
+				case 'linestring':
 				case 'polyline':
+					type = 'polyline';
+					for(var i in geometry.coordinates){
+						points.push( [ geometry.coordinates[i][1],geometry.coordinates[i][0] ] )
+					}
 					prLyr = L.polyline(points);
 					break;
 				case 'polygon':
+					for(var i in geometry.coordinates[0]){
+						points.push( [ geometry.coordinates[0][i][1],geometry.coordinates[0][i][0] ] )
+					}
 					prLyr = L.polygon(points);
 					break;
 				default:
 					continue;
 					break;
-
 			}
 
-			prLyr.dbId = prId;
-			// console.log(prId);
-			// console.log('points.lenght:',points.length);
-			if(points.length > 0){
-				drawnItems.addLayer(prLyr);
-				spatialYa = true;
-			}
+			prLyr.dbId = sa['id'];
+			prLyr.type = type.toLowerCase();
+			drawnItems.addLayer(prLyr);
+			spatialYa = true;
 
 		}
 
@@ -291,23 +291,16 @@
 					/// This if removes polyline and polygon tools if the question is not spatial
 					<?php if ($spatial['tipo'] == 'spatial'){ ?>
 						case 'polyline':
-							var lns = layer._latlngs;
-							for(var i = 0; i< lns.length; i++){
-								latlngs.push({lat:lns[i]['lat'],lng:lns[i]['lng']});
-							}
-
+							var ll = layer._latlngs;
 							break;
 						case 'polygon':
-							var lns = layer._latlngs[0];
-							for(var i = 0; i< lns.length; i++){
-								latlngs.push({lat:lns[i]['lat'],lng:lns[i]['lng']});
-							}
+							var ll = layer._latlngs;
 							break;
 					<?php } ?>
 					case 'marker':
-						var lns = layer._latlng;
-						// console.log('Layer:',layer);
-						latlngs.push({lat:lns['lat'],lng:lns['lng']})
+						var ll = layer._latlng;
+						break;
+					default:
 						break;
 				}
 
@@ -319,6 +312,12 @@
 				datos['identificador'] = '<?php echo $p['identificador']; ?>';
 				datos['respuesta'] = 'spatial';
 				datos['justificacion'] = '';
+
+				var lls = JSON.stringify(ll);
+				var geo = {};
+				geo['latlngs'] = JSON.stringify(ll);
+				geo['type'] = type;
+
 
 				var hash = '<?php echo $hash; ?>';
 				var pIdAct = '<?php echo $pId; ?>';
@@ -333,12 +332,14 @@
 					acc:8,
 					vId:datos['visitasId'],
 					problem:problem,
-					latlngs: latlngs
+					geo:geo
 				});
 				// console.log(rj);
 				var r = $.parseJSON(rj);
 				if(r.ok == 1){
+					console.log(r);
 					layer.dbId = r.prId;
+					layer.type = type;
 					drawnItems.addLayer(layer);
 					spatialYa = true;
 				}else if(r.ok == 2){
@@ -355,28 +356,42 @@
 		map.on(L.Draw.Event.EDITED, function (event) {
 
 			var layers = event.layers._layers;
-			
 			var lId = Object.keys(layers)[0]
-			
 			var layer = layers[lId];
 
 			// console.log('layer: ',layer);
+			// console.log('event: ',event);
+			// console.log('layer: ',layer);
+
 			if(typeof layer != 'undefined'){
 
 				var prId = layer.dbId;
 
-				var lns;
-				if(typeof layer._latlngs != 'undefined'){
-					lns = layer._latlngs[0];
-				}else{
-					lns = [layer._latlng];
-				}
-				var latlngs = [];			
-				for(var i = 0; i< lns.length; i++){
-					latlngs.push({lat:lns[i]['lat'],lng:lns[i]['lng']});
+				var type = layer.type;
+				// console.log('type',type);
+				switch(type){
+					case 'linestring':
+					case 'polyline':
+						type = 'polyline';
+						var ll = layer._latlngs;
+						break;
+					case 'polygon':
+						var ll = layer._latlngs;
+						break;
+					case 'marker':
+						var ll = layer._latlng;
+						break;
+					default:
+						break;
 				}
 
-				var rj = jsonF('checklist/json/json.php',{acc:11,latlngs:latlngs,prId:prId,vId:vId});
+				var lls = JSON.stringify(ll);
+				var geo = {};
+				geo['latlngs'] = JSON.stringify(ll);
+				geo['type'] = type;
+				// console.log(geo);
+
+				var rj = jsonF('checklist/json/json.php',{acc:11,geo:geo,prId:prId,vId:vId});
 
 				// console.log(rj);
 

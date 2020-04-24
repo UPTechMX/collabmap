@@ -85,7 +85,7 @@
 	// print2($_POST);
 	if($_POST['type'] == 'num'){
 		$sql = "
-			SELECT p.id as pId,p.id as prId, p.type, pts.*, rvDat.respuesta as rvDatValue, deName.nombre as deName, v.finishDate,
+			SELECT p.id, ST_AsGeoJSON(p.geometry) as geometry, rvDat.respuesta as rvDatValue, deName.nombre as deName, v.finishDate,
 			rvDat.respuesta as respName
 			FROM RespuestasVisita rvSpatial
 			LEFT JOIN Problems p ON p.respuestasVisitaId = rvSpatial.id
@@ -103,15 +103,14 @@
 			GROUP BY te.id
 			ORDER BY v.finishDate DESC
 		";
-		$answers = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
+		$answers = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 	}
 	if($_POST['type'] == 'mult'){
 		$sql = "
-			SELECT p.id as pId,p.id as prId, p.type, pts.*, rvDat.respuesta as rvDatValue, deName.nombre as deName, v.finishDate,
+			SELECT p.id, ST_AsGeoJSON(p.geometry) as geometry, rvDat.respuesta as rvDatValue, deName.nombre as deName, v.finishDate,
 			r.respuesta as respName
 			FROM RespuestasVisita rvSpatial
 			LEFT JOIN Problems p ON p.respuestasVisitaId = rvSpatial.id
-			LEFT JOIN Points pts ON pts.problemsId = p.id
 			LEFT JOIN Visitas v ON rvSpatial.visitasId = v.id AND v.type = 'trgt'
 			LEFT JOIN TargetsElems te ON te.id = v.elemId
 			$LJ
@@ -126,7 +125,7 @@
 			GROUP BY te.id
 			ORDER BY v.finishDate DESC
 		";
-		$answers = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
+		$answers = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 

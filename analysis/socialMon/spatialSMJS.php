@@ -44,54 +44,61 @@
 
 		var heatPoints = [];
 		var allPoints = [];
+
 		for(var prId in PRs){
 			var points = [];
-			var pr = PRs[prId];
-			// console.log(pr);
-			for(var i = 0; i<pr.length; i++){
-				if(pr[i]['lat'] == null || pr[i]['lng'] == null){
-					continue;
-				}
-				points.push( [ pr[i]['lat'],pr[i]['lng'] ] );
-				heatPoints.push( [ pr[i]['lat'],pr[i]['lng'] ] );
-				allPoints.push( L.marker([ pr[i]['lat'],pr[i]['lng'] ]) );
-				
-
-			// 	// points.push([pr[i]['lat'],pr[id]['lng']]);
+			var sa = PRs[prId];
+			// console.log('PRs[prId]: ',PRs[prId]);
+			if(sa.geometry == null){
+				continue;
 			}
-			var type = PRs[prId][0].type;
-			// console.log('type: ',type);
-			// console.log(points);
 			var prLyr;
-			// if(type == null){
-			// 	continue;
-			// }
-
+			var geometry = $.parseJSON(sa.geometry);
+			var type = geometry.type.toLowerCase();
+			// console.log('type',type);
 			switch(type){
+				case 'point':
 				case 'marker':
-					prLyr = L.marker(points[0]).bindPopup("<strong>"+pr[0].deName+"</strong><br/>value: "+pr[0].respName);
+					type = 'marker';
+					// console.log([ geometry.coordinates[1],geometry.coordinates[0] ]);
+					// prLyr = L.marker( [ geometry.coordinates[1],geometry.coordinates[0] ] );
+									// allPoints.push( L.marker([ pr[i]['lat'],pr[i]['lng'] ]) );
+
+					heatPoints.push( [ geometry.coordinates[1],geometry.coordinates[0] ] );
+					allPoints.push( L.marker([ geometry.coordinates[1],geometry.coordinates[0] ]) );
 					break;
+				case 'linestring':
 				case 'polyline':
-					prLyr = L.polyline(points).bindPopup("<strong>"+pr[0].deName+"</strong><br/>value: "+pr[0].respName);
+					type = 'polyline';
+					for(var i in geometry.coordinates){
+						// points.push( [ geometry.coordinates[i][1],geometry.coordinates[i][0] ] )
+						heatPoints.push(  [ geometry.coordinates[i][1],geometry.coordinates[i][0] ]  )
+						allPoints.push(  L.marker([ geometry.coordinates[i][1],geometry.coordinates[i][0] ])  )
+					}
+					// prLyr = L.polyline(points);
 					break;
 				case 'polygon':
-					prLyr = L.polygon(points).bindPopup("<strong>"+pr[0].deName+"</strong><br/>value: "+pr[0].respName);
+					for(var i in geometry.coordinates[0]){
+						// points.push( [ geometry.coordinates[0][i][1],geometry.coordinates[0][i][0] ] )
+						heatPoints.push(  [ geometry.coordinates[0][i][1],geometry.coordinates[0][i][0] ]  )
+						allPoints.push(  L.marker([ geometry.coordinates[0][i][1],geometry.coordinates[0][i][0] ])  )
+
+					}
+					// prLyr = L.polygon(points);
 					break;
 				default:
 					continue;
 					break;
-
 			}
 
-			prLyr.dbId = prId;
-			if(points.length > 0){
-				layerPointsSM.addLayer(prLyr);
-				
-
-				spatialYa = true;
-			}
+			prLyr = L.geoJSON(geometry);
+			prLyr.dbId = sa['id'];
+			prLyr.type = type.toLowerCase();
+			layerPointsSM.addLayer(prLyr);
 
 		}
+
+		console.log('allPoints',allPoints);
 		if(allPoints.length != 0){
 			var group = new L.featureGroup(allPoints);
 			map.fitBounds(group.getBounds());
@@ -99,12 +106,14 @@
 
 		layerHeatSM = L.heatLayer(heatPoints, {radius: 25});
 
+		console.log(map);
 		return map;
 
 			
 	}
 
 	function pintaPuntos(){
+		// console.log(mapSM);
 		mapSM.removeLayer(layerHeatSM)
 		mapSM.addLayer(layerPointsSM)
 	}

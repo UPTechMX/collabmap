@@ -43,54 +43,57 @@
 		//// Add answered geometries
 		// var getPRs = problems;
 		var PRs = PRBs;
-		// console.log('PRs',PRs);
+		console.log('PRs',PRs);
 		var heatPoints = [];
+
 		for(var prId in PRs){
 			var points = [];
 			var sa = PRs[prId];
-			// console.log(sa);
-			for(var i = 0; i<sa.length; i++){
-				if(sa[i]['lat'] == null || sa[i]['lng'] == null){
-					continue;
-				}
-				points.push( [ sa[i]['lat'],sa[i]['lng'] ] );
-				heatPoints.push( [ sa[i]['lat'],sa[i]['lng'] ] );
-
-			// 	// points.push([sa[i]['lat'],sa[id]['lng']]);
+			// console.log('PRs[prId]: ',PRs[prId]);
+			if(sa.geometry == null){
+				continue;
 			}
-			var type = PRs[prId][0].type;
-			// console.log('type: ',type);
-			// console.log(points);
 			var prLyr;
-			// if(type == null){
-			// 	continue;
-			// }
-
+			var geometry = $.parseJSON(sa.geometry);
+			var type = geometry.type.toLowerCase();
+			// console.log('type',type);
 			switch(type){
+				case 'point':
 				case 'marker':
-					prLyr = L.marker(points[0]);
+					type = 'marker';
+					// console.log([ geometry.coordinates[1],geometry.coordinates[0] ]);
+					// prLyr = L.marker( [ geometry.coordinates[1],geometry.coordinates[0] ] );
+					heatPoints.push( [ geometry.coordinates[1],geometry.coordinates[0] ] );
 					break;
+				case 'linestring':
 				case 'polyline':
-					prLyr = L.polyline(points);
+					type = 'polyline';
+					for(var i in geometry.coordinates){
+						// points.push( [ geometry.coordinates[i][1],geometry.coordinates[i][0] ] )
+						heatPoints.push(  [ geometry.coordinates[i][1],geometry.coordinates[i][0] ]  )
+					}
+					// prLyr = L.polyline(points);
 					break;
 				case 'polygon':
-					prLyr = L.polygon(points);
+					for(var i in geometry.coordinates[0]){
+						// points.push( [ geometry.coordinates[0][i][1],geometry.coordinates[0][i][0] ] )
+						heatPoints.push(  [ geometry.coordinates[0][i][1],geometry.coordinates[0][i][0] ]  )
+
+					}
+					// prLyr = L.polygon(points);
 					break;
 				default:
 					continue;
 					break;
-
 			}
 
-			prLyr.dbId = prId;
-			// console.log(prId);
-			// console.log('points.lenght:',points.length);
-			if(points.length > 0){
-				problems.addLayer(prLyr);
-				spatialYa = true;
-			}
+			prLyr = L.geoJSON(geometry);
+			prLyr.dbId = sa['id'];
+			prLyr.type = type.toLowerCase();
+			problems.addLayer(prLyr);
 
 		}
+
 		layerHeatSM = L.heatLayer(heatPoints, {radius: 25});
 
 		function pintaPuntos(){
