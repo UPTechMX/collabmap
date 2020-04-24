@@ -73,24 +73,27 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<?php echo TR('administration') ?><span class="caret"></span>
+						<?php echo TR('administration'); ?><span class="caret"></span>
 					</a>
 
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<?php if ($nivel >=50){ ?>
 							<?php if ($nivel >=60){ ?>
 							<a class="dropdown-item" id="usrInt" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=usrInt">
-								<?php echo TR('internalUsers') ?>
+								<?php echo TR('internalUsers'); ?>
 							</a>
 							<?php } ?>
 							<a class="dropdown-item" id="trgs" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=trg">
-								<?php echo TR('targets') ?>
+								<?php echo TR('targets'); ?>
 							</a>
 							<a class="dropdown-item" id="prjs" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=prjs">
-								<?php echo TR('projects') ?>
+								<?php echo TR('projects'); ?>
 							</a>
 							<a class="dropdown-item" id="chk" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=chk">
-								<?php echo TR('surveys') ?>
+								<?php echo TR('surveys'); ?>
+							</a>
+							<a class="dropdown-item" id="pubC" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=pubC">
+								<?php echo TR('publicCons'); ?>
 							</a>
 						<?php } ?>
 
@@ -108,7 +111,7 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li class="nav-item">
-				<a href="#" id="chPwd" class="nav-link"><?php echo TR('chPwd') ?></a>
+				<a href="#" id="chPwd" class="nav-link"><?php echo TR('chPwd'); ?></a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo $_SERVER['PHP_SELF'];?>?logout=1"><?php echo TR('close_session'); ?></a>

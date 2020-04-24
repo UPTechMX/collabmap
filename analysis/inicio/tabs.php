@@ -10,8 +10,18 @@
 		WHERE tc.Id = $_GET[trgtChk]
 	")->fetchAll(PDO::FETCH_ASSOC)[0];
 	// print2($chkInf);
+	$target = $db->query("SELECT t.*, tc.frequency 
+		FROM TargetsChecklist tc 
+		LEFT JOIN Targets t ON t.id = tc.targetsId
+		WHERE tc.id = $_GET[trgtChk]
+	")->fetchAll(PDO::FETCH_ASSOC)[0];
+
+
+	$dims = $db->query("SELECT * FROM Dimensiones 
+		WHERE elemId = $target[id] AND type = 'structure' ORDER BY nivel")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
+
 
 <h3></h3>
 <ul class="nav nav-tabs" id="myTab" role="tablist">

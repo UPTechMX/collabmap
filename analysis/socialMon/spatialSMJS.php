@@ -98,7 +98,7 @@
 
 		}
 
-		console.log('allPoints',allPoints);
+		// console.log('allPoints',allPoints);
 		if(allPoints.length != 0){
 			var group = new L.featureGroup(allPoints);
 			map.fitBounds(group.getBounds());

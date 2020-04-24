@@ -281,6 +281,9 @@
   "numAnt":"Número de respuestas anteriores",
   "genChart":"Generar gráfica",
 
+  "publicCons":"Consultas públicas",
+  "publicCon":"Consulta pública",
+
 
   "noAccess": "Sin acceso al sistema",
   "administratior": "Aministrador",
