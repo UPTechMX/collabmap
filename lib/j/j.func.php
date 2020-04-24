@@ -466,6 +466,7 @@ function upd($post){
 				break;
 			case 'polygon':
 				$latlngs = json_decode($geo['latlngs'],true);
+				// print2($latLngs);
 				foreach ($latlngs as $latlng) {
 					$coords = "(";
 					$lat1 = "";
@@ -491,7 +492,7 @@ function upd($post){
 				}
 				
 				if($coords != ""){
-		$stmt = $db->query("INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')");
+		// $stmt = $db->query("INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')");
 					$sql .= "$geo[field] = ST_GeometryFromText('Polygon($coords)'), ";
 					// echo "sql1: $sql\n";
 					// $sql = "INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')";
@@ -528,6 +529,8 @@ function upd($post){
 	}
 
 	$sql = trim($sql,', ');
+
+	// echo "<br/> $sql <br/>";
 	if(!isset($post['where'])){
 		$sql .= ' WHERE id = :id';
 	}else{
