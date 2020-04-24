@@ -89,19 +89,12 @@
 							<a class="dropdown-item" id="prjs" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=prjs">
 								<?php echo TR('projects'); ?>
 							</a>
-							<a class="dropdown-item" id="trgs" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=trg">
-								<?php echo TR('targets') ?>
-							</a>
 							<a class="dropdown-item" id="chk" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=chk">
 								<?php echo TR('surveys'); ?>
 							</a>
 							<a class="dropdown-item" id="pubC" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=pubC">
 								<?php echo TR('publicCons'); ?>
 							</a>
-							<a class="dropdown-item" id="usrInt" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=usrInt">
-								<?php echo TR('internalUsers') ?>
-							</a>
-							<?php } ?>
 						<?php } ?>
 
 					</div>
