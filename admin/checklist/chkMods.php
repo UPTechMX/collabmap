@@ -37,10 +37,10 @@
 	<div class="col-4" style="border:none 1px;">
 		<span class="btn btn-shop" id="edtInfoChk"><?php echo TR('editSurvey'); ?></span>
 	</div>
-	<div class="col-4" style="border:none 1px;">
+	<!-- <div class="col-4" style="border:none 1px;">
 		<span class="btn btn-shop" id="condChk"><?php echo TR('conditional'); ?></span>
-	</div>
-	<div class="col-4" style="border:none 1px;">
+	</div> -->
+	<!-- <div class="col-4" style="border:none 1px;">
 		<span class="btn btn-shop" id="tPromChk"><?php echo TR('average'); ?></span>
-	</div>
+	</div> -->
 </div>
