@@ -106,6 +106,11 @@ switch ($preg['tSiglas']) {
 
 		break;
 	
+	case 'ab':
+		include 'ab.php';
+
+		break;
+	
 	default:
 		# code...
 		break;
