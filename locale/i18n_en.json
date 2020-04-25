@@ -134,6 +134,13 @@
   "addToList" : "Add a new item to the list",
   "TrgtExist": "This item is already being used",
   "example": "Example",
+  "dimFirst": "You need to define structure first",
+  "dimNoMatch": "The number of structures do not match",
+  "amswerNotFoundRow": "Answer not found in row: ",
+  "amswerNotFoundQuestion": "for the question ",
+  "amswerNotFoundAnswer": "An attempt was made to enter ",
+  "successfulImport": "Successful import",
+  "importError": "There was an error importing the file ",
   
   "users": "Users",
   "user": "User",

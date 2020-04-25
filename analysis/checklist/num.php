@@ -25,7 +25,7 @@ if(!is_numeric($_POST['pId']) && !is_numeric($_POST['trgtChk'])){
 				}
 			}
 		}
-		console.log(datos);
+		// console.log(datos);
 		
 		// console.log(answers);
 		var datGr = arreglaDatos(datos);
