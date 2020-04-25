@@ -293,6 +293,8 @@
 
   "publicCons":"Consultas públicas",
   "publicCon":"Consulta pública",
+  "emailReq":"Pedir email",
+  "multAns":"Permitir respuestas múltiples",
 
 
   "noAccess": "Sin acceso al sistema",

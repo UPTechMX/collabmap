@@ -292,6 +292,8 @@
 
   "publicCons":"Public consultations",
   "publicCon":"Public consultation",
+  "emailReq":"Require email",
+  "multAns":"Allow multiple responses",
 
 
   "noAccess": "No access",

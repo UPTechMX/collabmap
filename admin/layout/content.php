@@ -19,6 +19,10 @@ switch ($Act) {
 		if($nivel >= 50)
 			include_once raiz().'admin/administration/projects/index.php';
 		break;
+	case 'pubC':
+		if($nivel >= 50)
+			include_once raiz().'admin/administration/publicConsultations/index.php';
+		break;
 	case 'extUsr':
 		if($nivel >= 50)
 			include_once raiz().'admin/externalUsers/index.php';
