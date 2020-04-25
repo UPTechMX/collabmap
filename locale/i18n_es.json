@@ -134,6 +134,14 @@
   "addToList" : "Agregar un nuevo elemento a la lista",
   "TrgtExist": "Este elemento ya está siendo utilizado",
   "example": "Ejemplo",
+  "dimFirst": "Necesitas definir una estructura primero",
+  "dimNoMatch": "El número de estructuras no coinciden",
+  "amswerNotFoundRow": "Respuesta no encontrada en la fila: ",
+  "amswerNotFoundQuestion": "para la pregunta ",
+  "amswerNotFoundAnswer": "Se intentó ingresar ",
+  "successfulImport": "Importación exitosa",
+  "importError": "Hubo un error al importar el archivo ",
+
 
   "users": "Usuarios",
   "user": "Usuario",

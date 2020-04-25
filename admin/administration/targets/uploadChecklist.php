@@ -12,7 +12,7 @@
 
 		var archChk = '';
 		$('#env').click(function(event) {
-			$('#popUp').modal('toggle');
+			// $('#popUp').modal('toggle');
 
 			if(archChk != ''){
 				loading();
@@ -36,15 +36,15 @@
 
 				if(ok){
 					removeLoading();
-					alerta('success','El archivo fue importado satisfactoriamente')
+					alerta('success','<?php echo TR('successfulImport'); ?>')
 				}else{
 					removeLoading();
-					alerta('danger','Hubo un error al importar el archivo : Err:'+r.err)
+					alerta('danger','<?php echo TR('importError'); ?> : Err:'+r.err)
 				}
 
 			}, 100);
 
-			// removeLoading();
+			removeLoading();
 		});
 
 		subArch($('#archivoChk'),3,'<?php echo $_POST['checklistId'];?>_CHK_','csv,jpg,png,svg',false,function(a){

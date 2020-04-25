@@ -30,8 +30,13 @@
 	foreach ($dimensiones as $d) {
 		$col++;
 	}
+
+	if(count($dimensiones) == 0){
+		exit('{"ok":0,"err":"'.TR('dimFirst').'"}');
+	}
 	// echo "$sql\n";
 
+	// echo "---- COL : $col ----\n\n";
 	// $col = 6;
 	$est = array();
 	foreach ($bloques as $b) {
@@ -198,8 +203,7 @@
 						}else{
 							$ok = false;
 							$cuenta = count($buscaDims);
-							$err = "El cliente ya tiene dimensiones en el sistema ".
-								"y no coinciden con las del archivo. En el sistema existen $cuenta dimensiones";
+							$err = TR('dimNoMatch');
 							exit('{"ok":0:"err":"'.$err.'"}');
 						}
 					}else{
@@ -292,16 +296,16 @@
 									$ok = false;
 									$pregunta = $est[$preg]['pregunta'];
 									$respuesta = $col[$preg];
-									$err = " Respuesta no encontrada fila: $row, POS: $col[0], ".
-										"para la pregunta $pregunta. <br/>Se intentó ingresar '$respuesta' -- columna : $preg";
+									$err = TR('amswerNotFoundRow')." $row , ".
+										TR('amswerNotFoundQuestion')." $pregunta. <br/>".TR("amswerNotFoundAnswer")." $respuesta column: $preg";
 									break 3;
 
 								}elseif ($col[$preg] == '') {
 									$ok = false;
 									$pregunta = $est[$preg]['pregunta'];
 									$respuesta = $col[$preg];
-									$err = " Respuesta vacía en la fila: $row, POS: $col[0], ".
-										"para la pregunta $pregunta. <br/>Se intentó ingresar '' -- columna : $preg";
+									$err = TR('amswerNotFoundRow')." $row , ".
+										TR('amswerNotFoundQuestion')." $pregunta. <br/>".TR("amswerNotFoundAnswer")." column: $preg";
 									break 3;
 								}
 								$datR['respuesta'] = $p['respuestas'][$col[$preg]];
