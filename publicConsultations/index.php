@@ -29,9 +29,8 @@ function root(){
 }
 
 include_once root().'lib/j/j.func.php';
-include_once 'seguridad/seguridad.php';
 
-$location = empty($location)?'questionnaires':$location;
+$location = empty($location)?'publicConsultations':$location;
 $htmlRoot = aRaizHtml($location);
 
 
@@ -144,7 +143,8 @@ $htmlRoot = aRaizHtml($location);
 		<div class="header" id="header"><?php include 'layout/header.php'; ?></div>
 		<div>
 			<div class="content" style="min-height:30px;" id="content">
-				<?php include raiz().'questionnaires/layout/content.php'; ?>
+				<?php include 'init.php'; ?>
+
 
 			</div>
 			<br/>

@@ -292,6 +292,12 @@
 
   "publicCons":"Public consultations",
   "publicCon":"Public consultation",
+  "emailReq":"Require email",
+  "oneAns":"Only one answered is allowed",
+  "oneAnsUser":"Only one answered is allowed",
+  "codeExist":"The code you want to enter already exists",
+  "information":"Information",
+  "startQuestionnaire": "Start",
 
 
   "noAccess": "No access",
