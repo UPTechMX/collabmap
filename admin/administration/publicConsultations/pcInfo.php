@@ -34,7 +34,7 @@ $pcInfo = $db->query("SELECT pc.*, p.name as pName
 		<td><?php echo $pcInfo['emailReq'] == 1?TR('yes'):TR('no'); ?></td>
 	</tr>
 	<tr>
-		<td><?php echo TR('multAns'); ?></td>
+		<td><?php echo TR('oneAns'); ?></td>
 		<td><?php echo $pcInfo['multAns'] == 1?TR('yes'):TR('no'); ?></td>
 	</tr>
 </table>
