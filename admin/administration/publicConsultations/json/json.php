@@ -5,7 +5,7 @@
 	
 	switch ($_POST['opt']) {
 		case 1:
-			$post['tabla'] = 'publicConsultations';
+			$post['tabla'] = 'PublicConsultations';
 			if(empty($_POST['datos']['projectsId'])){
 				unset($_POST['datos']['projectsId']);
 			}
