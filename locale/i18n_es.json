@@ -142,7 +142,6 @@
   "successfulImport": "Importación exitosa",
   "importError": "Hubo un error al importar el archivo ",
 
-
   "users": "Usuarios",
   "user": "Usuario",
   "internalUsers": "Usuarios internos",
@@ -294,7 +293,11 @@
   "publicCons":"Consultas públicas",
   "publicCon":"Consulta pública",
   "emailReq":"Pedir email",
-  "multAns":"Permitir respuestas múltiples",
+  "oneAns":"Sólo se permite responder una vez",
+  "oneAnsUser":"Sólo se permite responder una vez",
+  "codeExist":"El código que quieres ingresar ya existe",
+  "information":"Información",
+  "startQuestionnaire": "Iniciar",
 
 
   "noAccess": "Sin acceso al sistema",

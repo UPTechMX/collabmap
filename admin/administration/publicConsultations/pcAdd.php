@@ -1,12 +1,12 @@
 <?php  
 	include_once '../../../lib/j/j.func.php';
-	checaAcceso(60);// checaAcceso Targets
+	checaAcceso(60);// checaAcceso Public consultations
 	$p = $_POST;
 	// print2($_POST);
 	$projects = $db->query("SELECT * FROM Projects ORDER BY name") -> fetchAll(PDO::FETCH_ASSOC);
 	$checklist = $db->query("SELECT * FROM Checklist ORDER BY nombre") -> fetchAll(PDO::FETCH_ASSOC);
 	if($_POST['eleId'] != ''){
-		$datC = $db-> query("SELECT * FROM Targets WHERE id = $_POST[eleId]")->fetch(PDO::FETCH_ASSOC);
+		$datC = $db-> query("SELECT * FROM PublicConsultations WHERE id = $_POST[eleId]")->fetch(PDO::FETCH_ASSOC);
 	}
 ?>
 
@@ -22,14 +22,35 @@
 			}
 		});
 
+		$('#code').blur(function(event) {
+			var dat = $('#nEmp').serializeObject();
+
+			var rj = jsonF('admin/administration/publicConsultations/json/buscCode.php',{code:dat.code,pcId:'<?php echo $_POST['eleId']; ?>'});
+			var r = $.parseJSON(rj);
+
+			if(r.cuenta != 0){
+				alertar('<?php echo TR('codeExist'); ?>',function(e){},{});
+				// $('#code').focus();
+				// $('#code').val( $('#code').val()+'_1' ).css({backgroundColor:'rgba(255,0,0,.5)'});
+				allOk = false;
+			}
+
+		});
+
+
 		$('.selOblig').change(function(event) {
 			$(this).css({backgroundColor:''});
 		});
 
 		$('#env').click(function(event) {
+			console.log('asas');
 			var dat = $('#nEmp').serializeObject();
 			dat.emailReq = $('#emailReq').is(':checked')?1:0;
-			dat.multAns = $('#multAns').is(':checked')?1:0;
+			if($('#trMult').is(":visible")){
+				dat.oneAns = $('#oneAns').is(':checked')?1:0;
+			}else{
+				dat.oneAns = 0;
+			}
 			var allOk = camposObligatorios('#nEmp');
 
 			<?php 
@@ -41,18 +62,35 @@
 				}
 			?>
 
+			var ccj = jsonF('admin/administration/publicConsultations/json/buscCode.php',{code:dat.code,pcId:'<?php echo $_POST['eleId']; ?>'});
+			var cc = $.parseJSON(ccj);
 
+			if(cc.cuenta != 0){
+				alertar('<?php echo TR('codeExist'); ?>',function(e){},{});
+				allOk = false;
+			}
+
+
+			// console.log(dat,allOk);
 			if(allOk){
-				// var rj = jsonF('admin/administration/targets/json/json.php',{datos:dat,acc:acc,opt:1});
+				var rj = jsonF('admin/administration/publicConsultations/json/json.php',{datos:dat,acc:acc,opt:1});
 				// console.log(rj);
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){
 					$('#popUp').modal('toggle');
-					// $('#targetsList').load(rz+'admin/administration/targets/targetsList.php',{ajax:1});
+					$('#pcList').load(rz+'admin/administration/publicConsultations/pcList.php',{ajax:1});
 				}
 			}
 
+		});
+
+		$('#emailReq').change(function(event) {
+			if($(this).is(':checked')){
+				$('#trMult').show();
+			}else{
+				$('#trMult').hide();
+			}
 		});
 
 		$(".txArea").jqte({
@@ -62,6 +100,8 @@
 			unlink: false,
 			format:false
 		});
+
+		$('#emailReq').trigger('change');
 
 
 	});
@@ -85,7 +125,7 @@
 			<tr>
 				<td><?php echo TR('project'); ?></td>
 				<td>
-					<select name="projectsId" class="form-control oblig">
+					<select name="projectsId" class="form-control">
 						<option value="">- - - - <?php echo TR('project'); ?> - - -</option>
 						<?php foreach ($projects as $p){ ?>
 							<option value="<?php echo $p['id'] ?>" <?php echo $p['id'] == $datC['projectsId']?'selected':''; ?>>
@@ -98,10 +138,10 @@
 			<tr>
 				<td><?php echo TR('survey'); ?></td>
 				<td>
-					<select name="projectsId" class="form-control">
+					<select name="checklistId" class="form-control oblig">
 						<option value="">- - - - <?php echo TR('survey'); ?> - - -</option>
 						<?php foreach ($checklist as $c){ ?>
-							<option value="<?php echo $c['id'] ?>" <?php echo $c['id'] == $datC['projectsId']?'selected':''; ?>>
+							<option value="<?php echo $c['id'] ?>" <?php echo $c['id'] == $datC['checklistId']?'selected':''; ?>>
 								<?php echo $c['nombre']; ?>
 							</option>
 						<?php } ?>
@@ -125,9 +165,9 @@
 				<td><input type="checkbox" id="emailReq" <?php echo $datC['emailReq'] == 1?'checked':''; ?>></td>
 				<td></td>
 			</tr>
-			<tr>
-				<td><?php echo TR('multAns'); ?></td>
-				<td><input type="checkbox" id="multAns" <?php echo $datC['multAns'] == 1?'checked':''; ?>></td>
+			<tr id="trMult" style="display:none;">
+				<td><?php echo TR('oneAns'); ?></td>
+				<td><input type="checkbox" id="oneAns" <?php echo $datC['oneAns'] == 1?'checked':''; ?>></td>
 				<td></td>
 			</tr>
 			<tr>

@@ -1,4 +1,5 @@
 <?php
+// print_r($_COOKIE);
 include_once '../lib/j/j.func.php';
 include_once 'seguridad/seguridad.php';
 
@@ -50,13 +51,8 @@ checaAcceso(49);
 	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
-	<script src="../lib/js/hereMaps/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../lib/js/hereMaps/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" src="../lib/js/hereMaps/mapsjs-ui.js"></script>
-	<script type="text/javascript" src="../lib/js/hereMaps/mapsjs-mapevents.js"></script>
 	<script type="text/javascript" src="../lib/js/jquery-confirm/dist/jquery-confirm.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../lib/js/jquery-confirm/dist/jquery-confirm.min.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="../lib/js/hereMaps/mapsjs-ui.css" media="screen" />
 
 	<script src="../lib/js/leaflet/leaflet.js"></script>
 	<script src="../lib/js/LeafletHeat/dist/leaflet-heat.js"></script>

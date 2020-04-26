@@ -18,4 +18,4 @@
 <div style="text-align: right;margin-bottom: 10px;">
 	<span class="btn btn-shop" id="pcAdd"><i class="glyphicon glyphicon-plus"></i>&nbsp;<?php echo TR('publicCon'); ?></span>
 </div>
-<div id="targetsList"><?php include_once 'pcList.php'; ?></div>
+<div id="pcList"><?php include_once 'pcList.php'; ?></div>
