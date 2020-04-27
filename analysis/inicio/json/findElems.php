@@ -7,8 +7,10 @@
 
 	switch ($_POST['option']) {
 		case 'targets':
-			$targets = $db->query("SELECT id as val, name as nom, 'class' as clase 
-				FROM Targets WHERE projectsId = $_POST[prjId]")->fetchAll(PDO::FETCH_ASSOC);
+			$targets = $db->query("SELECT t.id as val, t.name as nom, 'class' as clase 
+				FROM Targets t
+				LEFT JOIN (SELECT elemId, COUNT(*) as cuenta FROM Dimensiones d WHERE d.type = 'structure') dd ON dd.elemId = t.id
+				WHERE projectsId = $_POST[prjId] AND dd.cuenta > 0")->fetchAll(PDO::FETCH_ASSOC);
 
 			echo atj($targets);
 
