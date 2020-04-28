@@ -12,6 +12,8 @@
 		exit('EXIT');
 	}
 
+
+
 	$checklistId = $targetChecklist['checklistId'];
 
 	// print2($targetChecklist);
@@ -92,9 +94,39 @@
 			}
 		});
 
+		$('#dwlAns').click(function(event) {
+		
+			var checklistId = <?php echo $checklistId; ?>;
+			var nivelMax = <?php echo $nivelMax; ?>;
+			var padre = <?php echo $padre; ?>;
+			var targetsId = <?php echo $targetChecklist['targetsId']; ?>;
+
+			$('<form>')
+			.attr({
+				id: 'descPrueba',
+				action: rz+'analysis/checklist/json/getDatosXLS.php',
+				target:'_blank',
+				method:'post'
+			})
+			.html(
+				'<input type="text" name="chkId" value="'+checklistId+'"\>'+
+				'<input type="text" name="nivelMax" value="'+nivelMax+'"\>'+
+				'<input type="text" name="padre" value="'+padre+'"\>'+
+				'<input type="text" name="targetsId" value="'+targetsId+'"\>'
+			)
+			.appendTo(document.body)
+			.submit()
+			.remove();
+
+
+		});
+
 	});
 </script>
 
+<div style="text-align: right;">
+	<span class="btn btn-shop" id="dwlAns"><?php echo TR('dwlAns'); ?></span>
+</div>
 <div>
 	<?php foreach ($est['bloques'] as $b){ ?>
 		<div class="divBlock" style="margin-top: 10px;">
