@@ -869,28 +869,14 @@ function promTotComp($prys,$params,$etapa){
 	$wCampo = $params['wCampo'];
 
 
-	$wPrys = '0';
-	$prys = is_array($prys)?$prys:[0];
-	foreach ($prys as $r) {
-		// echo $r;
-		$wPrys .= " OR pry.id = $r";
-	}
-	$wPrys = " ($wPrys) ";
-
 	// echo " =-=-=-=-=- $nivel =-=-=-=-=- \n";
 	
 	$sql = "SELECT $camposInt
-		FROM Clientes c
-		LEFT JOIN Proyectos pry ON pry.id = c.proyectosId
-		LEFT JOIN Visitas v ON v.clientesId = c.id AND v.etapa = '$etapa' 
-			AND v.id = (SELECT id FROM Visitas z 
-				WHERE z.clientesId = v.clientesId 
-				AND z.etapa = '$etapa'
-				ORDER BY z.fechaRealizacion DESC 
-				LIMIT 1)
-		LEFT JOIN CalculosVisita cv ON cv.visitasId = v.id 
+		FROM Visitas v 
+		LEFT JOIN CalculosVisita cv ON cv.visitasId = v.id
+		
 		$JOINS
-		WHERE 1 AND $wPrys $where
+		WHERE 1 $where
 		$grpInt $orderInt";
 
 	// echo "$sql\n\n<br/><br/>";

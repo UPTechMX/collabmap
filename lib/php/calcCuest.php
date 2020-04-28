@@ -301,6 +301,16 @@ function resultados($visita,$chk){
 						$preguntas[$pidentif]['nomResp'] = $respuestas[$pidentif][0]['valResp'];
 						$preguntas[$pidentif]['justificacion'] = $respuestas[$pidentif][0]['justificacion'];//$resp['respuesta'];
 						break;
+					case 'spatial':
+					case 'cm':
+					case 'op':
+						$preguntas[$pidentif]['respuesta'] = 'spatial';
+						$preguntas[$pidentif]['respuestasVisitaId'] = $respuestas[$pidentif][0]['id'];
+						$preguntas[$pidentif]['valResp'] = '-';
+						$preguntas[$pidentif]['valPreg'] = '-';
+						$preguntas[$pidentif]['nomResp'] = $respuestas[$pidentif][0]['valResp'];
+						$preguntas[$pidentif]['justificacion'] = $respuestas[$pidentif][0]['justificacion'];//$resp['respuesta'];
+						break;
 					default:
 
 						break;
