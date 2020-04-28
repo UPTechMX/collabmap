@@ -111,19 +111,41 @@
 
 	</head>
 <?php } ?>
-	<script>
-		$(document).ready(function() {
+<script>
+	$(document).ready(function() {
 
-			// audiojs.events.ready(function() {
-			//   var as = audiojs.createAll();
-			// });
+		// audiojs.events.ready(function() {
+		//   var as = audiojs.createAll();
+		// });
 
-			$('.verImg').click(function(event) {
-				verImagen($(this).attr('src'));
-			});
-
+		$('.verImg').click(function(event) {
+			verImagen($(this).attr('src'));
 		});
-	</script>
+
+		var pregs = <?php echo atj($pregs); ?>;
+		// console.log(pregs);
+
+		$('.pClick').click(function(event) {
+			var pId = this.id;
+			var preg = pregs[pId];
+			var chkInf = <?php echo atj($chkInf); ?>;
+			var vInf = <?php echo atj($vInfo); ?>;
+			console.log(pId,preg,chkInf,vInf);
+
+			$('#pregunta').load(rz+'checklist/pregunta.php',{
+				pId: pId,
+				aId: preg['aId'],
+				chkId:chkInf['id'],
+				vId:vInf['id'],
+				abId:'a_'+preg['bloque'],
+				direccion:'regresar'
+			} ,function(){});
+		});
+
+
+
+	});
+</script>
 
 	<?php if ($_POST['div'] != 1){ ?>
 		
@@ -462,8 +484,9 @@
 												?>
 													<?php if ($isp == 0){$isp++; ?>
 														<td colspan="2">
-															<?php echo $spp['pregunta'];?>
-															
+															<span class="manita pClick" id="<?php echo $spp['identificador']; ?>">
+																<?php echo $spp['pregunta']; ?>
+															</span>															
 														</td>
 														<td class="<?php echo $clasePuntos ?>">
 															<i class="<?php echo $claseIcono ?>"></i>
@@ -488,7 +511,9 @@
 														<tr>
 															<td class="negro"><?php echo $pI++ ?></td>
 															<td colspan="2">
-																<?php echo $spp['pregunta'];?>
+																<span class="manita pClick" id="<?php echo $spp['identificador']; ?>">
+																	<?php echo $spp['pregunta']; ?>
+																</span>															
 															</td>
 															<td class="<?php echo $clasePuntos ?>">
 																<i class="<?php echo $claseIcono ?>">
@@ -533,7 +558,11 @@
 									?>
 										<tr>
 											<td class="negro"><?php echo $pI++ ?></td>
-											<td colspan="3"><?php echo $pp['pregunta']; ?></td>
+											<td colspan="3">
+												<span class="manita pClick" id="<?php echo $pp['identificador']; ?>">
+													<?php echo $pp['pregunta']; ?>
+												</span>
+											</td>
 											<td class="<?php echo $clasePuntos ?>">
 												<i class="<?php echo $claseIcono ?>"></i>
 												<?php 

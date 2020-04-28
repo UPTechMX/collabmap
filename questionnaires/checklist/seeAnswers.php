@@ -16,7 +16,7 @@
 
 <div class="modal-header nuevo" >
 	<div style="text-align: center;">
-		<h4 class="modal-title">Cuestionario</h4>
+		<h4 class="modal-title"><?php echo TR('survey'); ?></h4>
 	</div>
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white;">
 	  <span aria-hidden="true">&times;</span>
@@ -30,6 +30,6 @@
 </div>
 <div class="modal-footer">
 	<div style="text-align: right;">
-		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel">Cerrar</span>
+		<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel"><?php echo TR('close'); ?></span>
 	</div>
 </div>

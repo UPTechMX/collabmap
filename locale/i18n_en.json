@@ -226,6 +226,7 @@
   "points": "Points",
   "toRecord": "To record",
   "justify": "Justify",
+  "justification": "Justification",
   "chIdQuestionMessage": "Changing the identifier modifies the associations between questions of different questionnaires",
   "answer": "Answer",
   "answers": "Answers",
