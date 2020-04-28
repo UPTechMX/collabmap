@@ -259,8 +259,8 @@
   "sended": "Sended",
 
   "analysis": "Analysis",
-  "surveyAnalysis": "Questionnaire analysis",
-  "socialMon": "Social monitoring",
+  "surveyAnalysis": "Aggregated results",
+  "socialMon": "Changes over time",
   "structureFilter": "Filter by structure",
   "questionFilter": "Questions to analyze",
   "spatialQuestion": "Spatial question",

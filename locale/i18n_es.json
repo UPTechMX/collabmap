@@ -259,8 +259,8 @@
   "sended": "Enviado",
 
   "analysis": "Analisis",
-  "surveyAnalysis": "Análisis de cuestionario",
-  "socialMon": "Monitoreo social",
+  "surveyAnalysis": "Resultados agregados",
+  "socialMon": "Cambios en el tiempo",
   "structureFilter": "Filtrar por estructura",
   "questionFilter": "Preguntas a analizar",
   "spatialQuestion": "Pregunta espacial",
