@@ -66,7 +66,7 @@
 	}
 	
 	$col = array();
-	$i = 1;
+	$i = count($dims);
 	foreach ($bloques as $bId=> $b) {
 		$csv .= '<ss:Cell><ss:Data ss:Type="String">BLOQUE</ss:Data></ss:Cell>'."\n"; $col[$i++] = array('tipo'=>"nada");
 		$csv .= '<ss:Cell><ss:Data ss:Type="String">'.strip_tags($b['nombre']).'</ss:Data></ss:Cell>'."\n"; 
@@ -121,6 +121,23 @@
 												'identificador'=>$sp['identificador']);
 									}
 									break;
+								case 'spatial':
+								case 'cm':
+									$csv .= '<ss:Cell><ss:Data ss:Type="String">'.trim(str_replace('"', '', strip_tags($p['pregunta']))).'</ss:Data></ss:Cell>'."\n";
+									$col[$i++] = array('tipo'=>'pregResp','id'=>$sp['id'],
+											'identificador'=>$sp['identificador']);
+
+									break;
+								case 'op':
+									$csv .= '<ss:Cell><ss:Data ss:Type="String">'.trim(str_replace('"', '', strip_tags($sp['pregunta']))).'</ss:Data></ss:Cell>'."\n";
+									$csv .= '<ss:Cell><ss:Data ss:Type="String">lat</ss:Data></ss:Cell>'."\n";
+									$csv .= '<ss:Cell><ss:Data ss:Type="String">lng</ss:Data></ss:Cell>'."\n";
+									$col[$i++] = array('tipo'=>'pregResp','id'=>$sp['id'],
+											'identificador'=>$sp['identificador']);
+									$i = $i+2;
+
+									break;
+
 								
 								default:
 									$csv .= '<ss:Cell><ss:Data ss:Type="String">'.trim(str_replace('"', '', strip_tags($sp['pregunta']))).'</ss:Data></ss:Cell>'."\n";
@@ -156,6 +173,19 @@
 							$col[$i++] = array('tipo'=>'pregJustif','id'=>$p['id'],
 								'identificador'=>$p['identificador']);//$p['id']."_justif";
 						}
+						break;
+					case 'spatial':
+					case 'cm':
+						$csv .= '<ss:Cell><ss:Data ss:Type="String">'.trim(str_replace('"', '', strip_tags($p['pregunta']))).'</ss:Data></ss:Cell>'."\n";
+						$col[$i++] = array('tipo'=>'spatial','id'=>$p['id'],'identificador'=>$p['identificador']);
+						break;
+					case 'op':
+						$csv .= '<ss:Cell><ss:Data ss:Type="String">'.trim(str_replace('"', '', strip_tags($p['pregunta']))).'</ss:Data></ss:Cell>'."\n";
+						$csv .= '<ss:Cell><ss:Data ss:Type="String">lat</ss:Data></ss:Cell>'."\n";
+						$csv .= '<ss:Cell><ss:Data ss:Type="String">lng</ss:Data></ss:Cell>'."\n";
+						$col[$i++] = array('tipo'=>'op','id'=>$p['id'], 'identificador'=>$p['identificador']);
+						$i = $i+2;
+
 						break;
 					default:
 						$csv .= '<ss:Cell><ss:Data ss:Type="String">'.trim(str_replace('"', '', strip_tags($p['pregunta']))).'</ss:Data></ss:Cell>'."\n";
@@ -222,15 +252,22 @@
 		// print2($targetElem);
 
 		$elem = $targetElem['dimensionesElemId'];
+		$struct = [];
 		for ($i=count($dims); $i > 0 ; $i--) { 
 			if(!empty($elem)){
 				$dimensionesElem = $db->query("SELECT * FROM DimensionesElem WHERE id = $elem")->fetchAll(PDO::FETCH_ASSOC)[0];
 				$elem = $dimensionesElem['padre'];
-				$csvL .= '<ss:Cell><ss:Data ss:Type="String">'.$dimensionesElem['nombre'].'</ss:Data></ss:Cell>'."\n";
+				$struct[$i] = $dimensionesElem['nombre'];
 				// print2($dimensionesElem);
 			}else{
 				break;
 			}
+		}
+		ksort($struct);
+		
+		foreach ($struct as $s) {
+			# code...
+			$csvL .= '<ss:Cell><ss:Data ss:Type="String">'.$s.'</ss:Data></ss:Cell>'."\n";
 		}
 
 
@@ -246,7 +283,7 @@
 		// 	$csvL .= '<ss:Cell><ss:Data ss:Type="String">-</ss:Data></ss:Cell>'."\n";
 		// }
 
-		$csvL .= '<ss:Cell><ss:Data ss:Type="String">'.$v['resumen'].'</ss:Data></ss:Cell>'."\n";
+		// $csvL .= '<ss:Cell><ss:Data ss:Type="String">'.$v['resumen'].'</ss:Data></ss:Cell>'."\n";
 		// print2($pregs);
 		$pond = $calc['chk']['max'] != 0 ? 100/$calc['chk']['max'] : 0;
 
@@ -296,7 +333,25 @@
 
 					break;
 				case 'pregResp':
+					// print2($pregs[$c['identificador']]);
 					$csvL .= '<ss:Cell><ss:Data ss:Type="String">'.$pregs[$c['identificador']]['nomResp'].'</ss:Data></ss:Cell>'."\n";
+					break;
+				case 'spatial':
+					// print2($pregs[$c['identificador']]);
+					$csvL .= '<ss:Cell><ss:Data ss:Type="String">spatial</ss:Data></ss:Cell>'."\n";
+					break;
+				case 'op':
+					// print2($pregs[$c['identificador']]);
+					$rvId = $pregs[$c['identificador']]['respuestasVisitaId'];
+					$pointJ = $db->query("SELECT ST_AsGeoJSON(geometry) as geometry 
+							FROM Problems WHERE RespuestasVisitaId = $rvId")->fetchAll(PDO::FETCH_ASSOC)[0];
+					$point = json_decode($pointJ['geometry'],true);
+					$coordinates = $point['coordinates'];
+					// print2($coordinates);
+
+					$csvL .= '<ss:Cell><ss:Data ss:Type="String"></ss:Data></ss:Cell>'."\n";
+					$csvL .= '<ss:Cell><ss:Data ss:Type="String">'.$coordinates[1].'</ss:Data></ss:Cell>'."\n";
+					$csvL .= '<ss:Cell><ss:Data ss:Type="String">'.$coordinates[0].'</ss:Data></ss:Cell>'."\n";
 					break;
 				case 'pregVal':
 					$pond = $calc['bloques'][$pregs[$c['identificador']]['bloque']]['areas'][$pregs[$c['identificador']]['area']]['pond'];
