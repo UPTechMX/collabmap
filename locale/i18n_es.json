@@ -226,6 +226,7 @@
   "points": "Tantos",
   "toRecord": "contabilizar",
   "justify": "Justificar",
+  "justification": "Justificacion",
   "chIdQuestionMessage": "Cambiar el identificador modifica las asociaciones entre preguntas de distintos checklist",
   "answer": "Respuesta",
   "answers": "Respuestas",

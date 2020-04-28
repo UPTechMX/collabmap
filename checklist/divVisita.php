@@ -34,7 +34,7 @@ $vis = $vInfo;
 
 
 <div class="divVisita">
-	<?php include 'visita.php'; ?>
+	<?php include 'visitaWBack.php'; ?>
 </div>
 <?php $p = $_SESSION['CM']['chk'][$_POST['vId']]['res'][$faltaPreg]; ?>
 
