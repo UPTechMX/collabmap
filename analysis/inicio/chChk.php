@@ -16,6 +16,7 @@
 			if(prjId != ''){
 				var rj = jsonF('analysis/inicio/json/findElems.php',{option:'targets',prjId:prjId});
 				r = $.parseJSON(rj);
+				console.log(r);
 			}
 
 			optsSel(r,$('#chTrgtSel'),false,'- - - <?php echo TR('target'); ?> - - -',false);

@@ -1015,7 +1015,34 @@ function validateDate($date, $format = 'Y-m-d')
 }
 
 
+function getLJTrgt($nivelMax,$padre,$targetsId){
+	global $db;
+	$numDim = $db->query("SELECT COUNT(*) FROM Dimensiones 
+		WHERE elemId = $targetsId AND type='structure' ")->fetchAll(PDO::FETCH_NUM)[0][0];
 
+	$LJ = '';
+	$nivelMax = isset($nivelMax)?$nivelMax:0;
+	$padre = isset($padre)?$padre:0;
+	for ($i=$nivelMax; $i <$numDim ; $i++) { 
+		if($i == $nivelMax){
+			$LJ .= " LEFT JOIN DimensionesElem de$i ON te.dimensionesElemId = de$i.id";
+		}else{
+			$LJ .= " LEFT JOIN DimensionesElem de$i ON de$i.id = de".($i-1).".padre";
+		}
+		if($i == $numDim - 2){
+		}
+		if($i == $numDim - 1){
+			$fields = ", de$i.nombre as nombreHijo, de$i.id as idHijo";
+			$wDE = " de$i.padre = $padre";
+		}
+	}
+
+	$return['LJ'] = $LJ;
+	$return['wDE'] = $wDE;
+	$return['fields'] = $fields;
+
+	return $return;
+}
 
 
 
