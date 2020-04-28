@@ -51,9 +51,10 @@
 		});
 
 		$('.areaAnalysis').click(function(event) {
-			var divArea = $($(this).closest('.divAreas').find('.divArea')[0])
-			divArea.toggle();
-			if($(divArea).is(":visible")){
+			var divPreguntas = $($(this).closest('.divArea').find('.divPreguntas')[0]);
+
+			divPreguntas.toggle();
+			if($(divPreguntas).is(":visible")){
 				$(this).find('.chevron').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down')
 			}else{
 				$(this).find('.chevron').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right')
@@ -124,7 +125,7 @@
 	});
 </script>
 
-<div style="text-align: right;">
+<div style="text-align: right;margin-top: 10px;">
 	<span class="btn btn-shop" id="dwlAns"><?php echo TR('dwlAns'); ?></span>
 </div>
 <div>
@@ -136,11 +137,11 @@
 			</div>
 			<div class="divAreas" style="padding-left: 50px;margin-top: 10px;">
 				<?php foreach ($b['areas'] as $a){ ?>
-					<div class="areaAnalysis manita" >
-						<?php echo TR('area'); ?>: <?php echo $a['nombre']; ?>&nbsp;
-						<i class="glyphicon glyphicon-chevron-down chevron"></i>
-					</div>
-					<div class="divArea">
+					<div class="divArea" style="margin-top: 10px;">
+						<div class="areaAnalysis manita" >
+							<?php echo TR('area'); ?>: <?php echo $a['nombre']; ?>&nbsp;
+							<i class="glyphicon glyphicon-chevron-down chevron"></i>
+						</div>
 						<div class="divPreguntas" style="padding-left: 50px;margin-top: 10px;">
 							<?php
 							foreach ($a['preguntas'] as $p){ 

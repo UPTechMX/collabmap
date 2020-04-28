@@ -6,21 +6,31 @@
 	}
 	checaAcceso(50);
 
-	// print2($_POST);
 	// exit();
 
+	if( !is_numeric($_POST['nivelMax']) || !is_numeric($_POST['padre']) 
+		|| !is_numeric($_POST['targetsId']) || !is_numeric($_POST['chkId']) ){
+		exit('ERROR');
+	}
+	// print2($_POST);
 	
 	$chkId = $_POST['chkId'];
 
 	$JOINS = getLJTrgt($_POST['nivelMax'],$_POST['padre'],$_POST['targetsId']);
 	// print2($JOINS);
 
+	$info = $db->query("SELECT t.name as tName, p.name as pName
+		FROM Targets t
+		LEFT JOIN Projects p ON p.id = t.projectsId
+		WHERE t.id = $_POST[targetsId]")->fetchAll(PDO::FETCH_ASSOC)[0];
+
+	// print2($info);
 	// exit();
 
 
 	header('Content-Type: text/html; charset=utf-8'); 
 	header("Content-type: application/octet-stream");
-	header("Content-Disposition: attachment; filename=$pry[nombre] - $etapa[nombre] - respuestas.xls");
+	header("Content-Disposition: attachment; filename=$info[pName] - $info[tName] - ".TR('answers').".xls");
 
 
 	// include_once '../../../lib/j/j.func.php';
