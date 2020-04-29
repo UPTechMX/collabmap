@@ -299,6 +299,8 @@
   "codeExist":"El código que quieres ingresar ya existe",
   "information":"Información",
   "startQuestionnaire": "Iniciar",
+  "finished": "Finalizada",
+  "notFinished": "No finalizada",
 
 
   "noAccess": "Sin acceso al sistema",

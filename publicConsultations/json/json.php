@@ -15,7 +15,7 @@
 
 	switch ($_POST['acc']) {
 		case '1':
-			if($pcInfo['emailReq'] == 1 && empty($pcInfo['multAns'])){
+			if($pcInfo['emailReq'] == 1 && $pcInfo['oneAns'] == 1){
 				$stmt = $db->prepare("SELECT COUNT(*) as cuenta
 					FROM Visitas v
 					LEFT JOIN PublicConsultationsUsers pcu ON pcu.id = v.elemId

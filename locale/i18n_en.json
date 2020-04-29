@@ -299,6 +299,8 @@
   "codeExist":"The code you want to enter already exists",
   "information":"Information",
   "startQuestionnaire": "Start",
+  "finished": "Finished",
+  "notFinished": "Not finished",
 
 
   "noAccess": "No access",

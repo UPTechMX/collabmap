@@ -66,6 +66,25 @@
 
 
 			});
+		<?php }else{ ?>
+
+			$('#enter').click(function(event) {
+				
+				var code = '<?php echo $_REQUEST['pc']; ?>';
+				var rj = jsonF('publicConsultations/json/json.php',{email:'--',acc:1,code:code});
+				var r = $.parseJSON(rj);
+				if(r.ok == 1){
+					var vId = r.vId;
+					popUpCuest('publicConsultations/answer.php',{vId:vId},function(){})
+					setTimeout(function(){
+						$('#contentCuest').load(rz+'checklist/cuestionario.php',{vId:vId},function(){});
+					},500);
+
+				}
+
+
+			});
+
 		<?php } ?>
 	});
 </script>
