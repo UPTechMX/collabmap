@@ -55,7 +55,7 @@ switch ($preg['tSiglas']) {
 			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
 			LEFT JOIN Respuestas r ON r.id = rv.respuesta
 			$LJ
-			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt' AND $wDE
+			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt' AND $wDE AND v.finalizada = 1
 			GROUP BY rv.respuesta
 		")->fetchALL(PDO::FETCH_ASSOC);
 		include 'mult.php';
@@ -70,7 +70,7 @@ switch ($preg['tSiglas']) {
 			LEFT JOIN TargetsElems te ON te.id = v.elemId
 			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
 			$LJ
-			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt' AND $wDE
+			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt' AND $wDE AND v.finalizada = 1
 			GROUP BY rv.respuesta
 		")->fetchALL(PDO::FETCH_ASSOC);
 		include 'num.php';
@@ -86,7 +86,7 @@ switch ($preg['tSiglas']) {
 			LEFT JOIN TargetsElems te ON te.id = v.elemId
 			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
 			$LJ
-			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt' AND $wDE
+			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt' AND $wDE AND v.finalizada = 1
 		")->fetchALL(PDO::FETCH_ASSOC);
 		include 'spatial.php';
 
@@ -100,7 +100,7 @@ switch ($preg['tSiglas']) {
 			LEFT JOIN TargetsElems te ON te.id = v.elemId
 			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
 			$LJ
-			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt' AND $wDE
+			WHERE tc.id = $_POST[trgtChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'trgt' AND $wDE AND v.finalizada = 1
 		")->fetchALL(PDO::FETCH_ASSOC);
 		include 'spatial.php';
 
