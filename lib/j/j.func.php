@@ -1,7 +1,7 @@
 <?php 
 // echo "aaa";
 // error_reporting(0);
-date_default_timezone_set('America/Mexico_City'); 
+date_default_timezone_set('Asia/Jakarta'); 
 // echo date_default_timezone_get();
 
 if(!function_exists('raiz')){
