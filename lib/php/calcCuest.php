@@ -491,16 +491,19 @@ function valPreg(&$pregs,$identificador){
 	// echo "ASASAS";
 
 	// print2($pregs);
-	if($identificador != 'p_72_361_617_5230jj'){
+	if($identificador != 'sp_35_44_50_255'){
 		ob_start();
 	}
 
 	// echo $pregs[$identificador]['valPreg']."<br/>";
 
 	if(isset($pregs[$identificador]['valPreg'])){
-		print2('aaa');
+		print2('ini');
+		print2($pregs[$identificador]['valPreg']);
+		print2('fin');
 		$valor = is_numeric($pregs[$identificador]['valPreg'])?$pregs[$identificador]['valPreg']:'-';
 	}else{
+		print2('zzzzz');
 		if(count($pregs[$identificador]['conds']) == 0){
 			// echo $pregs[$identificador]['puntos'];
 			$valor =  is_numeric($pregs[$identificador]['valResp'] ) &&  is_numeric($pregs[$identificador]['puntos'] )?
@@ -512,11 +515,13 @@ function valPreg(&$pregs,$identificador){
 			$valor =  is_numeric($pregs[$identificador]['valResp'] ) ? 
 				$pregs[$identificador]['valResp']*$pregs[$identificador]['puntos']:
 				'-';
-
+			print2($pregs[$identificador]['conds']);
 			foreach ($pregs[$identificador]['conds'] as $c) {
 
 				$ok = evalCond($pregs,$c['condicion']);
+				print2($c);
 				if($ok){
+					print2('cumple');
 					switch ($c['accion']) {
 						case 1:
 							
@@ -576,6 +581,7 @@ function valPreg(&$pregs,$identificador){
 
 							break;
 						case 2:
+
 							$valor = '-';
 							$pregs[$identificador]['muestra'] = 0;
 							break;
@@ -707,7 +713,7 @@ function valPreg(&$pregs,$identificador){
 		}
 	}
 	echo "!!! $valor !!!";
-	if($identificador != 'p_72_361_617_5230jj'){
+	if($identificador != 'sp_35_44_50_255'){
 		ob_end_clean();
 	}
 	return $valor;

@@ -787,7 +787,7 @@ function resultadosEXT($visita,$chk){
 					case 'ab':
 						$preguntas[$pidentif]['respuesta'] = $respuestas[$pidentif][0]['respuesta'];
 						$preguntas[$pidentif]['valResp'] = '-';
-						$preguntas[$pidentif]['valPreg'] = '-';
+						// $preguntas[$pidentif]['valPreg'] = '-';
 						$preguntas[$pidentif]['nomResp'] = $respuestas[$pidentif][0]['valResp'];
 						$preguntas[$pidentif]['justificacion'] = $respuestas[$pidentif][0]['justificacion'];//$resp['respuesta'];
 						break;
@@ -830,7 +830,7 @@ function resultadosEXT($visita,$chk){
 							case 'ab':
 								$preguntas[$spidentif]['respuesta'] = $respuestas[$spidentif][0]['respuesta'];
 								$preguntas[$spidentif]['valResp'] = '-';
-								$preguntas[$spidentif]['valPreg'] = '-';
+								// $preguntas[$spidentif]['valPreg'] = '-';
 								$preguntas[$spidentif]['nomResp'] = $respuestas[$spidentif][0]['valResp'];
 								$preguntas[$spidentif]['justificacion'] = $respuestas[$spidentif][0]['justificacion'];//$resp['respuesta'];
 								break;
@@ -849,6 +849,8 @@ function resultadosEXT($visita,$chk){
 		$valPreg = valPreg($preguntas,$k);
 		// echo "$k -> $valPreg<br/>";
 		$preguntas[$k]['valPreg'] = is_numeric($valPreg)?$valPreg:'-'; // 
+		// print2($k);
+		// print2($preguntas[$k]['valPreg']);
 		// $preguntas[$k]['valPreg'] = is_numeric($valPreg)?$valPreg*$p['puntos']:'-'; // Ya lo multiplico por los puntos en valPreg
 
 		// print2($valPreg);
