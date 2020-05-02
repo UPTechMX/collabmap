@@ -297,7 +297,7 @@ function inserta($post){
 					}	
 				}
 				if($coords != ""){
-					$sql .= "$geo[field] = ST_GeometryFromText('LineString($coords)'), ";
+					$sql .= "$geo[field] = ST_GeometryFromText('LineString($coords)',4326), ";
 				}
 				break;
 			
@@ -669,8 +669,14 @@ function verifPWD($usr,$pwd,$acceso){
 			$r['nivel'] = $usrInf['nivel'];
 			// print2($r['priv']);
 		}elseif($acceso == 'questionnaires'){
-			$r['name'] = "$usrInf[name] $usrInf[lastname]";
-			$r['validated'] = $usrInf['validated'];
+			if($usrInf['validated'] == 1){
+				$r['name'] = "$usrInf[name] $usrInf[lastname]";
+				$r['validated'] = $usrInf['validated'];
+			}else{
+				$r['name'] = "";
+				$r['validated'] = 0;
+				$r['usrId'] = "";
+			}
 		}
 	}
 
