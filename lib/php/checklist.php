@@ -303,6 +303,7 @@ function regArea($bId,$aId,$est){
 		end($areas);
 		$naId = key($areas);
 	}else{
+		$areas = is_array($areas)?$areas:array();
 		foreach ($areas as $aaId =>$b) {
 			if($aaId == $aId){
 				prev($areas);
@@ -471,6 +472,7 @@ function visible($pId,$res,$est,$direccion){
 	$p = $res[$pId];
 	// print2($p);
 	$visible = true;
+	$p['conds'] = is_array($p['conds'])?$p['conds']:array();
 	foreach ($p['conds'] as $c) {
 		if($c['accion'] == 2){
 			$v = evalCond($res,$c['condicion']);
