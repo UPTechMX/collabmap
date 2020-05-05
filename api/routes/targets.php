@@ -7,11 +7,24 @@ use \Psr\Interfaces\RouteGroupInterface;
 
 $app->group('/targets', function () use ($app) {
   // $app->get('/empleados', 'obtenerEmpleados');
-  $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
-      $name = $args['name'];
-      $response->getBody()->write("Hello, $name");
+  $app->post('/user/{usrId}', function (Request $request, Response $response, array $args) {
+		global $db;
+	$usrId = $args['usrId'];
+	
+	$token = getToken($request);
 
-      return $response;
+	// echo "\n\n$token\n\n";
+
+	$verif = tokenVerif($token,$usrId);
+
+	if($verif){
+		$ut = $db->query("SELECT * FROM UsersTargets WHERE usersId = $usrId")->fetchAll(PDO::FETCH_ASSOC);
+	}else{
+		$ut['err'] = 'Invalid token';
+	}
+
+	$response->getBody()->write(atj($ut));
+	return $response;
   });
 
 

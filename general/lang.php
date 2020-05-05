@@ -1,7 +1,7 @@
 <?php
 
 // echo "$lang<br/>";
-$langs = ['en','es'];
+$langs = ['en','es','id'];
 ?>
 
 <script type="text/javascript">
@@ -30,7 +30,6 @@ $langs = ['en','es'];
 			|
 		<?php } ?>
 		<a href="<?php echo "$_SERVER[PHP_SELF]?$query&lang=$l"; ?>" style="text-decoration: none;">
-			
 			<span class="manita lang" id="lang_<?php echo $l; ?>" style="color:<?php echo strpos($lang, $l) !== false?'orange':grey; ?>">
 				<?php echo strtoupper($l) ?>
 			</span>

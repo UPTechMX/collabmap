@@ -4,7 +4,19 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../vendor/autoload.php';
 
-$app = new \Slim\App;
+$config = [
+    'settings' => [
+        'displayErrorDetails' => true,
+
+        'logger' => [
+            'name' => 'slim-app',
+            // 'level' => Monolog\Logger::DEBUG,
+            'path' => __DIR__ . '/../logs/app.log',
+        ],
+    ]
+];
+
+$app = new \Slim\App($config);
 
 require '../routes/index.php';
 
