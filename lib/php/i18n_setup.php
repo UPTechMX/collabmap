@@ -7,7 +7,7 @@ session_start();
  * @return bool
  */
 function valid($locale) {
-    return in_array($locale, ['en_US', 'en', 'es_MX', 'es']);
+    return in_array($locale, ['en_US', 'en', 'es_MX', 'es', 'id']);
 }
 
 //setting the source/default locale, for informational purposes

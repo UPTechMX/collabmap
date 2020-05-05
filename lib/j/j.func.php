@@ -1050,7 +1050,24 @@ function getLJTrgt($nivelMax,$padre,$targetsId){
 	return $return;
 }
 
+function getToken($request){
+	$headers = $request->getHeaders();
+	$auth = $headers['HTTP_AUTHORIZATION'][0];
+	$token = substr($auth, 7);
 
+	return $token;
+}
+
+function tokenVerif($token,$usrId){
+
+	$cToken = '$2y$10$'.$token;
+	$v = password_verify("UPT_$usrId"."_1",$cToken);
+
+	// echo "\n\nToken: $cToken\n\nusrId : $usrId\n\n";
+	// echo "V: $v";
+	return $v;
+
+}
 
 
 ?>
