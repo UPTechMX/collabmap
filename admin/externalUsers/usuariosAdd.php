@@ -155,17 +155,17 @@ if($nivel<60){
 				</td>
 				<td></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td><?php echo TR('last_name'); ?></td>
 				<td><input type="text" value="<?php echo $datC['lastname']; ?>" name="lastname" id="lastname" class="form-control oblig"></td>
 				<td></td>
-			</tr>
-			<tr>
+			</tr> -->
+			<!-- <tr>
 				<td><?php echo TR("email"); ?></td>
 				<td><input type="text" value="<?php echo $datC['email']; ?>" name="email" id="email" class="form-control oblig"></td>
 				<td></td>
-			</tr>
-			<tr>
+			</tr> -->
+			<!-- <tr>
 				<td><?php echo TR('gender'); ?></td>
 				<td>
 					<select name="gender" class="form-control">
@@ -176,12 +176,12 @@ if($nivel<60){
 					</select>
 				</td>
 				<td></td>
-			</tr>
-			<tr>
+			</tr> -->
+			<!-- <tr>
 				<td><?php echo TR("age"); ?></td>
 				<td><input type="text" value="<?php echo $datC['age']; ?>" name="age" id="age" class="form-control oblig"></td>
 				<td></td>
-			</tr>
+			</tr> -->
 			<?php if ($datC['confirmed'] != 1){ ?>
 				<!-- <tr>
 					<td><?php echo TR('confirmed'); ?></td>
@@ -197,7 +197,7 @@ if($nivel<60){
 
 
 			<?php if (isset($_POST['usuarioId'])): ?>
-				<tr>
+				<!-- <tr>
 					<td colspan="3" style="text-align: center;"><span id="chPwd" class="btn btn-sm btn-default"><?php echo TR('chPwd'); ?></span></td>
 				</tr>
 				<tr class="trPwd" style="display: none;">
@@ -211,10 +211,10 @@ if($nivel<60){
 					<td valign="middle" style="font-size: large;vertical-align: middle;">
 						<i id="pwdChk" style="display: none;" class="glyphicon"></i>
 					</td>
-				</tr>
+				</tr> -->
 
 			<?php else: ?>
-				<tr>
+				<!-- <tr>
 					<td><?php echo TR('password'); ?></td>
 					<td><input type="password" name="pwd" id="pwd" class="form-control oblig"></td>
 					<td></td>
@@ -225,7 +225,7 @@ if($nivel<60){
 					<td valign="middle" style="font-size: large;vertical-align: middle;">
 						<i id="pwdChk" style="display: none;" class="glyphicon"></i>
 					</td>
-				</tr>
+				</tr> -->
 			<?php endif ?>
 
 		</table>		
