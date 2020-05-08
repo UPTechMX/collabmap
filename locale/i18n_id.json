@@ -1,6 +1,6 @@
 {
   "systemName": "Siap Tanggap",
-  "close_session": "Sesi tertutup",
+  "close_session": "Tutup sesi",
   "input": "Input","input":"Input",
   "category": "Kategori",
   "categories": "Kategori-kategori",
@@ -29,7 +29,7 @@
   "cat_not_null": "Kategori tidak dapat dikosongkan",
   "sign_up": "Daftar",
   "log_in": "Masuk",
-  "username": "Nama pengguna",
+  "username": "Nama",
   "password": "Sandi",
   "phone":"Telepon",
   "repeatpwd": "Ulangi sandi",
@@ -118,7 +118,7 @@
 
   "administration": "Administrasi",
 
-  "targets": "Target-target",
+  "targets": "Daftar target",
   "target": "Target",
   "description": "Deskripsi",
   "targetInfo": "Informati target",
@@ -133,7 +133,7 @@
   "selFile": "Pilih file",
   "extErrorStr":"Tidak dapat diunggah. Hanya ekstensi berikut yang dapat diproses: ",
   "addStructure":"Izinkan menambahkan struktur oleh pengguna",
-  "useSelected":"Gunakan pilihan",
+  "useSelected":"Pilih item",
   "addToList" : "Tambahkan item baru ke dalam list",
   "TrgtExist": "Item tersebut sudah digunakan",
   "example": "Contoh",
@@ -145,12 +145,12 @@
   "successfulImport": "Import berhasil",
   "importError": "Terdapat kesalahan dalam proses import file ",
   
-  "users": "Pengguna-pengguna",
+  "users": "Daftar pengguna",
   "user": "Pengguna",
   "internalUsers": "Pengguna internal",
   
-  "externalUsers": "Pengguna-pengguna eksternal",
-  "externalUser": "Pengguna eksternal",
+  "externalUsers": "Pengguna Eksternal",
+  "externalUser": "Pengguna Eksternal",
   "userInfo": "Informasi pengguna",
   "confirmed": "Telah terkonfirmasi",
   "validate": "Validasi",
@@ -253,7 +253,7 @@
   "deleteProblem":"Apakah anda ingin menghapus laporannya?",
   
   "project": "Proyek",
-  "projects": "Proyek-proyek",
+  "projects": "Daftar Proyek",
   "inactive": "Tidak aktif",
   
   "identifier": "Pengidentifikasi",
@@ -269,7 +269,7 @@
   "questionFilter": "Pertanyaan untuk dianalisis",
   "spatialQuestion": "Pertanyaan spasial",
   "numericQuestion": "Pertanyaan numerik",
-  "chChk": "Rubah kuesioner",
+  "chChk": "Ubah kuesioner",
   "selChk": "Pilih kuesioner",
   "selectChart": "Pilih grafik",
   "piechart": "Grafik pie",
@@ -294,7 +294,7 @@
   "dwlAns":"Mengunduh semua jawaban",
   
   
-  "publicCons":"Konsultasi-konsultasi Publik",
+  "publicCons":"Daftar konsultasi publik",
   "publicCon":"Konsultasi publik",
   "emailReq":"Memerlukan email",
   "oneAns":"Hanya satu jawaban diperbolehkan",
@@ -309,10 +309,6 @@
   "noAccess": "Tidak ada akses",
   "administrator": "Administrator",
   "superuser": "Superuser",
-  "analyst": "Analis",
   "level": "Tingkatan"
-
-
-
 
 }
