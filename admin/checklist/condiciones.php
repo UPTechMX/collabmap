@@ -8,20 +8,20 @@
 	// print2($conds);
 	switch ($_POST['aplicacion']) {
 		case 'preg':
-			$accs[1] = 'Valor pregunta';
-			$accs[5] = 'Modificar tantos';
-			$accs[2] = 'No presentar';
+			$accs[1] = TR('valQuest');
+			$accs[5] = TR('modPoints');
+			$accs[2] = TR('hide');
 			// $accs[6] = 'Modificar respuesta';
 			break;
 		case 'chk':
-			$accs[3] = 'Valor total';
-			$accs[4] = 'Modificar valor';
+			$accs[3] = TR('totalValue');
+			$accs[4] = TR('modValue');
 			break;
 		case 'bloque':
 		case 'area':
-			$accs[2] = 'No presentar';
-			$accs[3] = 'Valor total';
-			$accs[4] = 'Modificar valor';
+			$accs[2] = TR('hide');
+			$accs[3] = TR('totalValue');
+			$accs[4] = TR('modValue');
 			break;		
 		default:
 			break;
