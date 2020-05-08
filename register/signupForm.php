@@ -110,7 +110,10 @@
 				}
 			}
 
+
 		});
+		
+		soloNumeros($('#username'));
 
 	});
 </script>
@@ -121,7 +124,7 @@
 		<form id="nEmp">
 			<table class="table" border="0">
 				<tr>
-					<td><?php echo TR('username'); ?></td>
+					<td><?php echo TR('phone'); ?></td>
 					<td>
 						<?php if (isset($_POST['usuarioId'])): ?>
 							<span><?php echo $datC['username']; ?></span>
@@ -138,45 +141,6 @@
 						<input type="text" value="<?php echo $datC['name']; ?>" name="name" id="name" class="form-control oblig" >
 					</td>
 					<td></td>
-				</tr>
-				<tr>
-					<td><?php echo TR('last_name'); ?></td>
-					<td><input type="text" value="<?php echo $datC['lastname']; ?>" name="lastname" id="lastname" class="form-control oblig"></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><?php echo TR("email"); ?></td>
-					<td><input type="text" value="<?php echo $datC['email']; ?>" name="email" id="email" class="form-control oblig"></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><?php echo TR('gender'); ?></td>
-					<td>
-						<select name="gender" class="form-control">
-							<option value="">- - - <?php echo TR('gender'); ?> - - -</option>
-							<option value="M" <?php echo $datC['gender'] == 'M'?'selected':''; ?>><?php echo TR('male'); ?></option>
-							<option value="F" <?php echo $datC['gender'] == 'F'?'selected':''; ?>><?php echo TR('female'); ?></option>
-							
-						</select>
-					</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><?php echo TR("age"); ?></td>
-					<td><input type="text" value="<?php echo $datC['age']; ?>" name="age" id="age" class="form-control oblig"></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><?php echo TR('password'); ?></td>
-					<td><input type="password" name="pwd" id="pwd" class="form-control oblig"></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><?php echo TR('repeatpwd'); ?></td>
-					<td><input type="password" id="pwd2" class="form-control oblig"></td>
-					<td valign="middle" style="font-size: large;vertical-align: middle;">
-						<i id="pwdChk" style="display: none;" class="glyphicon"></i>
-					</td>
 				</tr>
 
 			</table>		

@@ -31,6 +31,7 @@
   "log_in": "Masuk",
   "username": "Nama pengguna",
   "password": "Sandi",
+  "phone":"Telepon",
   "repeatpwd": "Ulangi sandi",
   "chPwd": "Ubah sandi",
   "email": "Email",

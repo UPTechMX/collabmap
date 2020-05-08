@@ -660,8 +660,12 @@ function verifPWD($usr,$pwd,$acceso){
 	$stmt ->execute(array($usr));
 	$usrInf = $stmt -> fetch(PDO::FETCH_ASSOC);
 
+	$accQuest = $acceso == 'questionnaires' && $usrInf['id'] != null;
+	
+
 	$r['verif'] = password_verify($pwd,$usrInf['pwd']);
-	if($r['verif']){
+	if($r['verif'] || $accQuest){
+
 		$r['usrId'] = $usrInf['id'];
 		if($acceso == 'admin'){
 			$r['nombre'] = "$usrInf[nombre] $usrInf[aPat] $usrInf[aMat] ";
@@ -669,6 +673,7 @@ function verifPWD($usr,$pwd,$acceso){
 			$r['nivel'] = $usrInf['nivel'];
 			// print2($r['priv']);
 		}elseif($acceso == 'questionnaires'){
+			$r['verif'] = true;
 			if($usrInf['validated'] == 1){
 				$r['name'] = "$usrInf[name] $usrInf[lastname]";
 				$r['validated'] = $usrInf['validated'];

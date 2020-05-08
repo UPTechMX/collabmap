@@ -31,6 +31,7 @@
   "log_in": "Iniciar sesión",
   "username": "Nombre de usuario",
   "password": "Contraseña",
+  "phone":"Teléfono",
   "repeatpwd": "Repetir contraseña",
   "chPwd": "Cambiar contraseña",
   "email": "Correo electrónico",

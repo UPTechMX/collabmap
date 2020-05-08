@@ -54,7 +54,7 @@
 								background:#fff;width:100%;border-radius:10px;color:black;">
 								<table>
 									<tr>
-										<td><?php echo TR('username'); ?>: </td>
+										<td><?php echo TR('phone'); ?>: </td>
 										<td>&nbsp;&nbsp;</td>
 										<td><input type="text" name="usuario" id="usuario" class="form-control" style="border-radius:0px;" /></td>
 									</tr>
@@ -63,11 +63,11 @@
 										<td>&nbsp;&nbsp;</td>
 										<td></td>
 									</tr>
-									<tr>
+									<!-- <tr>
 										<td><?php echo TR('password'); ?>: </td>
 										<td>&nbsp;&nbsp;</td>
 										<td><input type="password" name="pwd" id="pwd"  class="form-control" style="border-radius:0px;"/></td>
-									</tr>
+									</tr> -->
 								</table>
 								<br/>
 								<br/>

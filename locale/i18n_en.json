@@ -30,6 +30,7 @@
   "sign_up": "Sign up",
   "log_in": "Log in",
   "username": "Username",
+  "phone":"Phone number",
   "password": "Password",
   "repeatpwd": "Repeat password",
   "chPwd": "Change password",
