@@ -73,33 +73,41 @@
 	});
 </script>
 
-<div class='row'>
-	<?php 
-	foreach ($dims as $k => $d){
-		if($k > count($dims)-2){
-			break;
-		}
-		if($k == 0){
-			$dimsElems = $db->query("SELECT * FROM DimensionesElem 
-				WHERE dimensionesId = $d[id]
-				ORDER BY nombre")->fetchAll(PDO::FETCH_ASSOC);
-		}else{
-			$dimsElems = array();
-		}
-	?>
-		<div class="col-3">
-			<select class="form-control dimSelChk" id="dimSelChk_<?php echo "$d[nivel]"; ?>">
-				<option value="">- - - <?php echo $d['nombre']; ?> - - -</option>
-				<?php foreach ($dimsElems as $de){ ?>
-					<option value="<?php echo $de['id']; ?>"><?php echo $de['nombre']; ?></option>
-				<?php } ?>
-			</select>
-		</div>
-	<?php } ?>
-</div>
-<div style="text-align: left; margin-top: 10px;">
-	<span class="btn btn-shop" id="genChk">
-		<?php echo TR('generate'); ?>
-	</span>
-</div>
+<?php if (count($dims) != 0){ ?>
+	
+	<div class='row'>
+		<?php 
+		foreach ($dims as $k => $d){
+			if($k > count($dims)-2){
+				break;
+			}
+			if($k == 0){
+				$dimsElems = $db->query("SELECT * FROM DimensionesElem 
+					WHERE dimensionesId = $d[id]
+					ORDER BY nombre")->fetchAll(PDO::FETCH_ASSOC);
+			}else{
+				$dimsElems = array();
+			}
+		?>
+			<div class="col-3">
+				<select class="form-control dimSelChk" id="dimSelChk_<?php echo "$d[nivel]"; ?>">
+					<option value="">- - - <?php echo $d['nombre']; ?> - - -</option>
+					<?php foreach ($dimsElems as $de){ ?>
+						<option value="<?php echo $de['id']; ?>"><?php echo $de['nombre']; ?></option>
+					<?php } ?>
+				</select>
+			</div>
+		<?php } ?>
+	</div>
+	<div style="text-align: left; margin-top: 10px;">
+		<span class="btn btn-shop" id="genChk">
+			<?php echo TR('generate'); ?>
+		</span>
+	</div>
+<?php }else{ ?>
+	<h2>
+		<?php echo TR('noStructure'); ?>
+	</h2>
+
+<?php } ?>
 
