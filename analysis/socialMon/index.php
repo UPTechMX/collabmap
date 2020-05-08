@@ -1,6 +1,6 @@
 <?php
 
-checaAcceso(50); // checaAcceso analysis;
+checaAcceso(5); // checaAcceso analysis;
 // print2()
 if(!is_numeric($_GET['trgtChk'])){
 	exit();
@@ -456,9 +456,23 @@ include_once 'spatialSMJS.php';
 			</div>
 
 		</div>
+		<div class='row' style="margin-top: 20px;">
+			<div class="col-3" style="text-align: left;">
+				<h5>
+					<?php echo TR('numAnt'); ?>
+				</h5>
+			</div>
+			<div class="col-1">
+				<input type="text" class="form-control" id="numAntSM" value="5">
+			</div>
+			<div class="col-4" style="display: none;">
+				<span id="genChartSM" class="btn btn-shop" ><?php echo TR('genChart'); ?></span>
+			</div>
+		</div>
 		<div style="text-align: left;margin-top: 10px;">
 			<span class="btn btn-shop" id="generateSM"><?php echo TR('generate'); ?></span>
 		</div>
+
 	</div>
 
 	<div id="mapContSM">
@@ -475,20 +489,6 @@ include_once 'spatialSMJS.php';
 	<div id="chartContSM" style="margin-top: 10px;">
 		<div style="background-color: whitesmoke;padding: 10px;border-radius: 5px;" id="SMStructureFilter">
 			<h4><?php echo TR('chart'); ?></h4>
-			<div class='row'>
-				<div class="col-4" style="text-align: right;">
-					<h5>
-						<?php echo TR('numAnt'); ?>
-					</h5>
-				</div>
-				<div class="col-1">
-					<input type="text" class="form-control" id="numAntSM" value="5">
-
-				</div>
-				<div class="col-4" style="display: none;">
-					<span id="genChartSM" class="btn btn-shop" ><?php echo TR('genChart'); ?></span>
-				</div>
-			</div>
 		</div>
 		<div id="chartSM"></div>
 	</div>

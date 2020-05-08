@@ -2,7 +2,7 @@
 	session_start();
 
 	include_once '../../../lib/j/j.func.php';
-	checaAcceso(50); // checaAcceso analysis;
+	checaAcceso(5); // checaAcceso analysis;
 	$usrId = $_SESSION['CM']['questionnaires']['usrId'];
 	// echo "usrId: $usrId\n";
 	

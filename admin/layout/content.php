@@ -31,6 +31,10 @@ switch ($Act) {
 		if($nivel >= 50)
 			include_once raiz().'admin/checklist/index.php';
 		break;
+	case 'tracking':
+		if($nivel >= 50)
+			include_once raiz().'admin/tracking/index.php';
+		break;
 	default:
 		// include_once raiz().'admin/proyectos/index.php';
 		break;			

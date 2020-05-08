@@ -8,6 +8,7 @@
 	$usuarios = $db->query("SELECT * FROM usrAdmin WHERE id > 1 ORDER BY nivel DESC, username")->fetchAll(PDO::FETCH_ASSOC);
 	// print2($usuarios);
 	$nomNivel[0] = "noAccess";
+	$nomNivel[5] = "analyst";
 	$nomNivel[50] = "administrator";
 	$nomNivel[60] = "superuser";
 ?>

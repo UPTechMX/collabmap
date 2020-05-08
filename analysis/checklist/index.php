@@ -53,6 +53,7 @@
 <div id="checklistAnalysisCont">
 
 	<div style="margin-top:10px;background-color: whitesmoke;padding: 10px;border-radius: 5px;<?php echo $displayStruct; ?>" id="structureFilter">
+
 		<h4><?php echo TR('structureFilter'); ?></h4>
 		<div class='row'>
 			<?php 
@@ -84,7 +85,10 @@
 			</span>
 		</div>
 	</div>
-
+	<div style="border:solid 1px black; border-radius: 5px;padding: 10px;margin-top: 10px;">
+		<?php echo "<strong>".TR('description')."</strong>: "; ?><br/>
+		<?php echo $target['description']; ?>
+	</div>
 	<div id="chkCont"><?php include_once 'chkCont.php'; ?></div>
 
 </div>

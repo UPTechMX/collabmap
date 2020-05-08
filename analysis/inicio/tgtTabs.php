@@ -10,9 +10,10 @@
 		WHERE tc.Id = $_GET[trgtChk]
 	")->fetchAll(PDO::FETCH_ASSOC)[0];
 	// print2($chkInf);
-	$target = $db->query("SELECT t.*, tc.frequency 
+	$target = $db->query("SELECT t.*, tc.frequency, p.description
 		FROM TargetsChecklist tc 
 		LEFT JOIN Targets t ON t.id = tc.targetsId
+		LEFT JOIN Projects p ON p.id = t.projectsId
 		WHERE tc.id = $_GET[trgtChk]
 	")->fetchAll(PDO::FETCH_ASSOC)[0];
 
@@ -37,19 +38,24 @@
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
   	<div style="margin-top: 10px;">			  		
-	  	<h3>
-	  		<?php echo "[$chkInf[pName]] $chkInf[tName] - $chkInf[cName] (".TR($chkInf['code']).")" ?><br/>
-	  		<?php echo TR('survey'); ?>
-  		</h3>
+	  	<span style="font-size:1.2em;">
+	  		<?php echo "<strong>".TR('project')."</strong>: $chkInf[pName]"; ?><br/>
+	  		<?php echo "<strong>".TR('target')."</strong>: $chkInf[tName]"; ?><br/>
+	  		<?php echo "<strong>".TR('survey')."</strong>: $chkInf[cName]"; ?><br/>
+	  		<?php echo "<strong>".TR('frequency')."</strong>: ".TR($chkInf['code']); ?><br/>
+  		</span>
 	  	<?php include raiz().'analysis/checklist/index.php'; ?>
   	</div>
   </div>
   <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
   	<div style="margin-top: 10px;">			  		
-	  	<h3>
-	  		<?php echo "[$chkInf[pName]] $chkInf[tName] - $chkInf[cName] (".TR($chkInf['code']).") " ?><br/>
-	  		<?php echo TR('socialMon'); ?>
-	  	</h3>
+	  	<span style="font-size:1.2em;">
+	  		<?php echo "<strong>".TR('project')."</strong>: $chkInf[pName]"; ?><br/>
+	  		<?php echo "<strong>".TR('target')."</strong>: $chkInf[tName]"; ?><br/>
+	  		<?php echo "<strong>".TR('survey')."</strong>: $chkInf[cName]"; ?><br/>
+	  		<?php echo "<strong>".TR('frequency')."</strong>: ".TR($chkInf['code']); ?><br/>
+	  		
+	  	</span>
 	  	<?php include raiz().'analysis/socialMon/index.php'; ?>
 	</div>
   </div>

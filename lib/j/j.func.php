@@ -1055,6 +1055,93 @@ function getLJTrgt($nivelMax,$padre,$targetsId){
 	return $return;
 }
 
+function getTrackingVisitas($nivelMax,$padre,$targetsId,$chkId,$refDate){
+	global $db;
+
+	$minDate = "$refDate 00:00:00";
+	// echo "MINDATE<br/>";
+	// print2($minDate);
+
+
+	$numDim = $db->query("SELECT COUNT(*) FROM Dimensiones 
+		WHERE elemId = $targetsId AND type='structure' ")->fetchAll(PDO::FETCH_NUM)[0][0];
+
+	$LJ = '';
+	$nivelMax = isset($nivelMax)?$nivelMax:0;
+	$padre = isset($padre)?$padre:0;
+
+	if($nivelMax < $numDim){
+		for ($i=$nivelMax; $i <$numDim ; $i++) {
+			
+			if($i == $nivelMax){
+				$LJ .= " DimensionesElem de$i";
+				// $LJ .= " LEFT JOIN DimensionesElem de$i ON te.dimensionesElemId = de$i.id";
+			}else{
+				$LJ .= " LEFT JOIN DimensionesElem de$i ON de$i.id = de".($i-1).".padre";
+			}
+			if($i == $numDim - 2){
+			}
+			if($i == $numDim - 1){
+				$fields = " de$nivelMax.nombre as nombreHijo, de$nivelMax.id as idHijo";
+				$wDE = " de$i.padre = $padre";
+			}
+		}
+
+		$sql = "
+			SELECT de$nivelMax.id as dimElemId, $fields, v.id as vId, v.finishDate, v.elemId
+				FROM $LJ
+				LEFT JOIN TargetsElems te ON te.dimensionesElemId = de$nivelMax.id
+				LEFT JOIN Visitas v ON v.elemId = te.id AND v.type = 'trgt' AND v.checklistId = $chkId
+					AND v.id = (SELECT id FROM Visitas z 
+						WHERE z.elemId = v.elemId AND z.type='trgt' AND z.checklistId = $chkId
+						AND finalizada = 1 AND finishDate >= '$minDate'
+						ORDER BY z.finishDate DESC 
+						LIMIT 1)
+			WHERE $wDE
+			ORDER BY de$nivelMax.id, v.finishDate DESC
+		";
+	}else{
+		$sql = "
+			SELECT de.id as dimElemId, v.id as vId, v.finishDate, v.elemId
+				FROM DimensionesElem de 
+				LEFT JOIN TargetsElems te ON te.dimensionesElemId = de.id
+				LEFT JOIN Visitas v ON v.elemId = te.id AND v.type = 'trgt' AND v.checklistId = $chkId
+					AND v.id = (SELECT id FROM Visitas z 
+						WHERE z.elemId = v.elemId AND z.type='trgt' AND z.checklistId = $chkId
+						AND finalizada = 1 AND finishDate >= '$minDate'
+						ORDER BY z.finishDate DESC 
+						LIMIT 1)
+			WHERE de.id = $padre
+			ORDER BY v.finishDate DESC
+		";
+
+	}
+
+
+	// echo $sql."<br/>";
+	$visElems = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
+	// print2($visElems);
+	$complete = true;
+	$tot = 0;
+	$noNum = 0;
+	foreach ($visElems as $vis) {
+		if( empty($vis[0]['vId']) ){
+			$noNum++;
+			$complete = false;
+		}
+		$tot++;
+	}
+	$noAvg = ($tot!=0?$noNum/$tot:1)*100;
+	$noAvg = number_format($noAvg,0);
+	$avg = 100-$noAvg;
+
+	$resp['complete'] = $complete;
+	$resp['refDate'] = $refDate;
+	$resp['avg'] = $avg;
+	$resp['tot'] = $tot;
+	return $resp;
+}
+
 function getToken($request){
 	$headers = $request->getHeaders();
 	$auth = $headers['HTTP_AUTHORIZATION'][0];
@@ -1071,6 +1158,49 @@ function tokenVerif($token,$usrId){
 	// echo "\n\nToken: $cToken\n\nusrId : $usrId\n\n";
 	// echo "V: $v";
 	return $v;
+
+}
+
+function getRefDate($frequency){
+
+	$today = date('Y-m-d');
+
+	switch ($frequency) {
+		case "daily":
+			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -1 day'));
+			break;
+		case "weekly":
+			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -1 week'));
+			break;
+		case "2weeks":
+			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -2 week'));
+			break;
+		case "3weeks":
+			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -3 week'));
+			break;
+		case "monthly":
+			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -1 month'));
+			break;
+		case "2months":
+			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -2 month'));
+			break;
+		case "3months":
+			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -3 month'));
+			break;
+		case "4months":
+			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -4 month'));
+			break;
+		case "6months":
+			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -6 month'));
+			break;
+		case "yearly":
+			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -1 year'));
+			break;
+		default:
+			# code...
+			break;
+	}
+	return $minDate;
 
 }
 

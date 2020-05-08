@@ -2,7 +2,7 @@
 	session_start();
 
 	include_once '../../../lib/j/j.func.php';
-	checaAcceso(50); // checaAcceso analysis;
+	checaAcceso(5); // checaAcceso analysis;
 
 
 	include_once raiz().'lib/php/calcCache.php';

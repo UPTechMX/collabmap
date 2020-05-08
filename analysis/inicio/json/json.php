@@ -2,7 +2,7 @@
 
 include_once '../../../lib/j/j.func.php';
 include_once raiz().'lib/php/usrInt.php';
-checaAcceso(50);
+checaAcceso(5); // checaAcceso analysis;
 
 $usrId = $_SESSION['CM']['admin']['usrId'];
 
