@@ -2,7 +2,7 @@
 	session_start();
 	include_once '../../lib/j/j.func.php';
 
-	checaAcceso(50); // checaAcceso analysis;
+	checaAcceso(5); // checaAcceso analysis;
 	$projects = $db->query("SELECT * FROM Projects") -> fetchAll(PDO::FETCH_ASSOC);
 	$pcs = $db->query("SELECT pc.id, pc.name as pcName, p.name as pName
 		FROM PublicConsultations pc

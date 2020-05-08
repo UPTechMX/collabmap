@@ -1,6 +1,6 @@
 <?php
 include_once '../../lib/j/j.func.php';
-checaAcceso(50); // checaAcceso analysis;
+checaAcceso(5); // checaAcceso analysis;
 
 $pregInfo = $db->query("SELECT * FROM Preguntas WHERE id = $_POST[pId]")->fetchAll(PDO::FETCH_ASSOC)[0];
 // print2($pregInfo);

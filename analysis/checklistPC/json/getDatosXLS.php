@@ -4,7 +4,7 @@
 	if(!function_exists('raiz')){
 		include_once '../../../lib/j/j.func.php';
 	}
-	checaAcceso(50);
+	checaAcceso(5); // checaAcceso analysis;
 
 	// exit();
 

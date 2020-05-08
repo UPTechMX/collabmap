@@ -30,7 +30,7 @@ function root(){
 
 include_once root().'lib/j/j.func.php';
 include_once 'seguridad/seguridad.php';
-checaAcceso(50); // checaAcceso analysis;
+checaAcceso(5); // checaAcceso analysis;
 
 
 $location = empty($location)?'analysis':$location;

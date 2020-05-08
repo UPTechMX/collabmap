@@ -1,6 +1,6 @@
 <?php
 include_once '../../lib/j/j.func.php';
-checaAcceso(50); // checaAcceso analysis;
+checaAcceso(5); // checaAcceso analysis;
 
 if(!is_numeric($_POST['pId']) && !is_numeric($_POST['pcId'])){
 	exit();
