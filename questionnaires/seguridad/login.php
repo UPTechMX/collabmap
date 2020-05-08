@@ -28,9 +28,6 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#enter').click(function(event) {
-			$('#loginForm').submit();
-		});
 		$('#signup').click(function(event) {
 			$('#loginContent').hide();
 			$('#signupContent').show();
@@ -43,6 +40,7 @@
 	<div class="container">
 		<div class="header">
 		</div>
+		<?php include $rootLoginQuest.'general/lang.php'; ?>
 		<img src="<?php echo $rootLoginQuest; ?>img/marquesina.png"  style="width:100%;" >
 		<hr />
 		<div class="content" style="margin:5%">
@@ -56,7 +54,7 @@
 								background:#fff;width:100%;border-radius:10px;color:black;">
 								<table>
 									<tr>
-										<td>Usuario: </td>
+										<td><?php echo TR('username'); ?>: </td>
 										<td>&nbsp;&nbsp;</td>
 										<td><input type="text" name="usuario" id="usuario" class="form-control" style="border-radius:0px;" /></td>
 									</tr>
@@ -66,14 +64,15 @@
 										<td></td>
 									</tr>
 									<tr>
-										<td>Contraseña: </td>
+										<td><?php echo TR('password'); ?>: </td>
 										<td>&nbsp;&nbsp;</td>
 										<td><input type="password" name="pwd" id="pwd"  class="form-control" style="border-radius:0px;"/></td>
 									</tr>
 								</table>
 								<br/>
 								<br/>
-								<span id="enter" class="btn btn-shop"><?php echo TR('log_in'); ?></span>
+								<input type="submit" name="button" id="button" value="<?php echo TR('log_in'); ?>" class="btn btn-shop" />
+								
 								<div class="signup">
 									<br/>
 									<span style="color:grey;" class="manita" id="signup"><?php echo TR('sign_up'); ?></span>
