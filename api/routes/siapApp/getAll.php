@@ -98,7 +98,9 @@ $app->group('/getAll', function () use ($app) {
 		foreach ($chks as $chk) {
 			if(empty($chk['est'])){
 				$est = estructuraEXT($chk['id']);
-				$prep = $db->prepare("INSERT INTO ChecklistEst SET checklistId = $c[id], estructura = ?");
+				// print2($est);
+				// $prep = $db->prepare("INSERT INTO ChecklistEst SET checklistId = $c[id], estructura = ?");
+				$prep = $db->prepare("INSERT INTO ChecklistEst SET checklistId = $chk[id], estructura = ?");
 				$estj = atj($est);
 				$prep -> execute(array($estj));
 				$chk['est'] = $estj;
