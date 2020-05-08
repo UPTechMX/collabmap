@@ -107,12 +107,14 @@
   "add": "Agregar",
   "alert":"Alerta",
   "confAction":"Confirmar acción",
-  "userExist" : "El nombre de usuario ya está registrado en el sistema, intenta con otro",
+  "userExist" : "El número telefónico ya está registrado en el sistema, intenta con otro",
   "invalidEmail" : "Correo electrónico inválido. favor de corregirlo",
-  "regConf" : "Gracias por registrarte, confima tu correo electrónico para poder ingresar a la plataforma",
+  "regConf" : "Gracias por registrarte!",
   "confHashNotFound": "",
   "userConf": "",
   "userAlreadyConf": "",
+  "repeatedCode":"Código repetido",
+  "invalidCode":"Código inválido",
 
   "administration": "Administración",
   

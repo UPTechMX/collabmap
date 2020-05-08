@@ -183,17 +183,17 @@ if($nivel<60){
 				<td></td>
 			</tr>
 			<?php if ($datC['confirmed'] != 1){ ?>
-				<tr>
+				<!-- <tr>
 					<td><?php echo TR('confirmed'); ?></td>
 					<td><input type="checkbox" id="confirmed" <?php echo $datC['confirmed'] == 1?'checked':''; ?>></td>
 					<td></td>
-				</tr>
+				</tr> -->
 			<?php } ?>
-			<tr>
+			<!-- <tr>
 				<td><?php echo TR('validate'); ?></td>
 				<td><input type="checkbox" id="validated" <?php echo $datC['validated'] == 1?'checked':''; ?>></td>
 				<td></td>
-			</tr>
+			</tr> -->
 
 
 			<?php if (isset($_POST['usuarioId'])): ?>

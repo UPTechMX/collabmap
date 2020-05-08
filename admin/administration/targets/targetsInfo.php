@@ -5,7 +5,7 @@ if (!function_exists('raiz')) {
 }
 checaAcceso(60);// checaAcceso Targets
 
-$target = $db -> query("SELECT t.name as tName, p.name as pName, t.addStructure
+$target = $db -> query("SELECT t.name as tName, p.name as pName, t.addStructure, t.code
 	FROM Targets t 
 	LEFT JOIN Projects p ON p.id = t.projectsId
 	WHERE t.id = $_POST[targetId]")->fetchAll(PDO::FETCH_ASSOC)[0];
@@ -21,6 +21,10 @@ $target = $db -> query("SELECT t.name as tName, p.name as pName, t.addStructure
 		<tr>
 			<td><?php echo TR('name'); ?>:</td>
 			<td><?php echo $target['tName']; ?></td>
+		</tr>
+		<tr>
+			<td><?php echo TR('code'); ?>:</td>
+			<td><?php echo $target['code']; ?></td>
 		</tr>
 		<tr>
 			<td><?php echo TR('addStructure'); ?>:</td>

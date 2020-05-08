@@ -14,25 +14,25 @@
 	<table class="table">
 		<tbody>
 			<tr>
-				<td width="30%"><?php echo TR('username'); ?></td>
+				<td width="30%"><?php echo TR('phone'); ?></td>
 				<td><?php echo $usrInfo['username']; ?></td>
 			</tr>
 			<tr>
 				<td><?php echo TR('name'); ?></td>
 				<td><?php echo "$usrInfo[name] $usrInfo[lastname]"; ?></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td><?php echo TR('email'); ?></td>
 				<td><?php echo "$usrInfo[email]"; ?></td>
-			</tr>
-			<tr>
+			</tr> -->
+			<!-- <tr>
 				<td><?php echo TR('confirmed'); ?></td>
 				<td><?php echo $usrInfo['confirmed'] == 1?TR('yes'):TR('no'); ?></td>
-			</tr>
-			<tr>
+			</tr> -->
+			<!-- <tr>
 				<td><?php echo TR('validated'); ?></td>
 				<td><?php echo $usrInfo['validated'] == 1?TR('yes'):TR('no'); ?></td>
-			</tr>
+			</tr> -->
 		</tbody>
 	</table>
 </div>

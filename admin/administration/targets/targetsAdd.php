@@ -38,6 +38,15 @@
 					echo 'var acc = 1;';
 				}
 			?>
+			var rj = jsonF('admin/administration/targets/json/chkCode.php',{code:dat.code});
+			// console.log(rj);
+			var r = $.parseJSON(rj);
+			// r.cuenta = 2;
+			if(r.cuenta != 0){
+				alertar('<?php echo TR('repeatedCode'); ?>',function(e){},{});
+				// $('#username').val( $('#username').val()+'_1' ).css({backgroundColor:'rgba(255,0,0,.5)'});
+				allOk = false;
+			}
 
 
 			if(allOk){
@@ -46,8 +55,14 @@
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){
+					if(dat.acc == 1){
+						tId = r.nId;
+					}else{
+						tId = dat.id;
+					}
 					$('#popUp').modal('toggle');
 					$('#targetsList').load(rz+'admin/administration/targets/targetsList.php',{ajax:1});
+					$('#targetsInfo').load(rz+'admin/administration/targets/targetsInfo.php',{targetId:tId});
 				}
 			}
 
@@ -88,6 +103,13 @@
 				<td><?php echo TR('name'); ?></td>
 				<td>
 					<input type="text" value="<?php echo $datC['name']; ?>" name="name" id="name" class="form-control oblig" >
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><?php echo TR('code'); ?></td>
+				<td>
+					<input type="text" value="<?php echo $datC['code']; ?>" name="code" id="code" class="form-control oblig" >
 				</td>
 				<td></td>
 			</tr>

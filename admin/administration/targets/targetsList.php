@@ -18,7 +18,7 @@ $elementos = $db->query("SELECT t.*, p.name as pName
 	$(document).ready(function() {
 		$('#targetsTable .edtEle').click(function(event) {
 			var eleId = $(this).closest('tr').attr('id').split('_')[1];
-			console.log(eleId);
+			// console.log(eleId);
 			popUp('admin/administration/targets/targetsAdd.php',{eleId:eleId},function(){},{});
 			// $('#infoFinanciador').load(rz+'admin/administration/financiadores/financiadoresAdd.php',{eleId:eleId})
 		});
