@@ -38,7 +38,7 @@
 					echo 'var acc = 1;';
 				}
 			?>
-			var rj = jsonF('admin/administration/targets/json/chkCode.php',{code:dat.code});
+			var rj = jsonF('admin/administration/targets/json/chkCode.php',{code:dat.code,id:'<?php echo $_POST['eleId']; ?>'});
 			// console.log(rj);
 			var r = $.parseJSON(rj);
 			// r.cuenta = 2;

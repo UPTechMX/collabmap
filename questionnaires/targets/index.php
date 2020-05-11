@@ -95,7 +95,7 @@ foreach ($targets as $targetsChecklist){
 ?>
 	<div style="margin-top: 10px;" class="divTrgt" id="divTrgt_<?php echo $targetsChecklist[0]['tId']."_".$targetsChecklist[0]['utId']; ?>">
 		<div class="nuevo"><?php echo $targetsChecklist[0]['tName']; ?></div>
-		<div style="margin-top: 10px;">
+		<div style="margin:10px;border:solid 1px grey; border-radius: 5px;padding: 15px;">
 			<?php echo $targetsChecklist[0]['description']; ?>
 		</div>
 		<div class='row'>
