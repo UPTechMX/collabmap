@@ -42,7 +42,7 @@
 
 			if(allOk){
 				var rj = jsonF('admin/administration/targets/json/json.php',{datos:dat,acc:acc,opt:1});
-				// console.log(rj);
+				console.log(rj);
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){
@@ -52,6 +52,15 @@
 			}
 
 		});
+
+		$(".txArea").jqte({
+			source:true,
+			rule: false,
+			link:false,
+			unlink: false,
+			format:false
+		});
+
 
 	});
 </script>
@@ -93,7 +102,9 @@
 			</tr>
 			<tr>
 				<td><?php echo TR('description'); ?></td>
-				<td><input type="text" value="<?php echo $datC['description']; ?>" name="description" id="description" class="form-control oblig"></td>
+				<td>
+					<textarea name="description" id="description" class="form-control oblig txArea"><?php echo $datC['description']; ?></textarea>
+				</td>
 				<td></td>
 			</tr>
 			<tr>

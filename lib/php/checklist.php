@@ -589,6 +589,10 @@ function estructuraEXT($chkId){
 				[$p['identificador']]['respuestas'] = $db -> query("SELECT r.valor, r.*
 					FROM Respuestas r WHERE preguntasId = $p[id]")->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
 
+				// $chk['bloques'][$b['identificador']]['areas'][$a['identificador']]['preguntas']
+				// [$p['identificador']]['studyAreas'] = $db -> query("SELECT sa.id, ST_AsGeoJSON(sa.geometry) as geometry
+				// 	FROM Studyarea sa WHERE preguntasId = $p[id]")->fetchAll(PDO::FETCH_ASSOC);
+
 				$chk['bloques'][$b['identificador']]['areas'][$a['identificador']]['preguntas']
 				[$p['identificador']]['justif'] = $p['justif'];
 

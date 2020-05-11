@@ -8,7 +8,7 @@
 	$usrId = $_SESSION['CM']['questionnaires']['usrId'];
 	// print2($_SESSION);
 
-	$targets = $db->query("SELECT t.id, t.name as tName, t.id as tId, tc.checklistId, c.nombre as cNom, 
+	$targets = $db->query("SELECT t.id, t.name as tName, t.id as tId, tc.checklistId, c.nombre as cNom, t.description,
 		p.name as pName, tc.frequency, f.code, ut.id as utId, c.id as cId, t.addStructure
 		FROM UsersTargets ut 
 		LEFT JOIN Targets t ON t.id = ut.targetsId
@@ -95,6 +95,9 @@ foreach ($targets as $targetsChecklist){
 ?>
 	<div style="margin-top: 10px;" class="divTrgt" id="divTrgt_<?php echo $targetsChecklist[0]['tId']."_".$targetsChecklist[0]['utId']; ?>">
 		<div class="nuevo"><?php echo $targetsChecklist[0]['tName']; ?></div>
+		<div style="margin-top: 10px;">
+			<?php echo $targetsChecklist[0]['description']; ?>
+		</div>
 		<div class='row'>
 			<?php 
 			foreach ($dims as $k => $d){ 

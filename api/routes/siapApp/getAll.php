@@ -108,18 +108,29 @@ $app->group('/getAll', function () use ($app) {
 
 			$Checklist[] = $chk;	
 		}
+	}
 
-
-		
-
-
+	$Studyarea = array();
+	foreach ($Checklist as $c) {
+		# code...
+		$sas = $db->query("SELECT sa.id, ST_AsGeoJSON(sa.geometry) as geometry, p.id as preguntasId, sa.type
+			FROM Studyarea sa 
+			LEFT JOIN Preguntas p ON sa.preguntasId = p.id
+			LEFT JOIN Areas a ON a.id = p.areasId
+			LEFT JOIN Bloques b ON b.id = a.bloquesId
+			LEFT JOIN Checklist c ON c.id = b.checklistId
+			WHERE c.id = $c[id] AND sa.id IS NOT NULL
+		")->fetchAll(PDO::FETCH_ASSOC);
+		foreach ($sas as $sa) {
+			$Studyarea[] = $sa;
+		}
 	}
 
 	$Frequencies = $db->query("SELECT * FROM Frequencies")->fetchAll(PDO::FETCH_ASSOC);
 
 	// print2($Checklist);
 
-
+	// print2($Checklist);
 	$resp['UsersTargets'] = $UsersTargets;
 	$resp['Targets'] = $Targets;
 	$resp['Checklist'] = $Checklist;
@@ -132,6 +143,7 @@ $app->group('/getAll', function () use ($app) {
 	$resp['RespuestasVisita'] = $RespuestasVisita;
 	$resp['Problems'] = $Problems;
 	$resp['Categories'] = $Categories;
+	$resp['Studyarea'] = $Studyarea;
 
 	$response->getBody()->write(atj($resp));
 	return $response;
