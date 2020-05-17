@@ -22,6 +22,13 @@ switch ($Act) {
 			include 'inicio/selChk.php';
 		}
 		break;
+	case 'hs':
+		if( !empty($_GET['trgtId']) && is_numeric($_GET['trgtId'])){
+			include 'hotspots/index.php';
+		}else{	
+			include 'inicio/selChk.php';
+		}
+		break;
 	default:
 		include 'inicio/selChk.php';
 		break;			

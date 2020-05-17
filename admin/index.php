@@ -96,8 +96,7 @@ checaAcceso(49);
 	<script src="../lib/js/leaflet.draw/edit/handler/Edit.CircleMarker.js"></script>
 	<script src="../lib/js/leaflet.draw/edit/handler/Edit.Circle.js"></script>
 
-
-
+	<script src="../lib/js/LeafletVectorGrid/src/Leaflet.VectorGrid.bundled.js"></script>
 
 
 	<script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>

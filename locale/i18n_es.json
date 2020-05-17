@@ -145,6 +145,8 @@
   "amswerNotFoundAnswer": "Se intentó ingresar ",
   "successfulImport": "Importación exitosa",
   "importError": "Hubo un error al importar el archivo ",
+  "selectIdAttr": "Selecciona el atributo identificador",
+  "delKML": "¿Deseas eliminar el mapa seleccionado?",
 
   "users": "Usuarios",
   "user": "Usuario",
@@ -261,6 +263,7 @@
   "project": "Proyecto",
   "projects": "Proyectos",
   "inactive": "Desactivado",
+  "importKML": "Importar KML",
 
   "identifier": "Identificador",
   "answerSurvey": "Contestar",
@@ -298,6 +301,14 @@
   "numAnt":"Número de respuestas anteriores",
   "genChart":"Generar gráfica",
   "dwlAns":"Descargar respuestas",
+  "hotspots":"Urban hotspots",
+  "selPolygonMap":"Selecciona un mapa de polígonos",
+  "selAttr":"Selecciona un atributo",
+  "attrVal":"Selecciona un valor",
+  "and":"Y",
+  "or":"O",
+  "ansNumber":"Número de respuestas",
+  "analysisType":"Tipo de analysis",
 
 
   "publicCons":"Consultas públicas",
@@ -310,7 +321,10 @@
   "startQuestionnaire": "Iniciar",
   "finished": "Finalizada",
   "notFinished": "No finalizada",
-
+  "matchingAnswers":"Respuestas coincidentes",
+  "range":"Rango",
+  "percent":"Porcentaje",
+  "polygons":"Poligonos",
 
   "noAccess": "Sin acceso al sistema",
   "administratior": "Aministrador",

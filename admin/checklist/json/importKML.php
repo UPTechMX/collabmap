@@ -99,7 +99,6 @@
 
 		return atj(inserta($pSA));
 
-
 	}
 
 ?>

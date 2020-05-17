@@ -1,6 +1,6 @@
 <?php  
 	include_once '../../../../lib/j/j.func.php';
-	checaAcceso(60);// checaAcceso Projects
+	checaAcceso(50);// checaAcceso Projects
 
 	
 	switch ($_POST['opt']) {
@@ -30,8 +30,8 @@
 			break;	
 		case 3:
 			// print2($_POST);
-			$post['tabla'] = '';
-			$post['where'] = "id = $_POST[prvId]";;
+			$post['tabla'] = 'KML';
+			$post['where'] = "id = $_POST[KMLId]";
 
 			echo atj(del($post));
 			break;	

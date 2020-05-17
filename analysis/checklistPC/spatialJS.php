@@ -43,7 +43,7 @@
 		//// Add answered geometries
 		// var getPRs = problems;
 		var PRs = PRBs;
-		console.log('PRs',PRs);
+		// console.log('PRs',PRs);
 		var heatPoints = [];
 
 		for(var prId in PRs){
@@ -64,6 +64,16 @@
 					// console.log([ geometry.coordinates[1],geometry.coordinates[0] ]);
 					// prLyr = L.marker( [ geometry.coordinates[1],geometry.coordinates[0] ] );
 					heatPoints.push( [ geometry.coordinates[1],geometry.coordinates[0] ] );
+					var icon = L.icon({
+						iconUrl: rz+'/lib/js/leaflet/images/marker-icon.png',
+						iconSize:[25,41],
+					})
+					prLyr = L.geoJSON(geometry,{
+						pointToLayer: function (feature, latlng) {
+						    return L.marker(latlng,{icon:icon});
+						}
+					});
+
 					break;
 				case 'linestring':
 				case 'polyline':
@@ -72,7 +82,7 @@
 						// points.push( [ geometry.coordinates[i][1],geometry.coordinates[i][0] ] )
 						heatPoints.push(  [ geometry.coordinates[i][1],geometry.coordinates[i][0] ]  )
 					}
-					// prLyr = L.polyline(points);
+					prLyr = L.geoJSON(geometry);
 					break;
 				case 'polygon':
 					for(var i in geometry.coordinates[0]){
@@ -80,14 +90,14 @@
 						heatPoints.push(  [ geometry.coordinates[0][i][1],geometry.coordinates[0][i][0] ]  )
 
 					}
-					// prLyr = L.polygon(points);
+					prLyr = L.geoJSON(geometry);
 					break;
 				default:
 					continue;
 					break;
 			}
 
-			prLyr = L.geoJSON(geometry);
+			
 			prLyr.dbId = sa['id'];
 			prLyr.type = type.toLowerCase();
 			problems.addLayer(prLyr);

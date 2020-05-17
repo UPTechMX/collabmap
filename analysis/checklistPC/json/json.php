@@ -1,6 +1,7 @@
 <?php
 
 include_once '../../../lib/j/j.func.php';
+checaAcceso(5); // checaAcceso analysis;
 
 switch ($_POST['acc']) {
 	case 9:

@@ -1,6 +1,6 @@
 <?php
 
-	include_once '../j/j.func.php';
+	include_once '../../../../../lib/j/j.func.php';
 	
 	checaAcceso(60);// checaAcceso Targets
 
@@ -22,6 +22,7 @@
 	$insDimElem = $db->prepare("INSERT INTO DimensionesElem SET  nombre = ?, dimensionesId = ?, padre = ?");
 	
 	// if (($handle = fopen(raiz()."lib/archivos/9_PDV.csv", "r")) !== FALSE) {
+	$ok = true;
 	$dimsElems = array();
 	if (($handle = fopen(raiz()."externalFiles/$_POST[file]", "r")) !== FALSE) {
 		while (($col = fgetcsv($handle, 0, ",")) !== FALSE) {
@@ -35,6 +36,7 @@
 				for($i = 0;$i<$numDims;$i++){
 					$dims[$j++] = $col[$i];
 				}
+				// print2($numDims);
 
 				$buscaDims = $db->query("SELECT id FROM Dimensiones 
 					WHERE elemId = $targetsId AND type = 'structure'
@@ -94,7 +96,11 @@
 
 
 
-
+	if($ok){
+		echo '{"ok":"1"}';
+	}else{
+		echo '{"ok":"0","err":"'.$err.'"}';
+	}
 
 
 
