@@ -112,6 +112,7 @@
   "confHashNotFound": "The user was not found, contact the team for a manual confirmation",
   "userConf": "The user has been confirmed",
   "userAlreadyConf": "The user has already been confirmed previously",
+  "import":"Import",
 
   "administration": "Administration",
 
@@ -142,6 +143,8 @@
   "amswerNotFoundAnswer": "An attempt was made to enter ",
   "successfulImport": "Successful import",
   "importError": "There was an error importing the file ",
+  "selectIdAttr": "Select id attribute",
+  "delKML": "Do you want to delete the selected map?",
   
   "users": "Users",
   "user": "User",
@@ -258,6 +261,7 @@
   "project": "Project",
   "projects": "Projects",
   "inactive": "Inactive",
+  "importKML": "Import KML",
 
   "identifier": "Identifier",
   "answerSurvey": "Answer",
@@ -295,7 +299,14 @@
   "numAnt":"Number of previous answers",
   "genChart":"Generate chart",
   "dwlAns":"Download all answers",
-
+  "hotspots":"Urban hotspots",
+  "selPolygonMap":"Select a polygon map",
+  "selAttr":"Select an attribute",
+  "attrVal":"Select a value",
+  "and":"AND",
+  "or":"OR",
+  "ansNumber":"Number of ansers",
+  "analysisType":"Analysis type",
 
   "publicCons":"Public consultations",
   "publicCon":"Public consultation",
@@ -307,6 +318,10 @@
   "startQuestionnaire": "Start",
   "finished": "Finished",
   "notFinished": "Not finished",
+  "matchingAnswers":"Matching answers",
+  "range":"Range",
+  "percent":"Percent",
+  "polygons":"Polygons",
 
 
   "noAccess": "No access",

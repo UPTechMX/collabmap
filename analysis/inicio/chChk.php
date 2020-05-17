@@ -14,7 +14,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		$('#chPrjSel').change(function(event) {
+		$('#targets #chPrjSel').change(function(event) {
 			var prjId = $(this).val();
 			var r = [];
 			if(prjId != ''){
@@ -23,14 +23,14 @@
 				console.log(r);
 			}
 
-			optsSel(r,$('#chTrgtSel'),false,'- - - <?php echo TR('target'); ?> - - -',false);
-			$('#chTrgtSel').val('');
-			$('#chTrgtSel').trigger('change');
+			optsSel(r,$('#targets #chTrgtSel'),false,'- - - <?php echo TR('target'); ?> - - -',false);
+			$('#targets #chTrgtSel').val('');
+			$('#targets #chTrgtSel').trigger('change');
 
 
 		});
 
-		$('#chTrgtSel').change(function(event) {
+		$('#targets #chTrgtSel').change(function(event) {
 			var trgtId = $(this).val();
 			var r = [];
 			if(trgtId != ''){
@@ -39,14 +39,14 @@
 			}
 
 			optsSel(r,$('#chChkSel'),false,'- - - <?php echo TR('survey'); ?> - - -',false);
-			$('#chChkSel').val('');
-			$('#chChkSel').trigger('change');
+			$('#targets #chChkSel').val('');
+			$('#targets #chChkSel').trigger('change');
 		});
 
-		$('#chChkSel').change(function(event) {
+		$('#targets #chChkSel').change(function(event) {
 			var trgtChk = $(this).val();
-			console.log(trgtChk);
-			$('#trgtChk').val(trgtChk);
+			// console.log(trgtChk);
+			$('#targets #trgtChk').val(trgtChk);
 			
 		});
 
@@ -64,13 +64,45 @@
 			
 		});
 
-
 		$('#envPC').click(function(event) {
 			var pcId = $('#pcId').val();
 			if(pcId != ''){
 				$('#chChkPCForm').submit();
 			}
 		});
+
+		$('#hs #chPrjSel').change(function(event) {
+			var prjId = $(this).val();
+			var r = [];
+			if(prjId != ''){
+				var rj = jsonF('analysis/inicio/json/findElems.php',{option:'targets',prjId:prjId});
+				r = $.parseJSON(rj);
+				console.log(r);
+			}
+
+			optsSel(r,$('#hs #chTrgtSel'),false,'- - - <?php echo TR('target'); ?> - - -',false);
+			$('#hs #chTrgtSel').val('');
+			$('#hs #chTrgtSel').trigger('change');
+
+
+		});
+
+		$('#hs #chTrgtSel').change(function(event) {
+			var trgtId = $(this).val();
+			var r = [];
+			$('#hs #trgtId').val(trgtId);
+			
+		});
+
+		$('#envHS').click(function(event) {
+			var trgtId = $('#trgtId').val();
+			if(trgtId != ''){
+				$('#chChkHSForm').submit();
+			}
+		});
+
+
+
 	});
 </script>
 
@@ -96,11 +128,14 @@
 	    <a class="nav-link " id="pc-tab" data-toggle="tab" 
 	    	href="#pc" role="tab" aria-controls="pc" aria-selected="false"><?php echo TR('publicCons'); ?></a>
 	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link " id="hs-tab" data-toggle="tab" 
+	    	href="#hs" role="tab" aria-controls="hs" aria-selected="false"><?php echo TR('hotspots'); ?></a>
+	  </li>
 	</ul>
 	<div class="tab-content" id="chChkTabContent">
 	  <div class="tab-pane fade show active" id="targets" role="tabpanel" aria-labelledby="targets-tab">
 	  	<div style="margin-top: 10px;">
-
 	  		<form id="nEmp">
 	  			<table class="table" border="0">
 	  				<tr>
@@ -182,6 +217,45 @@
 	  		</div>
 
 	  		
+		</div>
+	  </div>
+	  <div class="tab-pane fade " id="hs" role="tabpanel" aria-labelledby="hs-tab">
+	  	<div style="margin-top: 10px;">			  		
+	  		<form id="hsForm">
+	  			<table class="table" border="0">
+	  				<tr>
+	  					<td><?php echo TR('project'); ?></td>
+	  					<td>
+	  						<select class="form-control" id="chPrjSel">
+	  							<option value="">- - - <?php echo TR('projects'); ?> - - -</option>
+	  							<?php foreach ($projects as $p){ ?>
+	  								<option value="<?php echo $p['id']; ?>"><?php echo $p['name']; ?></option>
+	  							<?php } ?>
+	  						</select>
+	  					</td>
+	  					<td></td>
+	  				</tr>
+	  				<tr>
+	  					<td><?php echo TR('target') ?></td>
+	  					<td>
+	  						<select class="form-control" id="chTrgtSel">
+	  							<option value="">- - - <?php echo TR('target') ?> - - -</option>
+	  						</select>
+	  					</td>
+	  					<td></td>
+	  				</tr>
+	  			</table>
+	  		</form>
+	  		<div class="modal-footer">
+	  			<div style="text-align: right;">
+	  				<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel"><?php echo TR('cancel'); ?></span>
+	  				<span id="envHS" class="btn btn-sm btn-shop"><?php echo TR('send'); ?></span>
+	  			</div>
+	  		</div>
+	  		<form id="chChkHSForm" method="get" >
+	  			<input type="hidden" name="trgtId" id="trgtId" value="">
+	  			<input type="hidden" name="acc" id="acc" value="hs">
+	  		</form>
 		</div>
 	  </div>
 

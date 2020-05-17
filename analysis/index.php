@@ -99,6 +99,10 @@ $htmlRoot = aRaizHtml($location);
 	<script src="<?php echo $htmlRoot; ?>lib/js/LeafletHeat/dist/leaflet-heat.js"></script>
 	<link href="<?php echo $htmlRoot; ?>lib/js/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
 
+	<script src="<?php echo $htmlRoot; ?>lib/js/heatmap/build/heatmap.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/heatmap/plugins/leaflet-heatmap/leaflet-heatmap.js"></script>
+
+
 	<script src="<?php echo $htmlRoot; ?>lib/js/leaflet.draw/Leaflet.draw.js"></script>
 	<script src="<?php echo $htmlRoot; ?>lib/js/leaflet.draw/Leaflet.Draw.Event.js"></script>
 	<link rel="stylesheet" href="<?php echo $htmlRoot; ?>lib/js/leaflet.draw/leaflet.draw.css"/>
@@ -138,6 +142,7 @@ $htmlRoot = aRaizHtml($location);
 	<script src="<?php echo $htmlRoot; ?>lib/js/leaflet.draw/edit/handler/Edit.Circle.js"></script>
 
 	<script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/LeafletVectorGrid/src/Leaflet.VectorGrid.bundled.js"></script>
 
 
 	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/highcharts.js"></script>

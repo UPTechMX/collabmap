@@ -49,6 +49,9 @@
 	// print2($today);
 
 	switch ($frequency) {
+		case "oneTime":
+			$prevDate = date('Y-m-d 00:00:00', strtotime($today . ' -20 year'));
+			break;
 		case "daily":
 			$prevDate = date('Y-m-d 00:00:00', strtotime($today . ' -'.$_POST['numAnt'].' day'));
 			break;
@@ -89,6 +92,10 @@
 	$dates[] = $todayRep;
 	for ($i=0; $i < $_POST['numAnt']; $i++) { 
 		switch ($frequency) {
+			case "oneTime":
+				$todayRep = date('Y-m-d', strtotime($todayRep . ' -1 day'));
+				$dates[] = $todayRep;
+				break;
 			case "daily":
 				$todayRep = date('Y-m-d', strtotime($todayRep . ' -1 day'));
 				$dates[] = $todayRep;

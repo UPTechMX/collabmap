@@ -3,7 +3,7 @@
 if (!function_exists('raiz')) {
 	include_once '../../../lib/j/j.func.php';
 }
-checaAcceso(60);// checaAcceso Projects
+checaAcceso(50);// checaAcceso Projects
 
 
 $elementos = $db->query(" SELECT * FROM Projects ORDER BY name") -> fetchAll(PDO::FETCH_ASSOC);
@@ -18,6 +18,13 @@ $elementos = $db->query(" SELECT * FROM Projects ORDER BY name") -> fetchAll(PDO
 			popUp('admin/administration/projects/projectsAdd.php',{eleId:eleId},function(){},{});
 			// $('#infoFinanciador').load(rz+'admin/administration/financiadores/financiadoresAdd.php',{eleId:eleId})
 		});
+		$('#projectsTable .prjInfo').click(function(event) {
+			var prjId = $(this).closest('tr').attr('id').split('_')[1];
+			// console.log(prjId);
+			$('#projectsInfo').load(rz+'admin/administration/projects/projectsInfo.php',{prjId:prjId});
+			
+		});
+
 	});
 </script>
 
@@ -27,6 +34,7 @@ $elementos = $db->query(" SELECT * FROM Projects ORDER BY name") -> fetchAll(PDO
 			<th>Name</th>
 			<th>Code</th>
 			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -35,7 +43,9 @@ $elementos = $db->query(" SELECT * FROM Projects ORDER BY name") -> fetchAll(PDO
 				<td><?php echo $e['name']; ?></td>
 				<td><?php echo $e['code']; ?></td>
 				<td style="text-align: right;"><i class="glyphicon glyphicon-pencil manita edtEle"></i></td>
-				<!-- <td><i class="glyphicon glyphicon-eye-open manita verEle"></i></td> -->
+				<td style="text-align: center;">
+					<i class="glyphicon glyphicon-th manita prjInfo"></i>
+				</td>
 			</tr>
 		<?php } ?>
 	</tbody>

@@ -32,11 +32,23 @@
 
 		$('#env').click(function(event) {
 			var dat = $('#nEmp').serializeObject();
-			console.log(dat);
+			// console.log(dat);
 			var targetsId = <?php echo $_POST['targetsId']; ?>;
 			if(file != null && dat.file != '' && dat.file == file){
-				var rj = jsonF('lib/php/importStructure.php',{file:file,targetsId:targetsId});
-				// console.log(rj);
+				$('#popUp').modal('toggle');
+				setTimeout(function(){
+					var rj = jsonF('admin/administration/targets/structure/json/importStructure.php',{file:file,targetsId:targetsId});
+					console.log(rj);
+					var r = $.parseJSON(rj);
+					console.log(r);
+					if(r.ok == 1){
+						removeLoading();
+						alerta('success','<?php echo TR('successfulImport'); ?>')
+					}else{
+						removeLoading();
+						alerta('danger','<?php echo TR('importError'); ?> : Err:'+r.err)
+					}
+				},200);
 			}
 
 		});

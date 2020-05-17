@@ -204,7 +204,7 @@
 							$ok = false;
 							$cuenta = count($buscaDims);
 							$err = TR('dimNoMatch');
-							exit('{"ok":0:"err":"'.$err.'"}');
+							exit('{"ok":0,"err":"'.$err.'"}');
 						}
 					}else{
 						foreach ($dims as $k => $dim) {
