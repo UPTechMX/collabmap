@@ -113,12 +113,9 @@
   "confHashNotFound": "The user was not found, contact the team for a manual confirmation",
   "userConf": "The user has been confirmed",
   "userAlreadyConf": "The user has already been confirmed previously",
-<<<<<<< HEAD
   "repeatedCode":"Repeated code",
   "invalidCode":"Invalid code",
-=======
   "import":"Import",
->>>>>>> master
 
   "administration": "Administration",
 
