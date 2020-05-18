@@ -43,7 +43,8 @@
 					console.log(r);
 					if(r.ok == 1){
 						removeLoading();
-						alerta('success','<?php echo TR('successfulImport'); ?>')
+						alerta('success','<?php echo TR('successfulImport'); ?>');
+						$('#targetsStructure').load(rz+'admin/administration/targets/targetsStructure.php',{targetsId:targetsId});
 					}else{
 						removeLoading();
 						alerta('danger','<?php echo TR('importError'); ?> : Err:'+r.err)
