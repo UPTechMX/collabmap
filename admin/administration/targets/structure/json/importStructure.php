@@ -18,7 +18,7 @@
 	$row = 0;
 
 	$insDims = $db->prepare("INSERT INTO Dimensiones SET elemId = ?, nombre = ?,nivel = ?, type='structure'");
-	$buscElemDim = $db->prepare("SELECT id FROM DimensionesElem WHERE nombre = ? AND dimensionesId = ?");
+	$buscElemDim = $db->prepare("SELECT id FROM DimensionesElem WHERE nombre = ? AND dimensionesId = ? AND padre = ?");
 	$insDimElem = $db->prepare("INSERT INTO DimensionesElem SET  nombre = ?, dimensionesId = ?, padre = ?");
 	
 	// if (($handle = fopen(raiz()."lib/archivos/9_PDV.csv", "r")) !== FALSE) {
@@ -69,8 +69,9 @@
 					if(empty($col[$i])){
 						break;
 					}
+					$padre = $i == 0?0:$dimsElems[$i-1][$col[$i-1]];
 					if( !isset($dimsElems[$i][$col[$i]]) ){
-						$buscElemDim -> execute([$col[$i],$dimsTarget[$i]]);
+						$buscElemDim -> execute([$col[$i],$dimsTarget[$i],$padre]);
 						$elemDim = $buscElemDim -> fetchAll(PDO::FETCH_NUM);
 						if(!empty($elemDim)){
 							$dimsElems[$i][$col[$i]] = $elemDim[0][0];

@@ -93,7 +93,7 @@
 	for ($i=0; $i < $_POST['numAnt']; $i++) { 
 		switch ($frequency) {
 			case "oneTime":
-				$todayRep = date('Y-m-d', strtotime($todayRep . ' -1 day'));
+				$todayRep = date('Y-m-d', strtotime($todayRep . ' -20 year'));
 				$dates[] = $todayRep;
 				break;
 			case "daily":
