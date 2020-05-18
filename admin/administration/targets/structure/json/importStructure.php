@@ -11,6 +11,8 @@
 		exit();
 	}
 
+	$db->beginTransaction();
+
 	$targetsId =  $_POST['targetsId'];
 	// $ok = true;
 	$insArr = array();
@@ -70,8 +72,10 @@
 						break;
 					}
 					$padre = $i == 0?0:$dimsElems[$i-1][$col[$i-1]];
-					if( !isset($dimsElems[$i][$col[$i]]) ){
+					if( !isset($dimsElems[$i][$padre.'-'.$col[$i]]) ){
+						// echo "padre: $padre\n";
 						$buscElemDim -> execute([$col[$i],$dimsTarget[$i],$padre]);
+						// print2([$col[$i],$dimsTarget[$i],$padre]);
 						$elemDim = $buscElemDim -> fetchAll(PDO::FETCH_NUM);
 						if(!empty($elemDim)){
 							$dimsElems[$i][$col[$i]] = $elemDim[0][0];
@@ -98,8 +102,10 @@
 
 
 	if($ok){
+		$db->commit();
 		echo '{"ok":"1"}';
 	}else{
+		$db->rollback();
 		echo '{"ok":"0","err":"'.$err.'"}';
 	}
 

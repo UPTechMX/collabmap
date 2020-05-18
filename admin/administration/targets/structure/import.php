@@ -40,7 +40,7 @@
 					var rj = jsonF('admin/administration/targets/structure/json/importStructure.php',{file:file,targetsId:targetsId});
 					console.log(rj);
 					var r = $.parseJSON(rj);
-					console.log(r);
+					// console.log(r);
 					if(r.ok == 1){
 						removeLoading();
 						alerta('success','<?php echo TR('successfulImport'); ?>');
