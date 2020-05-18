@@ -80,6 +80,7 @@
 
 		try{
 			var chkAnsNum = $.parseJSON(chkAnsNumJ);
+
 			var pnf = chkAnsNum[""];
 
 		}catch(e){
@@ -89,6 +90,7 @@
 			var pnf = [];
 
 		}
+		// console.log('points',points);
 		// console.log('chkAnsNum',chkAnsNum);
 
 		var questMax = {};
@@ -269,9 +271,9 @@
 
 				}
 
-				if(meetsAll){
-					// console.log('mettsAll:',i);
+				if(meetsAll && i != ''){
 					acums[i].countMeetsAll++;
+					// console.log('mettsAll:',i,acums[i].countMeetsAll);
 				}
 
 			}
@@ -293,6 +295,7 @@
 		
 		// console.log(o.questionsChk);
 		var heatPoints = [];
+		var allPoints = [];
 		for(var j in points){
 			var pig = points[j];
 			for(var i=0;i<pig.length;i++){
@@ -313,10 +316,12 @@
 							break;
 						case 'num':
 							if(questionChk['questionId'] == 'ansNum'){
+
 								if(chkAnsNum[questionChk['chkId']][j] == undefined){
 									valAnalysis = 0;	
 								}else{
 									valAnalysis = parseFloat(chkAnsNum[questionChk['chkId']][j][i].ansNum);
+									// console.log(valAnalysis);
 								}
 							}else{
 								valAnalysis = parseFloat(pig[i]['respV'+h])
@@ -366,18 +371,31 @@
 
 				}
 				// console.log(pig[i]);
-				if(meets){
+
+				if(meets && (j != '' || o.kmlId == -1)){
+					// console.log(geometry.coordinates[1],geometry.coordinates[0])
+
+					if( geometry.coordinates[1] != 0 && geometry.coordinates[0] != 0){
+						allPoints.push( L.marker([geometry.coordinates[1],geometry.coordinates[0],0]) );
+					}
 					heatPoints.push({
 						lat:geometry.coordinates[1],
 						lng:geometry.coordinates[0],
 						count:5,
 					});
 				}
+
+				// if(o.kmlId == -1){
+				// 	cLat = (parseFloat(north)+parseFloat(south))/2;
+				// 	cLng = (parseFloat(east)+parseFloat(west))/2;
+				// }
+
 				// prLyr.dbId = sa['id'];
 				// prLyr.type = type.toLowerCase();
 				// notFound.addLayer(prLyr);
 			}
 		}
+
 
 		var cfg = {
 		  // radius should be small ONLY if scaleRadius is true (or small radius is intended)
@@ -496,7 +514,7 @@
 					if(e.KMLId != o.kmlId){
 						return hide;
 					}else{
-
+						// console.log(e);
 						if(polygons[e.identifier] == undefined){
 							return hide;
 						}
@@ -504,7 +522,7 @@
 						fillColor = 'grey';
 						fillOpacity = .4;
 						opacity = 1;
-						interactive = false;	
+						interactive = false;
 					}
 
 					if(points[e.identifier] != undefined){
@@ -520,6 +538,7 @@
 							}
 						}else{
 							// console.log('analysisType',analysisType);
+							
 							switch(parseInt(analysisType)){
 								case 1:
 									if(acum.numRespSel == 0){
@@ -574,13 +593,17 @@
 
 						}
 
+						if(o.questionsChk[0].questionId == ''){
+							fillOpacity = .2;
+						}
+
 
 						fillColor = 'green';
 						
 						opacity = 1;
 						interactive = true;	
 					}
-
+					// console.log(e.identifier,fillOpacity);
 					return {
 					  color: 'grey',
 					  weight: 1,
@@ -614,13 +637,14 @@
 
 		// console.log(tilesURL);
 		// Creating the Leaflet vectorGrid object
-		kml_vectorgrid = L.vectorGrid.protobuf(tilesURL, vectorTileOptions)
+		kml_vectorgrid = L.vectorGrid.protobuf(tilesURL, vectorTileOptions);
+		// console.log(kml_vectorgrid);
 
 		// Define the action taken once a polygon is clicked. In this case we will create a popup with the camping name
 		kml_vectorgrid.on('click', function(e) {
 			// console.log(e.layer.properties);
 			var elem = polygons[e.layer.properties.identifier][0];
-			var text = '<strong>id : '+elem.identifier+'</strong><br/>';
+			var text = '<strong>Id : '+elem.identifier+'</strong><br/>';
 			// console.log(elem);
 			// var i = 0;
 			var attrs = {};
@@ -639,11 +663,14 @@
 			// 		text += 'Value: '+ acums[elem.identifier].countMultAns['ans'+j]['text']+'<br/>';
 			// 	}
 			// }
-			if(acums[elem.identifier].range){
-				text += '<?php echo TR("average"); ?>: '+ (acums[elem.identifier].avgs.ans0).toFixed(2)+'<br/>';
-			}else{
-				text += acums[elem.identifier].text;
+			if(o.questionsChk[0].questionId != ''){
+				if(acums[elem.identifier].range){
+					text += '<?php echo TR("average"); ?>: '+ (acums[elem.identifier].avgs.ans0).toFixed(2)+'<br/>';
+				}else{
+					text += acums[elem.identifier].text;
+				}
 			}
+
 
 			// console.log(acums[elem.identifier]);
 			
@@ -657,8 +684,18 @@
 		// Add the vectorGrid to the map
 		kml_vectorgrid.addTo(map);
 
-		// Set the map view. In this case we set it to the Netherlands
-		map.setView([cLat,cLng], 17);
+		if(o.kmlId > 0){
+			map.setView([cLat,cLng], 17);
+			// var group = new L.featureGroup(allPoints);
+			// map.fitBounds(group.getBounds());
+
+		}else{
+			if(allPoints.length != 0){
+				var group = new L.featureGroup(allPoints);
+				map.fitBounds(group.getBounds());
+			}
+
+		}
 
 	}
 

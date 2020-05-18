@@ -65,10 +65,18 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 	// print2($q);
 }
 
+if($_POST['kmlId'] == -1){
+	$fields = "te.id as idGroup, p.id, ST_AsGeoJSON(p.geometry) as geometry, 
+	te.id as teId, v.id as vId $fieldsQ";
+}else{
+	$fields = "kg.identifier as idGroup, p.id, kg.identifier, ST_AsGeoJSON(p.geometry) as geometry, 
+	te.id as teId, v.id as vId $fieldsQ";
+	$whereGeom = "AND ST_Contains(kg.geometry,p.geometry)";
+}
+
 
 $sql = "
-	SELECT kg.identifier as idGroup, p.id, kg.identifier, ST_AsGeoJSON(p.geometry) as geometry, 
-	te.id as teId, v.id as vId $fieldsQ
+	SELECT $fields
 	FROM RespuestasVisita rv
 	LEFT JOIN Problems p ON p.respuestasVisitaId = rv.id
 	LEFT JOIN Visitas v ON rv.visitasId = v.id AND v.type = 'trgt'

@@ -39,9 +39,17 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 	$arr["chkId$k"] = $q['chkId'];
 	$arr["vchkId$k"] = $q['chkId'];
 
+	if($_POST['kmlId'] == -1){
+		$fields = "te.id as idGroup, p.id, COUNT(*) as ansNum,
+		te.id as teId, v.id as vId";
+	}else{
+		$fields = "kg.identifier as idGroup, p.id, kg.identifier, COUNT(*) as ansNum,
+		te.id as teId, v.id as vId";
+		$whereGeom = "AND ST_Contains(kg.geometry,p.geometry)";
+	}
+
 	$sql = "
-		SELECT kg.identifier as idGroup, p.id, kg.identifier, COUNT(*) as ansNum,
-		te.id as teId, v.id as vId 
+		SELECT $fields
 		FROM RespuestasVisita rv
 		LEFT JOIN Problems p ON p.respuestasVisitaId = rv.id
 		LEFT JOIN Visitas v ON rv.visitasId = v.id AND v.type = 'trgt'
@@ -50,9 +58,11 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 		LEFT JOIN KMLGeometries kg ON ST_Contains(kg.geometry,p.geometry) AND kg.KMLId = :kmlId
 		$LJStructure $LJQuestions
 		WHERE (tc.id = :tcId AND rv.preguntasId = :spatialQ AND v.type = 'trgt' $wDE AND v.finalizada = 1)
-		AND ST_Contains(kg.geometry,p.geometry) AND v$k.checklistId = :vchkId$k
+		$whereGeom AND v$k.checklistId = :vchkId$k
 		GROUP BY te.id
 	";
+
+
 
 	// echo "\n$sql\n";
 	$arr['tcId'] = $_POST['tcIdspatial'];

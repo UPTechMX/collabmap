@@ -93,7 +93,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 				}
 			});
 			
-
+			kmlId = kmlId == ''?-1:kmlId;
 			if(kmlId != '' && spatialQ){
 				$('#tipoMapaHSCont').show();
 				$('#mapHS').remove();
@@ -159,6 +159,10 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 						case 'C':
 							drawHeatmap();
 							break;
+					}
+					if(kmlId == -1){
+						drawHeatmap();
+						$('#tipoMapaHSCont').hide();
 					}
 
 				},300);
@@ -229,8 +233,6 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 			}
 
 			optsSel(r,$(this).closest('.rowPreg').find('.HSNumQuestionSel'),false,'<?php echo TR("numericQuestion"); ?>',false);
-
-
 
 			$(this).closest('.rowPreg').find('.HSNumQuestionSel').val('').trigger('change');
 
