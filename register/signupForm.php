@@ -10,6 +10,8 @@
 			$chkCode = false;
 		}
 
+	}else{
+		$chkCode = false;
 	}
 ?>
 

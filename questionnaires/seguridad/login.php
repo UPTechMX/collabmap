@@ -49,7 +49,7 @@
 					<div class="col-lg-8 col-md-4 col-sm-1" style="padding:35px 10px 20px 10px;">
 					</div>
 					<div class="col-lg-4 col-md-8 col-sm-11">
-						<form id="loginForm" name="loginForm" method="post" action="<?php $_SERVER['PHP_SELF'] ?>?">
+						<form id="loginForm" name="loginForm" method="post" action="<?php "$_SERVER[PHP_SELF]?code=$_GET[code]"; ?>">
 							<div align="center" style="border:solid #00aeef;padding:20px 10px 20px 10px;
 								background:#fff;width:100%;border-radius:10px;color:black;">
 								<table>
