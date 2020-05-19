@@ -56,7 +56,7 @@ switch ($_POST['acc']) {
 								foreach ($p['subpregs'] as $sp) {
 
 									// if($sp['tipo'] == 'op' || $sp['tipo'] == 'spatial' || $sp['tipo'] == 'cm'){
-									if($sp['tipo'] == 'op' ){
+									if($sp['tipo'] == 'op' || $sp['tipo'] == 'spatial'){
 										$pregsSp[] = $sp;
 									}		
 									if($sp['tipo'] == 'num' || $sp['tipo'] == 'mult'){
@@ -64,9 +64,8 @@ switch ($_POST['acc']) {
 									}		
 								}
 							}
-
 							// if($p['tipo'] == 'op' || $p['tipo'] == 'spatial' || $p['tipo'] == 'cm'){
-							if($p['tipo'] == 'op'){
+							if($p['tipo'] == 'op' || $p['tipo'] == 'spatial'){
 								$pregsSp[] = $p;
 							}
 							if($p['tipo'] == 'num' || $p['tipo'] == 'mult'){

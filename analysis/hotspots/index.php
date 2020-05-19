@@ -31,6 +31,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 	var attrs = [];
 	var map;
 	var layerHeatSM;
+	var layerGeoms;
 	var kml_vectorgrid;
 	$(document).ready(function() {
 		$('#KMLSel').change(function(event) {
@@ -82,6 +83,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 			var chkIdspatial = $('#selChkHSspatial').val();
 			var tcIdspatial = $('#selChkHSspatial option:selected').attr('tcId');
 			var spatialQ = $('#HSSpQuestionSel').val();
+			var spatialQType = $('#HSSpQuestionSel option:selected').attr('class');
 
 			var nivelMax = 0;
 			var padre = 0;
@@ -145,6 +147,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 						attrs:attrs,
 						chkIdspatial:chkIdspatial,
 						spatialQ:spatialQ,
+						spatialQType:spatialQType,
 						trgtId:<?php echo $_REQUEST['trgtId'] ?>,
 						tcIdspatial:tcIdspatial,
 						padre:padre,
@@ -158,6 +161,9 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 							break;
 						case 'C':
 							drawHeatmap();
+							break;
+						case 'M':
+							drawPoints();
 							break;
 					}
 					if(kmlId == -1){
@@ -336,6 +342,9 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 					break;
 				case 'C':
 					drawHeatmap();
+					break;
+				case 'M':
+					drawPoints();
 					break;
 			}
 		});
@@ -534,6 +543,9 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 				</label>&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="tipoMapaHS" id="tipoC" value="C">&nbsp;<label for="tipoC">
 					<?php echo TR('heat'); ?>
+				</label>
+				<input type="radio" name="tipoMapaHS" id="tipoM" value="M">&nbsp;<label for="tipoM">
+					<?php echo TR('points'); ?>
 				</label>
 			</div>
 

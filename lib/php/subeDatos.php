@@ -322,6 +322,8 @@
 							case 'spatial':
 							case 'cm':
 							case 'op':
+								$datR['respuesta'] = $col[$preg];
+								break;
 							case 'ab':
 								$datR['respuesta'] = $col[$preg];
 								// echo "respOTRA: ".$datR['respuesta']."\n";
@@ -332,6 +334,7 @@
 								break;
 						}
 						$pp['datos'] = $datR;
+						// print2($pp);
 						$rpj = inserta($pp);
 						$rp = json_decode($rpj,true);
 
@@ -341,6 +344,9 @@
 							$err = $rp['e'];
 							break 2;
 						}else{
+							// echo "pTipo = $p[tipo] - $preg\n";
+
+							$ppr = array();
 							if($p['tipo'] == 'op'){
 								$rvId = $rp['nId'];
 								if( is_numeric($col[$preg+1]) && is_numeric($col[$preg+2]) ){
@@ -351,10 +357,26 @@
 									$ppr['geo']['type'] = 'marker';
 									$ppr['geo']['field'] = 'geometry';
 									$ppr['geo']['latlngs'] = '{"lat":'.$col[$preg+1].',"lng":'.$col[$preg+2].'}';
+									// $ppr['geo']['wkt'] = null;
 
+									// print2($ppr);
 									$prj = atj(inserta($ppr));
 
 								}
+							}
+							if($p['tipo'] == 'spatial'){
+								$rvId = $rp['nId'];
+								// echo "ENTRA ".$col[$preg]."\n";
+								$ppr['tabla'] = 'Problems';
+								$ppr['datos']['type'] = 'WKT';
+								$ppr['datos']['respuestasVisitaId'] = $rvId;
+								$ppr['geo']['type'] = 'marker';
+								$ppr['geo']['field'] = 'geometry';
+								$ppr['geo']['wkt'] = $col[$preg];
+
+								$prj = atj(inserta($ppr));
+								// echo "$prj\n";
+								
 							}
 						}
 
