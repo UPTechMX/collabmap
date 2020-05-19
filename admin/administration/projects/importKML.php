@@ -17,6 +17,7 @@
 ?>
 
 <script type="text/javascript">
+	woAttr = false;
 	$(document).ready(function() {
 		subArch(
 			$('#selFile'),
@@ -30,9 +31,17 @@
 				var rj = jsonF('admin/administration/projects/json/getAttributes.php',{file:file});
 				// console.log(rj);
 				var r = $.parseJSON(rj);
+
 				$('#attrs').show();
 				optsSel(r,$('#selAttr'),false,'<?php echo TR('selectIdAttr'); ?>',false);
 				$('#selAttr').val('').trigger('change');
+				if(r.length != 0){
+					$('#selAttr').closest('tr').show();
+				}else{
+					$('#selAttr').closest('tr').hide();
+					woAttr = true;
+					$('#env').show();
+				}
 				$('#KMLfile').val(file);
 
 			},
@@ -56,7 +65,7 @@
 			var allOk = camposObligatorios('#formKML');
 
 			var file = $('#KMLfile').val();
-			var idAttr = $('#KMLattr').val();
+			var idAttr = !woAttr?$('#KMLattr').val():-1;
 			var prjId = '<?php echo $_POST["prjId"]; ?>';
 			var KMLName = $('#KMLName').val();
 

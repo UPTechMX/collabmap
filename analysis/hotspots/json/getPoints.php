@@ -4,6 +4,24 @@ include_once '../../../lib/j/j.func.php';
 
 checaAcceso(5); // checaAcceso analysis;
 
+$spatialQ = $db->query("SELECT p.id, t.siglas 
+	FROM Preguntas p 
+	LEFT JOIN Tipos t ON t.id = p.tiposId
+	WHERE p.id = $_POST[spatialQ]")->fetchAll(PDO::FETCH_ASSOC)[0];
+
+
+switch ($spatialQ['siglas']) {
+	case 'op':
+		$spatialFnc = 'ST_Contains';
+		$geometry = "ST_AsGeoJSON(p.geometry) as geometry";
+		break;
+	case 'spatial':
+		$spatialFnc = 'ST_Intersects';
+		$geometry = "ST_AsGeoJSON(p.geometry) as geometry";
+		break;	
+	default:
+		break;
+}
 // print2($_POST);
 
 $LJStructure = '';
@@ -66,26 +84,30 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 }
 
 if($_POST['kmlId'] == -1){
-	$fields = "te.id as idGroup, p.id, ST_AsGeoJSON(p.geometry) as geometry, 
-	te.id as teId, v.id as vId $fieldsQ";
 }else{
-	$fields = "kg.identifier as idGroup, p.id, kg.identifier, ST_AsGeoJSON(p.geometry) as geometry, 
-	te.id as teId, v.id as vId $fieldsQ";
-	$whereGeom = "AND ST_Contains(kg.geometry,p.geometry)";
+	$fields = "	CASE
+		WHEN (kg.identifier = -1) THEN kg.id
+		ELSE kg.identifier
+	END as idGroup, 
+	CASE
+		WHEN (kg.identifier = -1) THEN kg.id
+		ELSE kg.identifier
+	END as identifier";
+	$whereGeom = "AND $spatialFnc(kg.geometry,p.geometry)";
 }
 
 
 $sql = "
-	SELECT $fields
+	SELECT $fields, $geometry, p.id,  te.id as teId, v.id as vId $fieldsQ
 	FROM RespuestasVisita rv
 	LEFT JOIN Problems p ON p.respuestasVisitaId = rv.id
 	LEFT JOIN Visitas v ON rv.visitasId = v.id AND v.type = 'trgt'
 	LEFT JOIN TargetsElems te ON te.id = v.elemId
 	LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
-	LEFT JOIN KMLGeometries kg ON ST_Contains(kg.geometry,p.geometry) AND kg.KMLId = :kmlId
+	LEFT JOIN KMLGeometries kg ON $spatialFnc(kg.geometry,p.geometry) AND kg.KMLId = :kmlId
 	$LJStructure $LJQuestions
 	WHERE (tc.id = :tcId AND rv.preguntasId = :spatialQ AND v.type = 'trgt' $wDE AND v.finalizada = 1)
-	-- AND ST_Contains(kg.geometry,p.geometry)
+	-- AND $spatialFnc(kg.geometry,p.geometry)
 
 	-- GROUP BY te.id
 

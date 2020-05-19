@@ -236,74 +236,78 @@ function inserta($post){
 	
 	if(!empty($post['geo'])){
 		$geo = $post['geo'];
-		switch ($geo['type']) {
-			case 'marker':
-				$latlng = json_decode($geo['latlngs'],true);
-				$lat = $latlng['lat'];
-				$lng = $latlng['lng'];
-				if(is_numeric($lat) && is_numeric($lng)){
-					$sql .= "$geo[field] = ST_GeometryFromText('Point($lng $lat)'), ";
-				}
-				break;
-			case 'polygon':
-				$latlngs = json_decode($geo['latlngs'],true);
-				foreach ($latlngs as $latlng) {
-					$coords = "(";
-					$lat1 = "";
+		if(empty($geo['wkt'])){
+			switch ($geo['type']) {
+				case 'marker':
+					$latlng = json_decode($geo['latlngs'],true);
+					$lat = $latlng['lat'];
+					$lng = $latlng['lng'];
+					if(is_numeric($lat) && is_numeric($lng)){
+						$sql .= "$geo[field] = ST_GeometryFromText('Point($lng $lat)'), ";
+					}
+					break;
+				case 'polygon':
+					$latlngs = json_decode($geo['latlngs'],true);
+					foreach ($latlngs as $latlng) {
+						$coords = "(";
+						$lat1 = "";
+						foreach($latlng as $k => $ll){
+							// print2($ll);
+							$lat = $ll['lat'];
+							$lng = $ll['lng'];
+							if(is_numeric($lat) && is_numeric($lng)){
+								if($coords == "("){
+									$lat1 = $lat;
+									$lng1 = $lng;
+									// echo ")))((((";
+								}
+
+								$coords .= "$lng $lat, ";
+
+							}	
+						}
+						$coords .= $lat1 != ""?"$lng1 $lat1, ":"";
+						$coords = trim($coords,', ');
+						$coords .= ")";
+
+					}
+					
+					if($coords != ""){
+			// $stmt = $db->query("INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')");
+						$sql .= "$geo[field] = ST_GeometryFromText('Polygon($coords)'), ";
+						// echo "sql1: $sql\n";
+						// $sql = "INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')";
+						// echo "sql2: $sql\n";2
+					}
+					break;
+				case 'polyline':
+					$latlng = json_decode($geo['latlngs'],true);
+					
+					$coords = "";
 					foreach($latlng as $k => $ll){
-						// print2($ll);
+						
 						$lat = $ll['lat'];
 						$lng = $ll['lng'];
 						if(is_numeric($lat) && is_numeric($lng)){
-							if($coords == "("){
-								$lat1 = $lat;
-								$lng1 = $lng;
-								// echo ")))((((";
+							if($coords != ""){
+								$coords .= ", ";
 							}
 
-							$coords .= "$lng $lat, ";
+							$coords .= "$lng $lat";
 
 						}	
 					}
-					$coords .= $lat1 != ""?"$lng1 $lat1, ":"";
-					$coords = trim($coords,', ');
-					$coords .= ")";
-
-				}
+					if($coords != ""){
+						$sql .= "$geo[field] = ST_GeometryFromText('LineString($coords)',4326), ";
+					}
+					break;
 				
-				if($coords != ""){
-		// $stmt = $db->query("INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')");
-					$sql .= "$geo[field] = ST_GeometryFromText('Polygon($coords)'), ";
-					// echo "sql1: $sql\n";
-					// $sql = "INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')";
-					// echo "sql2: $sql\n";2
-				}
-				break;
-			case 'polyline':
-				$latlng = json_decode($geo['latlngs'],true);
-				
-				$coords = "";
-				foreach($latlng as $k => $ll){
-					
-					$lat = $ll['lat'];
-					$lng = $ll['lng'];
-					if(is_numeric($lat) && is_numeric($lng)){
-						if($coords != ""){
-							$coords .= ", ";
-						}
-
-						$coords .= "$lng $lat";
-
-					}	
-				}
-				if($coords != ""){
-					$sql .= "$geo[field] = ST_GeometryFromText('LineString($coords)',4326), ";
-				}
-				break;
-			
-			default:
-				# code...
-				break;
+				default:
+					# code...
+					break;
+			}
+		}else{
+			$sql .= "$geo[field] = ST_GeometryFromText('$geo[wkt]',4326), ";
 		}
 
 	}
@@ -339,74 +343,79 @@ function replace($post){
 	
 	if(!empty($post['geo'])){
 		$geo = $post['geo'];
-		switch ($geo['type']) {
-			case 'marker':
-				$latlng = json_decode($geo['latlngs'],true);
-				$lat = $latlng['lat'];
-				$lng = $latlng['lng'];
-				if(is_numeric($lat) && is_numeric($lng)){
-					$sql .= "$geo[field] = ST_GeometryFromText('Point($lng $lat)'), ";
-				}
-				break;
-			case 'polygon':
-				$latlngs = json_decode($geo['latlngs'],true);
-				foreach ($latlngs as $latlng) {
-					$coords = "(";
-					$lat1 = "";
+		if(empty($geo['wkt'])){
+			switch ($geo['type']) {
+				case 'marker':
+					$latlng = json_decode($geo['latlngs'],true);
+					$lat = $latlng['lat'];
+					$lng = $latlng['lng'];
+					if(is_numeric($lat) && is_numeric($lng)){
+						$sql .= "$geo[field] = ST_GeometryFromText('Point($lng $lat)'), ";
+					}
+					break;
+				case 'polygon':
+					$latlngs = json_decode($geo['latlngs'],true);
+					foreach ($latlngs as $latlng) {
+						$coords = "(";
+						$lat1 = "";
+						foreach($latlng as $k => $ll){
+							// print2($ll);
+							$lat = $ll['lat'];
+							$lng = $ll['lng'];
+							if(is_numeric($lat) && is_numeric($lng)){
+								if($coords == "("){
+									$lat1 = $lat;
+									$lng1 = $lng;
+									// echo ")))((((";
+								}
+
+								$coords .= "$lng $lat, ";
+
+							}	
+						}
+						$coords .= $lat1 != ""?"$lng1 $lat1, ":"";
+						$coords = trim($coords,', ');
+						$coords .= ")";
+
+					}
+					
+					if($coords != ""){
+			// $stmt = $db->query("INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')");
+						$sql .= "$geo[field] = ST_GeometryFromText('Polygon($coords)'), ";
+						// echo "sql1: $sql\n";
+						// $sql = "INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')";
+						// echo "sql2: $sql\n";2
+					}
+					break;
+				case 'polyline':
+					$latlng = json_decode($geo['latlngs'],true);
+					
+					$coords = "";
 					foreach($latlng as $k => $ll){
-						// print2($ll);
+						
 						$lat = $ll['lat'];
 						$lng = $ll['lng'];
 						if(is_numeric($lat) && is_numeric($lng)){
-							if($coords == "("){
-								$lat1 = $lat;
-								$lng1 = $lng;
-								// echo ")))((((";
+							if($coords != ""){
+								$coords .= ", ";
 							}
 
-							$coords .= "$lng $lat, ";
+							$coords .= "$lng $lat";
 
 						}	
 					}
-					$coords .= $lat1 != ""?"$lng1 $lat1, ":"";
-					$coords = trim($coords,', ');
-					$coords .= ")";
-
-				}
+					if($coords != ""){
+						$sql .= "$geo[field] = ST_GeometryFromText('LineString($coords)'), ";
+					}
+					break;
 				
-				if($coords != ""){
-		// $stmt = $db->query("INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')");
-					$sql .= "$geo[field] = ST_GeometryFromText('Polygon($coords)'), ";
-					// echo "sql1: $sql\n";
-					// $sql = "INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')";
-					// echo "sql2: $sql\n";2
-				}
-				break;
-			case 'polyline':
-				$latlng = json_decode($geo['latlngs'],true);
-				
-				$coords = "";
-				foreach($latlng as $k => $ll){
-					
-					$lat = $ll['lat'];
-					$lng = $ll['lng'];
-					if(is_numeric($lat) && is_numeric($lng)){
-						if($coords != ""){
-							$coords .= ", ";
-						}
+				default:
+					# code...
+					break;
+			}
 
-						$coords .= "$lng $lat";
-
-					}	
-				}
-				if($coords != ""){
-					$sql .= "$geo[field] = ST_GeometryFromText('LineString($coords)'), ";
-				}
-				break;
-			
-			default:
-				# code...
-				break;
+		}else{
+			$sql .= "$geo[field] = ST_GeometryFromText('$geo[wkt]',4326), ";
 		}
 
 	}
@@ -455,75 +464,80 @@ function upd($post){
 	}
 	if(!empty($post['geo'])){
 		$geo = $post['geo'];
-		switch ($geo['type']) {
-			case 'marker':
-				$latlng = json_decode($geo['latlngs'],true);
-				$lat = $latlng['lat'];
-				$lng = $latlng['lng'];
-				if(is_numeric($lat) && is_numeric($lng)){
-					$sql .= "$geo[field] = ST_GeometryFromText('Point($lng $lat)'), ";
-				}
-				break;
-			case 'polygon':
-				$latlngs = json_decode($geo['latlngs'],true);
-				// print2($latLngs);
-				foreach ($latlngs as $latlng) {
-					$coords = "(";
-					$lat1 = "";
+		if(empty($geo['wkt'])){
+			switch ($geo['type']) {
+				case 'marker':
+					$latlng = json_decode($geo['latlngs'],true);
+					$lat = $latlng['lat'];
+					$lng = $latlng['lng'];
+					if(is_numeric($lat) && is_numeric($lng)){
+						$sql .= "$geo[field] = ST_GeometryFromText('Point($lng $lat)'), ";
+					}
+					break;
+				case 'polygon':
+					$latlngs = json_decode($geo['latlngs'],true);
+					// print2($latLngs);
+					foreach ($latlngs as $latlng) {
+						$coords = "(";
+						$lat1 = "";
+						foreach($latlng as $k => $ll){
+							// print2($ll);
+							$lat = $ll['lat'];
+							$lng = $ll['lng'];
+							if(is_numeric($lat) && is_numeric($lng)){
+								if($coords == "("){
+									$lat1 = $lat;
+									$lng1 = $lng;
+									// echo ")))((((";
+								}
+
+								$coords .= "$lng $lat, ";
+
+							}	
+						}
+						$coords .= $lat1 != ""?"$lng1 $lat1, ":"";
+						$coords = trim($coords,', ');
+						$coords .= ")";
+
+					}
+					
+					if($coords != ""){
+			// $stmt = $db->query("INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')");
+						$sql .= "$geo[field] = ST_GeometryFromText('Polygon($coords)'), ";
+						// echo "sql1: $sql\n";
+						// $sql = "INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')";
+						// echo "sql2: $sql\n";2
+					}
+					break;
+				case 'polyline':
+					$latlng = json_decode($geo['latlngs'],true);
+					
+					$coords = "";
 					foreach($latlng as $k => $ll){
-						// print2($ll);
+						
 						$lat = $ll['lat'];
 						$lng = $ll['lng'];
 						if(is_numeric($lat) && is_numeric($lng)){
-							if($coords == "("){
-								$lat1 = $lat;
-								$lng1 = $lng;
-								// echo ")))((((";
+							if($coords != ""){
+								$coords .= ", ";
 							}
 
-							$coords .= "$lng $lat, ";
+							$coords .= "$lng $lat";
 
 						}	
 					}
-					$coords .= $lat1 != ""?"$lng1 $lat1, ":"";
-					$coords = trim($coords,', ');
-					$coords .= ")";
-
-				}
+					if($coords != ""){
+						$sql .= "$geo[field] = ST_GeometryFromText('LineString($coords)'), ";
+					}
+					break;
 				
-				if($coords != ""){
-		// $stmt = $db->query("INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')");
-					$sql .= "$geo[field] = ST_GeometryFromText('Polygon($coords)'), ";
-					// echo "sql1: $sql\n";
-					// $sql = "INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')";
-					// echo "sql2: $sql\n";2
-				}
-				break;
-			case 'polyline':
-				$latlng = json_decode($geo['latlngs'],true);
-				
-				$coords = "";
-				foreach($latlng as $k => $ll){
-					
-					$lat = $ll['lat'];
-					$lng = $ll['lng'];
-					if(is_numeric($lat) && is_numeric($lng)){
-						if($coords != ""){
-							$coords .= ", ";
-						}
+				default:
+					# code...
+					break;
+			}
 
-						$coords .= "$lng $lat";
-
-					}	
-				}
-				if($coords != ""){
-					$sql .= "$geo[field] = ST_GeometryFromText('LineString($coords)'), ";
-				}
-				break;
-			
-			default:
-				# code...
-				break;
+		}else{
+			$sql .= "$geo[field] = ST_GeometryFromText('$geo[wkt]',4326), ";
 		}
 
 	}

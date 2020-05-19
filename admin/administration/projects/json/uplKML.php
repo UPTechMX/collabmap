@@ -36,10 +36,11 @@
 
 		$KMLId = $rKML['nId'];
 
-
+		$existe = $xml->Document->Schema;
 		$childs = $xml->Document->Schema->children();
 		// print2($childs);
 		$attrs = array();
+		$childs = !empty($exite)?$childs:array();
 		foreach ($childs as $c) {
 			$pa = array();
 			$pa['tabla'] = 'KMLAttributes';
@@ -119,8 +120,14 @@
 
 			if(!empty($c->MultiGeometry)){
 				// print2($c->MultiGeometry);
-				$data = $c->ExtendedData->SchemaData->children();
-				$atts = attributes($data,'$geometriesId',$_POST['idAttr']);
+				// print2($_POST);
+				if($_POST['idAttr'] != -1){
+					$data = $c->ExtendedData->SchemaData->children();
+					$atts = attributes($data,'$geometriesId',$_POST['idAttr']);
+				}else{
+					$atts = array();
+					$atts['id'] = -1;
+				}
 				// break;
 
 				// print2($c->ExtendedData);
@@ -138,7 +145,9 @@
 					}
 
 					if($ok){
-
+						if($_POST['idAttr'] == -1){
+							continue;
+						}
 						foreach ($atts['post'] as $k => $attr) {
 							$atts['post'][$k]['datos']['geometriesId'] = $r['nId'];
 							$rpj = inserta($atts['post'][$k]);

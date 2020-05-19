@@ -6,9 +6,12 @@
 	checaAcceso(50);// checaAcceso Projects
 
 	$xml = simplexml_load_file(raiz().'externalFiles/'.$_POST['file']);
+
+	$existe = $xml->Document->Schema;
 	$childs = $xml->Document->Schema->children();
 	// print2($childs);
 	$attrs = array();
+	$childs = !empty($exite)?$childs:array();
 	foreach ($childs as $c) {
 		$tmp = array();
 		$tmp['nom'] = $c['name']->__toString();

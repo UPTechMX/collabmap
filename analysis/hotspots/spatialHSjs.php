@@ -21,6 +21,7 @@
 		map = new L.Map('mapHS', { center: new L.LatLng(0, 0), zoom: 2 });
 
 		var notFound = L.featureGroup().addTo(map);
+		layerGeoms = L.featureGroup();
 
 		// console.log(o.n,o.s,o.e,o.w,o.kmlId);
 		cLat = (parseFloat(o.n)+parseFloat(o.s))/2;
@@ -80,7 +81,6 @@
 
 		try{
 			var chkAnsNum = $.parseJSON(chkAnsNumJ);
-
 			var pnf = chkAnsNum[""];
 
 		}catch(e){
@@ -90,8 +90,8 @@
 			var pnf = [];
 
 		}
-		// console.log('points',points);
-		// console.log('chkAnsNum',chkAnsNum);
+		console.log('points',points);
+		console.log('chkAnsNum',chkAnsNum);
 
 		var questMax = {};
 		for(j = 0;j<o.questionsChk.length;j++){
@@ -147,7 +147,11 @@
 							if(chkAnsNum[questionChk['chkId']][i] == undefined){
 								valAnalysis = 0;	
 							}else{
-								valAnalysis = parseFloat(chkAnsNum[questionChk['chkId']][i][k].ansNum);
+								if(chkAnsNum[questionChk['chkId']][i][k] == undefined){
+									valAnalysis = 0;
+								}else{
+									valAnalysis = parseFloat(chkAnsNum[questionChk['chkId']][i][k].ansNum);
+								}
 							}
 						}else{
 							valAnalysis = parseFloat(points[i][k]['respV'+j])
@@ -200,6 +204,7 @@
 								break;
 						}
 						questMax['ans'+j] = Math.max(questMax['ans'+j],acums[i].countMultAns['ans'+j]['value']);
+						// console.log(i,questionChk['inequality']);
 						acums[i].range = questionChk['inequality'] == 'range';
 					}
 
@@ -297,12 +302,20 @@
 		var heatPoints = [];
 		var allPoints = [];
 		for(var j in points){
+
+
+
 			var pig = points[j];
+			// console.log(pig);
 			for(var i=0;i<pig.length;i++){
 
 				var feature = pig[i]['geometry'];
 				// console.log(feature);
 				var geometry = $.parseJSON(feature);
+				prLyr = L.geoJSON(geometry);
+				layerGeoms.addLayer(prLyr);
+
+
 				// console.log(geometry);
 				var meets = true;
 				for(h = 0;h<o.questionsChk.length;h++){
@@ -320,7 +333,11 @@
 								if(chkAnsNum[questionChk['chkId']][j] == undefined){
 									valAnalysis = 0;	
 								}else{
-									valAnalysis = parseFloat(chkAnsNum[questionChk['chkId']][j][i].ansNum);
+									if(chkAnsNum[questionChk['chkId']][j][i] == undefined){
+										valAnalysis = 0;
+									}else{
+										valAnalysis = parseFloat(chkAnsNum[questionChk['chkId']][j][i].ansNum);
+									}
 									// console.log(valAnalysis);
 								}
 							}else{
@@ -374,15 +391,18 @@
 
 				if(meets && (j != '' || o.kmlId == -1)){
 					// console.log(geometry.coordinates[1],geometry.coordinates[0])
-
-					if( geometry.coordinates[1] != 0 && geometry.coordinates[0] != 0){
-						allPoints.push( L.marker([geometry.coordinates[1],geometry.coordinates[0],0]) );
+					console.log('bbb',o.spatialQType,o);
+					if(o.spatialQType == 'op'){
+						console.log('aaa');
+						if( geometry.coordinates[1] != 0 && geometry.coordinates[0] != 0){
+							allPoints.push( L.marker([geometry.coordinates[1],geometry.coordinates[0],0]) );
+						}
+						heatPoints.push({
+							lat:geometry.coordinates[1],
+							lng:geometry.coordinates[0],
+							count:5,
+						});
 					}
-					heatPoints.push({
-						lat:geometry.coordinates[1],
-						lng:geometry.coordinates[0],
-						count:5,
-					});
 				}
 
 				// if(o.kmlId == -1){
@@ -514,7 +534,7 @@
 					if(e.KMLId != o.kmlId){
 						return hide;
 					}else{
-						// console.log(e);
+						
 						if(polygons[e.identifier] == undefined){
 							return hide;
 						}
@@ -644,6 +664,7 @@
 		kml_vectorgrid.on('click', function(e) {
 			// console.log(e.layer.properties);
 			var elem = polygons[e.layer.properties.identifier][0];
+			console.log('elem',polygons[e.layer.properties.identifier]);
 			var text = '<strong>Id : '+elem.identifier+'</strong><br/>';
 			// console.log(elem);
 			// var i = 0;
@@ -663,6 +684,7 @@
 			// 		text += 'Value: '+ acums[elem.identifier].countMultAns['ans'+j]['text']+'<br/>';
 			// 	}
 			// }
+			console.log(elem,acums[elem.identifier]);
 			if(o.questionsChk[0].questionId != ''){
 				if(acums[elem.identifier].range){
 					text += '<?php echo TR("average"); ?>: '+ (acums[elem.identifier].avgs.ans0).toFixed(2)+'<br/>';
@@ -684,29 +706,40 @@
 		// Add the vectorGrid to the map
 		kml_vectorgrid.addTo(map);
 
-		if(o.kmlId > 0){
-			map.setView([cLat,cLng], 17);
-			// var group = new L.featureGroup(allPoints);
-			// map.fitBounds(group.getBounds());
+		// if(o.kmlId > 0){
+		// 	map.setView([cLat,cLng], 17);
+		// 	// var group = new L.featureGroup(allPoints);
+		// 	// map.fitBounds(group.getBounds());
 
-		}else{
-			if(allPoints.length != 0){
-				var group = new L.featureGroup(allPoints);
-				map.fitBounds(group.getBounds());
-			}
+		// }else{
+		// 	if(allPoints.length != 0){
+		// 		var group = new L.featureGroup(allPoints);
+		// 	}
 
-		}
+		// }
+				map.fitBounds(layerGeoms.getBounds());
 
 	}
 
 	function drawPolygons(){
-		map.removeLayer(layerHeatSM)
+		cleanMap();
 		map.addLayer(kml_vectorgrid)
 	}
 
 	function drawHeatmap(){
-		map.removeLayer(kml_vectorgrid)
+		cleanMap();
 		map.addLayer(layerHeatSM)
+	}
+
+	function drawPoints(){
+		cleanMap();
+		map.addLayer(layerGeoms)
+	}
+
+	function cleanMap(){
+		map.removeLayer(kml_vectorgrid);
+		map.removeLayer(layerHeatSM);
+		map.removeLayer(layerGeoms);
 	}
 
 
