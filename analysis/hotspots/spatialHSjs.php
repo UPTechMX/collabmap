@@ -310,10 +310,10 @@
 			for(var i=0;i<pig.length;i++){
 
 				var feature = pig[i]['geometry'];
-				// console.log(feature);
+				console.log(feature);
 				var geometry = $.parseJSON(feature);
-				prLyr = L.geoJSON(geometry);
-				layerGeoms.addLayer(prLyr);
+				// prLyr = L.geoJSON(geometry);
+				// layerGeoms.addLayer(prLyr);
 
 
 				// console.log(geometry);
@@ -391,7 +391,9 @@
 
 				if(meets && (j != '' || o.kmlId == -1)){
 					// console.log(geometry.coordinates[1],geometry.coordinates[0])
-					console.log('bbb',o.spatialQType,o);
+					prLyr = L.geoJSON(geometry);
+					layerGeoms.addLayer(prLyr);
+
 					if(o.spatialQType == 'op'){
 						console.log('aaa');
 						if( geometry.coordinates[1] != 0 && geometry.coordinates[0] != 0){

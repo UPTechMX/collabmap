@@ -36,7 +36,7 @@ for ($i=$nivelMax; $i <$numDim ; $i++) {
 	if($i == $numDim - 2){
 	}
 	if($i == $numDim - 1){
-		$fields = ", de$i.nombre as nombreHijo, de$i.id as idHijo";
+		$fieldsDims = ", de$i.nombre as nombreHijo, de$i.id as idHijo";
 		$wDE = "AND de$i.padre = $padre";
 	}
 }
@@ -84,6 +84,7 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 }
 
 if($_POST['kmlId'] == -1){
+	$fields = "te.id as idGroup";
 }else{
 	$fields = "	CASE
 		WHEN (kg.identifier = -1) THEN kg.id
@@ -98,7 +99,7 @@ if($_POST['kmlId'] == -1){
 
 
 $sql = "
-	SELECT $fields, $geometry, p.id,  te.id as teId, v.id as vId $fieldsQ
+	SELECT $fields, $geometry, p.id, te.id as teId, v.id as vId $fieldsQ
 	FROM RespuestasVisita rv
 	LEFT JOIN Problems p ON p.respuestasVisitaId = rv.id
 	LEFT JOIN Visitas v ON rv.visitasId = v.id AND v.type = 'trgt'

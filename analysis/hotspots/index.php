@@ -167,7 +167,11 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 							break;
 					}
 					if(kmlId == -1){
-						drawHeatmap();
+						if(spatialQType == 'op'){
+							drawHeatmap();
+						}else if(spatialQType == 'spatial'){
+							drawPoints();
+						}
 						$('#tipoMapaHSCont').hide();
 					}
 
