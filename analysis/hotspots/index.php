@@ -167,7 +167,11 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 							break;
 					}
 					if(kmlId == -1){
-						drawHeatmap();
+						if(spatialQType == 'op'){
+							drawHeatmap();
+						}else if(spatialQType == 'spatial'){
+							drawPoints();
+						}
 						$('#tipoMapaHSCont').hide();
 					}
 
@@ -267,6 +271,12 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 					optsSel(r,$(this).closest('.rowPreg').find('.HSAnswer'),false,'- - - <?php echo TR("answer"); ?> - - -',false);
 				}
 			}
+		});
+
+		$('#chks').on('click', '.delRowPreg', function(event) {
+			event.preventDefault();
+			$(this).closest('.rowPreg').remove();
+
 		});
 
 		$('#HSInequality').change(function(event) {
@@ -543,7 +553,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 				</label>&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="tipoMapaHS" id="tipoC" value="C">&nbsp;<label for="tipoC">
 					<?php echo TR('heat'); ?>
-				</label>
+				</label>&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="tipoMapaHS" id="tipoM" value="M">&nbsp;<label for="tipoM">
 					<?php echo TR('points'); ?>
 				</label>
