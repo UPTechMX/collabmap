@@ -29,7 +29,7 @@
 				// console.log(e);
 				var file = e.prefijo+e.nombreArchivo;
 				var rj = jsonF('admin/administration/projects/json/getAttributes.php',{file:file});
-				// console.log(rj);
+				console.log(rj);
 				var r = $.parseJSON(rj);
 
 				$('#attrs').show();
