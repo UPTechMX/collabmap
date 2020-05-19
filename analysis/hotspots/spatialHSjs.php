@@ -15,6 +15,9 @@
 		nivelMax:0,
 		questionsChk:[]
 	}){
+
+		var server = '<?php echo $_SERVER['HTTP_HOST']; ?>';
+
 		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 		var osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 		var osm = L.tileLayer(osmUrl, { maxZoom: 18, attribution: osmAttrib });
@@ -90,8 +93,8 @@
 			var pnf = [];
 
 		}
-		console.log('points',points);
-		console.log('chkAnsNum',chkAnsNum);
+		// console.log('points',points);
+		// console.log('chkAnsNum',chkAnsNum);
 
 		var questMax = {};
 		for(j = 0;j<o.questionsChk.length;j++){
@@ -644,7 +647,7 @@
 		// Set the variable for storing the workspace:layername
 		var campground_geoserverlayer = 'CMPy:KMLGeometries';
 		// Creating the full vectorTile url
-		var tilesURL = 'http://localhost:8080/geoserver/gwc/service/wmts?REQUEST=GetTile'+
+		var tilesURL = 'http://'+server+':8080/geoserver/gwc/service/wmts?REQUEST=GetTile'+
 			'&SERVICE=WMTS&VERSION=1.0.0'+
 			'&LAYER='+campground_geoserverlayer+
 			'&STYLE=' +
