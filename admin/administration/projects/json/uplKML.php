@@ -40,7 +40,7 @@
 		$childs = $xml->Document->Schema->children();
 		// print2($childs);
 		$attrs = array();
-		$childs = !empty($exite)?$childs:array();
+		$childs = !empty($existe)?$childs:array();
 		foreach ($childs as $c) {
 			$pa = array();
 			$pa['tabla'] = 'KMLAttributes';
