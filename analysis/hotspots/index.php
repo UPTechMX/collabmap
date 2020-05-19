@@ -273,6 +273,12 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 			}
 		});
 
+		$('#chks').on('click', '.delRowPreg', function(event) {
+			event.preventDefault();
+			$(this).closest('.rowPreg').remove();
+
+		});
+
 		$('#HSInequality').change(function(event) {
 			var val = $(this).val();
 			if(val == 'range'){
@@ -547,7 +553,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 				</label>&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="tipoMapaHS" id="tipoC" value="C">&nbsp;<label for="tipoC">
 					<?php echo TR('heat'); ?>
-				</label>
+				</label>&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="tipoMapaHS" id="tipoM" value="M">&nbsp;<label for="tipoM">
 					<?php echo TR('points'); ?>
 				</label>

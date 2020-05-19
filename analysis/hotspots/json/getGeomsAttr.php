@@ -66,16 +66,7 @@ $where = $where != ''? " AND ($where)": '' ;
 // echo "\n $LJ \n $where \n";
 
 $sql = "
-	SELECT
-	CASE
-		WHEN (g.identifier = -1) THEN g.id
-		ELSE g.identifier
-	END as idGroup, 
-	g.id, 
-	CASE
-		WHEN (g.identifier = -1) THEN g.id
-		ELSE g.identifier
-	END as identifier $fields
+	SELECT g.id idGroup, g.id $fields
 	FROM KMLGeometries g
 	$LJ 
 	WHERE g.KMLId = :kmlId $where

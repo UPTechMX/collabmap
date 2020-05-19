@@ -86,14 +86,7 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 if($_POST['kmlId'] == -1){
 	$fields = "te.id as idGroup";
 }else{
-	$fields = "	CASE
-		WHEN (kg.identifier = -1) THEN kg.id
-		ELSE kg.identifier
-	END as idGroup, 
-	CASE
-		WHEN (kg.identifier = -1) THEN kg.id
-		ELSE kg.identifier
-	END as identifier";
+	$fields = "	kg.id as idGroup, kg.id";
 	$whereGeom = "AND $spatialFnc(kg.geometry,p.geometry)";
 }
 

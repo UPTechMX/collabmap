@@ -7,6 +7,10 @@ checaAcceso(5); // checaAcceso analysis;
 
 <div class="row rowPreg" style="margin-top: 10px;">
 	<div class="col-1" style="text-align: center;">
+		<span>
+			<h5>&nbsp;</h5>
+			<i class="glyphicon glyphicon-trash manita rojo delRowPreg"></i>
+		</span>
 	</div>
 	<div class="col-3">
 		<h5><?php echo TR('selChk'); ?></h5>
