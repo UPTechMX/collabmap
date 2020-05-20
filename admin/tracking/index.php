@@ -5,7 +5,10 @@
 	}
 	checaAcceso(50); // checaAcceso Tracking
 
-	$targets = $db->query("SELECT * FROM Targets ORDER BY name")->fetchAll(PDO::FETCH_ASSOC);
+	$targets = $db->query("SELECT t.*, p.name as pName 
+		FROM Targets t
+		LEFT JOIN Projects p ON p.id = t.projectsId
+		ORDER BY p.name, t.name")->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
@@ -28,7 +31,7 @@
 			<select class="form-control" id="trgtSel">
 				<option value="">- - - Targets - - -</option>
 				<?php foreach ($targets as $t){ ?>
-					<option value="<?php echo $t['id'] ?>"><?php echo $t['name']; ?></option>
+					<option value="<?php echo $t['id'] ?>"><?php echo "$t[pName] - $t[name]"; ?></option>
 				<?php } ?>
 			</select>
 		</div>

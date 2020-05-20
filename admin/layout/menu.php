@@ -41,7 +41,12 @@
 				</li> -->
 
 			<?php if ($nivel >=50){ ?>	
-				<li id="clientEmp" class="nav-item">
+				<li id="tracking" class="nav-item">
+					<a class="nav-link" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=tracking"><?php echo TR('tracking'); ?></a>
+				</li>
+			<?php } ?>
+			<?php if ($nivel >=50){ ?>	
+				<li id="externalUsers" class="nav-item">
 					<a class="nav-link" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=extUsr"><?php echo TR('externalUsers'); ?></a>
 				</li>
 			<?php } ?>
