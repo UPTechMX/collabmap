@@ -143,7 +143,7 @@
 			<form id="nEmp">
 				<table class="table" border="0">
 					<tr>
-						<td>No. KTP</td>
+						<td>NIK</td>
 						<td>
 							<?php if (isset($_POST['usuarioId'])): ?>
 								<span>No. KTP</span>
