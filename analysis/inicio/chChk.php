@@ -183,7 +183,7 @@
 
 	  	</div>
 	  </div>
-	  <div class="tab-pane fade " id="pc" role="tabpanel" aria-labelledby="pc-tab">
+<!-- 	  <div class="tab-pane fade " id="pc" role="tabpanel" aria-labelledby="pc-tab">
 	  	<div style="margin-top: 10px;">			  		
 
 	  		
@@ -219,7 +219,7 @@
 	  		
 		</div>
 	  </div>
-	  <div class="tab-pane fade " id="hs" role="tabpanel" aria-labelledby="hs-tab">
+ -->	  <!-- <div class="tab-pane fade " id="hs" role="tabpanel" aria-labelledby="hs-tab">
 	  	<div style="margin-top: 10px;">			  		
 	  		<form id="hsForm">
 	  			<table class="table" border="0">
@@ -257,6 +257,6 @@
 	  			<input type="hidden" name="acc" id="acc" value="hs">
 	  		</form>
 		</div>
-	  </div>
+	  </div> -->
 
 </div>
