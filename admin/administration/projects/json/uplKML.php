@@ -175,6 +175,18 @@
 
 
 	if($ok){
+		try {
+			
+			deleteDirectory('/usr/share/geoserver/data_dir/gwc/CMPy_KMLGeometries');
+		} catch (Exception $e) {
+			
+		}
+		try {
+			
+			deleteDirectory('/usr/local/geoserver/data_dir/gwc/CMPy_KMLGeometries');
+		} catch (Exception $e) {
+			
+		}
 		echo '{"ok":1}';
 		$db->commit();
 		// $db->rollBack();
@@ -258,7 +270,7 @@
 			$latlngs[] = $tmp;
 
 			$n = max($n,$lat);
-			$s = min($n,$lat);
+			$s = min($s,$lat);
 			$e = max($e,$lng);
 			$w = min($w,$lng);
 
@@ -271,7 +283,31 @@
 
 		// print2($pSA);
 
+
 		return atj(inserta($pSA));
 
 	}
 
+
+	function deleteDirectory($dir) {
+	    if (!file_exists($dir)) {
+	        return true;
+	    }
+
+	    if (!is_dir($dir)) {
+	        return unlink($dir);
+	    }
+
+	    foreach (scandir($dir) as $item) {
+	        if ($item == '.' || $item == '..') {
+	            continue;
+	        }
+
+	        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+	            return false;
+	        }
+
+	    }
+
+	    return rmdir($dir);
+	}
