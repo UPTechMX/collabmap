@@ -146,9 +146,10 @@
 						<td><?php echo TR('phone'); ?></td>
 						<td>
 							<?php if (isset($_POST['usuarioId'])): ?>
-								<span><?php echo $datC['username']; ?></span>
+								<span>NIK</span>
 							<?php else: ?>
-								<input type="text" value="<?php echo $datC['username']; ?>" name="username" id="username" class="form-control oblig" >
+								<input type="text" value="<?php echo $datC['username']; ?>" 
+									name="username" id="username" class="form-control oblig" maxlength="16" >
 							<?php endif ?>
 
 						</td>

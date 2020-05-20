@@ -33,6 +33,8 @@
 			$('#signupContent').show();
 		});
 
+		soloNumeros($('#usuario'));
+
 	});
 </script>
 
@@ -54,9 +56,12 @@
 								background:#fff;width:100%;border-radius:10px;color:black;">
 								<table>
 									<tr>
-										<td><?php echo TR('phone'); ?>:</td>
+										<td>NIK:</td>
 										<td>&nbsp;&nbsp;</td>
-										<td><input type="text" name="usuario" id="usuario" class="form-control" style="border-radius:0px;" /></td>
+										<td>
+											<input type="text" name="usuario" id="usuario" maxlength="16" 
+												class="form-control" style="border-radius:0px;" />
+										</td>
 									</tr>
 									<tr>
 										<td>&nbsp;</td>
