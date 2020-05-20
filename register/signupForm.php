@@ -143,7 +143,7 @@
 			<form id="nEmp">
 				<table class="table" border="0">
 					<tr>
-						<td><?php echo TR('phone'); ?></td>
+						<td>No. KTP</td>
 						<td>
 							<?php if (isset($_POST['usuarioId'])): ?>
 								<span>No. KTP</span>
