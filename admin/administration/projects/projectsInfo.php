@@ -35,10 +35,10 @@
 	</table>
 </div>
 
-<div>
+<!-- <div>
 	<div class="nuevo"><?php echo TR('maps'); ?></div>
 	<div style="text-align: right;">
 		<span class="btn btn-shop" id="importar"><?php echo TR('importKML'); ?></span>
 	</div>
 	<div id="KMLlist" style="margin-top: 10px;"><?php include_once  'KMLlist.php'; ?></div>
-</div>
+</div> -->
