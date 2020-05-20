@@ -128,10 +128,10 @@
 	    <a class="nav-link " id="pc-tab" data-toggle="tab" 
 	    	href="#pc" role="tab" aria-controls="pc" aria-selected="false"><?php echo TR('publicCons'); ?></a>
 	  </li>
-	  <li class="nav-item">
+	  <!-- <li class="nav-item">
 	    <a class="nav-link " id="hs-tab" data-toggle="tab" 
 	    	href="#hs" role="tab" aria-controls="hs" aria-selected="false"><?php echo TR('hotspots'); ?></a>
-	  </li>
+	  </li> -->
 	</ul>
 	<div class="tab-content" id="chChkTabContent">
 	  <div class="tab-pane fade show active" id="targets" role="tabpanel" aria-labelledby="targets-tab">
@@ -183,7 +183,7 @@
 
 	  	</div>
 	  </div>
-<!-- 	  <div class="tab-pane fade " id="pc" role="tabpanel" aria-labelledby="pc-tab">
+	  <div class="tab-pane fade " id="pc" role="tabpanel" aria-labelledby="pc-tab">
 	  	<div style="margin-top: 10px;">			  		
 
 	  		
@@ -219,44 +219,5 @@
 	  		
 		</div>
 	  </div>
- -->	  <!-- <div class="tab-pane fade " id="hs" role="tabpanel" aria-labelledby="hs-tab">
-	  	<div style="margin-top: 10px;">			  		
-	  		<form id="hsForm">
-	  			<table class="table" border="0">
-	  				<tr>
-	  					<td><?php echo TR('project'); ?></td>
-	  					<td>
-	  						<select class="form-control" id="chPrjSel">
-	  							<option value="">- - - <?php echo TR('projects'); ?> - - -</option>
-	  							<?php foreach ($projects as $p){ ?>
-	  								<option value="<?php echo $p['id']; ?>"><?php echo $p['name']; ?></option>
-	  							<?php } ?>
-	  						</select>
-	  					</td>
-	  					<td></td>
-	  				</tr>
-	  				<tr>
-	  					<td><?php echo TR('target') ?></td>
-	  					<td>
-	  						<select class="form-control" id="chTrgtSel">
-	  							<option value="">- - - <?php echo TR('target') ?> - - -</option>
-	  						</select>
-	  					</td>
-	  					<td></td>
-	  				</tr>
-	  			</table>
-	  		</form>
-	  		<div class="modal-footer">
-	  			<div style="text-align: right;">
-	  				<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel"><?php echo TR('cancel'); ?></span>
-	  				<span id="envHS" class="btn btn-sm btn-shop"><?php echo TR('send'); ?></span>
-	  			</div>
-	  		</div>
-	  		<form id="chChkHSForm" method="get" >
-	  			<input type="hidden" name="trgtId" id="trgtId" value="">
-	  			<input type="hidden" name="acc" id="acc" value="hs">
-	  		</form>
-		</div>
-	  </div> -->
 
 </div>
