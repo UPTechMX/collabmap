@@ -151,7 +151,6 @@ $htmlRoot = aRaizHtml($location);
 	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/modules/exporting.js"></script>
 	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/modules/data.js"></script>
 	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/modules/drilldown.js"></script>
-	<script src="<?php echo $htmlRoot; ?>analysis/analysis.php"></script>
 	<script src="<?php echo $htmlRoot; ?>analysis/socialMon/chartSMJS.js"></script>
 
 
@@ -162,6 +161,10 @@ $htmlRoot = aRaizHtml($location);
 	
 
 </head>
+
+<?php include_once raiz().'analysis/analysis.php' ?>
+
+
 <body style="background-color: #fff;">
 	<div class="container" >
 		<div class="header" id="header"><?php include 'layout/header.php'; ?></div>
