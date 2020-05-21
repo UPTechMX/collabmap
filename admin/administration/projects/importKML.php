@@ -71,7 +71,7 @@
 
 			if(file != '' && idAttr != '' && KMLName != ''){
 				var rj = jsonF('admin/administration/projects/json/uplKML.php',{file:file,idAttr:idAttr,prjId:prjId,KMLName:KMLName});
-				// console.log(rj);
+				console.log(rj);
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){

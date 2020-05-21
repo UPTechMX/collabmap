@@ -252,14 +252,29 @@
 
 		$cc = explode(" ", $coords);
 		$latlngs = array();
+
+		$i = 0;
 		foreach ($cc as $k => $c) {
 			// echo "$k - $c\n";
-			if($k == count($cc)-1){
-				continue;
-			}
+			// if($k == count($cc)-1){
+			// 	echo "\nK_n-1:\n";
+			// 	print2($c);
+			// 	continue;
+			// }
 			$latlng = explode(',', $c);
 			$lat = trim($latlng[1]);
 			$lng = trim($latlng[0]);
+
+
+			if($k == 0){
+				$lat0 = $lat;
+				$lng0 = $lng;
+			}
+			if($k == count($cc)-1){
+				$latN = $lat;
+				$lng0 = $lng;
+
+			}
 
 			if(empty($lat) || empty($lng)){
 				continue;
@@ -274,6 +289,12 @@
 			$e = max($e,$lng);
 			$w = min($w,$lng);
 
+		}
+
+		if($lat0 != $latN || $lng0 != $lngN){
+			$tmp['lat'] = $lat0;
+			$tmp['lng'] = $lng0;
+			$latlngs[] = $tmp;
 		}
 
 		// print2($latlngs);
