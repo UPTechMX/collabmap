@@ -24,6 +24,10 @@ switch ($spatialQ['siglas']) {
 }
 // print2($_POST);
 
+$numDim = $db->query("SELECT COUNT(*) FROM Dimensiones 
+	WHERE elemId = $_POST[trgtId] AND type='structure' ")->fetchAll(PDO::FETCH_NUM)[0][0];
+
+
 $LJStructure = '';
 $nivelMax = isset($_POST['nivelMax'])?$_POST['nivelMax']:0;
 $padre = isset($_POST['padre'])?$_POST['padre']:0;
@@ -40,6 +44,9 @@ for ($i=$nivelMax; $i <$numDim ; $i++) {
 		$wDE = "AND de$i.padre = $padre";
 	}
 }
+
+// echo "numDim: $numDim\n";
+// echo "nivelMax: $nivelMax\n";
 
 $LJQuestions = '';
 $whereQuestions = '';
