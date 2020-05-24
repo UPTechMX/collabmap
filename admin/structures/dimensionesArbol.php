@@ -1,13 +1,13 @@
 <?php  
 
 	if($_POST['ajax'] == 1){
-		include_once '../../../../lib/j/j.func.php';
+		include_once '../../lib/j/j.func.php';
 	}
 
 	$p = $_POST;
 	// print2($_POST);
 	$dimensiones = $db->query("SELECT * FROM Dimensiones 
-		WHERE elemId = $_POST[targetsId] AND type = 'structure'
+		WHERE elemId = $_POST[elemId] AND type = '$_POST[type]'
 		ORDER BY id
 	")->fetchAll(PDO::FETCH_ASSOC);
 	// $datC = $db-> query("SELECT * FROM Clientes WHERE id = $_POST[areasId]")->fetch(PDO::FETCH_ASSOC);
@@ -18,7 +18,7 @@
 		$('.addDimEle').click(function(event) {
 			var dimensionId = this.id.split('_')[1];
 			var padreId = this.id.split('_')[2];
-			popUp('admin/administration/targets/structure/dimensionesElemAdd.php',{
+			popUp('admin/structures/dimensionesElemAdd.php',{
 				marcaId:<?php echo $_POST['marcaId']; ?>,
 				dimensionId:dimensionId,
 				padreId:padreId

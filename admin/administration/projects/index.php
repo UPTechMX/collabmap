@@ -13,3 +13,4 @@
 		<div class="col-6" id="projectsInfo"></div>
 	</div>
 </div>
+<div id="structures"></div>

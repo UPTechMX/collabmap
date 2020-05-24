@@ -26,6 +26,7 @@ checaAcceso(60);// checaAcceso Targets
 	<?php echo TR('example'); ?>		
 </span>
 <form id="exampleFile" action="examples/structure.php" method="post" target="_blank" >
-	<input type="hidden" name="targetsId" value="<?php echo $_POST['targetsId']; ?>">
+	<input type="hidden" name="elemId" value="<?php echo $_POST['targetsId']; ?>">
+	<input type="hidden" name="type" value="structure">
 </form>
 <div><?php include 'structure/dimensiones.php'; ?></div>

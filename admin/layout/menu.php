@@ -83,6 +83,9 @@
 								<?php echo TR('internalUsers'); ?>
 							</a>
 							<?php } ?>
+							<a class="dropdown-item" id="cons" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=cons">
+								<?php echo TR('consultations'); ?>
+							</a>
 							<a class="dropdown-item" id="trgs" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=trg">
 								<?php echo TR('targets'); ?>
 							</a>

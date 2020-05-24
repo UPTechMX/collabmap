@@ -55,6 +55,7 @@
   "no_consultations": "No existen consultas abiertas en este momento",
   "empty": "No se encontraron resultados.",
   "consultations": "Consultas",
+  "consultation": "Consulta",
   "next": "Siguiente",
   "back": "Regresar",
   "answer": "Respuesta",
@@ -308,7 +309,6 @@
   "ansNumber":"Número de respuestas",
   "analysisType":"Tipo de analysis",
 
-
   "publicCons":"Consultas públicas",
   "publicCon":"Consulta pública",
   "emailReq":"Pedir email",
@@ -328,7 +328,12 @@
   "administratior": "Aministrador",
   "superuser": "Superusuario",
   "analyst": "Analista",
-  "level": "Nivel"
+  "level": "Nivel",
+
+  "consultationInfo":"Información de la consulta",
+  "audience":"Audiencia",
+  "audiences":"Audiencias"
+
 
 
 }

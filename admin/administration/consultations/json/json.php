@@ -1,14 +1,14 @@
 <?php  
 	include_once '../../../../lib/j/j.func.php';
-	checaAcceso(50);// checaAcceso Projects
+	checaAcceso(60);// checaAcceso Targets
 
 	
 	switch ($_POST['opt']) {
 		case 1:
-			$post['tabla'] = 'Projects';
+			$post['tabla'] = 'Consultations';
 			break;
 		case 2:
-			$post['tabla'] = 'Audiences';
+			$post['tabla'] = 'ConsultationsChecklist';
 			break;
 		case 3:
 		
@@ -30,8 +30,8 @@
 			break;	
 		case 3:
 			// print2($_POST);
-			$post['tabla'] = 'KML';
-			$post['where'] = "id = $_POST[KMLId]";
+			$post['tabla'] = 'TargetsChecklist';
+			$post['where'] = "id = $_POST[tcId]";;
 
 			echo atj(del($post));
 			break;	

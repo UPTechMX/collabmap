@@ -55,6 +55,7 @@
   "no_consultations": "There are no open consultations at this time",
   "empty": "No results found.",
   "consultations": "Consultations",
+  "consultation": "Consultation",
   "next": "Next",
   "back": "Back",
   "answer": "Answer",
@@ -323,12 +324,16 @@
   "percent":"Percent",
   "polygons":"Polygons",
 
-
   "noAccess": "No access",
   "administrator": "Administrator",
   "superuser": "Superuser",
   "analyst": "Analyst",
-  "level": "Level"
+  "level": "Level",
+
+  "consultationInfo":"Consultation info",
+  "addAudience":"Add audience",
+  "audience":"Audience",
+  "audiences":"Audiences"
 
 
 
