@@ -331,6 +331,11 @@
   "level": "Nivel",
 
   "consultationInfo":"Información de la consulta",
+  "noAudienceMsg":"Si no hay una audiencia seleccionada todos los usuarios pueden visualizarla.",
+  "levelTypeAud":"Tipo de nivel de audiencia",
+  "onlyThis":"Sólo este elemento",
+  "onlyChildrens":"Sólo los hijos del elemento",
+  "thisAndChildrens":"Este elemento y sus hijos",
   "audience":"Audiencia",
   "audiences":"Audiencias"
 

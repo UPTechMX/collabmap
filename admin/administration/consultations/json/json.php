@@ -1,6 +1,6 @@
 <?php  
 	include_once '../../../../lib/j/j.func.php';
-	checaAcceso(60);// checaAcceso Targets
+	checaAcceso(60);// checaAcceso Consultations
 
 	
 	switch ($_POST['opt']) {

@@ -331,6 +331,11 @@
   "level": "Level",
 
   "consultationInfo":"Consultation info",
+  "noAudienceMsg":"If there is no selected audience all users can view it",
+  "levelTypeAud":"Audiencd level type",
+  "onlyThis":"Only this element",
+  "onlyChildrens":"Only childrens",
+  "thisAndChildrens":"This element and childrens",
   "addAudience":"Add audience",
   "audience":"Audience",
   "audiences":"Audiences"

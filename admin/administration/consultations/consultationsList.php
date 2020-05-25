@@ -26,7 +26,8 @@ $elementos = $db->query("SELECT t.*, p.name as pName
 		$(".trgtInfo").click(function(event) {
 			var consultationId = $(this).closest('tr').attr('id').split('_')[1];
 			$('#consultationsInfo').load(rz+'admin/administration/consultations/consultationsInfo.php',{consultationId:consultationId});
-			$('#consultationsStructure').load(rz+'admin/administration/consultations/consultationsStructure.php',{consultationsId:consultationId});
+			// $('#consultationsStructure').load(rz+'admin/administration/consultations/consultationsStructure.php',
+			// 	{consultationsId:consultationId});
 		});
 	});
 </script>

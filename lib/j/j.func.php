@@ -1213,5 +1213,24 @@ function getRefDate($frequency){
 
 }
 
+function delDirContent($path,$type){
+	try {
+		$files = glob($path . '/*');
+		foreach($files as $file){
+			if($type == 'dirs' || $type == 'all'){
+			    if(is_dir($file)){
+			 		deleteDirectory($file);   	
+			    }
+			}
+			if($type == 'files' || $type == 'all'){
+				if(is_file($file)){
+				    unlink($file);
+				}
+			}
+		}
+	} catch (Exception $e) {
+		return $e;
+	}
+}
 
 ?>
