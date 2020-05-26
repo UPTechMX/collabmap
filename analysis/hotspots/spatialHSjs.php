@@ -31,7 +31,13 @@
 		cLng = (parseFloat(o.e)+parseFloat(o.w))/2;
 
 		var polygonsJ = jsonF('analysis/hotspots/json/getGeomsAttr.php',{attrs:o.attrs,kmlId:o.kmlId});
-		var polygons = $.parseJSON(polygonsJ);
+		try{
+			var polygons = $.parseJSON(polygonsJ);
+		}catch(e){
+			console.log('error de parseo');
+			console.log(polygonsJ)
+			var polygons = [];
+		}
 
 		var pointsJ = jsonF('analysis/hotspots/json/getPoints.php',{
 			kmlId:o.kmlId,
@@ -537,6 +543,7 @@
 						return hide;
 					}else{
 						// console.log(e);
+						console.log(polygons[e.id]);
 						if(polygons[e.id] == undefined){
 							return hide;
 						}

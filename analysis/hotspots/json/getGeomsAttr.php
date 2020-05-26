@@ -35,6 +35,7 @@ foreach ($_POST['attrs'] as $k => $attr) {
 			}
 			break;
 		case 'float':
+		case 'int':
 			if($attr['numVal'] != ''){
 				$LJ .= " LEFT JOIN GeometriesAttributes ga$k ON ga$k.geometriesId = g.id AND ga$k.attributeId = :attrId$k";
 				$LJ .= " LEFT JOIN KMLAttributes a$k ON a$k.id = :attrAId$k";
