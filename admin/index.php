@@ -103,6 +103,9 @@ checaAcceso(49);
 	<link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
 
 	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#adminInfoModal").modal();
+		});
 	</script>
 
 	
@@ -156,6 +159,37 @@ checaAcceso(49);
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="adminInfoModal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header nuevo">
+					<div style="text-align: center;">
+						<h4 class="modal-title">
+							<?php echo TR('adminInfoHeader'); ?>
+						</h4>
+					</div>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div class="modal-body" id="pano" style="width: 100%; border: none 1px;">
+					<br />
+					<?php echo TR('adminInfoBody'); ?>
+				</div>
+
+				<div class="modal-footer">
+					<div style="text-align: right;">
+						<span data-dismiss="modal" class="btn btn-sm btn-cancel"><?php echo TR('close'); ?></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </body>
 </html>
 

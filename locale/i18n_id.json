@@ -316,6 +316,10 @@
   "noAccess": "Tidak ada akses",
   "administrator": "Administrator",
   "superuser": "Superuser",
-  "level": "Tingkatan"
+  "level": "Tingkatan",
+
+  "adminInfoHeader": "Ini adalah header informasi",
+  "adminInfoBody": "Ini adalah informasi",
+  "adminInfoFooter": "Ini adalah footer informasi"
 
 }

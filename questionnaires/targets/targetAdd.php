@@ -71,7 +71,7 @@
 
 				if(allOk){
 					var rj = jsonF('questionnaires/targets/json/json.php',{datos:dat,acc:6,targetId:targetId});
-					console.log(rj);
+					// console.log(rj);
 					var r = $.parseJSON(rj);
 					// console.log(r);
 					if(r.ok == 1){
@@ -102,7 +102,7 @@
 						
 						$('#nTrgt #name').css({backgroundColor:'rgba(255,0,0,.5)'});
 						$('#nTrgt #name').after(() => {
-							return '<span id="duplicateWarning">Duplicate entry detected.</span>'
+							return '<span id="duplicateWarning">Nomor RT sudah terdaftar.</span>'
 						});
 						$('#nTrgt #name').on('input', () => {
 							if($('#nTrgt #name').length){
@@ -157,7 +157,7 @@
 								<?php } ?>
 							</select>
 						<?php }else{ ?>
-							<input type="text" value="<?php echo $datC['name']; ?>" name="name" id="name" class="form-control oblig" >
+							<input type="text" value="<?php echo $datC['name']; ?>" name="name" id="name" class="form-control oblig" placeholder="Masukkan nomor RT Anda">
 						<?php } ?>
 					</td>
 				</tr>
