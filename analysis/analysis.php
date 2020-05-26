@@ -51,6 +51,7 @@
 					type: 'boxplot',
 					renderTo: 'container',
 					inverted:true,
+					zoomType: 'y',
 				},
 
 				title: {
