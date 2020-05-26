@@ -66,6 +66,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 						$(this).closest('.attrRow').find('.attrValDiv').show();
 						break;
 					case 'float':
+					case 'int':
 						$(this).closest('.attrRow').find('.numMod').show();
 						// $('#attrValDiv').show();
 						break;
