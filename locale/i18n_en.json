@@ -331,11 +331,15 @@
   "level": "Level",
 
   "consultationInfo":"Consultation info",
+  "delAud": "Do you want to delete the selected audience?",
   "noAudienceMsg":"If there is no selected audience all users can view it",
   "levelTypeAud":"Audiencd level type",
   "onlyThis":"Only this element",
   "onlyChildrens":"Only childrens",
   "thisAndChildrens":"This element and childrens",
+  "offspring":"Offspring",
+  "thisAndOffspring":"This element and all its offspring",
+  "invalidAudSel":"Invalid selection",
   "addAudience":"Add audience",
   "audience":"Audience",
   "audiences":"Audiences"

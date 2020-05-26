@@ -1035,10 +1035,10 @@ function validateDate($date, $format = 'Y-m-d')
 }
 
 
-function getLJTrgt($nivelMax,$padre,$targetsId){
+function getLJTrgt($nivelMax,$padre,$elemId,$type='structure'){
 	global $db;
 	$numDim = $db->query("SELECT COUNT(*) FROM Dimensiones 
-		WHERE elemId = $targetsId AND type='structure' ")->fetchAll(PDO::FETCH_NUM)[0][0];
+		WHERE elemId = $elemId AND type='$type' ")->fetchAll(PDO::FETCH_NUM)[0][0];
 
 	$LJ = '';
 	$nivelMax = isset($nivelMax)?$nivelMax:0;
@@ -1233,4 +1233,50 @@ function delDirContent($path,$type){
 	}
 }
 
-?>
+function deleteDirectory($dir) {
+    if (!file_exists($dir)) {
+        return true;
+    }
+
+    if (!is_dir($dir)) {
+        return unlink($dir);
+    }
+
+    foreach (scandir($dir) as $item) {
+        if ($item == '.' || $item == '..') {
+            continue;
+        }
+
+        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+            return false;
+        }
+
+    }
+
+    return rmdir($dir);
+}
+
+function getOffspring($dimElemId,&$arr){
+	global $db;
+
+	$childs = $db->query("SELECT * FROM DimensionesElem WHERE padre = $dimElemId")->fetchAll(PDO::FETCH_ASSOC);
+	
+	if(count($childs) == 0){
+		// echo "\naquí\n";
+		return $arr;
+	}else{
+		foreach ($childs as $c) {
+			$arr[] = $c;
+			getOffspring($c['id'],$arr);
+		}
+	}
+
+	return $arr;
+
+}
+
+
+
+
+
+

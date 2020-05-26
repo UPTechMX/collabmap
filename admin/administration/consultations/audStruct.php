@@ -40,6 +40,7 @@ $dims = $db->query("SELECT * FROM Dimensiones
 		});
 
 		$('#addAud').click(function(event) {
+			var numDim = <?php echo count($dims); ?>;
 			var nivelMax = 0;
 			var padre = 0;
 			$.each($('.dimSelAud'), function(index, val) {
@@ -50,7 +51,20 @@ $dims = $db->query("SELECT * FROM Dimensiones
 				}
 			});
 			var levelType = $('#levelTypeAud').val();
-			if(levelType != ''){
+			var valid = true;
+			valid = levelType != '';
+			if(padre == 0){
+				if(levelType == 1 || levelType == 3 || levelType == 5){
+					valid = false;
+				}
+			}
+			if(nivelMax == numDim){
+				if(levelType > 1){
+					valid = false;
+				}
+			}
+
+			if(valid){
 				var audiencesId = <?php echo $_POST['elemId']; ?>;
 				var consultationsId = <?php echo $_POST['consultationsId']; ?>;
 				var rj = jsonF('admin/administration/consultations/json/addAud.php',{
@@ -60,7 +74,13 @@ $dims = $db->query("SELECT * FROM Dimensiones
 					consultationsId:consultationsId,
 					levelType:levelType,
 				});
-				console.log(rj);
+				// console.log(rj);
+				var r = $.parseJSON(rj);
+				if(r.ok == 1){
+					$('#audiencesList').load(rz+'admin/administration/consultations/audiencesList.php',{consultationsId:consultationsId});
+				}
+			}else{
+				alertar('<?php echo TR("invalidAudSel"); ?>');
 			}
 
 		});
@@ -83,7 +103,7 @@ $dims = $db->query("SELECT * FROM Dimensiones
 		?>
 			<div class="col-3">
 				<select class="form-control dimSelAud" id="dimSelAud_<?php echo "$d[nivel]"; ?>">
-					<option value="">- - - <?php echo $d['nombre']; ?> - - -</option>
+					<option value=""><?php echo $d['nombre']; ?></option>
 					<?php foreach ($dimsElems as $de){ ?>
 						<option value="<?php echo $de['id']; ?>"><?php echo $de['nombre']; ?></option>
 					<?php } ?>
@@ -101,6 +121,8 @@ $dims = $db->query("SELECT * FROM Dimensiones
 				<option value="1"><?php echo TR("onlyThis"); ?></option>
 				<option value="2"><?php echo TR("onlyChildrens"); ?></option>
 				<option value="3"><?php echo TR("thisAndChildrens"); ?></option>
+				<option value="4"><?php echo TR("offspring"); ?></option>
+				<option value="5"><?php echo TR("thisAndOffspring"); ?></option>
 			</select>
 		</div>
 		<div class="col-6">

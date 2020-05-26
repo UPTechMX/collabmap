@@ -16,7 +16,7 @@
 	
 	$chkId = $_POST['chkId'];
 
-	$JOINS = getLJTrgt($_POST['nivelMax'],$_POST['padre'],$_POST['targetsId']);
+	$JOINS = getLJTrgt($_POST['nivelMax'],$_POST['padre'],$_POST['targetsId'],'structure');
 	// print2($JOINS);
 
 	$info = $db->query("SELECT t.name as tName, p.name as pName

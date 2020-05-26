@@ -5,10 +5,10 @@ if (!function_exists('raiz')) {
 }
 checaAcceso(60);// checaAcceso Consultations
 
-$consultation = $db -> query("SELECT t.name as tName, p.name as pName, p.id as pId
-	FROM Consultations t 
-	LEFT JOIN Projects p ON p.id = t.projectsId
-	WHERE t.id = $_POST[consultationId]")->fetchAll(PDO::FETCH_ASSOC)[0];
+$consultation = $db -> query("SELECT c.name as tName, p.name as pName, p.id as pId, c.id as id
+	FROM Consultations c 
+	LEFT JOIN Projects p ON p.id = c.projectsId
+	WHERE c.id = $_POST[consultationId]")->fetchAll(PDO::FETCH_ASSOC)[0];
 
 ?>
 <div class="nuevo"><?php echo TR('consultationInfo'); ?></div>

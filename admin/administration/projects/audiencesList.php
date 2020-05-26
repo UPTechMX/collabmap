@@ -23,6 +23,20 @@
 			$('#structures').load(rz+'admin/structures/index.php',{type:'audiences',elemId:eleId,elemName:elemName});
 		});
 
+		$(".delAud").click(function(event) {
+			var eleId = $(this).closest('tr').attr('id').split('_')[1];
+			conf('<?php echo TR('delAud'); ?>',{eleId:eleId,elem:$(this)},function(e){
+				// console.log(e);
+				var rj = jsonF('admin/administration/projects/json/json.php',{acc:4,eleId:e.eleId});
+				var r = $.parseJSON(rj);;
+
+				if(r.ok == 1){
+					e.elem.closest('tr').remove();
+				}
+			})
+			
+		});
+
 	});
 </script>
 

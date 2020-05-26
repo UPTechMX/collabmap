@@ -35,6 +35,13 @@
 
 			echo atj(del($post));
 			break;	
+		case 4:
+			// print2($_POST);
+			$post['tabla'] = 'Audiences';
+			$post['where'] = "id = $_POST[eleId]";
+
+			echo atj(del($post));
+			break;	
 
 		default:
 			# code...

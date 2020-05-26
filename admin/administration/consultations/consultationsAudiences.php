@@ -6,7 +6,9 @@ if (!function_exists('raiz')) {
 checaAcceso(60);// checaAcceso Consultations
 
 $audiences = $db->query("SELECT * FROM Audiences WHERE projectsId = $consultation[pId]")->fetchAll(PDO::FETCH_ASSOC);
-// print2($audiences);
+
+// print2($consultation);
+$_POST['consultationsId'] = $consultation['id'];
 
 ?>
 
@@ -16,7 +18,7 @@ $audiences = $db->query("SELECT * FROM Audiences WHERE projectsId = $consultatio
 			var audId = $(this).val();
 
 			if(audId != ''){
-				var consultationsId = <?php echo $consultation['pId']; ?>;
+				var consultationsId = <?php echo $consultation['id']; ?>;
 				$('#audStruc').load(rz+'admin/administration/consultations/audStruct.php',{
 					elemId:audId,
 					type:'audiences',
@@ -37,3 +39,4 @@ $audiences = $db->query("SELECT * FROM Audiences WHERE projectsId = $consultatio
 	</select>
 </div>
 <div id="audStruc"></div>
+<div id="audiencesList"><?php include 'audiencesList.php'; ?></div>
