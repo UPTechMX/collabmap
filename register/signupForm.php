@@ -112,6 +112,10 @@
 			// 	}
 			// }
 
+			if($("#username").val().length != 16){
+				allOk = false;
+				alertar('<?php echo TR('NIKnum'); ?>');
+			}
 
 			if( $('#pwd2').val() != $('#signupContent #pwd').val() ){
 				allOk = false;

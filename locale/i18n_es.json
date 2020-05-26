@@ -29,6 +29,7 @@
   "cat_not_null": "La categoría no puede estar vacía",
   "sign_up": "Registrarse",
   "log_in": "Iniciar sesión",
+  "NIKnum": "El NIK ingresado es incorrecto, debe contener exactamente 16 dígitos",
   "username": "Nombre de usuario",
   "password": "Contraseña",
   "phone":"Teléfono",

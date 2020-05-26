@@ -29,6 +29,7 @@
   "cat_not_null": "Kategori tidak dapat dikosongkan",
   "sign_up": "Daftar",
   "log_in": "Masuk",
+  "NIKnum": "NIK yang anda masukkan tidak sesuai. Mohon untuk mencantumkan NIK yang tepat (16 digit)",
   "username": "Nama",
   "password": "Sandi",
   "phone":"Telepon",

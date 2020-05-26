@@ -35,6 +35,15 @@
 
 		soloNumeros($('#usuario'));
 
+		$("#login").click(function(event) {
+			var length = $('#usuario').val().length;
+			if(length != 16){
+				alertar('<?php echo TR("NIKnum"); ?>');
+			}else{
+				$('#loginForm').submit();
+			}
+		});
+
 	});
 </script>
 
@@ -76,7 +85,7 @@
 								</table>
 								<br/>
 								<br/>
-								<input type="submit" name="button" id="button" value="<?php echo TR('log_in'); ?>" class="btn btn-shop" />
+								<span id="login" class="btn btn-shop" ><?php echo TR('log_in'); ?></span>
 								
 								<div class="signup">
 									<br/>

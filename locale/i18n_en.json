@@ -29,6 +29,7 @@
   "cat_not_null": "The category cannot be empty",
   "sign_up": "Sign up",
   "log_in": "Log in",
+  "NIKnum": "NIK you entered is wrong. Please enter the right code (16 digits)",
   "username": "Username",
   "phone":"Phone number",
   "password": "New Password",
