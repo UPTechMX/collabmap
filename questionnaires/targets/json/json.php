@@ -146,7 +146,10 @@
 
 			break;
 		case 6:
+
 			$padre = $_POST['datos']['padre'];
+			$nombre = $_POST['datos']['nombre'];
+
 			if(!is_numeric($padre) || !is_numeric($_POST['targetId'])){
 				exit('{"ok":0}');
 			}
@@ -157,6 +160,7 @@
 				WHERE de.id = $padre")->fetchAll(PDO::FETCH_ASSOC)[0];
 
 			$target = $db->query("SELECT * FROM Targets WHERE id = $_POST[targetId]")->fetchAll(PDO::FETCH_ASSOC)[0];
+			
 			$dimensiones = $db->query("SELECT *
 				FROM Dimensiones 
 				WHERE type = 'structure' AND elemId = $_POST[targetId]
@@ -164,14 +168,22 @@
 
 			$numDim = count($dimensiones);
 
+			// rrd newly added - unique check
+			$isUnique = $db->query("SELECT EXISTS (SELECT *
+				FROM DimensionesElem WHERE padre = $padre AND nombre = $nombre) as uniqueCheck")->fetchAll(PDO::FETCH_ASSOC)[0]["uniqueCheck"];
+
 			if($dimension['nivel'] == $numDim -1 && $target['addStructure'] == 1){
-				$p['tabla'] = 'DimensionesElem';
-				$p['datos']['padre'] = $padre;
-				$p['datos']['nombre'] = $_POST['datos']['nombre'];
-				$p['datos']['dimensionesId'] = $dimensiones[$numDim-1]['id'];
+				if($isUnique == 0){
 
-				echo atj(inserta($p));
-
+					$p['tabla'] = 'DimensionesElem';
+					$p['datos']['padre'] = $padre;
+					$p['datos']['nombre'] = $_POST['datos']['nombre'];
+					$p['datos']['dimensionesId'] = $dimensiones[$numDim-1]['id'];
+					
+					echo atj(inserta($p));
+				}else{
+					echo '{"ok":3}';
+				}
 			}else{
 				echo '{"ok":2}';
 			}

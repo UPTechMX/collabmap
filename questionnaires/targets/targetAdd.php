@@ -71,7 +71,7 @@
 
 				if(allOk){
 					var rj = jsonF('questionnaires/targets/json/json.php',{datos:dat,acc:6,targetId:targetId});
-					// console.log(rj);
+					console.log(rj);
 					var r = $.parseJSON(rj);
 					// console.log(r);
 					if(r.ok == 1){
@@ -92,10 +92,24 @@
 							.find('.targetTable')
 							.load(rz+'questionnaires/targets/targetTable.php',{targetId:targetId});
 						}
-
+						location.reload();
 						
 					}else if(r.ok == 2){
+
 						$('#popUp').modal('toggle');
+
+					}else if(r.ok == 3){
+						
+						$('#nTrgt #name').css({backgroundColor:'rgba(255,0,0,.5)'});
+						$('#nTrgt #name').after(() => {
+							return '<span id="duplicateWarning">Duplicate entry detected.</span>'
+						});
+						$('#nTrgt #name').on('input', () => {
+							if($('#nTrgt #name').length){
+								$('#duplicateWarning').remove()
+							}
+						});
+						
 					}
 				}
 
