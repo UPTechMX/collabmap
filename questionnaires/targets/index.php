@@ -92,42 +92,67 @@ foreach ($targets as $targetsChecklist){
 	$tId = $targetsChecklist[0]['tId'];
 	$addStructure = $targetsChecklist[0]['addStructure'] == 1;
 	$dims = $db->query("SELECT * FROM Dimensiones WHERE elemId = $tId AND type = 'structure'")->fetchAll(PDO::FETCH_ASSOC);
+
+	// showing the array results
+	// echo "<pre>";
+	// print_r($dims);
+	// echo "</pre>";
 ?>
 	<div style="margin-top: 10px;" class="divTrgt" id="divTrgt_<?php echo $targetsChecklist[0]['tId']."_".$targetsChecklist[0]['utId']; ?>">
 		<div class="nuevo"><?php echo $targetsChecklist[0]['tName']; ?></div>
 		<div style="margin:10px;border:solid 1px grey; border-radius: 5px;padding: 15px;">
 			<?php echo $targetsChecklist[0]['description']; ?>
 		</div>
-		<div class='row'>
-			<?php 
-			foreach ($dims as $k => $d){ 
-				if($k == 0){
-					$dimsElems = $db->query("SELECT * FROM DimensionesElem 
-						WHERE dimensionesId = $d[id]
-						ORDER BY nombre")->fetchAll(PDO::FETCH_ASSOC);
-				}else{
-					$dimsElems = array();
-				}
-			?>
-				<div class="col-3">
-					<select class="form-control dimSel" id="dimSel_<?php echo "$d[nivel]"; ?>">
-						<option value="">- - - <?php echo $d['nombre']; ?> - - -</option>
-						<?php foreach ($dimsElems as $de){ ?>
-							<option value="<?php echo $de['id']; ?>"><?php echo $de['nombre']; ?></option>
-						<?php } ?>
-					</select>
-				</div>
-			<?php } ?>
-		</div>
+
+		<!-- dropdown menu section starts  -->
+		<!-- disabling structure selection -->
+		<?php if(false){ ?>
+			<div class='row'>
+				<?php 
+				foreach ($dims as $k => $d){ 
+					if($k == 0){
+						$dimsElems = $db->query("SELECT * FROM DimensionesElem 
+							WHERE dimensionesId = $d[id]
+							ORDER BY nombre")->fetchAll(PDO::FETCH_ASSOC);
+					}else{
+						$dimsElems = array();
+					}
+				?>
+					<div class="col-3">
+						<select class="form-control dimSel" id="dimSel_<?php echo "$d[nivel]"; ?>">
+							<option value="">- - - <?php echo $d['nombre']; ?> - - -</option>
+							<?php foreach ($dimsElems as $de){ ?>
+								<option value="<?php echo $de['id']; ?>"><?php echo $de['nombre']; ?></option>
+							<?php } ?>
+						</select>
+					</div>
+				<?php } ?>
+			</div>
+		<?php } ?>
+		<!-- dropdown menu section ends  -->
+
 		<div style="margin-top: 10px;margin-bottom:10px;">
-			<span class="btn btn-shop addTrgt">
-				<?php echo TR('useSelected'); ?>
-			</span>
-			<?php if ($addStructure){ ?>
+		
+			<!-- select item button -->
+			<!-- disabling structure selection -->
+			<?php if(false){ ?>
+				<span class="btn btn-shop addTrgt">
+					<?php echo TR('useSelected'); ?>
+				</span>
+			<?php } ?>
+			
+			<!-- structure addition can only be once -->
+			<?php 
+				$utId = $targetsChecklist[0]['utId'];
+				$countTargets = $db->query("SELECT count(id) as res FROM TargetsElems WHERE usersTargetsId = $utId")->fetchAll(PDO::FETCH_ASSOC)[0]["res"];
+				
+				if ($countTargets == 0 && $addStructure == 1){ 
+			?>
 				<span class="btn btn-shop addToList">
 					<i class="glyphicon glyphicon-plus"></i>&nbsp;<?php echo TR('addToList'); ?>
 				</span>
 			<?php } ?>
+
 		</div>
 		<div class="targetTable"><?php include 'targetTable.php'; ?></div>
 	</div>
