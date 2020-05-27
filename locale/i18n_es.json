@@ -150,6 +150,7 @@
   "selectIdAttr": "Selecciona el atributo identificador",
   "delKML": "¿Deseas eliminar el mapa seleccionado?",
   "targetExists": "El elemento ya existe en la base de datos",
+  "2digitsName": "Inserta el número de tu RT de dos dígitos. Por ejemplo: 01",
 
   "users": "Usuarios",
   "user": "Usuario",

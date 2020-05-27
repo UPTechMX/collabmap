@@ -67,6 +67,11 @@
 
 				var allOk = camposObligatorios('#nTrgt');
 
+				var elemNom = $('#name').val();
+				if(elemNom.length != 2){
+					alertar('<?php echo TR('2digitsName'); ?>');
+					allOk = false;
+				}
 				// console.log(dat);
 
 				if(allOk){
@@ -109,7 +114,6 @@
 								$('#duplicateWarning').remove()
 							}
 						});
-						
 					}
 				}
 
@@ -157,7 +161,8 @@
 								<?php } ?>
 							</select>
 						<?php }else{ ?>
-							<input type="text" value="<?php echo $datC['name']; ?>" name="name" id="name" class="form-control oblig" placeholder="Masukkan nomor RT Anda">
+							<input type="text" value="<?php echo $datC['name']; ?>" name="name" id="name" 
+								class="form-control oblig" placeholder="Masukkan nomor RT Anda">
 						<?php } ?>
 					</td>
 				</tr>

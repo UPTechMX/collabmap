@@ -150,6 +150,7 @@
   "selectIdAttr": "Pilih atribut id",
   "delKML": "Apakah Anda ingin menghapus peta yang dipilih?",
   "targetExists": "Elemen sudah ada di database",
+  "2digitsName": "Silakan masukkan nomor RT Anda dalam dua digit. Misalnya: 01",
   
   "users": "Daftar pengguna",
   "user": "Pengguna",

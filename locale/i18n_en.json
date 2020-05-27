@@ -150,6 +150,7 @@
   "selectIdAttr": "Select id attribute",
   "delKML": "Do you want to delete the selected map?",
   "targetExists": "The element already exists in the database",
+  "2digitsName": "Please input your RT number in two digits. For example: 01",
   
   "users": "Users",
   "user": "User",
