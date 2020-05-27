@@ -164,6 +164,14 @@
 
 			$numDim = count($dimensiones);
 
+			$stmt = $db->prepare("SELECT COUNT(*) FROM DimensionesElem WHERE padre = ? AND nombre = ?");
+			$stmt -> execute(array($padre, $_POST['datos']['nombre']));
+			$count = $stmt->fetchAll(PDO::FETCH_NUM)[0][0];
+			// echo "count $count\n";
+			if($count > 0){
+				exit('{"ok":3}');
+			}
+
 			if($dimension['nivel'] == $numDim -1 && $target['addStructure'] == 1){
 				$p['tabla'] = 'DimensionesElem';
 				$p['datos']['padre'] = $padre;

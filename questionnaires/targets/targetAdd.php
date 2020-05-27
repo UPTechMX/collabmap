@@ -96,6 +96,9 @@
 						
 					}else if(r.ok == 2){
 						$('#popUp').modal('toggle');
+					}else if(r.ok == 3){
+						$('#popUp').modal('toggle');
+						alertar('<?php echo TR('targetExists'); ?>')
 					}
 				}
 
