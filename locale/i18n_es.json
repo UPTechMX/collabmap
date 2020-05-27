@@ -342,7 +342,14 @@
   "invalidAudSel":"Seleccion inválida",
   "addAudience":"Agregar audiencia",
   "audience":"Audiencia",
-  "audiences":"Audiencias"
+  "audiences":"Audiencias",
+  "initDate":"Fecha de inicio",
+  "finishDate":"Fecha de cierre",
+
+  "news":"Noticias",
+  "iWantMore":"Quiero saber más",
+  "forgotPwd": "¿Olvidaste tu contraseña?"
+
 
 
 

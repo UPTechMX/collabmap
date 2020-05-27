@@ -5,7 +5,7 @@ if (!function_exists('raiz')) {
 }
 checaAcceso(60);// checaAcceso Consultations
 
-$consultation = $db -> query("SELECT c.name as tName, p.name as pName, p.id as pId, c.id as id
+$consultation = $db -> query("SELECT c.name as tName, p.name as pName, p.id as pId, c.id as id, c.initDate, c.finishDate
 	FROM Consultations c 
 	LEFT JOIN Projects p ON p.id = c.projectsId
 	WHERE c.id = $_POST[consultationId]")->fetchAll(PDO::FETCH_ASSOC)[0];
@@ -21,6 +21,14 @@ $consultation = $db -> query("SELECT c.name as tName, p.name as pName, p.id as p
 		<tr>
 			<td><?php echo TR('name'); ?>:</td>
 			<td><?php echo $consultation['tName']; ?></td>
+		</tr>
+		<tr>
+			<td><?php echo TR('initDate'); ?>:</td>
+			<td><?php echo $consultation['initDate']; ?></td>
+		</tr>
+		<tr>
+			<td><?php echo TR('finishDate'); ?>:</td>
+			<td><?php echo $consultation['finishDate']; ?></td>
 		</tr>
 	</table>
 </div>

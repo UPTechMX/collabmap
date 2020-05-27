@@ -98,6 +98,9 @@ checaAcceso(49);
 
 	<script src="../lib/js/LeafletVectorGrid/src/Leaflet.VectorGrid.bundled.js"></script>
 
+	<!-- Font Awesome JS -->
+
+
 
 	<script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
 	<link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">

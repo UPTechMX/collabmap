@@ -342,8 +342,13 @@
   "invalidAudSel":"Invalid selection",
   "addAudience":"Add audience",
   "audience":"Audience",
-  "audiences":"Audiences"
+  "audiences":"Audiences",
+  "initDate":"Initial date",
+  "finishDate":"Final date",
 
+  "news":"News",
+  "iWantMore":"I want to know more",
+  "forgotPwd": "Did you forgot your password?"
 
 
 }

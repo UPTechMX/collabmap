@@ -60,6 +60,15 @@
 			format:false
 		});
 
+		$( ".calendar" ).datepicker({ changeYear: true });
+		$( ".calendar" ).datepicker("option", "dateFormat", 'yy-mm-dd');
+		// $( "#initDate finishDate" ).datepicker({ changeYear: true });
+		// $( "#initDate finishDate" ).datepicker( "option", "dateFormat", 'yy-mm-dd' );
+
+		$('#initDate').val('<?php echo $datC['initDate']; ?>');
+		$('#finishDate').val('<?php echo $datC['finishDate']; ?>');
+
+
 
 	});
 </script>
@@ -96,6 +105,22 @@
 				<td><?php echo TR('name'); ?></td>
 				<td>
 					<input type="text" value="<?php echo $datC['name']; ?>" name="name" id="name" class="form-control oblig" >
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><?php echo TR('initDate'); ?></td>
+				<td>
+					<input type="text" value="<?php echo $datC['initDate']; ?>" name="initDate" id="initDate" 
+						class="form-control calendar oblig" >
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><?php echo TR('finishDate'); ?></td>
+				<td>
+					<input type="text" value="<?php echo $datC['finishDate']; ?>" name="finishDate" id="finishDate" 
+						class="form-control calendar oblig" >
 				</td>
 				<td></td>
 			</tr>
