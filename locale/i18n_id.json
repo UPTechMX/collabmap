@@ -116,6 +116,7 @@
   "userAlreadyConf": "Pengguna telah dikonfirmasi sebelumnya",
   "repeatedCode":"Kode berulang",
   "invalidCode":"Kode tidak valid",
+  "import":"Untuk mengimpor",
 
   "administration": "Administrasi",
 
@@ -146,6 +147,9 @@
   "amswerNotFoundAnswer": "Sebuah percobaan dilakukan untuk memasuki ",
   "successfulImport": "Import berhasil",
   "importError": "Terdapat kesalahan dalam proses import file ",
+  "selectIdAttr": "Pilih atribut id",
+  "delKML": "Apakah Anda ingin menghapus peta yang dipilih?",
+  "targetExists": "Elemen sudah ada di database",
   
   "users": "Daftar pengguna",
   "user": "Pengguna",
@@ -262,6 +266,7 @@
   "project": "Proyek",
   "projects": "Daftar Proyek",
   "inactive": "Tidak aktif",
+  "importKML": "Impor KML",
   
   "identifier": "Pengidentifikasi",
   "answerSurvey": "Jawaban",
@@ -299,8 +304,16 @@
   "numAnt":"Jumlah jawaban sebelumnya",
   "genChart":"Membuat grafik",
   "dwlAns":"Mengunduh semua jawaban",
-  
-  
+  "hotspots":"Urban hotspots",
+  "selPolygonMap":"Pilih peta poligon",
+  "selAttr":"Pilih satu atribut",
+  "attrVal":"Pilih satu nilai",
+  "and":"DAN",
+  "or":"ATAU",
+  "ansNumber":"Jumlah jawaban",
+  "analysisType":"Jenis analisis",
+  "tracking":"Pelacakan",
+
   "publicCons":"Daftar konsultasi publik",
   "publicCon":"Konsultasi publik",
   "emailReq":"Memerlukan email",
@@ -311,8 +324,11 @@
   "startQuestionnaire": "Mulai",
   "finished": "Selesai",
   "notFinished": "Belum selesai ",
-  "tracking":"tracking",
-  
+  "matchingAnswers":"Jawaban yang cocok",
+  "range":"Jarak",
+  "percent":"Persen",
+  "polygons":"Poligon",
+
   "noAccess": "Tidak ada akses",
   "administrator": "Administrator",
   "superuser": "Superuser",

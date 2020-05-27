@@ -116,6 +116,7 @@
   "userAlreadyConf": "",
   "repeatedCode":"Código repetido",
   "invalidCode":"Código inválido",
+  "import":"Importar",
 
   "administration": "Administración",
   
@@ -148,6 +149,7 @@
   "importError": "Hubo un error al importar el archivo ",
   "selectIdAttr": "Selecciona el atributo identificador",
   "delKML": "¿Deseas eliminar el mapa seleccionado?",
+  "targetExists": "El elemento ya existe en la base de datos",
 
   "users": "Usuarios",
   "user": "Usuario",

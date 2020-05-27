@@ -149,6 +149,7 @@
   "importError": "There was an error importing the file ",
   "selectIdAttr": "Select id attribute",
   "delKML": "Do you want to delete the selected map?",
+  "targetExists": "The element already exists in the database",
   
   "users": "Users",
   "user": "User",
@@ -311,7 +312,7 @@
   "or":"OR",
   "ansNumber":"Number of answers",
   "analysisType":"Analysis type",
-  "tracking":"Pelacakan",
+  "tracking":"Tracking",
 
   "publicCons":"Opinion Questionnaires",
   "publicCon":"Opinion Questionnaire",
@@ -327,7 +328,6 @@
   "range":"Range",
   "percent":"Percent",
   "polygons":"Polygons",
-
 
   "noAccess": "No access",
   "administrator": "Administrator",
