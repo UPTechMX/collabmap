@@ -58,6 +58,7 @@ $htmlRoot = aRaizHtml($location);
 	<link href="<?php echo $htmlRoot; ?>lib/css/general.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo $htmlRoot; ?>lib/css/consultations.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo $htmlRoot; ?>lib/css/font-awesome.min.css " rel="stylesheet" type="text/css" />
+	
 	<link href="<?php echo $htmlRoot; ?>lib/js/sumoselect/sumoselect.css " rel="stylesheet" type="text/css" />
 	<link href="<?php echo $htmlRoot; ?>lib/js/starrr/starrr.css " rel="stylesheet" type="text/css" />
 
@@ -131,7 +132,12 @@ $htmlRoot = aRaizHtml($location);
 	<script src="<?php echo $htmlRoot; ?>lib/js/leaflet.draw/edit/handler/Edit.CircleMarker.js"></script>
 	<script src="<?php echo $htmlRoot; ?>lib/js/leaflet.draw/edit/handler/Edit.Circle.js"></script>
 
-	<script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/leaflet/wise-leaflet-pip.js"></script>
+
+	<link rel="stylesheet" href="<?php echo $htmlRoot; ?>lib/js/slick/slick.css">
+	<link rel="stylesheet" href="<?php echo $htmlRoot; ?>lib/js/slick/slick-theme.css">
+	<script src="<?php echo $htmlRoot; ?>lib/js/slick/slick.js"></script>
+	<script src="https://kit.fontawesome.com/7debf3cc4b.js" crossorigin="anonymous"></script>
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script type="text/javascript">

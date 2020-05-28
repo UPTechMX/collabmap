@@ -313,8 +313,28 @@
   "administrator": "Administrator",
   "superuser": "Superuser",
   "analyst": "Analis",
-  "level": "Tingkatan"
+  "level": "Tingkatan",
 
+  "consultationInfo":"Consultation info",
+  "delAud": "Do you want to delete the selected audience?",
+  "noAudienceMsg":"If there is no selected audience all users can view it",
+  "levelTypeAud":"Audiencd level type",
+  "onlyThis":"Only this element",
+  "onlyChildrens":"Only childrens",
+  "thisAndChildrens":"This element and childrens",
+  "offspring":"Offspring",
+  "thisAndOffspring":"This element and all its offspring",
+  "invalidAudSel":"Invalid selection",
+  "addAudience":"Add audience",
+  "audience":"Audience",
+  "audiences":"Audiences",
+  "initDate":"Initial date",
+  "finishDate":"Final date",
+
+
+  "news":"News",
+  "iWantMore":"I want to know more",
+  "forgotPwd": "Did you forgot your password?"
 
 
 
