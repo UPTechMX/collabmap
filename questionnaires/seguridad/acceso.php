@@ -12,6 +12,7 @@ if($_POST['usuario'] != "") {
     // $_SESSION['CM']['questionnaires']['privs'] = (count($v['priv'])>0?$v['priv'] :array());
   }else{
     unset($_SESSION['CM']['questionnaires']);
+    $failedLogin = 1;
   }
   // print2($_SESSION);
 }
