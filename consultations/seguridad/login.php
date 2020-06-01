@@ -28,24 +28,16 @@
 					var r = $.parseJSON(rj);
 
 					if(r.ok == 1){
-						var get = <?php echo atj($_GET); ?>;
+						var get = chUrl({},'','');
+						
 						// console.log(get);
 						$('#content').load(rz+'consultations/layout/content.php',get);
 						$('#loginCont').load(rz+'consultations/seguridad/login.php');
 						$('#loginContNavBar').load(rz+'consultations/seguridad/login.php');
-
-						str = ''
-						var k = 0;
-						for(var i in get){
-							str += k++ == 0?'':'&';
-							str += i+'='+get[i];
-						}
-
-						history.pushState('data', '', '<?php echo $_SERVER['PHP_SELF']; ?>?'+str);
+						
 					}
 				}
 			});
-
 
 		});
 	</script>
@@ -88,10 +80,15 @@
 				else
 					url += '&';
 			}
+			
 			$('.logoutBtn').attr({href:url+'logout=1'});
+
 		});
 	</script>
-	<div style="text-align: center;margin-top: 20px;">
+	<div style="text-align: center;margin-top: 30px;">
+		<div class="" style="color:grey;">
+			<i class="fas fa-user manita edtProfile"></i>
+		</div>
 		<div style="margin-top: 10px;">
 			<span class="loginElement">
 				<a class="logoutBtn" href="<?php echo $_SERVER['PHP_SELF'];?>?logout=1"><?php echo TR('close_session'); ?></a>

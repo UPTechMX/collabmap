@@ -10,7 +10,7 @@
 		");
 
 	$searchParams['name'] = "%$_POST[search]%";
-	$searchParams['email'] = $_POST['search'];
+	$searchParams['email'] = "$_POST[search]%";
 	$searchParams['username'] = "%$_POST[search]%";
 
 	$usuariosPrep->execute($searchParams);
@@ -46,12 +46,12 @@
 	});
 </script>
 
-<table class="table">
+<table class="table" style="font-size:.9em;" >
 	<thead>
 		<tr>
 			<th><?php echo TR('username'); ?></th>
 			<th><?php echo TR('name'); ?></th>
-			<th><?php echo TR('email'); ?></th>
+			<!-- <th><?php echo TR('email'); ?></th> -->
 			<th style="text-align: center;"></th>
 			<th></th>
 			<th></th>
@@ -62,7 +62,7 @@
 			<tr>
 				<td><?php echo $u['username']; ?></td>
 				<td><?php echo "$u[name] $u[lastname]"; ?></td>
-				<td><?php echo "$u[email]"; ?></td>
+				<!-- <td><?php echo substr("$u[email]", 0,20); ?></td> -->
 				<td style="text-align: center;"><?php echo $nomNivel[$u['nivel']]; ?></td>
 				<td style="text-align: center;">
 					<i class="glyphicon glyphicon-pencil manita edtUsr" id="edtUsr_<?php echo $u['id'];?>"></i>

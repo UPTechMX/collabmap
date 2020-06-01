@@ -21,6 +21,7 @@ $consultationsChecklist = $db->query("SELECT c.nombre, c.id as cId, cc.id as tcI
 			var tcId = this.id.split('_')[1];
 			conf('<?php echo TR("surveyDelAlert") ?>',{tcId:tcId,elem:this},function(e){
 				var rj = jsonF('admin/administration/consultations/json/json.php',{opt:3,acc:3,tcId:tcId})
+				// console.log(rj);
 				var r = $.parseJSON(rj);
 				if(r.ok == 1){
 					$(e.elem).closest('tr').remove();
@@ -33,33 +34,6 @@ $consultationsChecklist = $db->query("SELECT c.nombre, c.id as cId, cc.id as tcI
 			popUp('admin/administration/consultations/chFreq.php',{eleId:tcId});
 		});
 
-		$('.dwlSurv').click(function(event) {
-			var checklistId = $(this).closest('tr').attr('id').split('_')[1];
-			var consultationsId = <?php echo $_POST['consultationId']; ?>;
-
-			$('<form>')
-			.attr({
-				id: 'descPrueba',
-				action: rz+'lib/php/dwlCheckList.php',
-				consultation:'_blank',
-				method:'post'
-			})
-			.html(
-				'<input type="text" name="chkId" value="'+checklistId+'"\>'+
-				'<input type="text" name="consultationsId" value="'+consultationsId+'"\>'
-			)
-			.appendTo(document.body)
-			.submit()
-			.remove();
-		});
-
-		$('.uplSurv').click(function(event) {
-			var checklistId = $(this).closest('tr').attr('id').split('_')[1];
-			var consultationsId = <?php echo $_POST['consultationId']; ?>;
-			popUp('admin/administration/consultations/uploadChecklist.php',{checklistId:checklistId,consultationsId:consultationsId});
-
-		});
-
 	});
 </script>
 
@@ -69,30 +43,30 @@ $consultationsChecklist = $db->query("SELECT c.nombre, c.id as cId, cc.id as tcI
 			<th><?php echo TR('survey'); ?></th>
 			<th><?php echo TR('frequency'); ?></th>
 			<th></th>
-			<th></th>
-			<th></th>
+			<!-- <th></th> -->
+			<!-- <th></th> -->
 			<th></th>
 		</tr>
 	</thead>
 	<body>
 		<?php 
-		foreach ($consultationsChecklist as $tc){
+		foreach ($consultationsChecklist as $cc){
 
 		?>
-			<tr id="trTC_<?php echo $tc['cId'] ?>">
-				<td><?php echo $tc['nombre']; ?></td>
-				<td><?php echo TR($tc['code']); ?></td>
+			<tr id="trCC_<?php echo $cc['cId'] ?>">
+				<td><?php echo $cc['nombre']; ?></td>
+				<td><?php echo TR($cc['code']); ?></td>
 				<td>
-					<i class="glyphicon glyphicon-pencil manita edtSurv" id="edtTC_<?php echo $tc['tcId']; ?>"></i>
+					<i class="glyphicon glyphicon-pencil manita edtSurv" id="edtCC_<?php echo $cc['tcId']; ?>"></i>
 				</td>
+				<!-- <td>
+					<i class="glyphicon glyphicon-download-alt manita dwlSurv" id="dwlCC_<?php echo $cc['tcId']; ?>"></i>
+				</td> -->
+				<!-- <td>
+					<i class="glyphicon glyphicon-upload manita uplSurv" id="uplCC_<?php echo $cc['tcId']; ?>"></i>
+				</td> -->
 				<td>
-					<i class="glyphicon glyphicon-download-alt manita dwlSurv" id="dwlTC_<?php echo $tc['tcId']; ?>"></i>
-				</td>
-				<td>
-					<i class="glyphicon glyphicon-upload manita uplSurv" id="uplTC_<?php echo $tc['tcId']; ?>"></i>
-				</td>
-				<td>
-					<i class="glyphicon glyphicon-trash rojo manita delSurv" id="trashTC_<?php echo $tc['tcId']; ?>"></i>
+					<i class="glyphicon glyphicon-trash rojo manita delSurv" id="trashCC_<?php echo $cc['tcId']; ?>"></i>
 				</td>
 			</tr>
 		<?php } ?>

@@ -13,10 +13,10 @@
 	<div style="margin: 10px 5px;border-top: solid 2px;position: relative;"></div>
 	<div style="">
 		<div class="icono" style="margin-top: 20px;">
-			<div style="width:30%;margin-left: auto;margin-right: auto;">
+			<div style="width:30%;margin-left: auto;margin-right: auto;" class="iconContainer">
 				<div style="height: 120px;" class="imgFondo" style="background-repeat: no-repeat;">
 					<div style="width: 100%;height: 100%;">
-						<div style="text-align: center;padding-top: 15px;">
+						<div style="text-align: center;padding-top: 15px;" class="iconDiv">
 							<i class="fas fa-bacon fa-4x"></i>
 						</div>
 					</div>

@@ -1027,6 +1027,16 @@ function checaAccesoQuest(){
 	}
 }
 
+function checaAccesoConsult(){
+	session_start();
+	$usrId = $_SESSION['CM']['consultations']['usrId'];
+	// print2('aaa');
+	// print2($usrId);
+	if(empty($usrId)){
+		exit('No tienes acceso');
+	}
+}
+
 function validateDate($date, $format = 'Y-m-d')
 {
     $d = DateTime::createFromFormat($format, $date);
@@ -1210,8 +1220,53 @@ function getRefDate($frequency){
 			break;
 	}
 	return $minDate;
-
 }
+
+function getNextDate($frequency){
+
+	$today = date('Y-m-d');
+
+	switch ($frequency) {
+		case "oneTime":
+			$nextDate = date('Y-m-d', strtotime($todayRep . ' +100 year'));
+			break;
+		case "daily":
+			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +1 day'));
+			break;
+		case "weekly":
+			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +1 week'));
+			break;
+		case "2weeks":
+			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +2 week'));
+			break;
+		case "3weeks":
+			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +3 week'));
+			break;
+		case "monthly":
+			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +1 month'));
+			break;
+		case "2months":
+			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +2 month'));
+			break;
+		case "3months":
+			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +3 month'));
+			break;
+		case "4months":
+			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +4 month'));
+			break;
+		case "6months":
+			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +6 month'));
+			break;
+		case "yearly":
+			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +1 year'));
+			break;
+		default:
+			# code...
+			break;
+	}
+	return $nextDate;
+}
+
 
 function delDirContent($path,$type){
 	try {

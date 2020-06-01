@@ -3,10 +3,13 @@
 	if(!function_exists('raiz')){
 		include '../../lib/j/j.func.php';
 	}
+	
+
 
 	$today = date('Y-m-d');
 	// print2($today);
-	if(empty($_SESSION['CM']['consultations']['usrId'])){
+	$usrId = $_SESSION['CM']['consultations']['usrId'];
+	if(empty($usrId)){
 		// TODAS LAS CONSULTAS ABIERTAS;
 
 		$now = $db->query("SELECT * 
@@ -28,6 +31,30 @@
 		// ")->fetchAll(PDO::FETCH_ASSOC);
 
 	}else{
+		
+		// print2($usrId);
+		$all = $db->query("SELECT c.* 
+			FROM Consultations c
+			WHERE id NOT IN (SELECT DISTINCT(consultationsId) FROM ConsultationsAudiences)
+			AND initDate <= '$today' AND finishDate >= '$today'
+		")->fetchAll(PDO::FETCH_ASSOC);
+
+		$now = $db->query("SELECT c.* 
+			FROM Consultations c
+			LEFT JOIN ConsultationsAudiencesCache cac ON cac.consultationsId = c.id
+			LEFT JOIN UsersAudiences ua ON ua.dimensionesElemId = cac.dimensionesElemId AND ua.usersId = $usrId
+			WHERE ua.id IS NOT NULL
+			AND c.initDate <= '$today' AND c.finishDate >= '$today'
+			GROUP BY c.id
+		")->fetchAll(PDO::FETCH_ASSOC);
+
+		// print2($now);
+
+		// $now = array();
+		foreach ($all as $c) {
+			$now[] = $c;
+		}
+
 		// CONSULTAS DEL USUARIO
 	}
 	// print2($now);
@@ -41,7 +68,7 @@
 	$(document).ready(function() {
 		$('#iWantMore').click(function(event) {
 			// var url = window.location.href;
-			console.log('aaa');
+			// console.log('aaa');
 			var request = <?php echo !empty($_REQUEST)?atj($_REQUEST):'{}'; ?>;
 			$('#content').load(rz+'consultations/home/about.php');
 			chUrl(request,'acc','about');
@@ -51,7 +78,15 @@
 			// backgroundColor:'red',
 			backgroundImage:'url('+rz+'img/fondoIcono.png)',
 			backgroundSize:'100%',
+			backgroundRepeat:'no-repeat',
 		})
+
+		$.each($('.iconDiv'), function(index, val) {
+			var w = $(this).closest('.iconContainer').width()/6;
+			// console.log(w);
+			$(this).css({fontSize:w+'px'});
+
+		});
 
 		$.each($('img'), function(index, val) {
 			var file = $(this).attr('file');
@@ -62,7 +97,7 @@
 
 		$('.consultationCardCont').click(function(event) {
 			var cId = this.id.split('_')[1];
-			console.log(cId);
+			popUp('consultations/home/consultationInfo.php',{elemId:cId});
 		});
 
 	});
