@@ -71,7 +71,7 @@
 			// console.log('aaa');
 			var request = <?php echo !empty($_REQUEST)?atj($_REQUEST):'{}'; ?>;
 			$('#content').load(rz+'consultations/home/about.php');
-			chUrl(request,'acc','about');
+			chUrl(request,'acc','about',true);
 		});
 
 		$('.imgFondo').css({

@@ -42,7 +42,7 @@
 			var cId = ids[1]
 			var consultationId = <?php echo $_REQUEST['consultationId']; ?>;
 			var rj = jsonF('consultations/consultation/json/json.php',{acc:4,cId:cId,consultationId:consultationId});
-			console.log(rj);
+			// console.log(rj);
 
 			var r = $.parseJSON(rj);
 			// console.log(r);
@@ -52,7 +52,7 @@
 					var checklistId = cId;
 					// console.log(targetId);
 					var rj = jsonF('consultations/consultation/json/json.php',{acc:3,checklistId:checklistId,consultationId:consultationId});
-					console.log(rj);
+					// console.log(rj);
 					var r = $.parseJSON(rj);
 
 					if(r.ok == 1){
@@ -81,10 +81,10 @@
 					break;
 			}
 
-			// popUpCuest('consultations/checklist/seeAnswers.php',{vId:vId,div:1},function(){})
-			// setTimeout(function(){
-			// 	$('#contentCuest').load(rz+'checklist/cuestionario.php',{vId:vId},function(){});
-			// },500);
+			var params = chUrl({},'','',false);
+			// console.log(params);
+			$('#content').load(rz+'consultations/layout/content.php',params);
+
 		});
 
 		$.each($('img'), function(index, val) {
@@ -179,7 +179,8 @@
 											<?php 
 											}elseif($vis['finalizada'] == 1){ 
 												$visDate = date('Y-m-d', strtotime($vis['finishDate']));
-												$nextDate = getNextDate($vis['fCode']);
+												$nextDate = getNextDate($vis['fCode'],$vis['finishDate']);
+												// echo "NEXTDATE: $nextDate -- <br/>";
 											?>
 												<?php if($today >= $nextDate){ ?>
 													<span class="newVisita manita actionChk" style="color:grey;">
@@ -230,7 +231,6 @@
 				<div style="margin-top: 30%;" class="actionName">
 					<?php echo TR('acccomplaints'); ?>
 				</div>
-
 			</div>
 		</div>
 		<div class="col-md-4">

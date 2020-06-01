@@ -50,6 +50,7 @@ $vis = $vInfo;
 			$('#area_archivos').trigger('click');
 
 		});
+		// console.log(from);
 		$('#Enviar').click(function(event) {			
 
 			<?php if ($faltaPreg != null){ ?>
@@ -93,6 +94,7 @@ $vis = $vInfo;
 							}
 							if(r.ok == 1){
 								if(typeof from != 'undefined'){
+
 									switch(from){
 										case 'questionnaires':
 											// console.log(from);
@@ -106,6 +108,11 @@ $vis = $vInfo;
 												.load(rz+'questionnaires/targets/targetTable.php',{targetId:targetsId});
 
 											<?php } ?>
+											break;
+										case 'consultations':
+											var params = chUrl({},'','',false);
+											// console.log(params);
+											$('#content').load(rz+'consultations/layout/content.php',params);
 											break;
 										default:
 											break;

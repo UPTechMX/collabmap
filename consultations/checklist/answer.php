@@ -7,7 +7,7 @@
 
 ?>
 <script type="text/javascript">
-	var from = 'questionnaires';
+	var from = 'consultations';
 </script>
 
 <div class="modal-header nuevo" >

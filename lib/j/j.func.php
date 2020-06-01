@@ -1186,34 +1186,34 @@ function getRefDate($frequency){
 
 	switch ($frequency) {
 		case "daily":
-			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -1 day'));
+			$minDate = date('Y-m-d', strtotime($today . ' -1 day'));
 			break;
 		case "weekly":
-			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -1 week'));
+			$minDate = date('Y-m-d', strtotime($today . ' -1 week'));
 			break;
 		case "2weeks":
-			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -2 week'));
+			$minDate = date('Y-m-d', strtotime($today . ' -2 week'));
 			break;
 		case "3weeks":
-			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -3 week'));
+			$minDate = date('Y-m-d', strtotime($today . ' -3 week'));
 			break;
 		case "monthly":
-			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -1 month'));
+			$minDate = date('Y-m-d', strtotime($today . ' -1 month'));
 			break;
 		case "2months":
-			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -2 month'));
+			$minDate = date('Y-m-d', strtotime($today . ' -2 month'));
 			break;
 		case "3months":
-			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -3 month'));
+			$minDate = date('Y-m-d', strtotime($today . ' -3 month'));
 			break;
 		case "4months":
-			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -4 month'));
+			$minDate = date('Y-m-d', strtotime($today . ' -4 month'));
 			break;
 		case "6months":
-			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -6 month'));
+			$minDate = date('Y-m-d', strtotime($today . ' -6 month'));
 			break;
 		case "yearly":
-			$minDate = date('Y-m-d', strtotime($vis['finishDate'] . ' -1 year'));
+			$minDate = date('Y-m-d', strtotime($today . ' -1 year'));
 			break;
 		default:
 			# code...
@@ -1222,43 +1222,44 @@ function getRefDate($frequency){
 	return $minDate;
 }
 
-function getNextDate($frequency){
+function getNextDate($frequency,$date){
 
 	$today = date('Y-m-d');
+	// echo "freq: $frequency, date:$date<br/>";
 
 	switch ($frequency) {
 		case "oneTime":
 			$nextDate = date('Y-m-d', strtotime($todayRep . ' +100 year'));
 			break;
 		case "daily":
-			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +1 day'));
+			$nextDate = date('Y-m-d', strtotime($date . ' +1 day'));
 			break;
 		case "weekly":
-			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +1 week'));
+			$nextDate = date('Y-m-d', strtotime($date . ' +1 week'));
 			break;
 		case "2weeks":
-			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +2 week'));
+			$nextDate = date('Y-m-d', strtotime($date . ' +2 week'));
 			break;
 		case "3weeks":
-			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +3 week'));
+			$nextDate = date('Y-m-d', strtotime($date . ' +3 week'));
 			break;
 		case "monthly":
-			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +1 month'));
+			$nextDate = date('Y-m-d', strtotime($date . ' +1 month'));
 			break;
 		case "2months":
-			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +2 month'));
+			$nextDate = date('Y-m-d', strtotime($date . ' +2 month'));
 			break;
 		case "3months":
-			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +3 month'));
+			$nextDate = date('Y-m-d', strtotime($date . ' +3 month'));
 			break;
 		case "4months":
-			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +4 month'));
+			$nextDate = date('Y-m-d', strtotime($date . ' +4 month'));
 			break;
 		case "6months":
-			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +6 month'));
+			$nextDate = date('Y-m-d', strtotime($date . ' +6 month'));
 			break;
 		case "yearly":
-			$nextDate = date('Y-m-d', strtotime($vis['finishDate'] . ' +1 year'));
+			$nextDate = date('Y-m-d', strtotime($date . ' +1 year'));
 			break;
 		default:
 			# code...

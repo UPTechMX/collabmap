@@ -28,7 +28,7 @@
 					var r = $.parseJSON(rj);
 
 					if(r.ok == 1){
-						var get = chUrl({},'','');
+						var get = chUrl({},'','',true);
 						
 						// console.log(get);
 						$('#content').load(rz+'consultations/layout/content.php',get);

@@ -15,7 +15,35 @@ if(empty($_SESSION['CM']['chk'][$vId])){
 }
 
 $vInfo = $chk->getVisita();
+// print2($_SESSION);
+switch ($vInfo['type']) {
+	case 'trgt':
+		checaAccesoQuest();
+		$usrId = $_SESSION['CM']['questionnaires']['usrId'];
+		$visUsr = $db->query("SELECT * FROM TargetsElems WHERE id = $vInfo[elemId]")->fetchAll(PDO::FETCH_ASSOC)[0];
+		$visUsrId = $visUsr['usersId'];
+		if($usrId != $visUsrId){
+			exit('');
+		}
+		break;
+	case 'cons':
+		checaAccesoConsult();
+		$usrId = $_SESSION['CM']['consultations']['usrId'];
+		$visUsr = $db->query("SELECT * FROM UsersConsultationsChecklist WHERE id = $vInfo[elemId]")->fetchAll(PDO::FETCH_ASSOC)[0];
+		$visUsrId = $visUsr['usersId'];
+		if($usrId != $visUsrId){
+			exit('');
+		}
+		break;
+	default:
+		# code...
+		break;
+}
+if($vInfo['finalizada'] == 1){
+	exit();
+}
 
+// print2("$usrId, $visUsrId");
 
 
 if( empty($_SESSION['CM']['chks'][$chk->id]) ){

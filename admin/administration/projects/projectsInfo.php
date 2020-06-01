@@ -22,6 +22,13 @@
 			var prjId = <?php echo $_POST['prjId']; ?>;
 			popUp('admin/administration/projects/audiencesAdd.php',{prjId:prjId});
 		});
+		$('#viewComplaintStr').click(function(event) {
+			var eleId = <?php echo $_POST['prjId']; ?>;
+			var elemName = '<?php echo TR("complaints")." - $project[name]" ?>';
+			console.log('aa');
+			$('#structures').load(rz+'admin/structures/index.php',{type:'complaints',elemId:eleId,elemName:elemName});
+
+		});
 	});
 </script>
 
@@ -45,6 +52,14 @@
 		<span class="btn btn-shop" id="addAudience"><?php echo TR('addAudience'); ?></span>
 	</div>
 	<div id="audiencesList" style="margin-top: 10px;"><?php include_once  'audiencesList.php'; ?></div>
+</div>
+
+<div>
+	<div class="nuevo"><?php echo TR('complaints'); ?></div>
+	<div style="text-align: right;">
+		<span class="btn btn-shop" id="viewComplaintStr"><?php echo TR('structure'); ?></span>
+	</div>
+	<div id="audiencesList" style="margin-top: 10px;"></div>
 </div>
 
 <div>

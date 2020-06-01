@@ -31,7 +31,7 @@
 			request['consultationId'] = cId;
 			$('#content').load(rz+'consultations/layout/content.php',request);
 			$('#popUp').modal('toggle');
-			chUrl(request,'consultationId',cId);
+			chUrl(request,'consultationId',cId,true);
 		});
 
 	});

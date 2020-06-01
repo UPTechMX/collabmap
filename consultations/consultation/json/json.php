@@ -106,7 +106,7 @@
 				$visDate = date('Y-m-d', strtotime($vis['finishDate']));
 				$today = date('Y-m-d');
 
-				$nextDate = getNextDate($vis['fCode']);
+				$nextDate = getNextDate($vis['fCode'],$vis['finishDate']);
 				if ($vis['fCode'] == 'oneTime'){
 					$acc = 'seeResults';
 					$vId = $vis['id'];

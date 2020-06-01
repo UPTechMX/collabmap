@@ -347,6 +347,8 @@
   "finishDate":"Final date",
 
   "news":"News",
+  "complaints":"Complaints",
+  "complaint":"Complaint",
   "iWantMore":"I want to know more",
   "forgotPwd": "Did you forgot your password?"
 

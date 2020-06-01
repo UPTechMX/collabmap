@@ -6,12 +6,36 @@
 	include_once raiz().'lib/php/calcCuest.php';
 	$chk = new Checklist($_POST['vId']);
 
-
 	checaAccesoConsult();
+	$vInfo = $chk->getVisita();
+	switch ($vInfo['type']) {
+		case 'trgt':
+			checaAccesoQuest();
+			$usrId = $_SESSION['CM']['questionnaires']['usrId'];
+			$visUsr = $db->query("SELECT * FROM TargetsElems WHERE id = $vInfo[elemId]")->fetchAll(PDO::FETCH_ASSOC)[0];
+			$visUsrId = $visUsr['usersId'];
+			if($usrId != $visUsrId){
+				exit('');
+			}
+			break;
+		case 'cons':
+			checaAccesoConsult();
+			$usrId = $_SESSION['CM']['consultations']['usrId'];
+			$visUsr = $db->query("SELECT * FROM UsersConsultationsChecklist WHERE id = $vInfo[elemId]")->fetchAll(PDO::FETCH_ASSOC)[0];
+			$visUsrId = $visUsr['usersId'];
+			if($usrId != $visUsrId){
+				exit('');
+			}
+			break;
+		default:
+			# code...
+			break;
+	}
+
 
 ?>
 <script type="text/javascript">
-	var from = 'questionnaires';
+	var from = 'consultations';
 </script>
 
 <div class="modal-header nuevo" >

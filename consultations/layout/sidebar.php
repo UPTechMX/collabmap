@@ -11,7 +11,7 @@
 			event.preventDefault();
 			var request = <?php echo !empty($_REQUEST)?atj($_REQUEST):'{}'; ?>;
 			$('#content').load(rz+'consultations/profile/index.php');
-			chUrl(request,'acc','edtProfile');
+			chUrl(request,'acc','edtProfile',true);
 		});
 
 	});
