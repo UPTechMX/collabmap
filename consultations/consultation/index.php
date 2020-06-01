@@ -231,6 +231,7 @@
 				<div style="margin-top: 30%;" class="actionName">
 					<?php echo TR('acccomplaints'); ?>
 				</div>
+				<div><?php include 'complaintsStructure.php'; ?></div>
 			</div>
 		</div>
 		<div class="col-md-4">
