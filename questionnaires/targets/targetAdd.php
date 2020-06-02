@@ -68,55 +68,102 @@
 				var allOk = camposObligatorios('#nTrgt');
 
 				var elemNom = $('#name').val();
-				if(elemNom.length != 2){
-					alertar('<?php echo TR('2digitsName'); ?>');
-					allOk = false;
-				}
-				// console.log(dat);
+				var datCopy = dat;
 
-				if(allOk){
-					var rj = jsonF('questionnaires/targets/json/json.php',{datos:dat,acc:6,targetId:targetId});
-					// console.log(rj);
-					var r = $.parseJSON(rj);
-					// console.log(r);
-					if(r.ok == 1){
-						$('#popUp').modal('toggle');
-						$('#divTrgt_'+targetId+'_'+usersTargetsId+' #dimSel_1').val('').trigger('change');
-
-						if(sels.length == 0){
-							var o = new Option(dat.nombre,r.nId);
-							$('#divTrgt_'+targetId+'_'+usersTargetsId+' #dimSel_1').append(o);							
-						}
-
-						var dat = {targetsId:targetId,usersTargetsId:usersTargetsId,dimensionesElemId:r.nId};
-						var rrj = jsonF('questionnaires/targets/json/json.php',{datos:dat,acc:5});
-						var rr = $.parseJSON(rrj);
-						// console.log(r);
-						if(rr.ok == 1){
-							$('#divTrgt_'+targetId+'_'+usersTargetsId)
-							.find('.targetTable')
-							.load(rz+'questionnaires/targets/targetTable.php',{targetId:targetId});
-						}
-						location.reload();
-						
-					}else if(r.ok == 2){
-
-						$('#popUp').modal('toggle');
-
-					}else if(r.ok == 3){
-						
-						$('#nTrgt #name').css({backgroundColor:'rgba(255,0,0,.5)'});
+				if(elemNom.length != 2){ // check digits
+					$('#nTrgt #name').css({backgroundColor:'rgba(255,0,0,.5)'});
 						$('#nTrgt #name').after(() => {
-							return '<span id="duplicateWarning">Nomor RT sudah terdaftar.</span>'
+							return '<span id="duplicateWarning"><?php echo TR('2digitsName'); ?></span>'
 						});
 						$('#nTrgt #name').on('input', () => {
 							if($('#nTrgt #name').length){
 								$('#duplicateWarning').remove()
 							}
 						});
+					allOk = false;
+				}else{ // check duplication
+					var rj = jsonF('questionnaires/targets/json/json.php',{datos:dat,acc:7,targetId:targetId});
+					// console.log(rj);
+					var r = $.parseJSON(rj);
+
+					if(r.duplicated === 1){
+						$('#nTrgt #name').css({backgroundColor:'rgba(255,0,0,.5)'});
+						$('#nTrgt #name').after(() => {
+							return '<span id="duplicateWarning"><?php echo TR('duplicateRTWarning') ?></span>'
+						});
+						$('#nTrgt #name').on('input', () => {
+							if($('#nTrgt #name').length){
+								$('#duplicateWarning').remove()
+							}
+						});
+
+						allOk = false;
 					}
 				}
 
+				if(allOk){
+					// hide selection modal
+					$('#popUp').modal('toggle');
+
+					// tn = target's name
+					var tn = $('#nTrgt tr td:first-child')
+
+					// fd = form data
+					var fd = $("#nTrgt :input");
+
+					var selectRTconfTable = "";
+
+					// build table data
+					$(fd).each((i, el) => {
+						if(i < fd.length-1){
+							selectRTconfTable = selectRTconfTable + '<tr><td>' + tn[i].textContent + '</td><td>:</td><td>' + $(el).find(":selected").text() + '</td></tr>';
+						}else{
+							selectRTconfTable = selectRTconfTable + '<tr><td>' + tn[i].textContent + '</td><td>:</td><td>' + $(el).val() + '</td></tr>';
+						}
+					})
+
+					// build table data
+					selectRTConfData = '<?php echo TR('selectRTConfirmationText1'); ?>' + selectRTconfTable + '<?php echo TR('selectRTConfirmationText2'); ?>';
+					
+					$('#selectRTconfirmationModalBody').html(selectRTConfData)
+					$('#selectRTconfirmationModal').modal('show');
+
+					$('#RTCancelConf').on('click', (e) => {
+						$('#selectRTconfirmationModal').modal('hide');
+						$('#popUp').modal('toggle');
+
+						// unbind the listener, to define only one listener
+						$('#RTCancelConf').off('click');
+						$('#RTProceedConf').off('click');
+					})
+
+					$('#RTProceedConf').on('click', (e) => {
+						// e.preventDefault();
+						var rj = jsonF('questionnaires/targets/json/json.php',{datos:datCopy,acc:6,targetId:targetId});
+						// console.log(rj);
+						var r = $.parseJSON(rj);
+						// console.log(r);
+						if(r.ok == 1){
+							$('#divTrgt_'+targetId+'_'+usersTargetsId+' #dimSel_1').val('').trigger('change');
+	
+							if(sels.length == 0){
+								var o = new Option(dat.nombre,r.nId);
+								$('#divTrgt_'+targetId+'_'+usersTargetsId+' #dimSel_1').append(o);							
+							}
+	
+							var dat = {targetsId:targetId,usersTargetsId:usersTargetsId,dimensionesElemId:r.nId};
+							var rrj = jsonF('questionnaires/targets/json/json.php',{datos:dat,acc:5});
+							var rr = $.parseJSON(rrj);
+							// console.log(r);
+							if(rr.ok == 1){
+								$('#divTrgt_'+targetId+'_'+usersTargetsId)
+								.find('.targetTable')
+								.load(rz+'questionnaires/targets/targetTable.php',{targetId:targetId});
+							}
+							location.reload();
+						}
+					})
+				}
 			});
 		<?php } ?>
 
@@ -162,7 +209,7 @@
 							</select>
 						<?php }else{ ?>
 							<input type="text" value="<?php echo $datC['name']; ?>" name="name" id="name" 
-								class="form-control oblig" placeholder="Masukkan nomor RT Anda">
+								class="form-control oblig" placeholder="<?php echo TR('RTPlaceholder') ?>">
 						<?php } ?>
 					</td>
 				</tr>

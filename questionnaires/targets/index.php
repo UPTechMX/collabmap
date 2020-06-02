@@ -59,6 +59,7 @@
 			var targetId = $(this).closest('.divTrgt').attr('id').split('_')[1];
 			var usersTargetsId = $(this).closest('.divTrgt').attr('id').split('_')[2];
 			popUp('questionnaires/targets/targetAdd.php',{targetId:targetId,usersTargetsId:usersTargetsId});
+			
 		});
 
 		$('.dimSel').change(function(event) {
@@ -158,3 +159,30 @@ foreach ($targets as $targetsChecklist){
 	</div>
 <?php } ?>
 
+<!-- confirmation modal, needs to create new modal because of callbacks -->
+<!-- Confirmation Modal -->
+<div class="modal fade" id="selectRTconfirmationModal">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header nuevo">
+				<div style="text-align: center;">
+					<h4 class="modal-title">
+						Konfirmasi Data
+					</h4>
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body" id="selectRTconfirmationModalBody" style="width: 100%; border: none 1px;">
+			</div>
+
+			<div class="modal-footer">
+				<a class="btn btn-cancel" data-dismiss="modal" id="RTCancelConf" style="color:white;"><?php echo TR('cancel'); ?></a>
+				<a class="btn btn-shop" id="RTProceedConf" style="color:white;"><?php echo TR('ok'); ?></a>
+			</div>
+		</div>
+	</div>
+</div>
