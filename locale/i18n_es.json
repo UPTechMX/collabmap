@@ -177,6 +177,8 @@
   "yearly": "Anual",
   "surveyAlert": "El cuestionario que quieres agregar ya existe para este objetivo",
   "surveyDelAlert": "¿Deseas eliminar el cuestionario de este objetivo?",
+  "usrDelAlert": "Do you want to remove the user?",
+  "usrTargetDelAlert": "Do you want to remove the target from the user?",
 
   "copy": "Copiar",
   "copySurveyMessage": "Se copiará este cuestionario",

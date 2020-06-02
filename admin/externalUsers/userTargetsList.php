@@ -46,9 +46,8 @@
 				<td><?php echo $t['tName']; ?></td>
 				<td id="tdUsrTrg_<?php echo $t['id']; ?>">
 
-					<?php if ($count == 0){ ?>
-						<i class="glyphicon glyphicon-trash manita rojo delTrgUsr"></i>
-					<?php } ?>
+					<i class="glyphicon glyphicon-trash manita rojo delTrgUsr"></i>
+					
 				</td>
 			</tr>
 		<?php } ?>

@@ -177,7 +177,9 @@
   "yearly": "Tahunan",
   "surveyAlert": "Kuesioner yang ingin ditambahkan sudah terdapat untuk target ini",
   "surveyDelAlert": "Apakah Anda ingin menghapus kuesioner dari target ini?",
-  
+  "usrDelAlert": "Apakah Anda ingin menghapus pengguna?",
+   "usrTargetDelAlert": "Apakah Anda ingin menghapus target dari pengguna?",
+     
   "copy": "Kopi",
   "copySurveyMessage": "Kuesioner ini akan digandakan",
   "copySurvey": "Gandakan kuesioner",
