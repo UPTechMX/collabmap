@@ -3,7 +3,8 @@
 	$location = empty($location)?'questionnaires':$location;
 	$rootLoginQuest = aRaizHtml($location);
 
-
+	// indicate if there is a failed login
+	$failedLoginStatus = !empty($failedLogin)? $failedLogin : 0;
 
 ?>
 
@@ -27,11 +28,18 @@
 </head>
 
 <script type="text/javascript">
+
 	$(document).ready(function() {
-		$('#signup').click(function(event) {
-			$('#loginContent').hide();
-			$('#signupContent').show();
-		});
+		<?php if($failedLoginStatus == 1) { ?>
+		
+			alertar('<?php echo TR("unregisteredLogin"); ?>',function(e){},{});
+			
+			// $('#signup').click(function(event) {
+				$('#loginContent').hide();
+				$('#signupContent').show();
+			// });`;
+			
+		<?php } ?>
 
 		soloNumeros($('#usuario'));
 
@@ -87,10 +95,13 @@
 								<br/>
 								<span id="login" class="btn btn-shop" ><?php echo TR('log_in'); ?></span>
 								
-								<div class="signup">
-									<br/>
-									<span style="color:grey;" class="manita" id="signup"><?php echo TR('sign_up'); ?></span>
-								</div>
+								<?php if(false){ ?>
+									<div class="signup">
+										<br/>
+										<span style="color:grey;" class="manita" id="signup"><?php echo TR('sign_up'); ?></span>
+									</div>
+								<?php } ?>
+
 							</div>
 						</form>
 					</div>

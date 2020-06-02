@@ -84,10 +84,10 @@
 
 		});
 
-		$('#env').click(function(event) {
+		function envCallback(){
 			var dat = $('#nEmp').serializeObject();
 
-				var trgtCode = '';
+			var trgtCode = '';
 			<?php if (!empty($_GET['code'])){ ?>
 				trgtCode = "<?php echo $_GET['code']; ?>";
 			<?php } ?>
@@ -128,11 +128,33 @@
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){
-					$('#signupContent').load(rz+'register/confirm.php');
+					
+					// $('#signupContent').load(rz+'register/confirm.php');
+
+					var confHTML = `<div class="" id='registerConfSection' style='width:80%;border:solid #00aeef; grey;border-radius: 10px;margin-left: auto;margin-right: auto; padding: 10px'>
+										<?php echo TR('regConf'); ?>
+										<div style="text-align: right;">
+											<span id="conf" class="btn btn-sm btn-shop"><?php echo TR('ok'); ?></span>
+										</div>
+									</div>`
+
+					$('#signupContent').hide();
+					$('#signupContent').after(() => {
+						return confHTML;
+					});
+
+					$('#conf').click(function(event) {
+						$('#registerConfSection').remove();
+						$('#loginContent').show();
+					});
+					
 				}
 			}
+		}
 
-
+		$('#env').click(function(event) {
+			testh = '<?php echo TR('registerConfirmationText1'); ?>' + $("#username").val() + '<?php echo TR('registerConfirmationText2'); ?>' + $("#name").val() + '<?php echo TR('registerConfirmationText3'); ?>';
+			conf(testh, "", envCallback);
 		});
 		
 		soloNumeros($('#username'));
@@ -152,8 +174,7 @@
 							<?php if (isset($_POST['usuarioId'])): ?>
 								<span>No. KTP</span>
 							<?php else: ?>
-								<input type="text" value="<?php echo $datC['username']; ?>" 
-									name="username" id="username" class="form-control oblig" maxlength="16" >
+								<input type="text" value='<?php echo $_POST['usuario']; ?>' name="username" id="username" class="form-control oblig" maxlength="16" >
 							<?php endif ?>
 
 						</td>
