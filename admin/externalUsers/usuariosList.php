@@ -43,6 +43,22 @@
 			// console.log(uId);
 			$("#userInfo").load(rz+'admin/externalUsers/userInfo.php',{usrId: uId});
 		});
+
+		$('.delUsr').click(function(event) {
+			var uId = this.id.split('_')[1];
+			var tr = $(this).closest('tr');
+			// console.log(uId);
+			conf("<?php echo TR('usrDelAlert'); ?>",{uId:uId,tr:tr},function(e){
+				var rj = jsonF('admin/externalUsers/json/json.php',{acc:4,uId:e.uId});
+				console.log(rj);
+				var r = $.parseJSON(rj);
+
+				if(r.ok == 1){
+					e.tr.remove();
+				}
+
+			});
+		});
 	});
 </script>
 
@@ -53,6 +69,7 @@
 			<th><?php echo TR('name'); ?></th>
 			<th><?php echo TR('email'); ?></th>
 			<th style="text-align: center;"></th>
+			<th></th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -69,6 +86,9 @@
 				</td>
 				<td style="text-align: center;">
 					<i class="glyphicon glyphicon-th manita tgtUsr" id="tgtUsr_<?php echo $u['id'];?>"></i>
+				</td>
+				<td style="text-align: center;">
+					<i class="glyphicon glyphicon-trash manita rojo delUsr" id="delUsr_<?php echo $u['id'];?>"></i>
 				</td>
 			</tr>
 		<?php } ?>

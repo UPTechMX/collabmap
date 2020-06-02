@@ -177,6 +177,8 @@
   "yearly": "Yearly",
   "surveyAlert": "The questionnaire you want to add already exists for this target community",
   "surveyDelAlert": "Do you want to remove the questionnaire from this target community?",
+  "usrDelAlert": "Do you want to remove the user?",
+  "usrTargetDelAlert": "Do you want to remove the target from the user?",
 
   "copy": "Copiar",
   "copySurveyMessage": "This questionnaire will be copied",
