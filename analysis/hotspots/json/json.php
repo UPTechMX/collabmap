@@ -94,7 +94,7 @@ switch ($_POST['acc']) {
 				break;
 			case 'answers':
 				$elems = $db->query("SELECT id as val, respuesta as nom, 'clase' as clase
-					FROM Respuestas WHERE preguntasId = $_POST[elemId]")->fetchAll(PDO::FETCH_ASSOC);
+					FROM Respuestas WHERE preguntasId = $_POST[elemId] AND (elim != 1 OR elim IS NULL)")->fetchAll(PDO::FETCH_ASSOC);
 				break;
 			
 			default:
