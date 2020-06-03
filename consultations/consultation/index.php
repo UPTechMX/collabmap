@@ -100,7 +100,10 @@
 			$(this).css({width:w+'px'});
 		});
 
-
+		$("#complaintsFU").click(function(event) {
+			var consultationId = <?php echo $_REQUEST['consultationId']; ?>;
+			popUp('consultations/consultation/complaintsFU.php',{consultationId:consultationId});
+		});
 
 	});
 </script>
@@ -221,7 +224,7 @@
 							<div style="height: 120px;" class="imgFondo" style="background-repeat: no-repeat;">
 								<div style="width: 100%;height: 100%;">
 									<div style="text-align: center;padding-top: 15px;" class="iconDiv">
-										<img file="complains.png" class="icoAcc" />
+										<img file="complaints.png" class="icoAcc" />
 									</div>
 								</div>
 							</div>
@@ -230,6 +233,12 @@
 				</div>
 				<div style="margin-top: 30%;" class="actionName">
 					<?php echo TR('acccomplaints'); ?>
+				</div>
+				<div style="text-align: right;padding-right: 10px;margin-top:10px;font-size: 1em;">
+					<span class="manita" style="text-transform: uppercase;" id="complaintsFU">
+						<!-- <?php echo TR("complaintsFU"); ?> -->
+						<i class="glyphicon glyphicon-check"></i>	
+					</span>
 				</div>
 				<div><?php include 'complaintsStructure.php'; ?></div>
 			</div>

@@ -152,6 +152,7 @@ if($nivel<60){
 					<select id="nivel" class="form-control oblig" name="nivel">
 						<option value="0"  <?php echo $datC['nivel'] ==  0?'selected':''; ?> ><?php echo TR('noAccess'); ?></option>
 						<option value="5" <?php echo $datC['nivel'] == 5?'selected':''; ?> ><?php echo TR('analyst'); ?></option>
+						<option value="10" <?php echo $datC['nivel'] == 10?'selected':''; ?> ><?php echo TR('complaintsFU'); ?></option>
 						<option value="50" <?php echo $datC['nivel'] == 50?'selected':''; ?> ><?php echo TR('administrator') ?></option>
 						<option value="60" <?php echo $datC['nivel'] == 60?'selected':''; ?> ><?php echo TR('superuser'); ?></option>
 					</select>

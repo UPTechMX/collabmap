@@ -175,6 +175,37 @@
 			
 			break;
 
+		case 7:
+
+			$db->beginTransaction();
+			$p['tabla'] = 'Complaints';
+			$p['timestamp'] = 'timestamp';
+			$p['datos']['usersId'] = $usrId;
+			$p['datos']['description'] = $_POST['description'];
+			$p['datos']['consultationsId'] = $_POST['consultationsId'];
+			$p['datos']['dimensionesElemId'] = $_POST['padre'];
+			$p['datos']['status'] = 10;
+
+			$rj = atj(inserta($p));
+
+			$r = json_decode($rj,true);
+
+
+
+			$pp['tabla'] = 'ComplaintsHistory';
+			$pp['datos']['complaintsId'] = $r['nId'];
+			$pp['datos']['status'] = 10;
+			$pp['timestamp'] = 'timestamp';
+
+			// print2($pp);
+
+			echo atj(inserta($pp));
+
+
+			$db->commit();
+			// print2($p);
+			break;
+
 		default:
 			# code...
 			break;

@@ -347,8 +347,22 @@
   "finishDate":"Fecha de cierre",
 
   "news":"Noticias",
+  "complaints":"Quejas",
+  "complaint":"Queja",
+  "complaintSent":"Queja enviada",
+  "complaintsFU":"Seguimiento de quejas",
+  "status":"Estatus",
+  "actualStatus":"Estatus actual",
   "iWantMore":"Quiero saber más",
+  "received":"Recibida",
+  "read":"Leida",
+  "channeled":"Canalizada",
+  "attended":"Atendida",
+  "history":"Historial",
+  "comment":"Comentario",
+  "update":"Actualizar",
   "forgotPwd": "¿Olvidaste tu contraseña?"
+
 
 
 

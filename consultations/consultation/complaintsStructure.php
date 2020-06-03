@@ -36,7 +36,7 @@ $dims = $db->query("SELECT * FROM Dimensiones
 
 		});
 
-		$('#addAud').click(function(event) {
+		$('#sendComplaint').click(function(event) {
 			var numDim = <?php echo count($dims); ?>;
 			var nivelMax = 0;
 			var padre = 0;
@@ -47,37 +47,35 @@ $dims = $db->query("SELECT * FROM Dimensiones
 					padre = $(this).val();
 				}
 			});
-			var levelType = $('#levelTypeAud').val();
+			var complaintText = $('#complaintText').val();
 			var valid = true;
-			valid = levelType != '';
+			valid = complaintText != '';
 			if(padre == 0){
-				if(levelType == 1 || levelType == 3 || levelType == 5){
-					valid = false;
-				}
+				valid = false;
 			}
-			if(nivelMax == numDim){
-				if(levelType > 1){
-					valid = false;
-				}
+			if(nivelMax != numDim){
+				valid = false;
 			}
 
+			console.log(numDim,nivelMax,padre);
+
 			if(valid){
-				// var audiencesId = <?php echo $_POST['elemId']; ?>;
-				// var consultationsId = <?php echo $_POST['consultationsId']; ?>;
-				// var rj = jsonF('admin/administration/consultations/json/addAud.php',{
-				// 	audiencesId:audiencesId,
-				// 	nivelMax:nivelMax,
-				// 	padre:padre,
-				// 	consultationsId:consultationsId,
-				// 	levelType:levelType,
-				// });
-				// // console.log(rj);
-				// var r = $.parseJSON(rj);
-				// if(r.ok == 1){
-				// 	$('#audiencesList').load(rz+'admin/administration/consultations/audiencesList.php',{consultationsId:consultationsId});
-				// }
-			}else{
-				alertar('<?php echo TR("invalidAudSel"); ?>');
+				
+				var consultationsId = <?php echo $consInf['id']; ?>;
+				var rj = jsonF('consultations/consultation/json/json.php',{
+					nivelMax:nivelMax,
+					padre:padre,
+					consultationsId:consultationsId,
+					description:complaintText,
+					acc:7,
+				});
+				console.log(rj);
+				var r = $.parseJSON(rj);
+				if(r.ok == 1){
+					$('#complaintText').val('');
+					$('#dimSelCompSt_1').val('').trigger('change');
+					alertar('<?php echo TR("complaintSent"); ?>');
+				}
 			}
 
 		});
@@ -108,8 +106,11 @@ $dims = $db->query("SELECT * FROM Dimensiones
 	<?php } ?>
 	<div class="" style="padding:5px 10px 0px 10px; margin-bottom: 10px;" >
 		<div>
-			<textarea class="form-control"></textarea>
+			<textarea class="form-control" id="complaintText"></textarea>
 		</div>
+	</div>
+	<div style="text-align: center">
+		<span class="btn btn-shop" id="sendComplaint"><?php echo TR('send'); ?></span>
 	</div>
 </div>
 

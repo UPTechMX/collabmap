@@ -9,6 +9,7 @@
 	// print2($usuarios);
 	$nomNivel[0] = "noAccess";
 	$nomNivel[5] = "analyst";
+	$nomNivel[10] = "complaintsFU";
 	$nomNivel[50] = "administrator";
 	$nomNivel[60] = "superuser";
 ?>

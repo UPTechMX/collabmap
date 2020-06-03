@@ -349,7 +349,18 @@
   "news":"News",
   "complaints":"Complaints",
   "complaint":"Complaint",
+  "complaintSent":"Complaint sent",
+  "complaintsFU":"Complaints follow up",
+  "status":"Status",
+  "actualStatus":"Actual status",
   "iWantMore":"I want to know more",
+  "received":"Received",
+  "read":"Read",
+  "channeled":"Channeled",
+  "attended":"Attended",
+  "history":"History",
+  "comment":"Comment",
+  "update":"Update",
   "forgotPwd": "Did you forgot your password?"
 
 

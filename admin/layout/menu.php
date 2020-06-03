@@ -45,6 +45,11 @@
 					<a class="nav-link" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=extUsr"><?php echo TR('externalUsers'); ?></a>
 				</li>
 			<?php } ?>
+			<?php if ($nivel >=10){ ?>	
+				<li id="complaints" class="nav-item">
+					<a class="nav-link" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=complaints"><?php echo TR('complaints'); ?></a>
+				</li>
+			<?php } ?>
 			<?php if ($nivel >=49){ ?>
 <!-- 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
