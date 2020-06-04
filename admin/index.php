@@ -99,6 +99,7 @@ checaAcceso(49);
 	<script src="../lib/js/LeafletVectorGrid/src/Leaflet.VectorGrid.bundled.js"></script>
 
 	<!-- Font Awesome JS -->
+	<script src="https://kit.fontawesome.com/7debf3cc4b.js" crossorigin="anonymous"></script>
 
 
 

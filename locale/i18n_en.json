@@ -72,7 +72,7 @@
   "keyword": "Keyword",
   "date": "Date",
   "futureConsultations": "<strong>Future</strong> contultatios",
-  "ongoingConsultations": "<strong>Ongoing</strong> contultatios",
+  "ongoingConsultations": "<strong>consultations</strong>",
   "pastConsultations": "<strong>Past</strong> contultatios",
   "future": "Future",
   "ongoing": "On going",
@@ -360,9 +360,15 @@
   "attended":"Attended",
   "history":"History",
   "comment":"Comment",
+  "comments":"Comments",
   "update":"Update",
   "needLogin":"You need to login",
   "documents":"Documents",
+  "document":"Document",
+  "confdeleteDoc": "Are you sure to delete this document?",
+  "confdeleteComment": "Are you sure to delete this comment?",
+  "commentSent":"Comment sent",
+  "docLevel": "Element",
   "forgotPwd": "Did you forgot your password?"
 
 

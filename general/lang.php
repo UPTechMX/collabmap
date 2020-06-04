@@ -1,7 +1,7 @@
 <?php
 
 // echo "$lang<br/>";
-$langs = ['en','es','id'];
+$langs = ['en','es'];
 ?>
 
 <script type="text/javascript">

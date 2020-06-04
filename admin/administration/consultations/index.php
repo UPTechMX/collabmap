@@ -13,4 +13,4 @@
 		<div class="col-6" id="consultationsInfo"></div>
 	</div>
 </div>
-<div id="consultationsStructure" style="margin-top: 10ox;"></div>
+<div id="structures" style="margin-top: 10ox;"></div>

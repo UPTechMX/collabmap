@@ -11,7 +11,8 @@
 			$post['tabla'] = 'ConsultationsChecklist';
 			break;
 		case 3:
-		
+			$post['tabla'] = 'Documents';
+			break;
 		default:
 			# code...
 			break;
@@ -41,7 +42,15 @@
 			$post['where'] = "id = $_POST[eleId]";;
 
 			echo atj(del($post));
+			break;
+		case 5:
+			// print2($_POST);
+			$post['tabla'] = 'Documents';
+			$post['where'] = "id = $_POST[dId]";;
+
+			echo atj(del($post));
 			break;	
+
 
 		default:
 			# code...

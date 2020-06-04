@@ -205,6 +205,54 @@
 			$db->commit();
 			// print2($p);
 			break;
+		case 8:
+
+			
+			$p['tabla'] = 'DocumentsComments';
+			$p['timestamp'] = 'timestamp';
+			$p['datos']['usersId'] = $usrId;
+			$p['datos']['comment'] = $_POST['comment'];
+			$p['datos']['documentsId'] = $_POST['documentsId'];
+			$p['datos']['dimensionesElemId'] = $_POST['padre'];
+
+			echo atj(inserta($p));
+
+			
+			// print2($p);
+			break;
+
+		case 9:
+			if(!is_numeric($_POST['cId']) || empty($_POST['cId'])){
+				exit('{"ok":0}');
+			}
+			
+			$existe = $db->query("SELECT COUNT(*) as cuenta 
+				FROM DocumentsComments WHERE id = $_POST[cId] AND usersId = $usrId")->fetchAll(PDO::FETCH_NUM)[0][0];
+			
+			if($existe){
+				$p['tabla'] = 'DocumentsComments';
+				$p['datos']['id'] = $_POST['cId'];
+				$p['datos']['comment'] = $_POST['comment'];
+
+				echo atj(upd($p));
+			}
+			
+			break;
+		case 10:
+
+			if(!is_numeric($_POST['cId']) || empty($_POST['cId'])){
+				exit('{"ok":0}');
+			}
+			
+			$existe = $db->query("SELECT COUNT(*) as cuenta 
+				FROM DocumentsComments WHERE id = $_POST[cId] AND usersId = $usrId")->fetchAll(PDO::FETCH_NUM)[0][0];
+			
+			if($existe){
+				$db->query("DELETE FROM DocumentsComments WHERE id = $_POST[cId]");
+				echo '{"ok":1}';
+			}
+			
+			break;
 
 		default:
 			# code...

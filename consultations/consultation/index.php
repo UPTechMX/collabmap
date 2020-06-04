@@ -4,6 +4,10 @@
 		include '../../lib/j/j.func.php';
 	}
 
+	if(!is_numeric($_REQUEST['consultationId'])){
+		exit();
+	}
+
 	$today = date('Y-m-d');
 
 	$stmt = $db->prepare("SELECT c.*, p.name as pName
@@ -21,11 +25,15 @@
 		WHERE cc.consultationsId = ?");
 	$chkPrep -> execute(array($_REQUEST['consultationId']));
 	$chks = $chkPrep ->fetchAll(PDO::FETCH_ASSOC);
-	// print2($chks);
-	$usrId = empty($_SESSION['CM']['consultations']['usrId'])?0:$_SESSION['CM']['consultations']['usrId'];
-	// echo "USRID: $usrId";
 	
-	// print2($_SESSION);
+	$documents = $db->query("SELECT * FROM Documents WHERE consultationsId = $_REQUEST[consultationId]")->fetchAll(PDO::FETCH_ASSOC);
+
+
+	$usrId = empty($_SESSION['CM']['consultations']['usrId'])?0:$_SESSION['CM']['consultations']['usrId'];
+
+
+
+
 ?>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -111,6 +119,11 @@
 			<?php }else{ ?>
 				alerta('success','<?php echo TR("needLogin"); ?>');
 			<?php } ?>
+		});
+
+		$('.seeDoc').click(function(event) {
+			var dId = $(this).closest('li').attr('id').split('_')[1];
+			popUpCuest('consultations/consultation/document.php',{documentId:dId});
 		});
 
 	});
@@ -251,6 +264,7 @@
 				<div><?php include 'complaintsStructure.php'; ?></div>
 			</div>
 		</div>
+		
 		<div class="col-md-4">
 			<div class="actionDiv"  style="color: #999;border-top: solid 3px #999;">
 				<div style="position: relative;">
@@ -276,6 +290,25 @@
 				<div style="margin-top: 30%;" class="actionName">
 					<?php echo TR('documents'); ?>
 				</div>
+				<div style="margin-top: 15px;padding: 10px;">
+					<ul class="list-group">
+						<?php
+						foreach ($documents as $d){
+						?>
+							<li class="list-group-item" id="chk_<?php echo $d['id']; ?>">
+								<div class="accDocument">
+									<div class="row">
+										<div class="col-12 manita seeDoc">
+											<?php echo $d['name']; ?>
+										</div>
+									</div>
+								</div>
+							</li>
+						<?php } ?>
+						
+					</ul>
+				</div>
+
 
 			</div>
 		</div>

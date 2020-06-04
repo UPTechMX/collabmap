@@ -360,9 +360,15 @@
   "attended":"Atendida",
   "history":"Historial",
   "comment":"Comentario",
+  "comments":"Comentarios",
   "update":"Actualizar",
   "needLogin":"Necesitas iniciar sesión",
   "documents":"Documentos",
+  "document":"Documento",
+  "confdeleteDoc": "¿Estás seguro que deseas eliminar el documento?",
+  "confdeleteComment": "¿Estás seguro que deseas eliminar el comentario?",
+  "commentSent":"Comentario enviado",
+  "docLevel": "Elemento",
   "forgotPwd": "¿Olvidaste tu contraseña?"
 
 

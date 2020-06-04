@@ -5,6 +5,9 @@ if(!function_exists('raiz')){
 	include_once '../../lib/j/j.func.php';
 }
 // print2(atj($_REQUEST));
+$location = empty($location)?'consultations':$location;
+$htmlRoot = aRaizHtml($location);
+
 ?>
 
 <script type="text/javascript">
@@ -12,7 +15,7 @@ if(!function_exists('raiz')){
 
 	});
 </script>
-
+<!-- <?php include 'header.php'; ?> -->
 
 <?php 
 // include_once '../seguridad/seguridad.php';
