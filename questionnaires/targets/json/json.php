@@ -148,6 +148,7 @@
 		case 6:
 
 			$padre = $_POST['datos']['padre'];
+			$nombre = $_POST['datos']['nombre'];
 
 			if(!is_numeric($padre) || !is_numeric($_POST['targetId'])){
 				exit('{"ok":0}');
@@ -167,7 +168,9 @@
 
 			$numDim = count($dimensiones);
 
-			if($dimension['nivel'] == $numDim -1 && $target['addStructure'] == 1){
+			$isUnique = $db->query("SELECT EXISTS (SELECT * FROM DimensionesElem WHERE padre = $padre AND nombre = $nombre) as uniqueCheck")->fetchAll(PDO::FETCH_ASSOC)[0]["uniqueCheck"];
+
+			if($dimension['nivel'] == $numDim -1 && $target['addStructure'] == 1 && $isUnique == 0){
 				$p['tabla'] = 'DimensionesElem';
 				$p['datos']['padre'] = $padre;
 				$p['datos']['nombre'] = $_POST['datos']['nombre'];
@@ -203,8 +206,7 @@
 			$numDim = count($dimensiones);
 
 			// rrd newly added - unique check
-			$isUnique = $db->query("SELECT EXISTS (SELECT *
-				FROM DimensionesElem WHERE padre = $padre AND nombre = $nombre) as uniqueCheck")->fetchAll(PDO::FETCH_ASSOC)[0]["uniqueCheck"];
+			$isUnique = $db->query("SELECT EXISTS (SELECT * FROM DimensionesElem WHERE padre = $padre AND nombre = $nombre) as uniqueCheck")->fetchAll(PDO::FETCH_ASSOC)[0]["uniqueCheck"];
 
 			if($dimension['nivel'] == $numDim -1 && $target['addStructure'] == 1 && $isUnique == 0){
 				echo '{"duplicated":0}';

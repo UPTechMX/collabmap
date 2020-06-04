@@ -88,9 +88,13 @@
 
 					if(r.duplicated === 1){
 						$('#nTrgt #name').css({backgroundColor:'rgba(255,0,0,.5)'});
-						$('#nTrgt #name').after(() => {
-							return '<span id="duplicateWarning"><?php echo TR('duplicateRTWarning') ?></span>'
-						});
+						
+						if($('#duplicateWarning').length == 0){
+							$('#nTrgt #name').after(() => {
+								return '<span id="duplicateWarning"><?php echo TR('duplicateRTWarning') ?></span>'
+							});
+						}
+
 						$('#nTrgt #name').on('input', () => {
 							if($('#nTrgt #name').length){
 								$('#duplicateWarning').remove()
