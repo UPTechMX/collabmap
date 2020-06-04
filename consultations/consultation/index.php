@@ -36,56 +36,60 @@
 			backgroundRepeat:'no-repeat',
 		});
 
+		<?php if (!empty($usrId)){ ?>
+			$('.actionChk').click(function(event) {
+				var ids = $(this).closest('li').attr('id').split('_');
+				var cId = ids[1]
+				var consultationId = <?php echo $_REQUEST['consultationId']; ?>;
+				var rj = jsonF('consultations/consultation/json/json.php',{acc:4,cId:cId,consultationId:consultationId});
+				// console.log(rj);
+				var r = $.parseJSON(rj);
+				// console.log(r);
 
-		$('.actionChk').click(function(event) {
-			var ids = $(this).closest('li').attr('id').split('_');
-			var cId = ids[1]
-			var consultationId = <?php echo $_REQUEST['consultationId']; ?>;
-			var rj = jsonF('consultations/consultation/json/json.php',{acc:4,cId:cId,consultationId:consultationId});
-			// console.log(rj);
+				switch(r.acc){
+					case 'newVisita':
+						var checklistId = cId;
+						// console.log(targetId);
+						var rj = jsonF('consultations/consultation/json/json.php',{acc:3,checklistId:checklistId,consultationId:consultationId});
+						// console.log(rj);
+						var r = $.parseJSON(rj);
 
-			var r = $.parseJSON(rj);
-			// console.log(r);
+						if(r.ok == 1){
+							var vId = r.nId;
+							popUpCuest('consultations/checklist/answer.php',{vId:r.vId},function(){})
+							setTimeout(function(){
+								$('#contentCuest').load(rz+'checklist/cuestionario.php',{vId:vId},function(){});
+							},500);
 
-			switch(r.acc){
-				case 'newVisita':
-					var checklistId = cId;
-					// console.log(targetId);
-					var rj = jsonF('consultations/consultation/json/json.php',{acc:3,checklistId:checklistId,consultationId:consultationId});
-					// console.log(rj);
-					var r = $.parseJSON(rj);
+						}
 
-					if(r.ok == 1){
-						var vId = r.nId;
-						popUpCuest('consultations/checklist/answer.php',{vId:r.vId},function(){})
+						break;
+					case 'contVisita':
+						var vId = r.vId;
+						popUpCuest('consultations/checklist/answer.php',{vId:vId},function(){})
 						setTimeout(function(){
 							$('#contentCuest').load(rz+'checklist/cuestionario.php',{vId:vId},function(){});
 						},500);
 
-					}
+						break;
+					case 'seeResults':
+						var vId = this.id.split('_')[1];
+						popUpCuest('consultations/checklist/seeAnswers.php',{vId:vId,div:1},function(){})
+						break;
+					default:
+						break;
+				}
 
-					break;
-				case 'contVisita':
-					var vId = r.vId;
-					popUpCuest('consultations/checklist/answer.php',{vId:vId},function(){})
-					setTimeout(function(){
-						$('#contentCuest').load(rz+'checklist/cuestionario.php',{vId:vId},function(){});
-					},500);
+				var params = chUrl({},'','',false);
+				// console.log(params);
+				$('#content').load(rz+'consultations/layout/content.php',params);
 
-					break;
-				case 'seeResults':
-					var vId = this.id.split('_')[1];
-					popUpCuest('consultations/checklist/seeAnswers.php',{vId:vId,div:1},function(){})
-					break;
-				default:
-					break;
-			}
-
-			var params = chUrl({},'','',false);
-			// console.log(params);
-			$('#content').load(rz+'consultations/layout/content.php',params);
-
-		});
+			});
+		<?php }else{ ?>
+			$('.actionChk').click(function(event) {
+				alerta('success','<?php echo TR("needLogin"); ?>');
+			})
+		<?php } ?>
 
 		$.each($('img'), function(index, val) {
 			var file = $(this).attr('file');
@@ -101,8 +105,12 @@
 		});
 
 		$("#complaintsFU").click(function(event) {
-			var consultationId = <?php echo $_REQUEST['consultationId']; ?>;
-			popUp('consultations/consultation/complaintsFU.php',{consultationId:consultationId});
+			<?php if (!empty($usrId)){ ?>
+				var consultationId = <?php echo $_REQUEST['consultationId']; ?>;
+				popUp('consultations/consultation/complaintsFU.php',{consultationId:consultationId});
+			<?php }else{ ?>
+				alerta('success','<?php echo TR("needLogin"); ?>');
+			<?php } ?>
 		});
 
 	});
@@ -244,7 +252,32 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="actionDiv"></div>
+			<div class="actionDiv"  style="color: #2568D8;border-top: solid 3px #2568D8;">
+				<div style="position: relative;">
+					<div class="icono" style="width:100%;position:absolute;top:0px;">
+						<div style="width:140px;margin-left: auto;margin-right: auto;" class="iconContainer">
+							<div class="colorizaDocuments">
+								<img file="../img/pendon.svg"  />
+							</div>
+						</div>
+					</div>
+					<div class="icono" style="margin-top: 20px;width:100%;position:absolute;top:-74px;">
+						<div style="width:100px;margin-left: auto;margin-right: auto;" class="iconContainer">
+							<div style="height: 120px;" class="imgFondo" style="background-repeat: no-repeat;">
+								<div style="width: 100%;height: 100%;">
+									<div style="text-align: center;padding-top: 15px;" class="iconDiv">
+										<img file="documents.png" class="icoAcc" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div style="margin-top: 30%;" class="actionName">
+					<?php echo TR('documents'); ?>
+				</div>
+
+			</div>
 		</div>
 	</div>
 </div>

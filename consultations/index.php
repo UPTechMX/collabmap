@@ -169,6 +169,7 @@ $htmlRoot = aRaizHtml($location);
 	    </nav>
 
 	    <div id="content">
+	    	<div id="dAlerta"></div>
 	    	<?php include 'layout/content.php'; ?>
 	    </div>
 

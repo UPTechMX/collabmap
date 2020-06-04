@@ -361,6 +361,8 @@
   "history":"History",
   "comment":"Comment",
   "update":"Update",
+  "needLogin":"You need to login",
+  "documents":"Documents",
   "forgotPwd": "Did you forgot your password?"
 
 

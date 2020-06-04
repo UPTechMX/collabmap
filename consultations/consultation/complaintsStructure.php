@@ -57,26 +57,29 @@ $dims = $db->query("SELECT * FROM Dimensiones
 				valid = false;
 			}
 
-			console.log(numDim,nivelMax,padre);
-
-			if(valid){
-				
-				var consultationsId = <?php echo $consInf['id']; ?>;
-				var rj = jsonF('consultations/consultation/json/json.php',{
-					nivelMax:nivelMax,
-					padre:padre,
-					consultationsId:consultationsId,
-					description:complaintText,
-					acc:7,
-				});
-				console.log(rj);
-				var r = $.parseJSON(rj);
-				if(r.ok == 1){
-					$('#complaintText').val('');
-					$('#dimSelCompSt_1').val('').trigger('change');
-					alertar('<?php echo TR("complaintSent"); ?>');
+			// console.log(numDim,nivelMax,padre);
+			<?php if (!empty($usrId)){ ?>
+				if(valid){
+					var consultationsId = <?php echo $consInf['id']; ?>;
+					var rj = jsonF('consultations/consultation/json/json.php',{
+						nivelMax:nivelMax,
+						padre:padre,
+						consultationsId:consultationsId,
+						description:complaintText,
+						acc:7,
+					});
+					// console.log(rj);
+					var r = $.parseJSON(rj);
+					if(r.ok == 1){
+						$('#complaintText').val('');
+						$('#dimSelCompSt_1').val('').trigger('change');
+						alertar('<?php echo TR("complaintSent"); ?>');
+					}
 				}
-			}
+			<?php }else{ ?>
+				alerta('success','<?php echo TR("needLogin"); ?>');
+			<?php } ?>
+
 
 		});
 	});

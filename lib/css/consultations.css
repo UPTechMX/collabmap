@@ -89,6 +89,9 @@
 .colorizaComplains{
     filter: invert(55%) sepia(24%) saturate(662%) hue-rotate(223deg) brightness(89%) contrast(87%);
 }
+.colorizaDocuments{
+    filter: invert(31%) sepia(85%) saturate(2279%) hue-rotate(208deg) brightness(89%) contrast(90%);;
+}
 
 .icoSeccionFondo{
     width: 44px;
