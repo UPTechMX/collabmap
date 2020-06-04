@@ -72,6 +72,7 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 			break;
 
 		case 'num':
+		
 			$LJQuestions .= " LEFT JOIN Visitas v$k ON v$k.type = 'trgt' AND v$k.elemId = v.elemId AND v$k.checklistId = :chkId$k ";
 			$LJQuestions .= " LEFT JOIN RespuestasVisita rv$k ON rv$k.visitasId = v$k.id AND rv$k.preguntasId = :pregId$k ";
 

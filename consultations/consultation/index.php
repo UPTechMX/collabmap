@@ -122,13 +122,13 @@
 	<div class="consultationName" style="font-size: 2em;font-weight: bold;text-align: left;">
 		<?php echo $consInf['name']; ?>
 	</div>
-	<div class="" style="text-align: left;color: grey;">
+	<div class="" style="text-align: left;color: grey;text-align: justify;">
 		<?php echo $consInf['description']; ?>
 	</div>
 	<hr/>
 	<div class="row">
 		<div class="col-md-4">
-			<div class="actionDiv">
+			<div class="actionDiv"  style="color: #999;border-top: solid 3px #999;">
 				<div style="position: relative;">
 					<div class="icono" style="width:100%;position:absolute;top:0px;">
 						<div style="width:140px;margin-left: auto;margin-right: auto;" class="iconContainer">
@@ -141,7 +141,7 @@
 						<div style="width:100px;margin-left: auto;margin-right: auto;" class="iconContainer">
 							<div style="height: 120px;" class="imgFondo" style="background-repeat: no-repeat;">
 								<div style="width: 100%;height: 100%;">
-									<div style="text-align: center;padding-top: 15px;" class="iconDiv">
+									<div style="text-align: center;padding-top: 15px;" class="iconDiv colorIcono">
 										<img file="surveys.png" class="icoAcc" />
 									</div>
 								</div>
@@ -218,7 +218,7 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="actionDiv"  style="color: #947ab8;border-top: solid 3px #947ab8;">
+			<div class="actionDiv"  style="color: #999;border-top: solid 3px #999;">
 				<div style="position: relative;">
 					<div class="icono" style="width:100%;position:absolute;top:0px;">
 						<div style="width:140px;margin-left: auto;margin-right: auto;" class="iconContainer">
@@ -231,7 +231,7 @@
 						<div style="width:100px;margin-left: auto;margin-right: auto;" class="iconContainer">
 							<div style="height: 120px;" class="imgFondo" style="background-repeat: no-repeat;">
 								<div style="width: 100%;height: 100%;">
-									<div style="text-align: center;padding-top: 15px;" class="iconDiv">
+									<div style="text-align: center;padding-top: 15px;" class="iconDiv colorIcono">
 										<img file="complaints.png" class="icoAcc" />
 									</div>
 								</div>
@@ -252,7 +252,7 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="actionDiv"  style="color: #2568D8;border-top: solid 3px #2568D8;">
+			<div class="actionDiv"  style="color: #999;border-top: solid 3px #999;">
 				<div style="position: relative;">
 					<div class="icono" style="width:100%;position:absolute;top:0px;">
 						<div style="width:140px;margin-left: auto;margin-right: auto;" class="iconContainer">
@@ -265,7 +265,7 @@
 						<div style="width:100px;margin-left: auto;margin-right: auto;" class="iconContainer">
 							<div style="height: 120px;" class="imgFondo" style="background-repeat: no-repeat;">
 								<div style="width: 100%;height: 100%;">
-									<div style="text-align: center;padding-top: 15px;" class="iconDiv">
+									<div style="text-align: center;padding-top: 15px;" class="iconDiv colorIcono">
 										<img file="documents.png" class="icoAcc" />
 									</div>
 								</div>

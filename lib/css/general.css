@@ -1,17 +1,17 @@
 
 .btn-shop {
-  /*background-color: #1f31a0;*/
-  background: #1f31a0; /* Old browsers */
-  background: -moz-linear-gradient(left,  #1f31a0 0%, #1f31a0 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left,  #1f31a0 0%,#1f31a0 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right,  #1f31a0 0%,#1f31a0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f31a0', endColorstr='#1f31a0',GradientType=1 ); /* IE6-9 */
+  /*background-color: #999;*/
+  background: #999; /* Old browsers */
+  background: -moz-linear-gradient(left,  #999 0%, #999 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #999 0%,#999 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #999 0%,#999 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999', endColorstr='#999',GradientType=1 ); /* IE6-9 */
   font-family: Verdana;
   color: whitesmoke;
 }
 
 .btn-shop:hover {
-  background-color: #1f31a0;
+  background-color: #004aad;
   color: whitesmoke ;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .nuevo{
-	background-color:#1f31a0; 
+	background-color:#004aad; 
 	color:white;
 	text-align: center;
 	border-radius:0px;
@@ -191,7 +191,7 @@
 }
 
 .negro{
-	background-color: #1f31a0;
+	background-color: #004aad;
 	color:#000;
 	vertical-align: middle;
 }
@@ -278,7 +278,7 @@
 .nomSubArea{
 	font-size: 1.7em;
 	text-align: center;
-	background-color: #1f31a0;
+	background-color: #004aad;
 	padding: 5px;
 	border-radius: 2px;
 	margin-top: 10px;

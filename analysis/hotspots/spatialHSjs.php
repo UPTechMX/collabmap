@@ -543,7 +543,7 @@
 						return hide;
 					}else{
 						// console.log(e);
-						console.log(polygons[e.id]);
+						// console.log(polygons[e.id]);
 						if(polygons[e.id] == undefined){
 							return hide;
 						}
