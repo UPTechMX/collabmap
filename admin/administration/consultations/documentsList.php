@@ -36,6 +36,11 @@ $documents = $db->query("SELECT * FROM Documents
 			var elemName = $(this).closest('tr').find('.tdName').text();
 			$('#structures').load(rz+'admin/structures/index.php',{type:'documents',elemId:dId,elemName:elemName});
 		});
+		$('.statDoc').click(function(event) {
+			var dId = $(this).closest('tr').attr('id').split('_')[1];
+			var elemName = $(this).closest('tr').find('.tdName').text();
+			$('#structures').load(rz+'admin/administration/consultations/statDoc.php',{type:'documents',elemId:dId,elemName:elemName});
+		});
 	});
 </script>
 <table class="table">
@@ -57,9 +62,9 @@ $documents = $db->query("SELECT * FROM Documents
 				<td>
 					<i class="glyphicon glyphicon-th manita strucDoc"></i>
 				</td>
-				<!-- <td>
+				<td>
 					<i class="fas fa-chart-bar manita statDoc"></i>
-				</td> -->
+				</td>
 				<td>
 					<i class="glyphicon glyphicon-trash manita rojo delDoc"></i>
 				</td>

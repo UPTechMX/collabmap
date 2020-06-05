@@ -1064,12 +1064,14 @@ function getLJTrgt($nivelMax,$padre,$elemId,$type='structure'){
 		if($i == $numDim - 1){
 			$fields = ", de$i.nombre as nombreHijo, de$i.id as idHijo";
 			$wDE = " de$i.padre = $padre";
+			// echo "I: $i";
 		}
 	}
 
 	$return['LJ'] = $LJ;
 	$return['wDE'] = $wDE;
 	$return['fields'] = $fields;
+	$return['numDim'] = $numDim;
 
 	return $return;
 }

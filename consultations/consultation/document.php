@@ -93,7 +93,7 @@
 					if(r.ok == 1){
 						$('#docCommentText').val('');
 						$('#dimSelDocSt_1').val('').trigger('change');
-						alertar('<?php echo TR("complaintSent"); ?>');
+						alertar('<?php echo TR("commentSent"); ?>');
 					}
 				}
 			<?php }else{ ?>

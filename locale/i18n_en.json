@@ -369,6 +369,9 @@
   "confdeleteComment": "Are you sure to delete this comment?",
   "commentSent":"Comment sent",
   "docLevel": "Element",
+  "lastLevel": "Last level",
+  "count": "Count",
+  "download": "Download",
   "forgotPwd": "Did you forgot your password?"
 
 

@@ -369,6 +369,9 @@
   "confdeleteComment": "¿Estás seguro que deseas eliminar el comentario?",
   "commentSent":"Comentario enviado",
   "docLevel": "Elemento",
+  "lastLevel": "Último elemento",
+  "count": "Número de comentarios",
+  "download": "Descargar",
   "forgotPwd": "¿Olvidaste tu contraseña?"
 
 

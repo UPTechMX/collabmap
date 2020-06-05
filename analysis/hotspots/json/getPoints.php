@@ -108,7 +108,7 @@ $sql = "
 	LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
 	LEFT JOIN KMLGeometries kg ON $spatialFnc(kg.geometry,p.geometry) AND kg.KMLId = :kmlId
 	$LJStructure $LJQuestions
-	WHERE (tc.id = :tcId AND rv.preguntasId = :spatialQ AND v.type = 'trgt' $wDE AND v.finalizada = 1)
+	WHERE (tc.id = :tcId AND rv.preguntasId = :spatialQ AND v.type = 'trgt' $wDE AND v.finalizada = 1 AND v.checklistId = :chkIdspatial)
 	-- AND $spatialFnc(kg.geometry,p.geometry)
 
 	-- GROUP BY te.id
@@ -117,6 +117,7 @@ $sql = "
 
 $arr['tcId'] = $_POST['tcIdspatial'];
 $arr['spatialQ'] = $_POST['spatialQ'];
+$arr['chkIdspatial'] = $_POST['chkIdspatial'];
 $arr['kmlId'] = $_POST['kmlId'];
 
 // echo "\nSQL: $sql \n";

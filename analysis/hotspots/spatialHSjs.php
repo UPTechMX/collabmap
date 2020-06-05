@@ -120,6 +120,7 @@
 		var acums = {};
 		for(var i in points){
 			var count = points[i].length;
+			// console.log('count: ',count, points[i]);
 			numRespMax = Math.max(numRespMax,count);
 			numRespMin = Math.min(numRespMin,count);
 			numRespTot += count;
@@ -163,7 +164,7 @@
 								}
 							}
 						}else{
-							valAnalysis = parseFloat(points[i][k]['respV'+j])
+							valAnalysis = isNaN(parseFloat(points[i][k]['respV'+j]))?0:parseFloat(points[i][k]['respV'+j]);
 						}
 
 						sums['ans'+j] += valAnalysis;
@@ -228,11 +229,14 @@
 				for(var h in sums){
 					
 					var avg =count != 0 ? sums[h]/count:0;
+					// console.log(avg,sums[h],count);
 					acums[i].avgs[h] = avg;
 					for(j = 0;j<o.questionsChk.length;j++){
+
 						if(acums[i].sumValid['ans'+j] == undefined){
 							acums[i].sumValid['ans'+j] = true;
 						}
+						// console.log(parseFloat(avg) ,questionChk['inequality'], parseFloat(questionChk['value']))
 
 						var questionChk = o.questionsChk[j];
 						if(questionChk['qType'] == 'num'){
@@ -270,8 +274,12 @@
 									}
 									break;
 								case '>':
+									
+
 									if(parseFloat(avg) <= parseFloat(questionChk['value'])){
 										acums[i].avgValid = false;
+									}else{
+										// console.log(parseFloat(avg) ,questionChk['inequality'], parseFloat(questionChk['value']))	
 									}
 									if(parseFloat(sums['ans'+j]) <= parseFloat(questionChk['value'])){
 										acums[i].sumValid['ans'+j] = false;
@@ -671,10 +679,10 @@
 
 		// Define the action taken once a polygon is clicked. In this case we will create a popup with the camping name
 		kml_vectorgrid.on('click', function(e) {
-			console.log(e.layer.properties);
+			// console.log(e.layer.properties);
 			var identifier = e.layer.properties.identifier == -1?'<i>'+e.layer.properties.id+'</i>':e.layer.properties.identifier;
 			var elem = polygons[e.layer.properties.id][0];
-			console.log('elem',polygons[e.layer.properties.id]);
+			// console.log('elem',polygons[e.layer.properties.id]);
 			var text = '<strong>Id : '+identifier+'</strong><br/>';
 			// console.log(elem);
 			// var i = 0;

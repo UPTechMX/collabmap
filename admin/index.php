@@ -98,6 +98,14 @@ checaAcceso(49);
 
 	<script src="../lib/js/LeafletVectorGrid/src/Leaflet.VectorGrid.bundled.js"></script>
 
+	<script src="../lib/js/highcharts/code/highcharts.js"></script>
+	<script src="../lib/js/highcharts/code/highcharts-more.js"></script>
+	<script src="../lib/js/highcharts/code/modules/solid-gauge.js"></script>
+	<script src="../lib/js/highcharts/code/modules/exporting.js"></script>
+	<script src="../lib/js/highcharts/code/modules/data.js"></script>
+	<script src="../lib/js/highcharts/code/modules/drilldown.js"></script>
+
+
 	<!-- Font Awesome JS -->
 	<script src="https://kit.fontawesome.com/7debf3cc4b.js" crossorigin="anonymous"></script>
 
