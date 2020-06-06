@@ -34,5 +34,6 @@ $consultation = $db -> query("SELECT c.name as tName, p.name as pName, p.id as p
 </div>
 
 <div id="consultationsSurveys"><?php include_once 'consultationsSurveys.php'; ?></div>
+<div id="consultationsPoll"><?php include_once 'consultationsPoll.php'; ?></div>
 <div id="consultationsAudiences"><?php include_once 'consultationsAudiences.php'; ?></div>
 <div id="consultationsDocuments"><?php include_once 'consultationsDocuments.php'; ?></div>

@@ -56,7 +56,7 @@
 					<div style="height: 120px;" class="imgFondoModal" style="background-repeat: no-repeat;">
 						<div style="width: 100%;height: 100%;">
 							<div style="text-align: center;padding-top: 15px;" class="iconDiv">
-								<i class="fas fa-bacon fa-4x"></i>
+								<i class="fas <?php echo $consInf['icon']; ?> fa-4x"></i>
 							</div>
 						</div>
 					</div>

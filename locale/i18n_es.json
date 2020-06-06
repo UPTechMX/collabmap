@@ -372,6 +372,11 @@
   "lastLevel": "Último elemento",
   "count": "Número de comentarios",
   "download": "Descargar",
+  "icon": "Ícono",
+  "icons": "Íconos",
+  "poll": "Encuesta rápida",
+  "score": "Calificación",
+  "pollSend": "Su calificación se guardó correctamente",
   "forgotPwd": "¿Olvidaste tu contraseña?"
 
 

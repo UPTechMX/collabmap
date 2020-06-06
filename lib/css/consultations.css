@@ -109,6 +109,10 @@
     left: 10px;
 }
 
+.iconSelected{
+    border: solid 1px black;
+}
+
 .prjName{
     text-align: justify;
     color:grey;

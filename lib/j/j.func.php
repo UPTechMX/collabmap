@@ -1027,14 +1027,44 @@ function checaAccesoQuest(){
 	}
 }
 
-function checaAccesoConsult(){
+function checaAccesoConsult( $cId = 0 ){
+	global $db;
 	session_start();
 	$usrId = $_SESSION['CM']['consultations']['usrId'];
 	// print2('aaa');
 	// print2($usrId);
-	if(empty($usrId)){
+	if(empty($usrId) && empty($cId)){
 		exit('No tienes acceso');
 	}
+
+	if(!empty($cId)){
+		if( !is_numeric($cId) ){
+			exit('No tienes acceso');
+		}
+		$today = date('Y-m-d');
+
+		$all = $db->query("SELECT c.* 
+			FROM Consultations c
+			WHERE id NOT IN (SELECT DISTINCT(consultationsId) FROM ConsultationsAudiences)
+			AND initDate <= '$today' AND finishDate >= '$today'
+			AND c.id = $cId
+		")->fetchAll(PDO::FETCH_ASSOC);
+
+		if(count($all) == 0){
+			$now = $db->query("SELECT c.* 
+				FROM Consultations c
+				LEFT JOIN ConsultationsAudiencesCache cac ON cac.consultationsId = c.id
+				LEFT JOIN UsersAudiences ua ON ua.dimensionesElemId = cac.dimensionesElemId AND ua.usersId = $usrId
+				WHERE ua.id IS NOT NULL
+				AND c.initDate <= '$today' AND c.finishDate >= '$today' AND c.id = $cId
+				GROUP BY c.id
+			")->fetchAll(PDO::FETCH_ASSOC);
+			if(count($now) == 0){
+				exit('No tienes acceso');
+			}
+		}
+	}
+
 }
 
 function validateDate($date, $format = 'Y-m-d')

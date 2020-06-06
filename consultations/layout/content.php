@@ -1,4 +1,4 @@
-
+<div id="dAlerta"></div>
 <?php
 
 if(!function_exists('raiz')){

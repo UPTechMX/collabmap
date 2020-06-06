@@ -64,7 +64,7 @@ $dims = $db->query("SELECT * FROM Dimensiones
 					var rj = jsonF('consultations/consultation/json/json.php',{
 						nivelMax:nivelMax,
 						padre:padre,
-						consultationsId:consultationsId,
+						consultationId:consultationsId,
 						description:complaintText,
 						acc:7,
 					});

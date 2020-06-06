@@ -2,7 +2,7 @@
 	session_start();
 
 	include_once '../../../lib/j/j.func.php';
-	checaAccesoConsult();
+	checaAccesoConsult($_POST['consultationId']);
 	// echo "\nAAA\n";
 	$usrId = $_SESSION['CM']['consultations']['usrId'];
 	// echo "usrId: $usrId\n";
@@ -78,10 +78,7 @@
 			$pv['datos']['elemId'] = $uccId;
 			$pv['datos']['type'] = 'cons';
 
-
 			echo atj(inserta($pv));
-
-
 
 			break;
 		case 4:
@@ -123,54 +120,54 @@
 			break;
 		case 5:
 			// print2($_POST);
-			$dimensionesElemId = $_POST['datos']['dimensionesElemId'];
-			if(!is_numeric($dimensionesElemId)){
-				exit();
-			}
-			$count = $db->query("SELECT COUNT(*) FROM TargetsElems 
-				WHERE dimensionesElemId = $dimensionesElemId AND usersId = $usrId
-			")->fetchAll(PDO::FETCH_NUM)[0][0];
+			// $dimensionesElemId = $_POST['datos']['dimensionesElemId'];
+			// if(!is_numeric($dimensionesElemId)){
+			// 	exit();
+			// }
+			// $count = $db->query("SELECT COUNT(*) FROM TargetsElems 
+			// 	WHERE dimensionesElemId = $dimensionesElemId AND usersId = $usrId
+			// ")->fetchAll(PDO::FETCH_NUM)[0][0];
 
-			if($count > 0){
-				exit('{"ok":2}');
-			}
-			$p['tabla'] = 'TargetsElems';
-			$p['datos'] = $_POST['datos'];
-			$p['datos']['usersId'] = $usrId;
+			// if($count > 0){
+			// 	exit('{"ok":2}');
+			// }
+			// $p['tabla'] = 'TargetsElems';
+			// $p['datos'] = $_POST['datos'];
+			// $p['datos']['usersId'] = $usrId;
 
-			echo atj(inserta($p));
+			// echo atj(inserta($p));
 
 			break;
 		case 6:
-			$padre = $_POST['datos']['padre'];
-			if(!is_numeric($padre) || !is_numeric($_POST['targetId'])){
-				exit('{"ok":0}');
-			}
+			// $padre = $_POST['datos']['padre'];
+			// if(!is_numeric($padre) || !is_numeric($_POST['targetId'])){
+			// 	exit('{"ok":0}');
+			// }
 			
-			$dimension = $db->query("SELECT d.nivel
-				FROM DimensionesElem de
-				LEFT JOIN Dimensiones d ON d.id = de.dimensionesId 
-				WHERE de.id = $padre")->fetchAll(PDO::FETCH_ASSOC)[0];
+			// $dimension = $db->query("SELECT d.nivel
+			// 	FROM DimensionesElem de
+			// 	LEFT JOIN Dimensiones d ON d.id = de.dimensionesId 
+			// 	WHERE de.id = $padre")->fetchAll(PDO::FETCH_ASSOC)[0];
 
-			$target = $db->query("SELECT * FROM Targets WHERE id = $_POST[targetId]")->fetchAll(PDO::FETCH_ASSOC)[0];
-			$dimensiones = $db->query("SELECT *
-				FROM Dimensiones 
-				WHERE type = 'structure' AND elemId = $_POST[targetId]
-				ORDER BY nivel")->fetchAll(PDO::FETCH_ASSOC);
+			// $target = $db->query("SELECT * FROM Targets WHERE id = $_POST[targetId]")->fetchAll(PDO::FETCH_ASSOC)[0];
+			// $dimensiones = $db->query("SELECT *
+			// 	FROM Dimensiones 
+			// 	WHERE type = 'structure' AND elemId = $_POST[targetId]
+			// 	ORDER BY nivel")->fetchAll(PDO::FETCH_ASSOC);
 
-			$numDim = count($dimensiones);
+			// $numDim = count($dimensiones);
 
-			if($dimension['nivel'] == $numDim -1 && $target['addStructure'] == 1){
-				$p['tabla'] = 'DimensionesElem';
-				$p['datos']['padre'] = $padre;
-				$p['datos']['nombre'] = $_POST['datos']['nombre'];
-				$p['datos']['dimensionesId'] = $dimensiones[$numDim-1]['id'];
+			// if($dimension['nivel'] == $numDim -1 && $target['addStructure'] == 1){
+			// 	$p['tabla'] = 'DimensionesElem';
+			// 	$p['datos']['padre'] = $padre;
+			// 	$p['datos']['nombre'] = $_POST['datos']['nombre'];
+			// 	$p['datos']['dimensionesId'] = $dimensiones[$numDim-1]['id'];
 
-				echo atj(inserta($p));
+			// 	echo atj(inserta($p));
 
-			}else{
-				echo '{"ok":2}';
-			}
+			// }else{
+			// 	echo '{"ok":2}';
+			// }
 
 			
 			break;
@@ -182,7 +179,7 @@
 			$p['timestamp'] = 'timestamp';
 			$p['datos']['usersId'] = $usrId;
 			$p['datos']['description'] = $_POST['description'];
-			$p['datos']['consultationsId'] = $_POST['consultationsId'];
+			$p['datos']['consultationsId'] = $_POST['consultationId'];
 			$p['datos']['dimensionesElemId'] = $_POST['padre'];
 			$p['datos']['status'] = 10;
 
@@ -207,6 +204,17 @@
 			break;
 		case 8:
 
+			$stmt = $db->prepare("SELECT * FROM Documents WHERE id = ?");
+			$stmt -> execute(array($_POST['documentsId']));
+
+			$docInfo = $stmt -> fetchAll(PDO::FETCH_ASSOC)[0];
+			// print2($docInfo);
+
+			if(empty($docInfo)){
+				exit('{"ok":0,"err":"no tienes acceso"}');
+			}
+
+			checaAccesoConsult($docInfo['consultationsId']);
 			
 			$p['tabla'] = 'DocumentsComments';
 			$p['timestamp'] = 'timestamp';
@@ -251,6 +259,25 @@
 				$db->query("DELETE FROM DocumentsComments WHERE id = $_POST[cId]");
 				echo '{"ok":1}';
 			}
+			
+			break;
+		case 11:
+
+			if(!is_numeric($_POST['consultationId']) || empty($_POST['consultationId'])){
+				exit('{"ok":0}');
+			}
+			if(!is_numeric($_POST['value'])){
+				exit('{"ok":0}');
+			}
+
+			$p['tabla'] = 'UsersQuickPoll';
+			$p['timestamp'] = 'timestamp';
+			$p['datos']['usersId'] = $usrId;
+			$p['datos']['score'] = $_POST['value'];
+			$p['datos']['consultationsId'] = $_POST['consultationId'];
+
+			echo atj(inserta($p));
+			
 			
 			break;
 

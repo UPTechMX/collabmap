@@ -8,6 +8,7 @@
 		exit();
 	}
 
+	checaAccesoConsult($_REQUEST['consultationId']);
 	$today = date('Y-m-d');
 
 	$stmt = $db->prepare("SELECT c.*, p.name as pName
@@ -31,7 +32,7 @@
 
 	$usrId = empty($_SESSION['CM']['consultations']['usrId'])?0:$_SESSION['CM']['consultations']['usrId'];
 
-
+	
 
 
 ?>
@@ -308,9 +309,58 @@
 						
 					</ul>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
+	<?php if (!empty($consInf['poll'])){ ?>
+		<script type="text/javascript">
+
+			$(document).ready(function() {
+
+				$('.calif').click(function(event) {
+					<?php if (!empty($usrId)){ ?>
+						// console.log('aaa');
+						var value = this.id.split('_')[1];
+						$('.calif').css({color:'#999'});
+						var rj = jsonF('consultations/consultation/json/json.php',{acc:11,consultationId:<?php echo $consInf['id']; ?>,value:value});
+						// console.log(rj);
+						var r = $.parseJSON(rj);
+						if(r.ok == 1){
+							alerta('success','<?php echo TR("pollSend"); ?>');
+							$(this).css({color:'green'});
+						}
+					<?php }else{ ?>
+						alerta('success','<?php echo TR("needLogin"); ?>');
+					<?php } ?>
+
+				});
+			});
+		</script>
+		<div style="border-top: solid 1px #CCC;margin-top: 20px">&nbsp;</div>
+		<div style="text-align: left;text-transform: uppercase;font-size: 1.5em;" class="prjName">
+			<?php echo TR('quickvote'); ?>
+		</div>
+		<div style="color:#999;text-align: justify;">
+			<?php echo $consInf['poll']; ?>
+		</div>
+		<div style="margin: 30px 0px;">
+			<div class="row justify-content-md-center">
+				<div class="col-2">
+					<div class="calif" id="calif_0" style="text-align: center;color: #999;font-size: 7em;">
+						<i class="far fa-frown"></i>
+					</div>
+				</div>
+				<div class="col-2">
+					<div class="calif" id="calif_5" style="text-align: center;color: #999;font-size: 7em;">
+						<i class="far fa-meh"></i>
+					</div>
+				</div>
+				<div class="col-2">
+					<div class="calif" id="calif_10" style="text-align: center;color: #999;font-size: 7em;">
+						<i class="far fa-smile"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php } ?>
 </div>

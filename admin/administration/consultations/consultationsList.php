@@ -35,6 +35,7 @@ $elementos = $db->query("SELECT t.*, p.name as pName
 <table class="table" id="consultationsTable">
 	<thead>
 		<tr>
+			<th></th>
 			<th>Project</th>
 			<th>Name</th>
 			<th></th>
@@ -44,6 +45,7 @@ $elementos = $db->query("SELECT t.*, p.name as pName
 	<tbody>
 		<?php foreach ($elementos as $e){ ?>
 			<tr id="fond_<?php echo $e['id']; ?>">
+				<td><i class="fas <?php echo $e['icon']; ?>"></i></td>
 				<td><?php echo $e['pName']; ?></td>
 				<td><?php echo $e['name']; ?></td>
 				<td style="text-align: right;"><i class="glyphicon glyphicon-pencil manita edtEle"></i></td>

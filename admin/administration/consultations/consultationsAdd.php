@@ -68,6 +68,9 @@
 		$('#initDate').val('<?php echo $datC['initDate']; ?>');
 		$('#finishDate').val('<?php echo $datC['finishDate']; ?>');
 
+		$("#chIcon").click(function(event) {
+			popUpMapa('admin/administration/consultations/chIcon.php')
+		});
 
 
 	});
@@ -121,6 +124,21 @@
 				<td>
 					<input type="text" value="<?php echo $datC['finishDate']; ?>" name="finishDate" id="finishDate" 
 						class="form-control calendar oblig" >
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><?php echo TR('icon'); ?></td>
+				<td>
+					<div class="row">
+						<div class="col-6" id="divIco" style="text-align: center;">
+							<i class="fas <?php echo $datC['icon'] ;?> fa-2x"></i>
+						</div>
+						<div class="col-6">
+							<i class="glyphicon glyphicon-pencil manita" id="chIcon"></i>
+							<input type="hidden" name="icon"  id="icon" >
+						</div>
+					</div>
 				</td>
 				<td></td>
 			</tr>

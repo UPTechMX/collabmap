@@ -372,6 +372,11 @@
   "lastLevel": "Last level",
   "count": "Count",
   "download": "Download",
+  "icon": "Icon",
+  "icons": "Icons",
+  "poll": "Quick poll",
+  "score": "Score",
+  "pollSend": "Your score was saved correctly",
   "forgotPwd": "Did you forgot your password?"
 
 
