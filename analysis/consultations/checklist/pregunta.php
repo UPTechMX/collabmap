@@ -51,8 +51,8 @@ switch ($preg['tSiglas']) {
 			SELECT COUNT(*) as cuenta,rv.respuesta as respuestasId,r.respuesta as respuesta
 			FROM RespuestasVisita rv
 			LEFT JOIN Visitas v ON rv.visitasId = v.id AND type = 'trgt'
-			LEFT JOIN TargetsElems te ON te.id = v.elemId
-			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
+			LEFT JOIN UsersConsultationsChecklist te ON te.id = v.elemId
+			LEFT JOIN ConsultationsChecklist tc ON tc.id = te.consultationsChecklistId
 			LEFT JOIN Respuestas r ON r.id = rv.respuesta
 			$LJ
 			WHERE tc.id = $_POST[consChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'cons'  AND v.finalizada = 1
@@ -67,8 +67,8 @@ switch ($preg['tSiglas']) {
 			SELECT COUNT(*) as cuenta,rv.respuesta
 			FROM RespuestasVisita rv
 			LEFT JOIN Visitas v ON rv.visitasId = v.id AND type = 'trgt'
-			LEFT JOIN TargetsElems te ON te.id = v.elemId
-			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
+			LEFT JOIN UsersConsultationsChecklist te ON te.id = v.elemId
+			LEFT JOIN ConsultationsChecklist tc ON tc.id = te.consultationsChecklistId
 			$LJ
 			WHERE tc.id = $_POST[consChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'cons'  AND v.finalizada = 1
 			GROUP BY rv.respuesta
@@ -83,8 +83,8 @@ switch ($preg['tSiglas']) {
 			FROM RespuestasVisita rv
 			LEFT JOIN Problems p ON p.respuestasVisitaId = rv.id
 			LEFT JOIN Visitas v ON rv.visitasId = v.id AND v.type = 'cons'
-			LEFT JOIN TargetsElems te ON te.id = v.elemId
-			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
+			LEFT JOIN UsersConsultationsChecklist te ON te.id = v.elemId
+			LEFT JOIN ConsultationsChecklist tc ON tc.id = te.consultationsChecklistId
 			$LJ
 			WHERE tc.id = $_POST[consChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'cons'  AND v.finalizada = 1
 		")->fetchALL(PDO::FETCH_ASSOC);
@@ -97,8 +97,8 @@ switch ($preg['tSiglas']) {
 			FROM RespuestasVisita rv
 			LEFT JOIN Problems p ON p.respuestasVisitaId = rv.id
 			LEFT JOIN Visitas v ON rv.visitasId = v.id AND v.type = 'cons'
-			LEFT JOIN TargetsElems te ON te.id = v.elemId
-			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId
+			LEFT JOIN UsersConsultationsChecklist te ON te.id = v.elemId
+			LEFT JOIN ConsultationsChecklist tc ON tc.id = te.consultationsChecklistId
 			$LJ
 			WHERE tc.id = $_POST[consChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'cons'  AND v.finalizada = 1
 		")->fetchALL(PDO::FETCH_ASSOC);
