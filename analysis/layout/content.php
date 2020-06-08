@@ -15,6 +15,13 @@ switch ($Act) {
 			include 'inicio/selChk.php';
 		}
 		break;
+	case 'cons':
+		if( !empty($_GET['consChk']) && is_numeric($_GET['consChk'])){
+			include 'consultations/index.php';
+		}else{	
+			include 'inicio/selChk.php';
+		}
+		break;
 	case 'pc':
 		if( !empty($_GET['pcId']) && is_numeric($_GET['pcId'])){
 			include 'checklistPC/index.php';

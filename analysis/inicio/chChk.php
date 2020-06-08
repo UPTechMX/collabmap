@@ -38,7 +38,7 @@
 				r = $.parseJSON(rj);
 			}
 
-			optsSel(r,$('#chChkSel'),false,'- - - <?php echo TR('survey'); ?> - - -',false);
+			optsSel(r,$('#targets #chChkSel'),false,'- - - <?php echo TR('survey'); ?> - - -',false);
 			$('#targets #chChkSel').val('');
 			$('#targets #chChkSel').trigger('change');
 		});
@@ -56,6 +56,53 @@
 				$('#chChkTrgtForm').submit();
 			}
 		});
+
+
+		$('#consultations #chPrjSel').change(function(event) {
+			var prjId = $(this).val();
+			var r = [];
+			if(prjId != ''){
+				var rj = jsonF('analysis/inicio/json/findElems.php',{option:'consultations',prjId:prjId});
+				r = $.parseJSON(rj);
+				// console.log(r);
+			}
+
+			optsSel(r,$('#consultations #chConsSel'),false,'- - - <?php echo TR('consultation'); ?> - - -',false);
+			$('#consultations #chConsSel').val('');
+			$('#consultations #chConsSel').trigger('change');
+
+
+		});
+
+		$('#consultations #chConsSel').change(function(event) {
+			var consId = $(this).val();
+			var r = [];
+			if(consId != ''){
+				var rj = jsonF('analysis/inicio/json/findElems.php',{option:'checklistCons',consId:consId});
+				console.log(rj)
+				r = $.parseJSON(rj);
+			}
+
+			optsSel(r,$('#consultations #chChkSel'),false,'- - - <?php echo TR('survey'); ?> - - -',false);
+			$('#consultations #chChkSel').val('');
+			$('#consultations #chChkSel').trigger('change');
+		});
+
+		$('#consultations #chChkSel').change(function(event) {
+			var consChk = $(this).val();
+			// console.log(consChk);
+			$('#consultations #consChk').val(consChk);
+			
+		});
+
+		$('#envCons').click(function(event) {
+			var consChk = $('#consChk').val();
+			if(consChk != ''){
+				$('#chChkConsForm').submit();
+			}
+		});
+
+
 
 		$('#chPcSel').change(function(event) {
 			var pcId = $(this).val();
@@ -123,6 +170,10 @@
 	  <li class="nav-item">
 	    <a class="nav-link active" id="targets-tab" data-toggle="tab" 
 	    	href="#targets" role="tab" aria-controls="targets" aria-selected="true"><?php echo TR('targets'); ?></a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" id="consultations-tab" data-toggle="tab" 
+	    	href="#consultations" role="tab" aria-controls="consultations" aria-selected="true"><?php echo TR('consultations'); ?></a>
 	  </li>
 	  <li class="nav-item">
 	    <a class="nav-link " id="pc-tab" data-toggle="tab" 
@@ -258,5 +309,56 @@
 	  		</form>
 		</div>
 	  </div>
+
+	  <div class="tab-pane fade" id="consultations" role="tabpanel" aria-labelledby="consultations-tab">
+	  	<div style="margin-top: 10px;">
+	  		<form id="nEmp">
+	  			<table class="table" border="0">
+	  				<tr>
+	  					<td><?php echo TR('project'); ?></td>
+	  					<td>
+	  						<select class="form-control" id="chPrjSel">
+	  							<option value="">- - - <?php echo TR('projects'); ?> - - -</option>
+	  							<?php foreach ($projects as $p){ ?>
+	  								<option value="<?php echo $p['id']; ?>"><?php echo $p['name']; ?></option>
+	  							<?php } ?>
+	  						</select>
+	  					</td>
+	  					<td></td>
+	  				</tr>
+	  				<tr>
+	  					<td><?php echo TR('consultation') ?></td>
+	  					<td>
+	  						<select class="form-control" id="chConsSel">
+	  							<option value="">- - - <?php echo TR('consultation') ?> - - -</option>
+	  						</select>
+	  					</td>
+	  					<td></td>
+	  				</tr>
+	  				<tr>
+	  					<td><?php echo TR('survey') ?></td>
+	  					<td>
+	  						<select class="form-control" id="chChkSel">
+	  							<option value="">- - - <?php echo TR('survey') ?> - - -</option>
+	  						</select>
+	  					</td>
+	  					<td></td>
+	  				</tr>
+	  			</table>		
+	  		</form>
+	  		<form id="chChkConsForm" method="get" >
+	  			<input type="hidden" name="consChk" id="consChk" value="">
+	  			<input type="hidden" name="acc" id="acc" value="cons">
+	  		</form>
+	  		<div class="modal-footer">
+	  			<div style="text-align: right;">
+	  				<span id="cancel" data-dismiss="modal" class="btn btn-sm btn-cancel"><?php echo TR('cancel'); ?></span>
+	  				<span id="envCons" class="btn btn-sm btn-shop"><?php echo TR('send'); ?></span>
+	  			</div>
+	  		</div>
+
+	  	</div>
+	  </div>
+
 
 </div>

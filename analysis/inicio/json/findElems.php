@@ -16,11 +16,28 @@
 			echo atj($targets);
 
 			break;
+		case 'consultations':
+			$targets = $db->query("SELECT t.id as val, t.name as nom, 'class' as clase 
+				FROM Consultations t
+				WHERE projectsId = $_POST[prjId]")->fetchAll(PDO::FETCH_ASSOC);
+
+			echo atj($targets);
+
+			break;
 		case 'checklist':
 			$checklist = $db->query("SELECT tc.id as val, c.nombre as nom, 'class' as clase
 				FROM TargetsChecklist tc 
 				LEFT JOIN Checklist c ON c.id = tc.checklistId
 				WHERE tc.targetsId = $_POST[trgtId]")->fetchAll(PDO::FETCH_ASSOC);
+
+			echo atj($checklist);
+
+			break;
+		case 'checklistCons':
+			$checklist = $db->query("SELECT tc.id as val, c.nombre as nom, 'class' as clase
+				FROM ConsultationsChecklist tc 
+				LEFT JOIN Checklist c ON c.id = tc.checklistId
+				WHERE tc.consultationsId = $_POST[consId]")->fetchAll(PDO::FETCH_ASSOC);
 
 			echo atj($checklist);
 
