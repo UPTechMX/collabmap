@@ -49,10 +49,13 @@
 
 <?php 
 	// $displayStruct = count($dims) == 1? 'display:none;':'';
+$consultation = $db->query("SELECT * FROM Consultations c
+	LEFT JOIN ConsultationsChecklist cc ON cc.consultationsId = c.id
+	WHERE cc.id = $_GET[consChk]")->fetchAll(PDO::FETCH_ASSOC)[0];
 ?>
 <div id="checklistAnalysisCont">
 
-	<div style="margin-top:10px;background-color: whitesmoke;padding: 10px;border-radius: 5px;<?php echo $displayStruct; ?>" id="structureFilter">
+	<div style="display:none;margin-top:10px;background-color: whitesmoke;padding: 10px;border-radius: 5px;<?php echo $displayStruct; ?>" id="structureFilter">
 
 		<div style="text-align: left; margin-top: 10px;">
 			<span class="btn btn-shop" id="genChk">
@@ -62,7 +65,7 @@
 	</div>
 	<div style="border:solid 1px black; border-radius: 5px;padding: 10px;margin-top: 10px;">
 		<?php echo "<strong>".TR('description')."</strong>: "; ?><br/>
-		<?php echo $target['description']; ?>
+		<?php echo $consultation['description']; ?>
 	</div>
 	<div id="chkCont"><?php include_once 'chkCont.php'; ?></div>
 
