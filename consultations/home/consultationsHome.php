@@ -5,6 +5,8 @@
 	}
 	
 
+	$aboutDB = $db->query("SELECT * FROM General WHERE name = 'about' ")->fetchAll(PDO::FETCH_ASSOC)[0];
+	$about = strip_tags($aboutDB['texto']);
 
 	$today = date('Y-m-d');
 	// print2($today);
@@ -71,7 +73,7 @@
 			// console.log('aaa');
 			var request = <?php echo !empty($_REQUEST)?atj($_REQUEST):'{}'; ?>;
 			$('#content').load(rz+'consultations/home/about.php');
-			chUrl(request,'acc','about',true);
+			chUrl(request,'acc','about',true,false);
 		});
 
 		$('.imgFondo').css({
@@ -107,8 +109,10 @@
 	<?php echo TR('about'); ?>...
 </div>
 <div style="text-align: justify;">
-	<div>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.	
+	<div class="reset-this">
+		<?php echo substr($about, 0,500); ?> <?php if (strlen($about)>500){ ?>
+			...
+		<?php } ?>
 	</div>
 	<div style="margin-top: 10px;">
 		<span class="sidebarElement" style="font-size: .9em;" id="iWantMore">

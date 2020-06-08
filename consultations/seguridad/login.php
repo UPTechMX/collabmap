@@ -39,6 +39,7 @@
 				}
 			});
 
+
 		});
 	</script>
 	<div style="text-align: center;margin-top: 20px;">
@@ -59,7 +60,7 @@
 					<span class="btn btn-shop loginSend"><?php echo TR('log_in'); ?></span>
 				</div>
 				<div style="margin-top: 10px;">
-					<span class="loginElement"><?php echo TR('sign_up'); ?></span>
+					<span class="loginElement sign_up"><?php echo TR('sign_up'); ?></span>
 				</div>
 				<div style="margin-top: 10px;">
 					<span class="loginElement"><?php echo TR('forgotPwd'); ?></span>

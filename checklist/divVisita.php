@@ -110,7 +110,7 @@ $vis = $vInfo;
 											<?php } ?>
 											break;
 										case 'consultations':
-											var params = chUrl({},'','',false);
+											var params = chUrl({},'','',false,false);
 											// console.log(params);
 											$('#content').load(rz+'consultations/layout/content.php',params);
 											break;

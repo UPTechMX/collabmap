@@ -29,6 +29,21 @@
   color: whitesmoke ;
 }
 
+.newsName{
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+}
+
+.newsHeader{
+    font-size: 1em;
+    text-align: justify;
+}
+
+.likes{
+    color: grey;
+}
+
 .contGen {
 	font-size: 0.7em;
 	text-align: right;
@@ -374,4 +389,24 @@ li.disabled a{
 	font-weight: bold;
 	color:black;
 }
+
+.noticeName{
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.noticeHeader{
+	font-size: 1em;
+	text-align: justify;
+}
+
+.likes{
+	color: grey;
+}
+
+
+
+
+
 

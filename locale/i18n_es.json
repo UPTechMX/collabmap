@@ -109,7 +109,7 @@
   "confAction":"Confirmar acción",
   "userExist" : "El nombre de usuario ya está registrado en el sistema, intenta con otro",
   "invalidEmail" : "Correo electrónico inválido. favor de corregirlo",
-  "regConf" : "Gracias por registrarte, confima tu correo electrónico para poder ingresar a la plataforma",
+  "regConf" : "Gracias por registrarte.",
   "confHashNotFound": "",
   "userConf": "",
   "userAlreadyConf": "",
@@ -377,10 +377,9 @@
   "poll": "Encuesta rápida",
   "score": "Calificación",
   "pollSend": "Su calificación se guardó correctamente",
-  "forgotPwd": "¿Olvidaste tu contraseña?"
-
-
-
+  "forgotPwd": "¿Olvidaste tu contraseña?",
+  "confdeleteNot": "¿Estás seguro que deseas eliminar la noticia?",
+  "header": "Encabezado"
 
 
 }

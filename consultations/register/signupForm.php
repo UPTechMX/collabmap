@@ -23,7 +23,6 @@
 
 		$('#pwd, #pwd2').keyup(function(event) {
 			if($('#signupContent #pwd').val() != ''){
-				console.log($('#pwd2').val(), $('#signupContent #pwd').val());
 				if( $('#pwd2').val() != $('#signupContent #pwd').val() ){
 					$('#pwdChk').show().removeClass('glyphicon-thumbs-up').addClass('glyphicon-thumbs-down');
 				}else{
@@ -50,8 +49,7 @@
 		$('#username').blur(function(event) {
 			var dat = $('#nEmp').serializeObject();
 
-			var rj = jsonF('register/json/chkUser.php',{username:dat.username});
-			// console.log(rj);
+			var rj = jsonF('consultations/register/json/chkUser.php',{username:dat.username});
 			var r = $.parseJSON(rj);
 
 			if(r.cuenta != 0){
@@ -76,7 +74,7 @@
 			var dat = $('#nEmp').serializeObject();
 			var allOk = camposObligatorios('#nEmp');
 
-			var rj = jsonF('register/json/chkUser.php',{username:dat.username});
+			var rj = jsonF('consultations/register/json/chkUser.php',{username:dat.username});
 			var r = $.parseJSON(rj);
 			// r.cuenta = 2;
 			if(r.cuenta != 0){
@@ -100,13 +98,15 @@
 				$('#pwd, #pwd2').css({backgroundColor:'rgba(255,0,0,.5)'});
 			}
 
-			if(allOk || true){
-				var rj = jsonF('register/json/json.php',{data:dat,acc:'signup',opt:1});
-				console.log(rj);
+			if(allOk){
+				var rj = jsonF('consultations/register/json/json.php',{data:dat,acc:'signup',opt:1});
+				// console.log(rj);
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){
-					$('#signupContent').load(rz+'register/confirm.php');
+					alertar('<?php echo TR('regConf'); ?>');
+					var params = chUrl({},'','',false,true);
+					$('#content').load(rz+'consultations/home/consultationsHome.php',params);
 				}
 			}
 
@@ -183,7 +183,6 @@
 		</form>		
 	</div>
 	<div style="text-align: right;">
-		<span id="suCancel" class="btn btn-sm btn-cancel"><?php echo TR('cancel'); ?></span>
 		<span id="env" class="btn btn-sm btn-shop"><?php echo TR('send'); ?></span>
 	</div>
 </div>

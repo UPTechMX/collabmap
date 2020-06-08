@@ -103,6 +103,12 @@
 							<a class="dropdown-item" id="pubC" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=pubC">
 								<?php echo TR('publicCons'); ?>
 							</a>
+							<a class="dropdown-item" id="news" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=news">
+								<?php echo TR('news'); ?>
+							</a>
+							<a class="dropdown-item" id="general" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=general">
+								<?php echo TR('general'); ?>
+							</a>
 						<?php } ?>
 
 					</div>

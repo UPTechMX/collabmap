@@ -27,6 +27,10 @@ switch ($Act) {
 		if($nivel >= 50)
 			include_once raiz().'admin/administration/publicConsultations/index.php';
 		break;
+	case 'general':
+		if($nivel >= 50)
+			include_once raiz().'admin/administration/general/index.php';
+		break;
 	case 'extUsr':
 		if($nivel >= 50)
 			include_once raiz().'admin/externalUsers/index.php';
@@ -38,6 +42,10 @@ switch ($Act) {
 	case 'tracking':
 		if($nivel >= 50)
 			include_once raiz().'admin/tracking/index.php';
+		break;
+	case 'news':
+		if($nivel >= 50)
+			include_once raiz().'admin/news/index.php';
 		break;
 	case 'complaints':
 		if($nivel >= 40)

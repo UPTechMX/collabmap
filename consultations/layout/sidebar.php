@@ -8,10 +8,23 @@
 	$(document).ready(function() {
 		$('#loginContNavBar, #loginCont').on('click', '.edtProfile', function(event) {
 			event.preventDefault();
-			event.preventDefault();
 			var request = <?php echo !empty($_REQUEST)?atj($_REQUEST):'{}'; ?>;
 			$('#content').load(rz+'consultations/profile/index.php');
-			chUrl(request,'acc','edtProfile',true);
+			chUrl(request,'acc','edtProfile',true,false);
+		});
+
+		$('.news').click(function(event) {
+			var request = {acc:'news'};
+			$('#content').load(rz+'consultations/news/index.php');
+			chUrl(request,'acc','news',true,true);
+		});
+
+		$('.sign_up').click(function(event) {
+			console.log('aa');
+			var request = {};
+			request['acc'] = 'sign_up';
+			// chUrl(request,'acc','sign_up',true,true);
+			$('#content').load(rz+'consultations/layout/content.php',request);
 		});
 
 	});
@@ -24,7 +37,7 @@
 </div>
 
 <div style="text-align: center;margin-top: 100px;">
-	<span class="sidebarElement"><?php echo TR('news'); ?></span><br/>
+	<span class="sidebarElement news"><?php echo TR('news'); ?></span><br/>
 </div>
 
 

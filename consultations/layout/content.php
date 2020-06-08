@@ -33,6 +33,12 @@ switch ($Act) {
 	case 'edtProfile':
 		include_once raiz().'consultations/profile/index.php';
 		break;
+	case 'news':
+		include_once raiz().'consultations/news/index.php';
+		break;
+	case 'sign_up':
+		include_once raiz().'consultations/register/signupForm.php';
+		break;
 	default:
 		include_once raiz().'consultations/home/consultationsHome.php';
 		break;			
