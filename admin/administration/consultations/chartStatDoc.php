@@ -41,7 +41,7 @@ $comments = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 		// console.log(data);
 
-		Highcharts.chart('container', {
+		Highcharts.chart('containerDoc', {
 		    chart: {
 		        plotBackgroundColor: null,
 		        plotBorderWidth: null,
@@ -100,7 +100,7 @@ $comments = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 			</table>
 		</div>
 		<div class="col-8">
-    		<div id="container"></div>
+    		<div id="containerDoc"></div>
 		</div>
 	</div>
 </div>

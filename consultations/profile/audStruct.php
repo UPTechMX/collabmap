@@ -23,7 +23,7 @@ $dims = $db->query("SELECT * FROM Dimensiones
 				// console.log('aa');
 				var r = []
 				if(dimElemId != ''){
-					var rj = jsonF('analysis/socialMon/json/getDims.php',{padre:dimElemId});
+					var rj = jsonF('consultations/profile/json/getDims.php',{padre:dimElemId});
 					// console.log(rj);
 					r = $.parseJSON(rj);
 					// console.log(r);

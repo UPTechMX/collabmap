@@ -26,7 +26,7 @@ $audiences = $db->query("SELECT ua.id, de.nombre as deName, d.nombre as dName, a
 
 			conf('<?php echo TR("delAud"); ?>',{elemId:audId,tr:tr},function(e){
 				var rj = jsonF('consultations/profile/json/json.php',{elemId:e.elemId,acc:3})
-				// console.log(rj);
+				console.log(rj);
 				var r = $.parseJSON(rj);
 				if(r.ok == 1){
 					e.tr.remove();
