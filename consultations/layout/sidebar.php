@@ -20,9 +20,16 @@
 		});
 
 		$('.sign_up').click(function(event) {
-			console.log('aa');
+			// console.log('aa');
 			var request = {};
 			request['acc'] = 'sign_up';
+			// chUrl(request,'acc','sign_up',true,true);
+			$('#content').load(rz+'consultations/layout/content.php',request);
+		});
+		$('.forgotPwd').click(function(event) {
+			console.log('aa');
+			var request = {};
+			request['acc'] = 'forgotPwd';
 			// chUrl(request,'acc','sign_up',true,true);
 			$('#content').load(rz+'consultations/layout/content.php',request);
 		});

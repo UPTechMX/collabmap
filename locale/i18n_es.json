@@ -379,6 +379,9 @@
   "pollSend": "Su calificación se guardó correctamente",
   "forgotPwd": "¿Olvidaste tu contraseña?",
   "confdeleteNot": "¿Estás seguro que deseas eliminar la noticia?",
+  "noExistingUser" : "El usuario no existe en nuestra base de datos",
+  "requestAccepted" : "Solucitud aceptada, revisa tu correo electrónico",
+  "pwdChanged" : "La contraseña se cambió existosamente",
   "header": "Encabezado"
 
 

@@ -63,7 +63,7 @@
 					<span class="loginElement sign_up"><?php echo TR('sign_up'); ?></span>
 				</div>
 				<div style="margin-top: 10px;">
-					<span class="loginElement"><?php echo TR('forgotPwd'); ?></span>
+					<span class="loginElement forgotPwd"><?php echo TR('forgotPwd'); ?></span>
 				</div>
 			</form>
 		</div>

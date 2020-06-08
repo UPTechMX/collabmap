@@ -39,6 +39,12 @@ switch ($Act) {
 	case 'sign_up':
 		include_once raiz().'consultations/register/signupForm.php';
 		break;
+	case 'forgotPwd':
+		include_once raiz().'consultations/register/recoverForm.php';
+		break;
+	case 'req':
+		include_once raiz().'consultations/register/chPwdForm.php';
+		break;
 	default:
 		include_once raiz().'consultations/home/consultationsHome.php';
 		break;			

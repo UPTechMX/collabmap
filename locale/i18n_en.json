@@ -379,6 +379,9 @@
   "pollSend": "Your score was saved correctly",
   "forgotPwd": "Did you forgot your password?",
   "confdeleteDoc": "Are you sure to delete this news?",
+  "noExistingUser" : "The user does not exist in our database",
+  "requestAccepted" : "Accepted request, check your email",
+  "pwdChanged" : "The password was successfully changed",
   "header": "Header"
 
 
