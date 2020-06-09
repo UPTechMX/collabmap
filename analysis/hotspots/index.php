@@ -374,89 +374,6 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 
 	<div style="margin-top:10px;background-color: whitesmoke;padding: 10px;border-radius: 5px;">
 
-		<!-- KMLS -->
-		<div id="KMLS">
-			<div class="row">
-				<div class='col-3'>
-					<h5 style="font-weight: bold;"><?php echo TR('selPolygonMap'); ?></h5>
-					<select class="form-control" style="margin-top: 10px;" id="KMLSel">
-						<option value="">- - - <?php echo TR('selPolygonMap'); ?> - - -</option>
-						<?php foreach ($KMLS as $kml){ ?>
-							<option value="<?php echo $kml['id']; ?>" 
-								north="<?php echo $kml['north'] ?>"
-								south="<?php echo $kml['south'] ?>"
-								east="<?php echo $kml['east'] ?>"
-								west="<?php echo $kml['west'] ?>"
-							>
-								<?php echo $kml['name']; ?>
-							</option>
-						<?php } ?>
-					</select>
-				</div>
-			</div>
-			<div class="row attrRow" style="margin-top: 10px;" id="attrRow">
-				<div class="col-1" style="display: none; text-align: center;" id="divAdd">
-					<h5>&nbsp;</h5>
-					<span class="btn btn-shop" id="addAttr">
-						<i class="glyphicon glyphicon-plus"></i>
-					</span>
-				</div>
-				<div class="col-1"></div>
-				<div class="col-3" style="display: none;" id="attrDiv">
-					<h5 style="font-weight: bold;"><?php echo TR('selAttr'); ?></h5>
-					<select class="form-control attrSel" style="margin-top: 10px;"></select>
-				</div>
-				<div class="col-3 valSel attrValDiv" style="display: none;">
-					<h5 style="font-weight: bold;"><?php echo TR('attrVal'); ?></h5>
-					<select class="form-control attrValSel" style="margin-top: 10px;"></select>
-				</div>
-				<div class="col-3 valSel numMod" style="display:none;">
-					<h5><?php echo TR('inequality'); ?></h5>
-					<select class="form-control KMLInequality">
-						<option value=">"><?php echo TR('greater-than'); ?></option>
-						<option value=">="><?php echo TR('greater-or-equal'); ?></option>
-						<option value="="><?php echo TR('equal'); ?></option>
-						<option value="<="><?php echo TR('less-or-equal'); ?></option>
-						<option value="<"><?php echo TR('less-than'); ?></option>
-					</select>
-				</div>
-				<div class="col-3 valSel numMod" style="display:none;">
-					<h5><?php echo TR('value'); ?></h5>
-					<input type="text" class="form-control KMLValue" value="10"/>
-				</div>
-			</div>
-			<div id="divAttrs"></div>
-		</div>
-
-		<!-- STRUCTURE FILTERS -->
-		<div style="background-color: whitesmoke;padding: 10px;border-radius: 5px;<?php echo $displayStruct; ?>" id="HSStructureFilter">
-			<h4><?php echo TR('structureFilter'); ?></h4>
-			<div class='row'>
-				<?php 
-				foreach ($dims as $k => $d){
-					if($k > count($dims)-2){
-						break;
-					}
-					if($k == 0){
-						$dimsElems = $db->query("SELECT * FROM DimensionesElem 
-							WHERE dimensionesId = $d[id]
-							ORDER BY nombre")->fetchAll(PDO::FETCH_ASSOC);
-					}else{
-						$dimsElems = array();
-					}
-				?>
-					<div class="col-3">
-						<select class="form-control dimSelHS" id="dimSelHS_<?php echo "$d[nivel]"; ?>">
-							<option value="">- - - <?php echo $d['nombre']; ?> - - -</option>
-							<?php foreach ($dimsElems as $de){ ?>
-								<option value="<?php echo $de['id']; ?>"><?php echo $de['nombre']; ?></option>
-							<?php } ?>
-						</select>
-					</div>
-				<?php } ?>
-			</div>
-		</div>
-
 		<!-- CHEKLIST -->
 		<div id="chks">
 			<div class="row">
@@ -541,6 +458,90 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 			<div id="divQuestions"></div>
 
 		</div>
+		<!-- STRUCTURE FILTERS -->
+		<div style="background-color: whitesmoke;padding: 10px;border-radius: 5px;<?php echo $displayStruct; ?>" id="HSStructureFilter">
+			<h4><?php echo TR('structureFilter'); ?></h4>
+			<div class='row'>
+				<?php 
+				foreach ($dims as $k => $d){
+					if($k > count($dims)-2){
+						break;
+					}
+					if($k == 0){
+						$dimsElems = $db->query("SELECT * FROM DimensionesElem 
+							WHERE dimensionesId = $d[id]
+							ORDER BY nombre")->fetchAll(PDO::FETCH_ASSOC);
+					}else{
+						$dimsElems = array();
+					}
+				?>
+					<div class="col-3">
+						<select class="form-control dimSelHS" id="dimSelHS_<?php echo "$d[nivel]"; ?>">
+							<option value="">- - - <?php echo $d['nombre']; ?> - - -</option>
+							<?php foreach ($dimsElems as $de){ ?>
+								<option value="<?php echo $de['id']; ?>"><?php echo $de['nombre']; ?></option>
+							<?php } ?>
+						</select>
+					</div>
+				<?php } ?>
+			</div>
+		</div>
+
+		
+		<!-- KMLS -->
+		<div id="KMLS">
+			<div class="row">
+				<div class='col-3'>
+					<h5 style="font-weight: bold;"><?php echo TR('selPolygonMap'); ?></h5>
+					<select class="form-control" style="margin-top: 10px;" id="KMLSel">
+						<option value="">- - - <?php echo TR('selPolygonMap'); ?> - - -</option>
+						<?php foreach ($KMLS as $kml){ ?>
+							<option value="<?php echo $kml['id']; ?>" 
+								north="<?php echo $kml['north'] ?>"
+								south="<?php echo $kml['south'] ?>"
+								east="<?php echo $kml['east'] ?>"
+								west="<?php echo $kml['west'] ?>"
+							>
+								<?php echo $kml['name']; ?>
+							</option>
+						<?php } ?>
+					</select>
+				</div>
+			</div>
+			<div class="row attrRow" style="margin-top: 10px;" id="attrRow">
+				<div class="col-1" style="display: none; text-align: center;" id="divAdd">
+					<h5>&nbsp;</h5>
+					<span class="btn btn-shop" id="addAttr">
+						<i class="glyphicon glyphicon-plus"></i>
+					</span>
+				</div>
+				<div class="col-1"></div>
+				<div class="col-3" style="display: none;" id="attrDiv">
+					<h5 style="font-weight: bold;"><?php echo TR('selAttr'); ?></h5>
+					<select class="form-control attrSel" style="margin-top: 10px;"></select>
+				</div>
+				<div class="col-3 valSel attrValDiv" style="display: none;">
+					<h5 style="font-weight: bold;"><?php echo TR('attrVal'); ?></h5>
+					<select class="form-control attrValSel" style="margin-top: 10px;"></select>
+				</div>
+				<div class="col-3 valSel numMod" style="display:none;">
+					<h5><?php echo TR('inequality'); ?></h5>
+					<select class="form-control KMLInequality">
+						<option value=">"><?php echo TR('greater-than'); ?></option>
+						<option value=">="><?php echo TR('greater-or-equal'); ?></option>
+						<option value="="><?php echo TR('equal'); ?></option>
+						<option value="<="><?php echo TR('less-or-equal'); ?></option>
+						<option value="<"><?php echo TR('less-than'); ?></option>
+					</select>
+				</div>
+				<div class="col-3 valSel numMod" style="display:none;">
+					<h5><?php echo TR('value'); ?></h5>
+					<input type="text" class="form-control KMLValue" value="10"/>
+				</div>
+			</div>
+			<div id="divAttrs"></div>
+		</div>
+
 		<div id="divBtn" style="margin-top: 10px;text-align: right;">
 			<span class="btn btn-shop" id="generateHS"><?php echo TR('generate'); ?></span>
 		</div>

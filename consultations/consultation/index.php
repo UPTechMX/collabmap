@@ -29,7 +29,6 @@
 	
 	$documents = $db->query("SELECT * FROM Documents WHERE consultationsId = $_REQUEST[consultationId]")->fetchAll(PDO::FETCH_ASSOC);
 
-
 	$usrId = empty($_SESSION['CM']['consultations']['usrId'])?0:$_SESSION['CM']['consultations']['usrId'];
 
 	
@@ -127,6 +126,11 @@
 			popUpCuest('consultations/consultation/document.php',{documentId:dId});
 		});
 
+		$.each($('.actionName'), function(index, val) {
+			 var h = $(this).closest('.actionDiv').find('.iconContainer').height();
+			 console.log(h);
+		});
+
 	});
 </script>
 <div style="color:#2a6bd5;">
@@ -163,7 +167,7 @@
 						</div>
 					</div>
 				</div>
-				<div style="margin-top: 30%;" class="actionName">
+				<div style="margin-top: 100px;" class="actionName">
 					<?php echo TR('accmapandsurveys'); ?>
 				</div>
 				<div style="margin-top: 15px;padding: 10px;">
@@ -253,7 +257,7 @@
 						</div>
 					</div>
 				</div>
-				<div style="margin-top: 30%;" class="actionName">
+				<div style="margin-top: 100px;" class="actionName">
 					<?php echo TR('acccomplaints'); ?>
 				</div>
 				<div style="text-align: right;padding-right: 10px;margin-top:10px;font-size: 1em;">
@@ -288,7 +292,7 @@
 						</div>
 					</div>
 				</div>
-				<div style="margin-top: 30%;" class="actionName">
+				<div style="margin-top: 100px;" class="actionName">
 					<?php echo TR('documents'); ?>
 				</div>
 				<div style="margin-top: 15px;padding: 10px;">
