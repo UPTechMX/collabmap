@@ -36,7 +36,7 @@
 	$(document).ready(function() {
 		$('#updateComplaint').click(function(event) {
 			var complaintsId = <?php echo $_POST['complaintsId']; ?>;
-			popUp('admin/complaints/complaintsUpd',{complaintsId:complaintsId});
+			popUp('admin/complaints/complaintsUpd.php',{complaintsId:complaintsId});
 		});
 	});
 </script>
