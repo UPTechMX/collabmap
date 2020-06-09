@@ -106,7 +106,7 @@
 			<tr>
 				<td><?php echo TR('comment'); ?></td>
 				<td>
-					<textarea class="form-control oblig" id="comment" name="comment"></textarea>
+					<textarea class="form-control " id="comment" name="comment"></textarea>
 				</td>
 				<td></td>
 			</tr>
