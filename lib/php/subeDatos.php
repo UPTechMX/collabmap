@@ -235,21 +235,31 @@
 					}
 
 					// print2($dimsElems);
+					$dimensionesElemId = $dimsElems[$numDims-1][$col[$numDims-1]];
+					$targetElemFind = $db->query("SELECT * FROM TargetsElems 
+						WHERE dimensionesElemId = $dimensionesElemId")->fetchAll(PDO::FETCH_ASSOC)[0];
 
-					$pte['tabla'] = 'TargetsElems';
-					$pte['datos']['targetsId'] = $targetsId;
-					$pte['datos']['dimensionesElemId'] = $dimsElems[$numDims-1][$col[$numDims-1]];
+					if(empty($targetElemFind)){
+						$pte['tabla'] = 'TargetsElems';
+						$pte['datos']['targetsId'] = $targetsId;
+						$pte['datos']['dimensionesElemId'] = $dimsElems[$numDims-1][$col[$numDims-1]];
 
-					$rtj = atj(inserta($pte));
-					$rt = json_decode($rtj,true);
+						$rtj = atj(inserta($pte));
+						$rt = json_decode($rtj,true);
 
-					if($rt['ok'] != 1){
-						// echo $rtj;
-						
-						$ok = false;
-						$err = $rt['e'];
-						break;
+						if($rt['ok'] != 1){
+							// echo $rtj;
+							
+							$ok = false;
+							$err = $rt['e'];
+							break;
+						}
+
+						$teId = $rt['nId'];
+					}else{
+						$teId = $targetElemFind['id'];
 					}
+
 
 
 
@@ -258,7 +268,7 @@
 					$datVis['finalizada'] = 1;
 					$datVis['checklistId'] = $chkId;
 					$datVis['type'] = 'trgt';
-					$datVis['elemId'] = $rt['nId'];
+					$datVis['elemId'] = $teId;
 
 					$pv['tabla'] = 'Visitas';
 					$pv['timestamp'] = 'timestamp';

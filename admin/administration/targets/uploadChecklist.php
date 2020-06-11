@@ -47,7 +47,7 @@
 			// removeLoading();
 		});
 
-		subArch($('#archivoChk'),3,'<?php echo $_POST['checklistId'];?>_CHK_','csv,jpg,png,svg',false,function(a){
+		subArch($('#archivoChk'),3,'<?php echo $_POST['checklistId'];?>_CHK_','csv',false,function(a){
 			archChk = a.prefijo+a.nombreArchivo;
 			$('#nomArch').text(a.nombreArchivo);
 		})
