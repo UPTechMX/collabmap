@@ -153,8 +153,8 @@
 		}
 
 		$('#env').click(function(event) {
-			testh = '<?php echo TR('registerConfirmationText1'); ?>' + $("#username").val() + '<?php echo TR('registerConfirmationText2'); ?>' + $("#name").val() + '<?php echo TR('registerConfirmationText3'); ?>';
-			conf(testh, "", envCallback);
+			var registerConfData = '<?php echo TR('registerConfirmationText1'); ?>' + $("#username").val() + '<?php echo TR('registerConfirmationText2'); ?>' + $("#name").val() + '<?php echo TR('registerConfirmationText3'); ?>';
+			conf(registerConfData, "", envCallback);
 		});
 		
 		soloNumeros($('#username'));

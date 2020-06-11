@@ -150,7 +150,7 @@
   "selectIdAttr": "Pilih atribut id",
   "delKML": "Apakah Anda ingin menghapus peta yang dipilih?",
   "targetExists": "Elemen sudah ada di database",
-  "2digitsName": "Silakan masukkan nomor RT Anda dalam dua digit. Misalnya: 01",
+  "2digitsName": "Gunakan dua digit nomor RT. Misalnya: 01",
   
   "users": "Daftar pengguna",
   "user": "Pengguna",
@@ -341,9 +341,15 @@
   "adminInfoBody": "Ini adalah informasi",
   "adminInfoFooter": "Ini adalah footer informasi",
 
+  "duplicateRTWarning": "Nomor RT sudah terdaftar.",
+  "RTPlaceholder": "Masukkan dua digit nomor RT Anda",
+
   "unregisteredLogin": "NIK tidak terdaftar. Silakan mendaftar atau kembali ke halaman masuk.",
   "registerConfirmationText1": "<u>Survey ini hanya ditujukan untuk ketua RT.</u> <br/><br/>Periksa sekali lagi NIK dan Nama Anda,<br/><b><table><tr><td>NIK</td><td>:</td><td>",
   "registerConfirmationText2": "</td></tr><tr><td>NAMA</td><td>:</td><td>",
-  "registerConfirmationText3": "</td></tr></table></b>apakah data yang Anda masukkan sudah benar?<br/><br/>Tekan <b>Batal</b> untuk memperbaiki atau tekan <b>OK</b> untuk melanjutkan."
+  "registerConfirmationText3": "</td></tr></table></b>apakah data yang Anda masukkan sudah benar?<br/><br/>Tekan <b>Batal</b> untuk memperbaiki atau tekan <b>OK</b> untuk melanjutkan.",
 
+  "selectRTConfirmationText1": "Periksa sekali lagi lokasi Anda.<br/><br/><b><table>",
+  "selectRTConfirmationText2": "</table></b><br/>Apakah lokasi RT Anda sudah tepat?<br/><br/>Tekan <b>Batal</b> untuk memperbaiki atau tekan <b>OK</b> untuk melanjutkan.<br/>"
+  
 }
