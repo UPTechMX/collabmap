@@ -36,6 +36,9 @@ switch ($Act) {
 	case 'news':
 		include_once raiz().'consultations/news/index.php';
 		break;
+	case 'participate':
+		include_once raiz().'consultations/home/consultationsHome.php';
+		break;
 	case 'sign_up':
 		include_once raiz().'consultations/register/signupForm.php';
 		break;
@@ -46,7 +49,8 @@ switch ($Act) {
 		include_once raiz().'consultations/register/chPwdForm.php';
 		break;
 	default:
-		include_once raiz().'consultations/home/consultationsHome.php';
+		include_once raiz().'consultations/news/index.php';
+		// include_once raiz().'consultations/home/consultationsHome.php';
 		break;			
 }
 

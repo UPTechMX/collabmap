@@ -132,7 +132,7 @@
 	</div>
 	<div class="row" style="margin-top: 20px;">
 		<?php foreach ($now as $c){ ?>
-			<div class="col-md-4" style="padding: 10px;">
+			<div class="col-md-6" style="padding: 10px;">
 				<?php include 'consultationCard.php'; ?>
 			</div>
 		<?php } ?>

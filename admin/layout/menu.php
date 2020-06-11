@@ -97,7 +97,7 @@
 							<a class="dropdown-item" id="prjs" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=prjs">
 								<?php echo TR('projects'); ?>
 							</a>
-							<a class="dropdown-item" id="chk" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=chk">
+							<a class="dropdown-item" id="chkBtn" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=chk">
 								<?php echo TR('surveys'); ?>
 							</a>
 							<a class="dropdown-item" id="pubC" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=pubC">
@@ -106,7 +106,7 @@
 							<a class="dropdown-item" id="news" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=news">
 								<?php echo TR('news'); ?>
 							</a>
-							<a class="dropdown-item" id="general" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=general">
+							<a class="dropdown-item" id="generalBtnMenu" href="<?php echo $_SERVER['PHP_SELF'];?>?Act=general">
 								<?php echo TR('general'); ?>
 							</a>
 						<?php } ?>

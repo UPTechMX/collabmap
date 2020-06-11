@@ -18,6 +18,11 @@
 			$('#content').load(rz+'consultations/news/index.php');
 			chUrl(request,'acc','news',true,true);
 		});
+		$('.participate').click(function(event) {
+			var request = {acc:'participate'};
+			$('#content').load(rz+'consultations/home/consultationsHome.php');
+			chUrl(request,'acc','participate',true,true);
+		});
 
 		$('.sign_up').click(function(event) {
 			// console.log('aa');
@@ -45,6 +50,9 @@
 
 <div style="text-align: center;margin-top: 100px;">
 	<span class="sidebarElement news"><?php echo TR('news'); ?></span><br/>
+</div>
+<div style="text-align: center;margin-top: 40px;">
+	<span class="sidebarElement participate"><?php echo TR('participate'); ?></span><br/>
 </div>
 
 

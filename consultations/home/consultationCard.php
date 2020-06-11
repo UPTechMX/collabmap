@@ -14,7 +14,7 @@
 	<div style="">
 		<div class="icono" style="margin-top: 20px;">
 			<div style="width:30%;margin-left: auto;margin-right: auto;" class="iconContainer">
-				<div style="height: 120px;" class="imgFondo" style="background-repeat: no-repeat;">
+				<div style="width: 150px;height: 180px; " class="imgFondo">
 					<div style="width: 100%;height: 100%;">
 						<div style="text-align: center;padding-top: 15px;" class="iconDiv">
 							<i class="fas <?php echo $c['icon']; ?> fa-4x"></i>

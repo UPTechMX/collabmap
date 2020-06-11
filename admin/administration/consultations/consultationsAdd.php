@@ -136,7 +136,7 @@
 						</div>
 						<div class="col-6">
 							<i class="glyphicon glyphicon-pencil manita" id="chIcon"></i>
-							<input type="hidden" name="icon"  id="icon" >
+							<input type="hidden" name="icon"  id="icon" value="<?php echo $datC['icon']; ?>">
 						</div>
 					</div>
 				</td>
