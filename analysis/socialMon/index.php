@@ -38,7 +38,7 @@ foreach ($est['bloques'] as $b) {
 				foreach ($p['subpregs'] as $sp) {
 
 					// if($sp['tipo'] == 'op' || $sp['tipo'] == 'spatial' || $sp['tipo'] == 'cm'){
-					if($sp['tipo'] == 'op' ){
+					if($sp['tipo'] == 'op' || $sp['tipo'] == 'spatial' ){
 						$pregsSp[] = $sp;
 					}		
 					if($sp['tipo'] == 'num' || $sp['tipo'] == 'mult'){
