@@ -41,10 +41,11 @@
 				}
 			?>
 
-
+			dat.news = quill.root.innerHTML;
+			// console.log(news);
 			if(allOk){
 				var rj = jsonF('admin/news/json/json.php',{datos:dat,acc:acc,opt:1});
-				console.log(rj);
+				// console.log(rj);
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){
@@ -54,13 +55,14 @@
 			}
 
 		});
+		var quill = new Quill('#editor-container', {
+		  // modules: { toolbar: true },
+		  modules: {
+		  	toolbar: '#toolbar-container'
+		  },
+		  // placeholder: 'Compose an epic...',
 
-		$(".txArea").jqte({
-			source:true,
-			rule: false,
-			link:false,
-			unlink: false,
-			format:false
+		  theme: 'snow'
 		});
 	});
 </script>
@@ -97,7 +99,56 @@
 			<tr>
 				<td><?php echo TR('news'); ?></td>
 				<td>
-					<textarea name="news" id="news" class="form-control oblig txArea"><?php echo $datC['news']; ?></textarea>
+					<div>
+						<div id="toolbar-container">
+							<span class="ql-formats">
+								<select class="ql-font"></select>
+								<select class="ql-size"></select>
+							</span>
+							<span class="ql-formats">
+								<button class="ql-bold"></button>
+								<button class="ql-italic"></button>
+								<button class="ql-underline"></button>
+								<button class="ql-strike"></button>
+							</span>
+							<span class="ql-formats">
+								<select class="ql-color"></select>
+								<select class="ql-background"></select>
+							</span>
+							<span class="ql-formats">
+								<button class="ql-script" value="sub"></button>
+								<button class="ql-script" value="super"></button>
+							</span>
+							<span class="ql-formats">
+								<button class="ql-header" value="1"></button>
+								<button class="ql-header" value="2"></button>
+								<button class="ql-blockquote"></button>
+								<!-- <button class="ql-code-block"></button> -->
+							</span>
+							<span class="ql-formats">
+								<button class="ql-list" value="ordered"></button>
+								<button class="ql-list" value="bullet"></button>
+								<button class="ql-indent" value="-1"></button>
+								<button class="ql-indent" value="+1"></button>
+							</span>
+							<span class="ql-formats">
+								<button class="ql-direction" value="rtl"></button>
+								<select class="ql-align"></select>
+							</span>
+							<span class="ql-formats">
+								<button class="ql-link"></button>
+								<button class="ql-image"></button>
+								<button class="ql-video"></button>
+								<!-- <button class="ql-formula"></button> -->
+							</span>
+							<span class="ql-formats">
+								<button class="ql-clean"></button>
+							</span>
+						</div>
+						<div id="editor-container"><?php echo $datC['news']; ?></div>
+					</div>
+
+					
 				</td>
 				<td></td>
 			</tr>

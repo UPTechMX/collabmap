@@ -30,6 +30,7 @@ checaAcceso(49);
 	<link href="../lib/css/font-awesome.min.css " rel="stylesheet" type="text/css" />
 	<link href="../lib/js/sumoselect/sumoselect.css " rel="stylesheet" type="text/css" />
 	<link href="../lib/js/starrr/starrr.css " rel="stylesheet" type="text/css" />
+	
 
 
 	<!-- <link href="../lib/D/D.css" rel="stylesheet" type="text/css" /> -->
@@ -105,19 +106,14 @@ checaAcceso(49);
 	<script src="../lib/js/highcharts/code/modules/data.js"></script>
 	<script src="../lib/js/highcharts/code/modules/drilldown.js"></script>
 
-
 	<!-- Font Awesome JS -->
 	<script src="https://kit.fontawesome.com/7debf3cc4b.js" crossorigin="anonymous"></script>
 
 
 
-	<script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
-	<link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
+	<script src="../lib/js/quill/quill.js"></script>
+	<link href="../lib/js/quill/quill.snow.css " rel="stylesheet" type="text/css" />
 
-	<script type="text/javascript">
-	</script>
-
-	
 
 </head>
 

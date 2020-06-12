@@ -30,16 +30,17 @@
 		$('#env').click(function(event) {
 			allOk = true;			
 			var elem = '<?php echo $_POST["elem"]; ?>';
-			var texto = $('#texto').val();
+			var texto = quill.root.innerHTML;
 
 			if(texto == ''){
 				allOk = false;
 			}
+			
 
 			if(allOk){
-				console.log(elem,texto);
+				// console.log(elem,texto);
 				var rj = jsonF('admin/administration/general/json/json.php',{acc:1,texto:texto,elem:elem});
-				console.log(rj);
+				// console.log(rj);
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){
@@ -49,12 +50,14 @@
 			}
 
 		});
-		$(".txArea").jqte({
-			source:true,
-			rule: false,
-			link:false,
-			unlink: false,
-			format:false
+		var quill = new Quill('#editor-container', {
+		  // modules: { toolbar: true },
+		  modules: {
+		  	toolbar: '#toolbar-container'
+		  },
+		  // placeholder: 'Compose an epic...',
+
+		  theme: 'snow'
 		});
 
 
@@ -79,7 +82,55 @@
 			<tr>
 				<td><?php echo TR($_POST['elem']); ?></td>
 				<td>
-					<textarea name="texto" id="texto" class="form-control oblig txArea"><?php echo $datC['texto']; ?></textarea>
+
+					<div>
+						<div id="toolbar-container">
+							<span class="ql-formats">
+								<select class="ql-font"></select>
+								<select class="ql-size"></select>
+							</span>
+							<span class="ql-formats">
+								<button class="ql-bold"></button>
+								<button class="ql-italic"></button>
+								<button class="ql-underline"></button>
+								<button class="ql-strike"></button>
+							</span>
+							<span class="ql-formats">
+								<select class="ql-color"></select>
+								<select class="ql-background"></select>
+							</span>
+							<span class="ql-formats">
+								<button class="ql-script" value="sub"></button>
+								<button class="ql-script" value="super"></button>
+							</span>
+							<span class="ql-formats">
+								<button class="ql-header" value="1"></button>
+								<button class="ql-header" value="2"></button>
+								<button class="ql-blockquote"></button>
+								<!-- <button class="ql-code-block"></button> -->
+							</span>
+							<span class="ql-formats">
+								<button class="ql-list" value="ordered"></button>
+								<button class="ql-list" value="bullet"></button>
+								<button class="ql-indent" value="-1"></button>
+								<button class="ql-indent" value="+1"></button>
+							</span>
+							<span class="ql-formats">
+								<button class="ql-direction" value="rtl"></button>
+								<select class="ql-align"></select>
+							</span>
+							<span class="ql-formats">
+								<button class="ql-link"></button>
+								<button class="ql-image"></button>
+								<button class="ql-video"></button>
+								<!-- <button class="ql-formula"></button> -->
+							</span>
+							<span class="ql-formats">
+								<button class="ql-clean"></button>
+							</span>
+						</div>
+						<div id="editor-container"><?php echo $datC['texto']; ?></div>
+					</div>
 				</td>
 				<td></td>
 			</tr>
