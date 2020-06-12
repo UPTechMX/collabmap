@@ -98,8 +98,8 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 			
 			kmlId = kmlId == ''?-1:kmlId;
 			if(kmlId != '' && spatialQ){
-				// $('#tipoMapaHSCont').show();
-				$('#tipoP').show();
+				$('#tipoMapaHSCont').show();
+				$('.tipoPDiv').show();
 				$('#mapHS').remove();
 				$('#mapContHS').append('<div id="mapHS"style=" height: 500px;margin-top: 10px;" class="map"></div>');
 
@@ -175,7 +175,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 							drawPoints();
 						}
 						// $('#tipoMapaHSCont').hide();
-						$('#tipoP').hide();
+						$('.tipoPDiv').hide();
 					}
 
 				},300);
@@ -552,13 +552,18 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 	<div id="infoContent">
 		<div id="mapContHS">
 			<div style="margin-top: 10px;display:none;" id="tipoMapaHSCont">
-				<input type="radio" name="tipoMapaHS" id="tipoP" value="P" checked="checked" >&nbsp;<label for="tipoP">
+				
+				<input type="radio" name="tipoMapaHS" id="tipoP" value="P" checked="checked" class="tipoPDiv">&nbsp;
+				<label for="tipoP" class="tipoPDiv">
 					<?php echo TR('polygons'); ?>
 				</label>&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="tipoMapaHS" id="tipoC" value="C">&nbsp;<label for="tipoC">
+				
+				<input type="radio" name="tipoMapaHS" id="tipoC" value="C">&nbsp;
+				<label for="tipoC">
 					<?php echo TR('heat'); ?>
 				</label>&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="tipoMapaHS" id="tipoM" value="M">&nbsp;<label for="tipoM">
+				<input type="radio" name="tipoMapaHS" id="tipoM" value="M">&nbsp;
+				<label for="tipoM">
 					<?php echo TR('points'); ?>
 				</label>
 			</div>
