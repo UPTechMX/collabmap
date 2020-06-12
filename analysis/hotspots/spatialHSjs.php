@@ -65,6 +65,7 @@
 
 		try{
 			var points = $.parseJSON(pointsJ);
+
 			var pnf = points[""];
 
 		}catch(e){
@@ -432,6 +433,8 @@
 			}
 		}
 
+		$('#numAns').text(numPoints);
+		// console.log(numPoints);
 
 		var cfg = {
 		  // radius should be small ONLY if scaleRadius is true (or small radius is intended)

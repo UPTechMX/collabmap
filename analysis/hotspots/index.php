@@ -566,6 +566,10 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 				<label for="tipoM">
 					<?php echo TR('points'); ?>
 				</label>
+
+				<div style="text-align: right;"> 
+					<strong><span id="numAns"></span>&nbsp;<?php echo TR('answers'); ?></strong>
+				</div>
 			</div>
 
 		</div>
