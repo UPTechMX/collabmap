@@ -98,7 +98,8 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 			
 			kmlId = kmlId == ''?-1:kmlId;
 			if(kmlId != '' && spatialQ){
-				$('#tipoMapaHSCont').show();
+				// $('#tipoMapaHSCont').show();
+				$('#tipoP').show();
 				$('#mapHS').remove();
 				$('#mapContHS').append('<div id="mapHS"style=" height: 500px;margin-top: 10px;" class="map"></div>');
 
@@ -173,7 +174,8 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 						}else if(spatialQType == 'spatial'){
 							drawPoints();
 						}
-						$('#tipoMapaHSCont').hide();
+						// $('#tipoMapaHSCont').hide();
+						$('#tipoP').hide();
 					}
 
 				},300);
