@@ -1,5 +1,5 @@
-Hola, te mando los pasos a seguir para la instalación
 
+Instalación
 Importar la base de datos (CMEmpty.sql) en MySQL
 Crear un usuario en MySQL con todos los privilegios a la base de datos creada
 En el archivo basepdo.php, configurar el usuario, contraseña y base de datos creados. (ejemplo: basepdo.php.config)
