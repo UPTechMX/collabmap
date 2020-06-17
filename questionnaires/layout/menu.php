@@ -38,6 +38,9 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li class="nav-item">
+				<a  href="<?php echo $_SERVER['PHP_SELF'];?>?Act=tutorials" id="tutorials" class="nav-link"><?php echo TR('tutorials') ?></a>
+			</li>
+			<li class="nav-item">
 				<a href="#" id="chPwd" class="nav-link"><?php echo TR('chPwd') ?></a>
 			</li>
 			<li class="nav-item">
