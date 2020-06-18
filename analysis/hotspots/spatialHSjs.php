@@ -319,7 +319,10 @@
 		// console.log(o.questionsChk);
 		var heatPoints = [];
 		var numPoints = 0;
-		console.log('POINTS:',points.length,points);
+		pointsCont = {};
+
+		console.log('POINTS:',points);
+		console.log('QUESTIONS:',o.questionsChk);
 		for(var j in points){
 
 			var pig = points[j];
@@ -332,11 +335,17 @@
 				// prLyr = L.geoJSON(geometry);
 				// layerGeoms.addLayer(prLyr);
 
-
+				if(typeof pointsCont[pig[i]['vId0']] == 'undefined'){
+					// console.log(pig[i]);
+					pointsCont[pig[i]['vId0']] = 1;
+				}else{
+					continue;
+				}
 				// console.log(geometry);
 				var meets = true;
 				for(h = 0;h<o.questionsChk.length;h++){
 					var questionChk = o.questionsChk[h];
+
 
 					switch(questionChk['qType']){
 						case 'mult':
@@ -407,18 +416,22 @@
 				// console.log(pig[i]);
 
 				if(meets && (j != '' || o.kmlId == -1)){
-					// console.log(geometry.coordinates[1],geometry.coordinates[0])
-					prLyr = L.geoJSON(geometry);
-					layerGeoms.addLayer(prLyr);
-					numPoints++;
-					if(o.spatialQType == 'op'){
-						// console.log('aaa');
-						heatPoints.push({
-							lat:geometry.coordinates[1],
-							lng:geometry.coordinates[0],
-							count:5,
-						});
-					}
+					// if(typeof pointsCont[pig[i]['vId0']] == 'undefined'){
+						console.log(pig[i]);
+					// 	pointsCont[pig[i]['vId0']] = 1;
+						prLyr = L.geoJSON(geometry);
+						layerGeoms.addLayer(prLyr);
+						numPoints++;
+						if(o.spatialQType == 'op'){
+							// console.log('aaa');
+							heatPoints.push({
+								lat:geometry.coordinates[1],
+								lng:geometry.coordinates[0],
+								count:5,
+							});
+						}
+
+					// }
 				}
 
 				// if(o.kmlId == -1){

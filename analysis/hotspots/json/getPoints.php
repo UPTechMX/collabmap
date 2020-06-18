@@ -58,17 +58,24 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 	}
 
 	// echo "$q[questionId]\n\n";
-
+	if($k != 0){
+		$visAnt = " AND v$k.id = v".($k-1).".id";
+	}else{
+		$visAnt = "";
+	}
 	switch ($q['qType']) {
 		case 'mult':
 			// $LJQuestions .= " LEFT JOIN TargetsChecklist tc$k ON tc$k.targetsId = te.targetsId ";
 			$LJQuestions .= " LEFT JOIN Visitas v$k ON v$k.type = 'trgt' AND v$k.elemId = v.elemId AND v$k.checklistId = :chkId$k ";
-			$LJQuestions .= " LEFT JOIN RespuestasVisita rv$k ON rv$k.visitasId = v$k.id AND rv$k.preguntasId = :pregId$k ";
+			$LJQuestions .= " LEFT JOIN RespuestasVisita rv$k ON rv$k.visitasId = v$k.id 
+				AND rv$k.preguntasId = :pregId$k AND rv$k.respuesta = :respuesta$k $visAnt";
 			$LJQuestions .= " LEFT JOIN Respuestas r$k ON r$k.id = rv$k.respuesta "; 
 			$fieldsQ .= ", v$k.id as vId$k ";
 			$fieldsQ .= ", rv$k.respuesta as respV$k, r$k.respuesta as respN$k ";
 			$arr["chkId$k"] = $q['chkId'];
 			$arr["pregId$k"] = $q['questionId'];
+			$arr["respuesta$k"] = $q['answer'];
+			// $whereQ .= " AND rv$k.respuesta = :respuesta$k";
 			break;
 
 		case 'num':
@@ -110,8 +117,7 @@ $sql = "
 	$LJStructure $LJQuestions
 	WHERE (tc.id = :tcId AND rv.preguntasId = :spatialQ AND v.type = 'trgt' $wDE AND v.finalizada = 1 AND v.checklistId = :chkIdspatial)
 	-- AND $spatialFnc(kg.geometry,p.geometry)
-
-	GROUP BY p.id
+	-- GROUP BY v.id
 
 ";
 
@@ -128,9 +134,25 @@ $prep->execute($arr);
 
 $answers = $prep->fetchALL(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
 
+// $puntos = array();
+// foreach ($answers as $k => $a) {
+// 	foreach ($a as $key => $p) {
+// 		if(empty($puntos[$p['id']])){
+// 			$puntos[$p['id']] = 1;
+			
+// 		}else{
+// 			unset($answers[$k][$key]);
+// 		}
 
+// 	}
+// }
 
-// print2($answers);
+$cuantos = 0;
+foreach ($answers as $k => $a) {
+	$cuantos += count($a);
+}
+// print2($cuantos);
+// print2(count($answers));
 
 
 echo atj($answers);
