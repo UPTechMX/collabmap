@@ -11,6 +11,9 @@ switch ($Act) {
 		// if($nivel >= 50)
 		include_once raiz().'questionnaires/home/tutorials.php';
 		break;
+	case 'questionnaire':
+		include_once raiz().'questionnaires/targets/index.php';
+		break;
 	default:
 		include_once raiz().'questionnaires/targets/index.php';
 		break;			

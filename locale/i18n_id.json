@@ -117,9 +117,13 @@
   "repeatedCode":"Kode berulang",
   "invalidCode":"Kode tidak valid",
   "import":"Untuk mengimpor",
-  "tutorials":"Tutorial",
-  "tut1Name":"Instruction guide",
-  "tut1Descript":"Follow these 5 steps to get started with Semarang Siap",
+  "reportProblems":"Laporkan Masalah",
+  "tutorials":"Panduan",
+  "tut1Name":"Panduan Ringkas",
+  "tut1Descript":"Ikuti 5 langkah berikut untuk memulai Semarang SIAP",
+  "vid1Name":"Panduan Pengguna Semarang SIAP",
+  "vid1Descript":"Video Panduan",
+  "mainPage":"Beranda",
 
   "administration": "Administrasi",
 

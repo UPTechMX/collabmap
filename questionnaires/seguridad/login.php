@@ -19,7 +19,6 @@
 	<link href="<?php echo $rootLoginQuest; ?>lib/css/general.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo $rootLoginQuest; ?>questionnaires/seguridad/loginCSS.css" rel="stylesheet" type="text/css" />
 	
-	
 	<!-- LIBRERIAS JAVASCRIPT -->
 	<script src="<?php echo $rootLoginQuest; ?>lib/js/jquery-3.1.1.min.js"></script>
 	<script src="<?php echo $rootLoginQuest; ?>lib/j/j.js"></script>

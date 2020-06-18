@@ -38,11 +38,17 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li class="nav-item">
-				<a  href="<?php echo $_SERVER['PHP_SELF'];?>?Act=tutorials" id="tutorials" class="nav-link"><?php echo TR('tutorials') ?></a>
+				<a  href="<?php echo $_SERVER['PHP_SELF'];?>?Act=questionnaire" class="nav-link"><?php echo TR('mainPage') ?></a>
 			</li>
 			<li class="nav-item">
-				<a href="#" id="chPwd" class="nav-link"><?php echo TR('chPwd') ?></a>
+				<a  href="https://bit.ly/2N5ymkf" target="_blank" class="nav-link"><?php echo TR('reportProblems') ?></a>
 			</li>
+			<li class="nav-item">
+				<a  href="<?php echo $_SERVER['PHP_SELF'];?>?Act=tutorials" id="tutorials" class="nav-link"><?php echo TR('tutorials') ?></a>
+			</li>
+			<!-- <li class="nav-item">
+				<a href="#" id="chPwd" class="nav-link"><?php //echo TR('chPwd') ?></a>
+			</li> -->
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo $_SERVER['PHP_SELF'];?>?logout=1"><?php echo TR('close_session'); ?></a>
 			</li>

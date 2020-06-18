@@ -23,8 +23,8 @@
 				</div>
 				<div class="col-8">
 					<div style="border-left: solid 1px black;padding: 10px;height: 100px;">
-						<strong>Panduan Pengguna Semarang SIAP</strong><br/>
-						<span>CAPSUS Education</span>
+						<strong><?php echo TR('vid1Name'); ?></strong><br/>
+						<span><?php echo TR('vid1Descript'); ?></span>
 					</div>
 				</div>
 			</div>
