@@ -111,7 +111,7 @@ $sql = "
 	WHERE (tc.id = :tcId AND rv.preguntasId = :spatialQ AND v.type = 'trgt' $wDE AND v.finalizada = 1 AND v.checklistId = :chkIdspatial)
 	-- AND $spatialFnc(kg.geometry,p.geometry)
 
-	-- GROUP BY te.id
+	GROUP BY p.id
 
 ";
 

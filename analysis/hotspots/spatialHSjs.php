@@ -319,9 +319,8 @@
 		// console.log(o.questionsChk);
 		var heatPoints = [];
 		var numPoints = 0;
+		console.log('POINTS:',points.length,points);
 		for(var j in points){
-
-
 
 			var pig = points[j];
 			// console.log(pig);
