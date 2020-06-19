@@ -57,12 +57,19 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 		continue;
 	}
 
-	// echo "$q[questionId]\n\n";
-	if($k != 0){
-		$visAnt = " AND v$k.id = v".($k-1).".id";
-	}else{
+	// print2($q);
+
+
+	
+	if(!is_numeric($visChk[$q['chkId']])){
+		$visChk[$q['chkId']] = $k;
 		$visAnt = "";
+	}else{
+		$visAnt = " AND v$k.id = v".$visChk[$q['chkId']].".id";
 	}
+
+	// echo "VisAnt: $visAnt\n\n\n";
+
 	switch ($q['qType']) {
 		case 'mult':
 			// $LJQuestions .= " LEFT JOIN TargetsChecklist tc$k ON tc$k.targetsId = te.targetsId ";
