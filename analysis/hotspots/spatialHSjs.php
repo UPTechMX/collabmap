@@ -321,8 +321,8 @@
 		var numPoints = 0;
 		pointsCont = {};
 
-		console.log('POINTS:',points);
-		console.log('QUESTIONS:',o.questionsChk);
+		// console.log('POINTS:',points);
+		// console.log('QUESTIONS:',o.questionsChk);
 		for(var j in points){
 
 			var pig = points[j];
