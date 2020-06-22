@@ -417,7 +417,7 @@
 
 				if(meets && (j != '' || o.kmlId == -1)){
 					// if(typeof pointsCont[pig[i]['vId0']] == 'undefined'){
-						console.log(pig[i]);
+						// console.log(pig[i]);
 					// 	pointsCont[pig[i]['vId0']] = 1;
 						prLyr = L.geoJSON(geometry);
 						layerGeoms.addLayer(prLyr);
