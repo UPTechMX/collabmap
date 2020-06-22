@@ -59,6 +59,31 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 
 	// print2($q);
 
+	$inequality = '=';
+
+	switch ($q['inequality']) {
+		case '<':
+			$inequality = "<";
+			break;
+		case '<=':
+			$inequality = "<=";
+			break;
+		case '=':
+			$inequality = "=";
+			break;
+		case '>=':
+			$inequality = ">=";
+			break;
+		case '>':
+			$inequality = ">";
+			break;
+		default:
+			$inequality = "=";
+			break;
+	}
+
+
+
 
 	
 	if(!is_numeric($visChk[$q['chkId']])){
@@ -79,21 +104,25 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 			$LJQuestions .= " LEFT JOIN Respuestas r$k ON r$k.id = rv$k.respuesta "; 
 			$fieldsQ .= ", v$k.id as vId$k ";
 			$fieldsQ .= ", rv$k.respuesta as respV$k, r$k.respuesta as respN$k ";
+
 			$arr["chkId$k"] = $q['chkId'];
 			$arr["pregId$k"] = $q['questionId'];
 			$arr["respuesta$k"] = $q['answer'];
-			// $whereQ .= " AND rv$k.respuesta = :respuesta$k";
+
+			$whereQ .= " AND rv$k.respuesta = :respuestaW$k";
+			$arr["respuestaW$k"] = $q['answer'];
 			break;
 
-		case 'num':
 		
+		case 'num':
 			$LJQuestions .= " LEFT JOIN Visitas v$k ON v$k.type = 'trgt' AND v$k.elemId = v.elemId AND v$k.checklistId = :chkId$k ";
-			$LJQuestions .= " LEFT JOIN RespuestasVisita rv$k ON rv$k.visitasId = v$k.id AND rv$k.preguntasId = :pregId$k ";
-
+			$LJQuestions .= " LEFT JOIN RespuestasVisita rv$k ON rv$k.visitasId = v$k.id AND rv$k.preguntasId = :pregId$k $visAnt";
 			$fieldsQ .= ", v$k.id as vId$k ";
 			$fieldsQ .= ", rv$k.respuesta as respV$k";
 			$arr["chkId$k"] = $q['chkId'];
 			$arr["pregId$k"] = $q['questionId'];
+			$whereQ .= " AND rv$k.respuesta $inequality :respuestaW$k";
+			$arr["respuestaW$k"] = $q['value'];
 			// $LJQuestions .= " LEFT JOIN TargetsChecklist tc$k ON tc$k.targetsId = te.targetsId ";
 			break;
 		
@@ -123,6 +152,7 @@ $sql = "
 	LEFT JOIN KMLGeometries kg ON $spatialFnc(kg.geometry,p.geometry) AND kg.KMLId = :kmlId
 	$LJStructure $LJQuestions
 	WHERE (tc.id = :tcId AND rv.preguntasId = :spatialQ AND v.type = 'trgt' $wDE AND v.finalizada = 1 AND v.checklistId = :chkIdspatial)
+	$whereQ
 	-- AND $spatialFnc(kg.geometry,p.geometry)
 	-- GROUP BY v.id
 
@@ -134,6 +164,7 @@ $arr['chkIdspatial'] = $_POST['chkIdspatial'];
 $arr['kmlId'] = $_POST['kmlId'];
 
 // echo "\nSQL: $sql \n";
+// print2($arr);
 
 $prep = $db->prepare($sql);
 
