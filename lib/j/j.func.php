@@ -310,6 +310,7 @@ function inserta($post){
 			}
 		}else{
 			$sql .= "$geo[field] = ST_GeometryFromText('$geo[wkt]',4326), ";
+			// print2($sql);
 		}
 
 	}

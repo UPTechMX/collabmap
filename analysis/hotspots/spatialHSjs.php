@@ -24,6 +24,7 @@
 		map = new L.Map('mapHS', { center: new L.LatLng(0, 0), zoom: 2 });
 
 		var notFound = L.featureGroup().addTo(map);
+		var notFoundAA = L.featureGroup().addTo(map);
 		layerGeoms = L.featureGroup();
 
 		// console.log(o.n,o.s,o.e,o.w,o.kmlId);
@@ -511,28 +512,28 @@
 		// 		});
 		// 		// prLyr.dbId = sa['id'];
 		// 		// prLyr.type = type.toLowerCase();
-		// 		notFound.addLayer(prLyr);
+		// 		notFoundAA.addLayer(prLyr);
 		// 	}
 
 		// }
 
 		/////// PINTA PUNTOS NO ENCONTRADOS
-		// if(pnf != undefined){
-		// 	for(var i=0;i<pnf.length;i++){
-		// 		var feature = pnf[i]['geometry'];
-		// 		// console.log(feature);
-		// 		var geometry = $.parseJSON(feature);
-		// 		prLyr = L.geoJSON(geometry,{
-		// 			pointToLayer: function (feature, latlng) {
-		// 			    return L.marker(latlng,{icon:icon});
-		// 			}
-		// 		});
-		// 		// prLyr.dbId = sa['id'];
-		// 		// prLyr.type = type.toLowerCase();
-		// 		notFound.addLayer(prLyr);
-		// 	}
-		// 	// console.log(polygons);
-		// }
+		if(pnf != undefined){
+			for(var i=0;i<pnf.length;i++){
+				var feature = pnf[i]['geometry'];
+				// console.log(feature);
+				var geometry = $.parseJSON(feature);
+				prLyr = L.geoJSON(geometry,{
+					pointToLayer: function (feature, latlng) {
+					    return L.marker(latlng,{icon:icon});
+					}
+				});
+				// prLyr.dbId = sa['id'];
+				// prLyr.type = type.toLowerCase();
+				notFoundAA.addLayer(prLyr);
+			}
+			// console.log(polygons);
+		}
 
 
 

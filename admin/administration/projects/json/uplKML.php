@@ -87,7 +87,7 @@
 				$atts = attributes($data,'$geometriesId',$_POST['idAttr']);
 
 				
-				$rj = PolygonInsert($KMLId,$c->Polygon,$atts['id'],$data);
+				$rj = PolygonInsert($KMLId,$c->Polygon,$atts['id'],true,$data);
 				$r = json_decode($rj,true);
 				if($r['ok'] != 1){
 					$ok = false;
@@ -134,34 +134,106 @@
 
 				$mg = $c->MultiGeometry;
 
+				$wkt = 'Multipolygon(';
 				foreach ($mg->Polygon as $g) {
-					$rj = PolygonInsert($KMLId,$g,$atts['id'],$data);
-					$r = json_decode($rj,true);
-					if($r['ok'] != 1){
-						$ok = false;
-						$err = 'Err: EIG:786833';
-						break 2;
+					$rj = PolygonInsert($KMLId,$g,$atts['id'],false,$data);
+					$latlngs = json_decode($rj,true);
+
+					// print2($rj);
+					foreach ($latlngs as $latlng) {
+						$coordsL = "(";
+						$lat1 = "";
+						foreach($latlng as $k => $ll){
+							// print2($ll);
+							$lat = $ll['lat'];
+							$lng = $ll['lng'];
+							if(is_numeric($lat) && is_numeric($lng)){
+								if($coordsL == "("){
+									$lat1 = $lat;
+									$lng1 = $lng;
+									// echo ")))((((";
+								}
+
+								$coordsL .= "$lng $lat, ";
+
+							}	
+						}
+						$coordsL .= ($lat1 != "" && ($lat1 != $lat || $lng1 != $lng) )?
+							"$lng1 $lat1, ":"";
+						$coordsL = trim($coordsL,', ');
+						$coordsL .= ")";
+
 					}
 
-					if($ok){
-						if($_POST['idAttr'] == -1){
-							continue;
-						}
-						foreach ($atts['post'] as $k => $attr) {
-							$atts['post'][$k]['datos']['geometriesId'] = $r['nId'];
-							$rpj = inserta($atts['post'][$k]);
-							$rp = json_decode($rpj,true);
-							if($rp['ok'] != 1){
-								$ok = false;
-								$err = 'Err: EIA:3433';
-								break 3;
-							}
-						}
-						// print2($atts['post']);
-					}
+					$wkt .= "($coordsL),";
+					
+					// $r = json_decode($rj,true);
+					// if($r['ok'] != 1){
+					// 	$ok = false;
+					// 	$err = 'Err: EIG:786833';
+					// 	break 2;
+					// }
+
+					// if($ok){
+					// 	if($_POST['idAttr'] == -1){
+					// 		continue;
+					// 	}
+					// 	foreach ($atts['post'] as $k => $attr) {
+					// 		$atts['post'][$k]['datos']['geometriesId'] = $r['nId'];
+					// 		$rpj = inserta($atts['post'][$k]);
+					// 		$rp = json_decode($rpj,true);
+					// 		if($rp['ok'] != 1){
+					// 			$ok = false;
+					// 			$err = 'Err: EIA:3433';
+					// 			break 3;
+					// 		}
+					// 	}
+					// 	// print2($atts['post']);
+					// }
 
 
 				}
+
+				$wkt = trim($wkt,',');
+				$wkt .= ")";
+
+				$pSA['tabla'] = 'KMLGeometries';
+				$pSA['datos']['KMLId'] = $KMLId;
+				$pSA['datos']['identifier'] = $atts['id'];
+				$pSA['geo']['type'] = 'multipolygon';
+				$pSA['geo']['field'] = 'geometry';
+				$pSA['geo']['wkt'] = $wkt;
+				$rrj = atj(inserta($pSA));
+				$rr = json_decode($rrj,true);
+
+				if($rr['ok'] != 1){
+					$ok = false;
+					$err = 'Err: EIA:3433';
+					break 1;
+				}
+
+
+
+
+				if($ok){
+					if($_POST['idAttr'] == -1){
+						continue;
+					}
+					foreach ($atts['post'] as $k => $attr) {
+						$atts['post'][$k]['datos']['geometriesId'] = $r['nId'];
+						$rpj = inserta($atts['post'][$k]);
+						$rp = json_decode($rpj,true);
+						if($rp['ok'] != 1){
+							$ok = false;
+							$err = 'Err: EIA:3433';
+							break 2;
+						}
+					}
+					// print2($atts['post']);
+				}
+
+
+				// echo "---- $wkt ----\n\n";
 			}
 
 			
@@ -226,7 +298,7 @@
 
 
 
-	function PolygonInsert($KMLId,$polygon,$identifier,$data = array()){
+	function PolygonInsert($KMLId,$polygon,$identifier,$inserta,$data = array()){
 		global $db;
 
 		global $n;
@@ -312,7 +384,10 @@
 
 		// print2($pSA);
 
-
-		return atj(inserta($pSA));
+		if($inserta){
+			return atj(inserta($pSA));
+		}else{
+			return atj([$latlngs]);
+		}
 
 	}
