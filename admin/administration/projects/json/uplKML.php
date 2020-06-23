@@ -87,7 +87,7 @@
 				$atts = attributes($data,'$geometriesId',$_POST['idAttr']);
 
 				
-				$rj = PolygonInsert($KMLId,$c->Polygon,$atts['id']);
+				$rj = PolygonInsert($KMLId,$c->Polygon,$atts['id'],$data);
 				$r = json_decode($rj,true);
 				if($r['ok'] != 1){
 					$ok = false;
@@ -134,9 +134,8 @@
 
 				$mg = $c->MultiGeometry;
 
-				foreach ($mg as $g) {
-					
-					$rj = PolygonInsert($KMLId,$g->Polygon,$atts['id']);
+				foreach ($mg->Polygon as $g) {
+					$rj = PolygonInsert($KMLId,$g,$atts['id'],$data);
 					$r = json_decode($rj,true);
 					if($r['ok'] != 1){
 						$ok = false;
@@ -227,7 +226,7 @@
 
 
 
-	function PolygonInsert($KMLId,$polygon,$identifier){
+	function PolygonInsert($KMLId,$polygon,$identifier,$data = array()){
 		global $db;
 
 		global $n;
@@ -243,14 +242,21 @@
 
 		$coordinates = $polygon->outerBoundaryIs->LinearRing->coordinates;
 		// print2($coordinates);
+		$coords22 = $coordinates->__toString();
 		$coords = $coordinates->__toString();
 		$coords = str_replace("\n", '', $coords);
 		$coords = preg_replace("/ +/", " ", $coords);
 		$coords = preg_replace("/\t+/", "", $coords);
 		$coords = trim($coords);
-		// echo "\n\n=-=-=-=\n\n";
-		// echo $coords;
-		// echo "\n\n=-=-=-=\n\n";
+		// if($data[0] == 'C2110_4' || $data[0] == 'C2011_1' ){
+		// 	echo "====".$data[0]."====\n\n";
+		// 	echo "\n\n=-=-=-=\n\n";
+		// 	echo $coords;
+		// 	echo "\n\n=-=-=-=\n\n";
+		// 	echo $coords22;
+		// 	echo "\n\n=-=-=-=\n\n";
+		// }
+
 
 		$cc = explode(" ", $coords);
 		$latlngs = array();

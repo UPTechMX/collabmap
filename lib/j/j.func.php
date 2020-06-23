@@ -266,7 +266,8 @@ function inserta($post){
 
 							}	
 						}
-						$coords .= $lat1 != ""?"$lng1 $lat1, ":"";
+						$coords .= ($lat1 != "" && ($lat1 != $lat || $lng1 != $lng) )?
+							"$lng1 $lat1, ":"";
 						$coords = trim($coords,', ');
 						$coords .= ")";
 
@@ -275,6 +276,7 @@ function inserta($post){
 					if($coords != ""){
 			// $stmt = $db->query("INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')");
 						$sql .= "$geo[field] = ST_GeometryFromText('Polygon($coords)'), ";
+						// echo "ST_GeometryFromText('Polygon($coords)')" ."\n\n";
 						// echo "sql1: $sql\n";
 						// $sql = "INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')";
 						// echo "sql2: $sql\n";2
