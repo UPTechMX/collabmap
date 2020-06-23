@@ -38,4 +38,8 @@ Generar los encuadres de manera automática.
 
 En la pestaña de Tiles (Teselas) y cache activar la opción application/vnd.mapbox-vector-tile
 
+Para acceder entra a http://<dirección de instalación>/admin
 
+u:admin
+
+p:root
