@@ -220,7 +220,7 @@
 						continue;
 					}
 					foreach ($atts['post'] as $k => $attr) {
-						$atts['post'][$k]['datos']['geometriesId'] = $r['nId'];
+						$atts['post'][$k]['datos']['geometriesId'] = $rr['nId'];
 						$rpj = inserta($atts['post'][$k]);
 						$rp = json_decode($rpj,true);
 						if($rp['ok'] != 1){
