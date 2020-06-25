@@ -18,6 +18,7 @@ if($_POST['usuario'] != "") {
     // $_SESSION['CM']['consultations']['privs'] = (count($v['priv'])>0?$v['priv'] :array());
   }else{
     unset($_SESSION['CM']['consultations']);
+    echo '{"ok":0}';
   }
   // print2($_SESSION);
 }

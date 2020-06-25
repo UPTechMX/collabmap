@@ -380,7 +380,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 		<div id="chks">
 			<div class="row">
 				<div class="col-6">
-					<h5><?php echo TR('selChk'); ?></h5>
+					<h5><?php echo TR('selspaChk'); ?></h5>
 					<select class="form-control" id="selChkHSspatial">
 						<option value=""><?php echo TR('selChk'); ?></option>
 						<?php foreach ($chks as $c){ ?>
@@ -391,7 +391,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 					</select>
 				</div>
 				<div class="col-6">
-					<h5><?php echo TR('spatialQuestion'); ?></h5>
+					<h5><?php echo TR('selspaQuest'); ?></h5>
 					<select class="form-control" id="HSSpQuestionSel">
 						<option value="">- - - <?php echo TR('spatialQuestion'); ?> - - -</option>
 					</select>
@@ -405,7 +405,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 					</span>
 				</div>
 				<div class="col-3">
-					<h5><?php echo TR('selChk'); ?></h5>
+					<h5><?php echo TR('selChkUH'); ?></h5>
 					<select class="form-control selChkHSanalysis">
 						<option value=""><?php echo TR('selChk'); ?></option>
 						<?php foreach ($chks as $c){ ?>
@@ -416,7 +416,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 					</select>
 				</div>
 				<div class="col-2">
-					<h5><?php echo TR('numericQuestion'); ?></h5>
+					<h5><?php echo TR('numericQuestionUH'); ?></h5>
 					<select class="form-control HSNumQuestionSel" id="HSNumQuestionSel">
 						<option value=""><?php echo TR('numericQuestion'); ?></option>
 					</select>
@@ -433,16 +433,16 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 					</select>
 				</div>
 				<div class="col-2 qMods numModCHK numModInq" style="display:none;">
-					<h5><?php echo TR('value'); ?></h5>
+					<!-- <h5><?php echo TR('value'); ?></h5> -->
 					<input type="text" class="form-control HSValue" value="10"/>
 				</div>
 				<div class="col-2 qMods numModCHK numModInq" style="display:none;">
 					<h5><?php echo TR('analysisType'); ?></h5>
 					<select class="form-control HSNumType" id="HSNumType">
-						<option value="1"><?php echo TR('average'); ?></option>
+						<option value="1"><?php echo TR('averageUH'); ?></option>
 						<option value="2"><?php echo TR('ansNumber'); ?></option>
-						<option value="3">Promedio de todas las respuestas (Traducir)</option>
-						<option value="4">Suma de todas las respuestas (Traducir)</option>
+						<option value="3"><?php echo TR('avgnumUH'); ?></option>
+						<option value="4"><?php echo TR('sumnumUH'); ?></option>
 					</select>
 				</div>
 				<div class="col-3 qMods multMod" style="display:none;">
@@ -452,7 +452,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 				<div class="col-3 qMods multMod" style="display:none;">
 					<h5><?php echo TR('analysisType'); ?></h5>
 					<select class="form-control HSMultType" id="HSMultType">
-						<option value="1"><?php echo TR('average'); ?></option>
+						<option value="1"><?php echo TR('averageUH'); ?></option>
 						<option value="2"><?php echo TR('ansNumber'); ?></option>
 					</select>
 				</div>
@@ -460,35 +460,6 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 			<div id="divQuestions"></div>
 
 		</div>
-		<!-- STRUCTURE FILTERS -->
-		<div style="background-color: whitesmoke;padding: 10px;border-radius: 5px;<?php echo $displayStruct; ?>" id="HSStructureFilter">
-			<h4><?php echo TR('structureFilter'); ?></h4>
-			<div class='row'>
-				<?php 
-				foreach ($dims as $k => $d){
-					if($k > count($dims)-2){
-						break;
-					}
-					if($k == 0){
-						$dimsElems = $db->query("SELECT * FROM DimensionesElem 
-							WHERE dimensionesId = $d[id]
-							ORDER BY nombre")->fetchAll(PDO::FETCH_ASSOC);
-					}else{
-						$dimsElems = array();
-					}
-				?>
-					<div class="col-3">
-						<select class="form-control dimSelHS" id="dimSelHS_<?php echo "$d[nivel]"; ?>">
-							<option value="">- - - <?php echo $d['nombre']; ?> - - -</option>
-							<?php foreach ($dimsElems as $de){ ?>
-								<option value="<?php echo $de['id']; ?>"><?php echo $de['nombre']; ?></option>
-							<?php } ?>
-						</select>
-					</div>
-				<?php } ?>
-			</div>
-		</div>
-
 		
 		<!-- KMLS -->
 		<div id="KMLS">
@@ -543,6 +514,36 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 			</div>
 			<div id="divAttrs"></div>
 		</div>
+
+		<!-- STRUCTURE FILTERS -->
+		<div style="background-color: whitesmoke;padding: 10px;border-radius: 5px;<?php echo $displayStruct; ?>" id="HSStructureFilter">
+			<h4><?php echo TR('structureFilter'); ?></h4>
+			<div class='row'>
+				<?php 
+				foreach ($dims as $k => $d){
+					if($k > count($dims)-2){
+						break;
+					}
+					if($k == 0){
+						$dimsElems = $db->query("SELECT * FROM DimensionesElem 
+							WHERE dimensionesId = $d[id]
+							ORDER BY nombre")->fetchAll(PDO::FETCH_ASSOC);
+					}else{
+						$dimsElems = array();
+					}
+				?>
+					<div class="col-3">
+						<select class="form-control dimSelHS" id="dimSelHS_<?php echo "$d[nivel]"; ?>">
+							<option value="">- - - <?php echo $d['nombre']; ?> - - -</option>
+							<?php foreach ($dimsElems as $de){ ?>
+								<option value="<?php echo $de['id']; ?>"><?php echo $de['nombre']; ?></option>
+							<?php } ?>
+						</select>
+					</div>
+				<?php } ?>
+			</div>
+		</div>
+
 
 		<div id="divBtn" style="margin-top: 10px;text-align: right;">
 			<span class="btn btn-shop" id="generateHS"><?php echo TR('generate'); ?></span>
