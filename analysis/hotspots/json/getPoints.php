@@ -101,7 +101,7 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 			// $LJQuestions .= " LEFT JOIN TargetsChecklist tc$k ON tc$k.targetsId = te.targetsId ";
 			$LJQuestions .= " LEFT JOIN Visitas v$k ON v$k.type = 'trgt' AND v$k.elemId = v.elemId AND v$k.checklistId = :chkId$k ";
 			$LJQuestions .= " LEFT JOIN RespuestasVisita rv$k ON rv$k.visitasId = v$k.id 
-				AND rv$k.preguntasId = :pregId$k $visAnt";
+				AND rv$k.preguntasId = :pregId$k AND rv$k.respuesta = :respuesta$k $visAnt";
 			$LJQuestions .= " LEFT JOIN Respuestas r$k ON r$k.id = rv$k.respuesta "; 
 			$fieldsQ .= ", v$k.id as vId$k ";
 			$fieldsQ .= ", rv$k.respuesta as respV$k, r$k.respuesta as respN$k ";
@@ -110,7 +110,7 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 			$arr["pregId$k"] = $q['questionId'];
 			$arr["respuesta$k"] = $q['answer'];
 
-			// $whereQ .= " AND rv$k.respuesta = :respuestaW$k";
+			$whereQ .= " AND rv$k.respuesta = :respuestaW$k";
 			
 			$arr["respuestaW$k"] = $q['answer'];
 			break;
@@ -123,7 +123,7 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 			$fieldsQ .= ", rv$k.respuesta as respV$k";
 			$arr["chkId$k"] = $q['chkId'];
 			$arr["pregId$k"] = $q['questionId'];
-			// $whereQ .= " AND rv$k.respuesta $inequality :respuestaW$k";
+			$whereQ .= " AND rv$k.respuesta $inequality :respuestaW$k";
 			$arr["respuestaW$k"] = $q['value'];
 			// $LJQuestions .= " LEFT JOIN TargetsChecklist tc$k ON tc$k.targetsId = te.targetsId ";
 			break;
