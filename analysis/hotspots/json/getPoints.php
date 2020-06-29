@@ -110,9 +110,9 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 			$arr["pregId$k"] = $q['questionId'];
 			$arr["respuesta$k"] = $q['answer'];
 
-			$whereQ .= " AND rv$k.respuesta = :respuestaW$k";
+			// $whereQ .= " AND rv$k.respuesta = :respuestaW$k";
 			
-			$arr["respuestaW$k"] = $q['answer'];
+			// $arr["respuestaW$k"] = $q['answer'];
 			break;
 
 		
@@ -123,8 +123,8 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 			$fieldsQ .= ", rv$k.respuesta as respV$k";
 			$arr["chkId$k"] = $q['chkId'];
 			$arr["pregId$k"] = $q['questionId'];
-			$whereQ .= " AND rv$k.respuesta $inequality :respuestaW$k";
-			$arr["respuestaW$k"] = $q['value'];
+			// $whereQ .= " AND rv$k.respuesta $inequality :respuestaW$k";
+			// $arr["respuestaW$k"] = $q['value'];
 			// $LJQuestions .= " LEFT JOIN TargetsChecklist tc$k ON tc$k.targetsId = te.targetsId ";
 			break;
 		
