@@ -137,11 +137,6 @@
 			for(var k= 0;k<points[i].length;k++){
 
 				// console.log(pointsRev[points[i].id]);
-				if(typeof pointsRev[points[i].id] == 'undefined'){
-					pointsRev[points[i].id] = 1;
-				}else{
-					continue;
-				}
 				var meetsAll = true;
 				for(j = 0;j<o.questionsChk.length;j++){
 					var questionChk = o.questionsChk[j];
