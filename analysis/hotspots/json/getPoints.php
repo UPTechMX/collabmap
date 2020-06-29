@@ -52,6 +52,7 @@ $LJQuestions = '';
 $whereQuestions = '';
 $fieldsQ = '';
 $whereQ = '';
+$groupQ = ' GROUP BY ';
 foreach ($_POST['questionsChk'] as $k => $q) {
 	if(empty($q['questionId'])  || $q['questionId'] == 'ansNum' ){
 		continue;
@@ -110,6 +111,7 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 			$arr["respuesta$k"] = $q['answer'];
 
 			$whereQ .= " AND rv$k.respuesta = :respuestaW$k";
+			
 			$arr["respuestaW$k"] = $q['answer'];
 			break;
 
@@ -131,8 +133,13 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 			# code...
 			break;
 	}
+
+	$groupQ = " v$k.id, ";
 	// print2($q);
 }
+
+$groupQ = trim($groupQ,', ');
+
 
 if($_POST['kmlId'] == -1){
 	$fields = "te.id as idGroup";
@@ -153,6 +160,7 @@ $sql = "
 	$LJStructure $LJQuestions
 	WHERE (tc.id = :tcId AND rv.preguntasId = :spatialQ AND v.type = 'trgt' $wDE AND v.finalizada = 1 AND v.checklistId = :chkIdspatial)
 	$whereQ
+	$groupQ
 	-- AND $spatialFnc(kg.geometry,p.geometry)
 	-- GROUP BY v.id
 
