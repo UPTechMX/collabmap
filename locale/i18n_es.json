@@ -117,7 +117,7 @@
 
   "administration": "Administración",
   
-  "targets": "Objetivos",
+  "targets": "Monitoreo de Objetivos",
   "target": "Objetivo",
   "description": "Descripción",
   "targetInfo": "Información del objetivo",
@@ -301,7 +301,7 @@
   "genChart":"Generar gráfica",
   "dwlAns":"Descargar respuestas",
   "hotspots":"Urban Hotspots",
-  "selPolygonMap":"Selecciona polígonos de estudio",
+  "selPolygonMap":"Selecciona polígonos de estudio:",
   "selAttr":"Atributo",
   "attrVal":"Selecciona un valor",
   "and":"Y",
@@ -309,8 +309,8 @@
   "ansNumber":"Por total de casos",
   "analysisType":"Tipo de representación",
 
-  "publicCons":"Consultas públicas",
-  "publicCon":"Consulta pública",
+  "publicCons":"Sondeo",
+  "publicCon":"Sondeo",
   "emailReq":"Pedir email",
   "oneAns":"Sólo se permite responder una vez",
   "oneAnsUser":"Sólo se permite responder una vez",
@@ -384,13 +384,17 @@
   "pwdChanged" : "La contraseña se cambió existosamente",
   "header": "Encabezado",
 
-  "selspaChk": "Selecciona un cuestionario georreferenciado",
-  "selspaQuest": "Ubicación de referencia",
-  "numericQuestionUH": "Pregunta",
-  "selChkUH": "Selecciona un cuestionario",
+  "selspaChk": "Selecciona una pregunta georreferenciada de un cuestionario:",
+  "selChkUH": "Selecciona una pregunta de interés:",  
+  "Chk": "Cuestionario",
+  "Quest": "Pregunta",
+  "poly": "Polígonos",
+  "polyRep": "Representación",
+  
   "averageUH":"Por proporción de casos",
   "avgnumUH":"Por promedio de casos",
-  "sumnumUH":"Por suma de casos"
+  "sumnumUH":"Por suma de casos",
+  "numAnswUH":"Número de respuestas" 
   
   
       

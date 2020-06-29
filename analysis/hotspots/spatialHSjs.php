@@ -100,7 +100,7 @@
 			var pnf = [];
 
 		}
-		console.log('points',points);
+		// console.log('points',points);
 		// console.log('chkAnsNum',chkAnsNum);
 
 		var questMax = {};
@@ -600,7 +600,6 @@
 										// console.log(acum);
 										fillOpacity = acum.countMeetsAll/acum.numRespSel;
 									}
-									console.log(acum.numRespSel);
 									acum.text = '</strong><?php echo TR("ansNumber"); ?>:</strong>'+acum.numRespSel+'<br/>';
 									acum.text += '</strong><?php echo TR("matchingAnswers"); ?>:</strong>'+acum.countMeetsAll+'<br/>';
 									acum.text += '</strong><?php echo TR("percent"); ?>:</strong>'+(fillOpacity*100).toFixed(2)+' %<br/>';
@@ -617,7 +616,7 @@
 									}else{
 										percent = acum.countMeetsAll/acum.numRespSel;
 									}
-									console.log(acum.numRespSel);
+
 									acum.text = '</strong><?php echo TR("ansNumber"); ?>:</strong>'+acum.numRespSel+'<br/>';
 									acum.text += '</strong><?php echo TR("matchingAnswers"); ?>:</strong>'+acum.countMeetsAll+'<br/>';
 									acum.text += '</strong><?php echo TR("percent"); ?>:</strong>'+(percent*100).toFixed(2)+' %<br/>';

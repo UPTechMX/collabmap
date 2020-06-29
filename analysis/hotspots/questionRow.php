@@ -13,7 +13,7 @@ checaAcceso(5); // checaAcceso analysis;
 		</span>
 	</div>
 	<div class="col-3">
-		<h5><?php echo TR('selChkUH'); ?></h5>
+		<h5><?php echo TR('Chk'); ?></h5>
 		<select class="form-control selChkHSanalysis">
 			<option value=""><?php echo TR('selChk'); ?></option>
 			<?php foreach ($chks as $c){ ?>
@@ -24,7 +24,7 @@ checaAcceso(5); // checaAcceso analysis;
 		</select>
 	</div>
 	<div class="col-2">
-		<h5><?php echo TR('numericQuestionUH'); ?></h5>
+		<h5><?php echo TR('Quest'); ?></h5>
 		<select class="form-control HSNumQuestionSel">
 			<option value=""><?php echo TR('numericQuestion'); ?></option>
 		</select>

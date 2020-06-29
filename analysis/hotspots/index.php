@@ -276,6 +276,28 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 			}
 		});
 
+		$('#HSNumQuestionSel').change(function(event) {
+		// 	/* Act on the event */
+		// });
+		// $('#chks').on('change', '#HSNumQuestionSel', function(event) {
+			event.preventDefault();
+			//      (this).closest('.rowPreg').find
+			var pId = $(this).val();
+			$(this).closest('.rowPreg').find('.qMods').hide();
+			if(pId != ''){
+				var type = $(this).closest('.rowPreg').find('.HSNumQuestionSel option[value="'+pId+'"]').attr('class');
+				var index = $(this).closest('.rowPreg').find('.HSNumQuestionSel option[value="'+pId+'"]').attr('index');
+				// console.log(pId,type,index);
+				$('.analysisTypeHS').hide();
+				if(type == 'num'){
+					$('#HSNumTypeDiv').show();
+				}else if(type == 'mult'){
+					$('#HSMultTypeDiv').show();
+				}
+			}
+		});
+
+
 		$('#chks').on('click', '.delRowPreg', function(event) {
 			event.preventDefault();
 			$(this).closest('.rowPreg').remove();
@@ -378,9 +400,12 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 
 		<!-- CHEKLIST -->
 		<div id="chks">
+			<h2 style="margin-top:20px;">
+				1) <?php echo TR('selspaChk'); ?>
+			</h2>
 			<div class="row">
 				<div class="col-6">
-					<h5><?php echo TR('selspaChk'); ?></h5>
+					<h5><?php echo TR('Chk'); ?></h5>
 					<select class="form-control" id="selChkHSspatial">
 						<option value=""><?php echo TR('selChk'); ?></option>
 						<?php foreach ($chks as $c){ ?>
@@ -391,12 +416,16 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 					</select>
 				</div>
 				<div class="col-6">
-					<h5><?php echo TR('selspaQuest'); ?></h5>
+					<h5><?php echo TR('Quest'); ?></h5>
 					<select class="form-control" id="HSSpQuestionSel">
 						<option value="">- - - <?php echo TR('spatialQuestion'); ?> - - -</option>
 					</select>
 				</div>
 			</div>
+			<h2 style="margin-top:20px;">
+				2) <?php echo TR('selChkUH'); ?>
+			</h2>
+
 			<div class="row rowPreg" style="margin-top: 10px;">
 				<div class="col-1" style="text-align: center;">
 					<h5>&nbsp;</h5>
@@ -404,8 +433,8 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 						<i class="glyphicon glyphicon-plus"></i>
 					</span>
 				</div>
-				<div class="col-3">
-					<h5><?php echo TR('selChkUH'); ?></h5>
+				<div class="col-5">
+					<h5><?php echo TR('Chk'); ?></h5>
 					<select class="form-control selChkHSanalysis">
 						<option value=""><?php echo TR('selChk'); ?></option>
 						<?php foreach ($chks as $c){ ?>
@@ -415,13 +444,14 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 						<?php } ?>
 					</select>
 				</div>
-				<div class="col-2">
-					<h5><?php echo TR('numericQuestionUH'); ?></h5>
+				<div class="col-6">
+					<h5><?php echo TR('Quest'); ?></h5>
 					<select class="form-control HSNumQuestionSel" id="HSNumQuestionSel">
 						<option value=""><?php echo TR('numericQuestion'); ?></option>
 					</select>
 				</div>
-				<div class="col-2 qMods numModCHK" style="display:none;">
+
+				<div class="col-3 qMods numModCHK" style="display:none;">
 					<h5><?php echo TR('inequality'); ?></h5>
 					<select class="form-control HSInequality" id="HSInequality">
 						<option value=">"><?php echo TR('greater-than'); ?></option>
@@ -432,32 +462,16 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 						<option value="range"><?php echo TR('range'); ?></option>
 					</select>
 				</div>
-				<div class="col-2 qMods numModCHK numModInq" style="display:none;">
+				<div class="col-3 qMods numModCHK numModInq" style="display:none;">
 					<h5>
 						&nbsp;
 						<!-- <?php echo TR('value'); ?> -->
 					</h5>
 					<input type="text" class="form-control HSValue" value="10"/>
 				</div>
-				<div class="col-2 qMods numModCHK numModInq" style="display:none;">
-					<h5><?php echo TR('analysisType'); ?></h5>
-					<select class="form-control HSNumType" id="HSNumType">
-						<option value="1"><?php echo TR('averageUH'); ?></option>
-						<option value="2"><?php echo TR('ansNumber'); ?></option>
-						<option value="3"><?php echo TR('avgnumUH'); ?></option>
-						<option value="4"><?php echo TR('sumnumUH'); ?></option>
-					</select>
-				</div>
 				<div class="col-3 qMods multMod" style="display:none;">
 					<h5><?php echo TR('answers'); ?></h5>
 					<select class="form-control HSAnswer"></select>
-				</div>
-				<div class="col-3 qMods multMod" style="display:none;">
-					<h5><?php echo TR('analysisType'); ?></h5>
-					<select class="form-control HSMultType" id="HSMultType">
-						<option value="1"><?php echo TR('averageUH'); ?></option>
-						<option value="2"><?php echo TR('ansNumber'); ?></option>
-					</select>
 				</div>
 			</div>
 			<div id="divQuestions"></div>
@@ -466,6 +480,9 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 		
 		<!-- KMLS -->
 		<div id="KMLS">
+			<h2 style="margin-top:20px;">
+				3) <?php echo TR('selPolygonMap'); ?>
+			</h2>
 			<div class="row">
 				<div class='col-3'>
 					<h5 style="font-weight: bold;"><?php echo TR('selPolygonMap'); ?></h5>
@@ -483,6 +500,25 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 						<?php } ?>
 					</select>
 				</div>
+
+				<div class="col-3 analysisTypeHS" id="HSNumTypeDiv"  style="display:none;">
+					<h5><?php echo TR('analysisType'); ?><br/>&nbsp;</h5>
+					<select class="form-control HSNumType" id="HSNumType">
+						<option value="1"><?php echo TR('averageUH'); ?></option>
+						<option value="2"><?php echo TR('ansNumber'); ?></option>
+						<option value="3"><?php echo TR('avgnumUH'); ?></option>
+						<option value="4"><?php echo TR('sumnumUH'); ?></option>
+					</select>
+				</div>
+
+				<div class="col-3 analysisTypeHS" id="HSMultTypeDiv"  style="display:none;">
+					<h5><?php echo TR('analysisType'); ?><br/>&nbsp;</h5>
+					<select class="form-control HSMultType" id="HSMultType">
+						<option value="1"><?php echo TR('averageUH'); ?></option>
+						<option value="2"><?php echo TR('ansNumber'); ?></option>
+					</select>
+				</div>
+
 			</div>
 			<div class="row attrRow" style="margin-top: 10px;" id="attrRow">
 				<div class="col-1" style="display: none; text-align: center;" id="divAdd">
