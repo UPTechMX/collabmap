@@ -13,6 +13,7 @@ $app->group('/getAll', function () use ($app) {
 	
 	$token = getToken($request);
 	$verif = tokenVerif($token,$usrId);
+	
 	if(!$verif){
 		$response->getBody()->write('{"err":"Invalid token"}');
 		return $response;

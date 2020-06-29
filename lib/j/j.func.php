@@ -1367,6 +1367,259 @@ function getOffspring($dimElemId,&$arr){
 }
 
 
+function insertaDimensionesElem($de){
+	global $db;
+
+	$ok = true;
+
+	$prep = $db->prepare("SELECT * FROM DimensionesElem WHERE padre = :padre AND nombre = :nombre");
+	$arr['padre'] = $de['padre'];
+	$arr['nombre'] = $de['nombre'];
+	$prep -> execute($arr);
+	$existe = $prep->fetchAll(PDO::FETCH_ASSOC);
+
+	if(count($existe) == 0){
+		$pDE = array();
+		$pDE['tabla'] = 'DimensionesElem';
+		$pDE['datos']['padre'] = $de['padre'];
+		$pDE['datos']['dimensionesId'] = $de['dimensionesId'];
+		$pDE['datos']['nombre'] = $de['nombre'];
+
+		$rDEj = atj(inserta($pDE));
+		$rDE = json_decode($rDEj,true);
+
+		$deId = $rDE['nId'];
+		$check = false;
+		if($rDE['ok'] != 1){
+			
+			return '{"ok":0,"err":"IDEA:3843"}';
+		}
+
+	}else{
+		$check = true;
+		$deId = $existe[0]['id'];
+	}
+
+	$targetsElem = $de['targetsElem'];
+	foreach ($targetsElem as $te) {
+		$rj = insertaTargetsElemA($deId,$te,$check);
+
+		$r = json_decode($rj,true);
+		if($r['ok'] != 1){
+			$ok = false;
+			$err = $r['err'];
+			break;
+		}
+	}
+
+	if($ok){
+		return '{"ok":1}';
+	}else{
+		return '{"ok":0,"err":"'.$err.'"}';
+	}
+
+}
+
+function insertaTargetsElemA($dimensionesElemId,$te,$check){
+	global $db;
+
+
+	$inserta = true;
+	$ok = true;
+	if($check){
+		$existe = $db->query("SELECT * FROM TargetsElems WHERE dimensionesElemId = $dimensionesElemId")->fetchAll(PDO::FETCH_ASSOC);
+		if(count($existe) > 0){
+			$inserta = false;
+			$teId = $existe[0]['id'];
+			$check = true;
+		}else{
+			$inserta = true;
+			$check = false;
+		}
+	}
+
+	if($inserta){
+		$pTE['tabla'] = 'TargetsElems';
+		$pTE['datos']['targetsId'] = $te['trgtElem']['targetsId'];
+		$pTE['datos']['usersTargetsId'] = $te['trgtElem']['usersTargetsId'];
+		$pTE['datos']['usersId'] = $te['trgtElem']['usersId'];
+		if(!empty($dimensionesElemId)){
+			$pTE['datos']['dimensionesElemId'] = $dimensionesElemId;
+		}else{
+			$pTE['datos']['dimensionesElemId'] = $te['trgtElem']['dimensionesElemId'];
+		}
+		// print2($pTE);
+		$rTEj = atj(inserta($pTE));
+		$rTE = json_decode($rTEj,true);
+
+		if($rTE['ok'] != 1){
+			return '{"ok":0,"err":"ITEA:9987"}';
+		}
+		$teId = $rTE['nId'];
+
+	}
+
+	$visitas = empty($te['visitas'])?array():$te['visitas'];
+
+	foreach ($visitas as $v) {
+
+		$rj = insertaVisitasA($teId,$v,$check);
+
+		$r = json_decode($rj,true);
+		if($r['ok'] != 1){
+			$ok = false;
+			$err = $r['err'];
+
+			break;
+		}
+	}
+
+	if($ok){
+		return '{"ok":1}';
+	}else{
+		return '{"ok":0,"err":"'.$err.'"}';
+	}
+}
+
+function insertaVisitasA($elemId,$v,$check){
+	global $db;
+
+	$ok = true;
+	$inserta = true;
+	// if($check){
+	// 	$existe = $db->query("SELECT * FROM Visitas WHERE elemId = $elemId AND type = '$v[type]' ")->fetchAll(PDO::FETCH_ASSOC);
+	// 	if(count($existe) > 0){
+	// 		$inserta = false;
+	// 		$vId = $existe[0]['id'];
+	// 		$check = true;
+	// 	}else{
+	// 		$inserta = true;
+	// 		$check = false;
+	// 	}
+	// }
+
+	if($inserta){
+
+		$pV['tabla'] = 'Visitas';
+		$pV['datos']['timestamp'] = $v['visita']['timestamp'];
+		$pV['datos']['finishDate'] = $v['visita']['finishDate'];
+		$pV['datos']['finalizada'] = $v['visita']['finalizada'];
+		$pV['datos']['checklistId'] = $v['visita']['checklistId'];
+		$pV['datos']['type'] = $v['visita']['type'];
+		if(!empty($elemId)){
+			$pV['datos']['elemId'] = $elemId;	
+		}else{
+			$pV['datos']['elemId'] = $v['visita']['elemId'];	
+		}
+
+		print2($pV);
+		$rVj = atj(inserta($pV));
+		$rV = json_decode($rVj,true);
+
+		if($rV['ok'] != 1){
+			// print2($rV);
+			return '{"ok":0,"err":"IVA:6547"}';
+		}
+		$vId = $rV['nId'];
+	}
+
+	$respuestas = $v['respuestas'];
+
+	foreach ($respuestas as $r) {
+		$rrj = respuestasVisitasA($rV['nId'],false,$r);
+		$rr = json_decode($rrj,true);
+		if($rr['ok'] != 1){
+			return $rrj;
+		}
+	}
+
+	return '{"ok":1}';
+}
+
+function respuestasVisitasA($vId,$check,$r){
+	global $db;
+
+	$inserta = true;
+	// if($check){
+
+	// 	$existe = $db->query("SELECT * FROM RespuestasVisitas 
+	// 		WHERE visitasId = $vId AND preguntasId = $r[preguntasId] ")->fetchAll(PDO::FETCH_ASSOC);
+	// 	if(count($existe) > 0){
+	// 		$inserta = false;
+	// 		$rvId = $existe[0]['id'];
+	// 		$check = true;
+	// 	}else{
+	// 		$inserta = true;
+	// 		$check = false;
+	// 	}
+	// } 
+
+	$pR['tabla'] = 'RespuestasVisita';
+	$pR['datos']['visitasId'] = $vId;
+	$pR['datos']['preguntasId'] = $r['preguntasId'];
+	$pR['datos']['respuesta'] = $r['respuesta'];
+	$pR['datos']['justificacion'] = $r['justificacion'];
+	$pR['datos']['identificador'] = $r['identificador'];
+
+	if($inserta){		
+		$rrj = atj(inserta($pR));
+		$rr = json_decode($rrj,true);
+		// print2($pR);
+		// print2($rrj);
+
+		if($rr['ok'] != 1){
+			// print2($rr);
+			return '{"ok":0,"err":"IRVA:6667"}';
+		}
+
+		$rvId = $rr['nId'];
+
+	}else{
+		$pR['where'] = " id = $rvId ";
+		$rrj = atj(upd($pR));
+		$rr = json_decode($rrj,true);
+
+		if($rr['ok'] != 1){
+
+			return '{"ok":0,"err":"IRVA:6668"}';
+		}
+
+	}
+
+	if(!$inserta){
+		$db->query("SELECT * FROM Problems WHERE respuestasVisitaId = $rvId");
+	}
+	$problems = empty($r['problems'])?array():$r['problems'];
+	foreach ($problems as $p) {
+		if(!empty($p['points'])){
+			$pp['tabla'] = 'Problems';
+			$pp['datos']['type'] = $p['type'];
+			$pp['datos']['name'] = $p['name'];
+			$pp['datos']['description'] = $p['description'];
+			$pp['datos']['categoriesId'] = $p['categoriesId'];
+			$pp['datos']['respuestasVisitaId'] = $rvId;
+			$pp['datos']['photo'] = $p['photo'];
+			$pp['geo']['type'] = $p['type'];
+			$pp['geo']['latlngs'] = $p['points'];
+
+			$rpj = atj(inserta($pp));
+			$rp = json_decode($rpj,true);
+
+			if($rp['ok'] != 1){
+				// print2($rp);
+				return '{"ok":0,"err":"IPA:5467"}';
+			}
+		}
+	}
+	return '{"ok":1}';
+}
+
+
+
+
+
+
+
 
 
 

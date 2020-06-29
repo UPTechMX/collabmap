@@ -25,6 +25,7 @@ $app->group('/v1', function () use ($app) {
 $app->group('/siapApp', function () use ($app) {
 	
 	require 'siapApp/getAll.php';
+	require 'siapApp/sendAll.php';
 	require 'users.php';
 
 });

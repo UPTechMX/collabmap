@@ -433,7 +433,10 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 					</select>
 				</div>
 				<div class="col-2 qMods numModCHK numModInq" style="display:none;">
-					<!-- <h5><?php echo TR('value'); ?></h5> -->
+					<h5>
+						&nbsp;
+						<!-- <?php echo TR('value'); ?> -->
+					</h5>
 					<input type="text" class="form-control HSValue" value="10"/>
 				</div>
 				<div class="col-2 qMods numModCHK numModInq" style="display:none;">
