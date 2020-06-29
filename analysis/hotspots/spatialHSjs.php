@@ -101,7 +101,7 @@
 			var pnf = [];
 
 		}
-		// console.log('points',points);
+		console.log('points',points);
 		// console.log('chkAnsNum',chkAnsNum);
 
 		var questMax = {};
@@ -120,6 +120,7 @@
 		var valNumMax = -999999999999;
 		var valNumMin = 999999999999;
 		var acums = {};
+		var pointsRev = {};
 		for(var i in points){
 			var count = points[i].length;
 			// console.log('count: ',count, points[i]);
@@ -134,6 +135,13 @@
 			// console.log(points[i]);
 			var sums = {};
 			for(var k= 0;k<points[i].length;k++){
+
+				// console.log(pointsRev[points[i].id]);
+				if(typeof pointsRev[points[i].id] == 'undefined'){
+					pointsRev[points[i].id] = 1;
+				}else{
+					continue;
+				}
 				var meetsAll = true;
 				for(j = 0;j<o.questionsChk.length;j++){
 					var questionChk = o.questionsChk[j];
@@ -297,7 +305,6 @@
 
 				if(meetsAll && i != ''){
 					acums[i].countMeetsAll++;
-					// console.log('mettsAll:',i,acums[i].countMeetsAll);
 				}
 
 			}
