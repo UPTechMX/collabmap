@@ -160,7 +160,7 @@ $sql = "
 	$LJStructure $LJQuestions
 	WHERE (tc.id = :tcId AND rv.preguntasId = :spatialQ AND v.type = 'trgt' $wDE AND v.finalizada = 1 AND v.checklistId = :chkIdspatial)
 	$whereQ
-	
+	$groupQ
 	-- AND $spatialFnc(kg.geometry,p.geometry)
 	-- GROUP BY v.id
 
