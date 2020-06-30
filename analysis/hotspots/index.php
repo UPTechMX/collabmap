@@ -485,7 +485,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 			</h2>
 			<div class="row">
 				<div class='col-3'>
-					<h5 style="font-weight: bold;"><?php echo TR('selPolygonMap'); ?></h5>
+					<h5 style=""><?php echo TR('poly'); ?></h5>
 					<select class="form-control" style="margin-top: 10px;" id="KMLSel">
 						<option value="">- - - <?php echo TR('selPolygonMap'); ?> - - -</option>
 						<?php foreach ($KMLS as $kml){ ?>
@@ -502,7 +502,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 				</div>
 
 				<div class="col-3 analysisTypeHS" id="HSNumTypeDiv"  style="display:none;">
-					<h5><?php echo TR('analysisType'); ?><br/>&nbsp;</h5>
+					<h5><?php echo TR('polyRep'); ?><br/>&nbsp;</h5>
 					<select class="form-control HSNumType" id="HSNumType">
 						<option value="1"><?php echo TR('averageUH'); ?></option>
 						<option value="2"><?php echo TR('ansNumber'); ?></option>
@@ -512,7 +512,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 				</div>
 
 				<div class="col-3 analysisTypeHS" id="HSMultTypeDiv"  style="display:none;">
-					<h5><?php echo TR('analysisType'); ?><br/>&nbsp;</h5>
+					<h5><?php echo TR('polyRep'); ?><br/>&nbsp;</h5>
 					<select class="form-control HSMultType" id="HSMultType">
 						<option value="1"><?php echo TR('averageUH'); ?></option>
 						<option value="2"><?php echo TR('ansNumber'); ?></option>
@@ -529,7 +529,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 				</div>
 				<div class="col-1"></div>
 				<div class="col-3" style="display: none;" id="attrDiv">
-					<h5 style="font-weight: bold;"><?php echo TR('selAttr'); ?></h5>
+					<h5 style=""><?php echo TR('selAttr'); ?></h5>
 					<select class="form-control attrSel" style="margin-top: 10px;"></select>
 				</div>
 				<div class="col-3 valSel attrValDiv" style="display: none;">
