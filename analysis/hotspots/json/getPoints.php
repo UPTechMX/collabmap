@@ -52,7 +52,7 @@ $LJQuestions = '';
 $whereQuestions = '';
 $fieldsQ = '';
 $whereQ = '';
-$groupQ = ' GROUP BY ';
+$groupQ = '';
 foreach ($_POST['questionsChk'] as $k => $q) {
 	if(empty($q['questionId'])  || $q['questionId'] == 'ansNum' ){
 		continue;
@@ -139,6 +139,8 @@ foreach ($_POST['questionsChk'] as $k => $q) {
 }
 
 $groupQ = trim($groupQ,', ');
+$groupQ = $groupQ == ''?'':  ' GROUP BY '.$groupQ;
+
 
 
 if($_POST['kmlId'] == -1){
