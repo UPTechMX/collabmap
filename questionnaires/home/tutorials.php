@@ -44,5 +44,20 @@
 				</div>
 			</div>
 		</div>
+		<!-- <div class="col-md-6">
+			<div class="row" style="padding-top: 10px;">
+				<div class="col-4" style="padding-right: 0px;">
+					<a href="https://docs.google.com/forms/d/e/1FAIpQLSfjwMNX__6XQx9yS4x5rtq9bYOTaZPYjcND7jVDk3ucNYOZYw/viewform" target="_blank">
+						<img class="imgTut" file="tutorial2.png" width="100%" />
+					</a>
+				</div>
+				<div class="col-8">
+					<div style="border-left: solid 1px black;padding: 10px;height: 100px;">
+						<strong><?php //echo TR('tut2Name'); ?></strong><br/>
+						<span><?php //echo TR('tut2Descript'); ?></span>
+					</div>
+				</div>
+			</div>
+		</div> -->
 	</div>
 </div>
