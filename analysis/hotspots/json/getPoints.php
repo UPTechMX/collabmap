@@ -164,7 +164,7 @@ $sql = "
 	$whereQ
 	$groupQ
 	-- AND $spatialFnc(kg.geometry,p.geometry)
-	-- GROUP BY v.id
+	-- GROUP BY te.id
 
 ";
 

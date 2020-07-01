@@ -16,6 +16,8 @@
 		questionsChk:[]
 	}){
 
+		// console.log(o.questionsChk);
+
 		var server = '<?php echo $_SERVER['HTTP_HOST']; ?>';
 
 		var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -100,8 +102,8 @@
 			var pnf = [];
 
 		}
-		// console.log('points',points);
-		// console.log('chkAnsNum',chkAnsNum);
+		console.log('points',points);
+		console.log('chkAnsNum',chkAnsNum);
 
 		var questMax = {};
 		for(j = 0;j<o.questionsChk.length;j++){
@@ -155,15 +157,19 @@
 							sums['ans'+j] = 0;
 						}
 						if(questionChk['questionId'] == 'ansNum'){
+							////// AQUIES
 							if(chkAnsNum[questionChk['chkId']][i] == undefined){
-								valAnalysis = 0;	
+								// console.log('ESTA ENTRANDO AQUI' );
+								valAnalysis = 0;
 							}else{
 								if(chkAnsNum[questionChk['chkId']][i][k] == undefined){
-									valAnalysis = 0;
+									// console.log('ESTA ENTRANDO ACA',questionChk['chkId'],points[i].length,i,k);
+									valAnalysis = null;
 								}else{
 									valAnalysis = parseFloat(chkAnsNum[questionChk['chkId']][i][k].ansNum);
 								}
 							}
+
 						}else{
 							valAnalysis = isNaN(parseFloat(points[i][k]['respV'+j]))?0:parseFloat(points[i][k]['respV'+j]);
 						}
@@ -173,35 +179,35 @@
 						// console.log(questionChk);
 						switch(questionChk['inequality']){
 							case '<':
-								if(valAnalysis < parseFloat(questionChk['value'])){
+								if(valAnalysis != null && valAnalysis < parseFloat(questionChk['value'])){
 									acums[i].countMultAns['ans'+j]['value']++;		
 								}else{
 									meetsAll = false;
 								}
 								break;
 							case '<=':
-								if(valAnalysis <= parseFloat(questionChk['value'])){
+								if(valAnalysis != null && valAnalysis <= parseFloat(questionChk['value'])){
 									acums[i].countMultAns['ans'+j]['value']++;		
 								}else{
 									meetsAll = false;
 								}
 								break;
 							case '=':
-								if(valAnalysis == parseFloat(questionChk['value'])){
+								if(valAnalysis != null && valAnalysis == parseFloat(questionChk['value'])){
 									acums[i].countMultAns['ans'+j]['value']++;		
 								}else{
 									meetsAll = false;
 								}
 								break;
 							case '>=':
-								if(valAnalysis >= parseFloat(questionChk['value'])){
+								if(valAnalysis != null && valAnalysis >= parseFloat(questionChk['value'])){
 									acums[i].countMultAns['ans'+j]['value']++;		
 								}else{
 									meetsAll = false;
 								}
 								break;
 							case '>':
-								if(valAnalysis > parseFloat(questionChk['value'])){
+								if(valAnalysis != null && valAnalysis > parseFloat(questionChk['value'])){
 									acums[i].countMultAns['ans'+j]['value']++;		
 								}else{
 									meetsAll = false;

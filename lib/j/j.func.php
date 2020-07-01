@@ -1602,6 +1602,7 @@ function respuestasVisitasA($vId,$check,$r){
 			$pp['geo']['type'] = $p['type'];
 			$pp['geo']['latlngs'] = $p['points'];
 
+			// print2($pp);
 			$rpj = atj(inserta($pp));
 			$rp = json_decode($rpj,true);
 
