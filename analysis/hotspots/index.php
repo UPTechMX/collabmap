@@ -502,7 +502,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 				</div>
 
 				<div class="col-3 analysisTypeHS" id="HSNumTypeDiv"  style="display:none;">
-					<h5><?php echo TR('polyRep'); ?><br/>&nbsp;</h5>
+					<h5><?php echo TR('polyRep'); ?></h5>
 					<select class="form-control HSNumType" id="HSNumType">
 						<option value="1"><?php echo TR('averageUH'); ?></option>
 						<option value="2"><?php echo TR('ansNumber'); ?></option>
