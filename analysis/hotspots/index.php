@@ -241,7 +241,7 @@ $displayStruct = count($dims) == 1? 'display:none;':'';
 				// console.log(rj);
 				r = $.parseJSON(rj);
 
-				r.push({nom:"<?php echo TR('ansNumber'); ?>",val:"ansNum",clase:'num'});
+				r.push({nom:"<?php echo TR('numAnswUH'); ?>",val:"ansNum",clase:'num'});
 				// console.log(r);
 			}
 
