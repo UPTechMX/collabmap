@@ -27,6 +27,7 @@ $app->group('/siapApp', function () use ($app) {
 	require 'siapApp/getAll.php';
 	require 'siapApp/sendDimensionesElems.php';
 	require 'siapApp/sendTargetsElems.php';
+	require 'siapApp/sendVisitas.php';
 	require 'users.php';
 
 });
