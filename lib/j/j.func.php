@@ -233,11 +233,13 @@ function inserta($post){
 	foreach ($post['datos'] as $k => $v) {
 		$sql .= "$k = :$k, ";
 	}
-	
+	// echo "AAAAA\n";
 	if(!empty($post['geo'])){
 		$geo = $post['geo'];
 		if(empty($geo['wkt'])){
+			// echo "BBBB: $geo[type]\n";
 			switch ($geo['type']) {
+				case 'Marker':
 				case 'marker':
 					$latlng = json_decode($geo['latlngs'],true);
 					$lat = $latlng['lat'];
@@ -246,8 +248,10 @@ function inserta($post){
 						$sql .= "$geo[field] = ST_GeometryFromText('Point($lng $lat)'), ";
 					}
 					break;
+				case 'Polygon':
 				case 'polygon':
 					$latlngs = json_decode($geo['latlngs'],true);
+					// print2($latlngs);
 					foreach ($latlngs as $latlng) {
 						$coords = "(";
 						$lat1 = "";
@@ -272,7 +276,7 @@ function inserta($post){
 						$coords .= ")";
 
 					}
-					
+					// echo "AAAAA";
 					if($coords != ""){
 			// $stmt = $db->query("INSERT INTO Studyarea SET geometry = ST_GeometryFromText('Polygon((0 0,0 3,3 0,0 0),(1 1,1 2,2 1,1 1))')");
 						$sql .= "$geo[field] = ST_GeometryFromText('Polygon($coords)'), ";
@@ -282,6 +286,7 @@ function inserta($post){
 						// echo "sql2: $sql\n";2
 					}
 					break;
+				case 'Polyline':
 				case 'polyline':
 					$latlng = json_decode($geo['latlngs'],true);
 					
@@ -326,7 +331,7 @@ function inserta($post){
 		$nId = $db->lastInsertId();
 		$r = '{"ok":"1","nId":"'.$nId.'"}';
 	} catch (PDOException $e) {
-		$r = '{"ok":"0","e":"'.$e->getMessage(). ' Linea: '.$e->getLine(). '","sql":"'.$sql.'"}';
+		$r = '{"ok":"0","e":"'.$e->getMessage(). ' Linea: '.$e->getLine(). '","sql":"'.$sql.'","arr":'.atj($post['datos']).'}';
 	}
 	return $r;
 }
@@ -1363,9 +1368,7 @@ function getOffspring($dimElemId,&$arr){
 	}
 
 	return $arr;
-
 }
-
 
 function insertaDimensionesElem($de){
 	global $db;
@@ -1417,7 +1420,6 @@ function insertaDimensionesElem($de){
 	}else{
 		return '{"ok":0,"err":"'.$err.'"}';
 	}
-
 }
 
 function insertaTargetsElemA($dimensionesElemId,$te,$check){
@@ -1458,6 +1460,7 @@ function insertaTargetsElemA($dimensionesElemId,$te,$check){
 		$teId = $rTE['nId'];
 
 	}
+	// echo "AAAA: $check";
 
 	$visitas = empty($te['visitas'])?array():$te['visitas'];
 
@@ -1484,35 +1487,76 @@ function insertaTargetsElemA($dimensionesElemId,$te,$check){
 function insertaVisitasA($elemId,$v,$check){
 	global $db;
 
+	$vis = $v['visita'];
+
 	$ok = true;
 	$inserta = true;
-	// if($check){
-	// 	$existe = $db->query("SELECT * FROM Visitas WHERE elemId = $elemId AND type = '$v[type]' ")->fetchAll(PDO::FETCH_ASSOC);
-	// 	if(count($existe) > 0){
-	// 		$inserta = false;
-	// 		$vId = $existe[0]['id'];
-	// 		$check = true;
-	// 	}else{
-	// 		$inserta = true;
-	// 		$check = false;
-	// 	}
-	// }
+	$type = $vis['type'];
+	$chkId = $vis['checklistId'];
+	$teId = $vis['elemId'];
 
+	if($check){
+		$sql = "SELECT v.*, f.code
+		FROM Visitas v
+		LEFT JOIN TargetsElems te ON te.id = v.elemId
+		LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId AND tc.checklistId = $chkId
+		LEFT JOIN Frequencies f ON f.id = tc.frequency
+
+		WHERE v.elemId = $elemId AND v.type = '$type'
+		";
+		// echo "\nSQL: $sql\n";
+		$existe = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+		if(count($existe) > 0){
+			$inserta = false;
+			$vServer = $existe[0];
+			$vId = $vServer['id'];
+			
+			// print2($vServer);
+			$nextDate = getNextDate($vServer['code'],$vServer['finishDate']);
+			// echo "\nCode: $vServer[code], FinishDate; $vServer[finishDate], NEXT DATE: $nextDate\n";
+
+			if($vServer['finalizada'] == 1){
+				// if($vServer['code'] == 'oneTime'){
+				if($nextDate < $vis['finishDate']){
+					$inserta = true;
+				}else{
+					if($vServer['finishDate'] < $vis['finishDate']){
+						$inserta = false;
+					}else{
+						return '{"ok":1}';
+					}	
+				}
+				
+				// }
+			}else{
+				$inserta = false;
+			}
+
+			$check = true;
+			// print2($tcInfo);
+		}else{
+			$inserta = true;
+			$check = false;
+		}
+	}
+
+	$pV['tabla'] = 'Visitas';
+	$pV['datos']['timestamp'] = $vis['timestamp'];
+	$pV['datos']['finishDate'] = $vis['finishDate'];
+	$pV['datos']['finalizada'] = $vis['finalizada'];
 	if($inserta){
 
-		$pV['tabla'] = 'Visitas';
-		$pV['datos']['timestamp'] = $v['visita']['timestamp'];
-		$pV['datos']['finishDate'] = $v['visita']['finishDate'];
-		$pV['datos']['finalizada'] = $v['visita']['finalizada'];
-		$pV['datos']['checklistId'] = $v['visita']['checklistId'];
-		$pV['datos']['type'] = $v['visita']['type'];
+		$pV['datos']['checklistId'] = $vis['checklistId'];
+		$pV['datos']['type'] = $vis['type'];
+		
 		if(!empty($elemId)){
 			$pV['datos']['elemId'] = $elemId;	
 		}else{
-			$pV['datos']['elemId'] = $v['visita']['elemId'];	
+			$pV['datos']['elemId'] = $vis['elemId'];	
 		}
 
-		print2($pV);
+		// print2($pV);
 		$rVj = atj(inserta($pV));
 		$rV = json_decode($rVj,true);
 
@@ -1521,16 +1565,26 @@ function insertaVisitasA($elemId,$v,$check){
 			return '{"ok":0,"err":"IVA:6547"}';
 		}
 		$vId = $rV['nId'];
+	}else{
+		$pV['where'] = " id = $vId ";
 	}
 
 	$respuestas = $v['respuestas'];
 
 	foreach ($respuestas as $r) {
-		$rrj = respuestasVisitasA($rV['nId'],false,$r);
+		$rrj = respuestasVisitasA($vId,$check,$r);
 		$rr = json_decode($rrj,true);
 		if($rr['ok'] != 1){
 			return $rrj;
 		}
+	}
+	// print2($v['multimedia']);
+	$multimedia = $v['multimedia'];
+	if(!$inserta){
+		$db->query("SELECT * FROM Multimedia WHERE visitasId = $vId");
+	}
+	foreach ($multimedia as $m) {
+		guardaImagen($m,$vId);
 	}
 
 	return '{"ok":1}';
@@ -1538,21 +1592,23 @@ function insertaVisitasA($elemId,$v,$check){
 
 function respuestasVisitasA($vId,$check,$r){
 	global $db;
-
 	$inserta = true;
-	// if($check){
+	if($check){
+		$sql = "SELECT * FROM RespuestasVisita 
+			WHERE visitasId = $vId AND preguntasId = $r[preguntasId] ";
 
-	// 	$existe = $db->query("SELECT * FROM RespuestasVisitas 
-	// 		WHERE visitasId = $vId AND preguntasId = $r[preguntasId] ")->fetchAll(PDO::FETCH_ASSOC);
-	// 	if(count($existe) > 0){
-	// 		$inserta = false;
-	// 		$rvId = $existe[0]['id'];
-	// 		$check = true;
-	// 	}else{
-	// 		$inserta = true;
-	// 		$check = false;
-	// 	}
-	// } 
+		// echo "\n SQL: $sql\n";
+
+		$existe = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+		if(count($existe) > 0){
+			$inserta = false;
+			$rvId = $existe[0]['id'];
+			$check = true;
+		}else{
+			$inserta = true;
+			$check = false;
+		}
+	} 
 
 	$pR['tabla'] = 'RespuestasVisita';
 	$pR['datos']['visitasId'] = $vId;
@@ -1564,8 +1620,6 @@ function respuestasVisitasA($vId,$check,$r){
 	if($inserta){		
 		$rrj = atj(inserta($pR));
 		$rr = json_decode($rrj,true);
-		// print2($pR);
-		// print2($rrj);
 
 		if($rr['ok'] != 1){
 			// print2($rr);
@@ -1580,7 +1634,6 @@ function respuestasVisitasA($vId,$check,$r){
 		$rr = json_decode($rrj,true);
 
 		if($rr['ok'] != 1){
-
 			return '{"ok":0,"err":"IRVA:6668"}';
 		}
 
@@ -1599,23 +1652,68 @@ function respuestasVisitasA($vId,$check,$r){
 			$pp['datos']['categoriesId'] = $p['categoriesId'];
 			$pp['datos']['respuestasVisitaId'] = $rvId;
 			$pp['datos']['photo'] = $p['photo'];
+			$pp['geo']['field'] = "geometry";
 			$pp['geo']['type'] = $p['type'];
-			$pp['geo']['latlngs'] = $p['points'];
+			// print2($p);
+
+			switch ($pp['geo']['type']) {
+				case 'Marker':
+				case 'marker':
+					$pp['geo']['latlngs'] = atj($p['points'][0]);
+					break;
+				case 'Polyline':
+				case 'polyline':
+					$pp['geo']['latlngs'] = atj($p['points']);
+					break;
+				case 'Polygon':
+				case 'polygon':
+					$pp['geo']['latlngs'] = "[".atj($p['points'])."]";
+					break;
+				
+				default:
+					# code...
+					break;
+			}
 
 			// print2($pp);
 			$rpj = atj(inserta($pp));
 			$rp = json_decode($rpj,true);
-
 			if($rp['ok'] != 1){
 				// print2($rp);
 				return '{"ok":0,"err":"IPA:5467"}';
+			}
+				
+			if(!empty($p['photo'])){
+				saveFile64($p['photo64'],'problemsPhotos',$p['photo']);
 			}
 		}
 	}
 	return '{"ok":1}';
 }
 
+function guardaImagen($mult,$vId = null){
 
+  	
+  	saveFile64($mult['File'],'chkPhotos',$mult['archivo']);
+	$mult['visitasId'] = $vId != null ? $vId : $mult['visitasId'];
+
+  	unset($mult['id']);
+  	unset($mult['File']);
+
+  	$p = array();
+  	$p['tabla'] = 'Multimedia';
+  	$p['datos'] = $mult;
+  	// print2($p);
+
+  	return inserta($p);
+
+}
+
+function saveFile64($strFile,$dir,$fileName){
+	$name = raiz().$dir.'/'.$fileName;
+	$realImage = base64_decode($strFile);
+  	file_put_contents($name,$realImage);
+}
 
 
 

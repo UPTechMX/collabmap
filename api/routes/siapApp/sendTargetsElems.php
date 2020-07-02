@@ -6,7 +6,7 @@ use \Psr\Interfaces\RouteGroupInterface;
 
 include_once '../../lib/php/checklist.php';
 
-$app->group('/sendAll', function () use ($app) {
+$app->group('/sendTargetsElems', function () use ($app) {
   // $app->get('/empleados', 'obtenerEmpleados');
   $app->post('/user/{usrId}', function (Request $request, Response $response, array $args) {
 	global $db;
@@ -25,10 +25,10 @@ $app->group('/sendAll', function () use ($app) {
 
 	$postArr  = $request->getParsedBody();
 
-	$dimensionesElems = json_decode($postArr['dimensionesElems'],true);
+	$targetsElems = json_decode($postArr['targetsElems'],true);
 
-	foreach ($dimensionesElems as $de) {
-		$rj = insertaDimensionesElem($de);
+	foreach ($dimensionesElems as $te) {
+		$rj = insertaTargetsElemA($te);
 		$r = json_decode($rj,true);
 		if($r['ok'] != 1){
 			$ok = false;
@@ -37,7 +37,7 @@ $app->group('/sendAll', function () use ($app) {
 	}
 
 	if($ok){
-		$db->commit();
+		$db->rollback();
 		return '{"ok":1}';
 	}else{
 		$db->rollback();

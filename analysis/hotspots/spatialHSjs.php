@@ -102,8 +102,8 @@
 			var pnf = [];
 
 		}
-		console.log('points',points);
-		console.log('chkAnsNum',chkAnsNum);
+		// console.log('points',points);
+		// console.log('chkAnsNum',chkAnsNum);
 
 		var questMax = {};
 		for(j = 0;j<o.questionsChk.length;j++){

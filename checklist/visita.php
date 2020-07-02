@@ -117,6 +117,10 @@
 			// audiojs.events.ready(function() {
 			//   var as = audiojs.createAll();
 			// });
+			$.each($('.imgChk'), function(index, val) {
+				 var file = $(this).attr('file');
+				 $(this).attr({src:rz+file})
+			});
 
 			$('.verImg').click(function(event) {
 				verImagen($(this).attr('src'));
@@ -278,8 +282,8 @@
 																<div class="imgEle" id="imgEle_<?php echo $i['id'];?>">							
 																	<div class="row">
 																		<div class="col-md-10" id="imgNom_<?php echo $img['id'];?>">
-																			<img src="../chkPhotos/<?php echo $img['archivo'];?>" 
-																				height="100px" class="verImg" />
+																			<img file="chkPhotos/<?php echo $img['archivo'];?>" 
+																				height="100px" class="verImg imgChk" />
 																		</div>
 																	</div>
 																</div>
@@ -292,7 +296,7 @@
 											<?php }else{
 												echo '<ul class="list-group">';
 												foreach ($archs as $a) {
-													echo "<div style='margin:5px;'><img class='verImg' src='../campo/archivosCuest/$a[archivo]' 
+													echo "<div style='margin:5px;'><img class='verImg imgChk' file='chkPhotos/$a[archivo]' 
 														style='max-height:100px;max-width:100px;'/></div>";
 													// echo "<li class='list-group-item manita verImg' id='verImg_$a[id]'>$a[/nombre]</li>";
 												}
