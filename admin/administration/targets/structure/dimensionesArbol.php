@@ -40,7 +40,8 @@
 			$_POST['dimensionId'] = $dim['id'];
 
 		?>
-		<div id="dimensionesElems_<?php echo $_POST['dimensionId'];?>" class="dimensionesElems">
+		<div id="dimensionesElems_<?php echo $_POST['dimensionId'];?>" class="dimensionesElems"  
+			style="max-height: 300px;overflow-y: auto;">
 			<?php include_once 'dimensionesElems.php' ?>
 		</div>
 	</div>
