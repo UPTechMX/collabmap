@@ -38,7 +38,7 @@
 				for($i = 0;$i<$numDims;$i++){
 					$dims[$j++] = $col[$i];
 				}
-				// print2($numDims);
+				// print2($dims);
 
 				$buscaDims = $db->query("SELECT id FROM Dimensiones 
 					WHERE elemId = $targetsId AND type = 'structure'
@@ -61,33 +61,53 @@
 					foreach ($dims as $k => $dim) {
 						$insDims -> execute(array($targetsId,$dim,$k+1));
 						$dimsTarget[$k] = $db->lastInsertId();
+						// echo "TargetsId: $targetsId, DIM:$dim, K+1: ".($k+1)."\n";
+						// echo $db->lastInsertId()."\n";
 					}
 				}
 				// print2($dimsTarget);
 			}else{
+				// continue;
+				// echo "ROW: ".($row+1)."\n";
+				// if($row > 6000){
+				// 	$row++;
+				// 	continue;
+				// }
 
+				// $ids = array();
 
 				for($i = 0;$i<$numDims;$i++){
-					if(empty($col[$i])){
-						break;
-					}
-					$padre = $i == 0?0:$dimsElems[$i-1][$col[$i-1]];
-					if( !isset($dimsElems[$i][$padre.'-'.$col[$i]]) ){
-						// echo "padre: $padre\n";
-						$buscElemDim -> execute([$col[$i],$dimsTarget[$i],$padre]);
-						// print2([$col[$i],$dimsTarget[$i],$padre]);
-						$elemDim = $buscElemDim -> fetchAll(PDO::FETCH_NUM);
-						if(!empty($elemDim)){
-							$dimsElems[$i][$col[$i]] = $elemDim[0][0];
-						}else{
-							// $insDimElem = $db->prepare("INSERT INTO DimensionesElem SET  nombre = ?, dimensionesId = ?, padre = ?");
-							$padre = $i == 0?0:$dimsElems[$i-1][$col[$i-1]];
-							$insDimElem -> execute([ $col[$i],$dimsTarget[$i], $padre]);
-							$dimsElems[$i][$col[$i]] = $db->lastInsertId();
+					try{
+						if(empty($col[$i])){
+							break;
 						}
-					}
+						$padre = $i == 0?0:$ids[$i-1];
+						if( !isset($dimsElems[$padre.'-'.$col[$i]]) ){
+							// echo "padre: $padre\n";
+							$buscElemDim -> execute([$col[$i],$dimsTarget[$i],$padre]);
 
+							// print2([$col[$i],$dimsTarget[$i],$padre]);
+							$elemDim = $buscElemDim -> fetchAll(PDO::FETCH_NUM);
+							if(!empty($elemDim)){
+								$dimsElems[$padre.'-'.$col[$i]] = $elemDim[0][0];
+								$ids[$i] = $dimsElems[$padre.'-'.$col[$i]];
+							}else{
+								// $insDimElem = $db->prepare("INSERT INTO DimensionesElem SET  nombre = ?, dimensionesId = ?, padre = ?");
+								$insDimElem -> execute([ $col[$i],$dimsTarget[$i], $padre]);
+								// echo "padre: $padre, nombre:".$col[$i].", col:$i   \n";
+								$dimsElems[$padre.'-'.$col[$i]] = $db->lastInsertId();
+								$ids[$i] = $dimsElems[$padre.'-'.$col[$i]];
+							}
+						}
+
+					}
+					catch(PDOException $e){
+						exit('{"ok":0,"err":"'.$e->getMessage().'"}');
+					}
 				}
+				// print2($ids);
+				// print2($dimsElems);
+
 				// continue;
 
 			}
