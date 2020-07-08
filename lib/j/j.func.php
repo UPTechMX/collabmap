@@ -1484,6 +1484,78 @@ function insertaTargetsElemA($dimensionesElemId,$te,$check){
 	}
 }
 
+function insertaUsersConsultationsChecklist($ucc,$check){
+	global $db;
+
+	// print2($ucc);
+	$inserta = true;
+	$ok = true;
+	if($check){
+		$usersId = $ucc['ucc']['usersId'];
+		$consultationsChecklistId = $ucc['ucc']['consultationsChecklistId'];
+
+		$existe = $db->query("SELECT * FROM UsersConsultationsChecklist 
+			WHERE usersId = $usersId AND consultationsChecklistId = $consultationsChecklistId
+		")->fetchAll(PDO::FETCH_ASSOC);
+
+		if(count($existe) > 0){
+			$inserta = false;
+			$uccId = $existe[0]['id'];
+			$check = true;
+		}else{
+			$inserta = true;
+			$check = false;
+		}
+	}
+
+	if($inserta){
+		$pTE['tabla'] = 'UsersConsultationsChecklist';
+		$pTE['datos']['consultationsChecklistId'] = $ucc['ucc']['consultationsChecklistId'];
+		$pTE['datos']['usersId'] = $ucc['ucc']['usersId'];
+		// print2($pTE);
+		$rTEj = atj(inserta($pTE));
+		$rTE = json_decode($rTEj,true);
+
+		if($rTE['ok'] != 1){
+			return '{"ok":0,"err":"ITEA:9987"}';
+		}
+		$uccId = $rTE['nId'];
+
+	}
+	// echo "AAAA: $check";
+
+	$visitas = empty($te['visitas'])?array():$te['visitas'];
+	print2($visitas);
+
+	foreach ($visitas as $v) {
+
+		$rj = insertaVisitasA($uccId,$v,$check);
+
+		$r = json_decode($rj,true);
+		if($r['ok'] != 1){
+			$ok = false;
+			$err = $r['err'];
+
+			break;
+		}
+	}
+
+	if($ok){
+		return '{"ok":1}';
+	}else{
+		return '{"ok":0,"err":"'.$err.'"}';
+	}
+}
+
+function insertaPolls($p){
+	global $db;
+
+	$post['tabla'] = 'UsersQuickPoll';
+	$post['datos'] = $p;
+
+	return atj(inserta($post));
+}
+
 function insertaVisitasA($elemId,$v,$check){
 	global $db;
 
@@ -1495,13 +1567,30 @@ function insertaVisitasA($elemId,$v,$check){
 	$chkId = $vis['checklistId'];
 	$teId = $vis['elemId'];
 
+	switch ($type) {
+		case 'trgt':
+			$LJ = "
+			LEFT JOIN TargetsElems te ON te.id = v.elemId
+			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId AND tc.checklistId = $chkId
+			";
+			break;
+		case 'cons':
+			$LJ = "
+			LEFT JOIN UsersConsultationsChecklist ucc ON ucc.id = v.elemId
+			LEFT JOIN ConsultationsChecklist tc ON tc.id = ucc.consultationsChecklistId AND tc.checklistId = $chkId
+			";
+			break;
+		
+		default:
+			# code...
+			break;
+	}
+
 	if($check){
 		$sql = "SELECT v.*, f.code
 		FROM Visitas v
-		LEFT JOIN TargetsElems te ON te.id = v.elemId
-		LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId AND tc.checklistId = $chkId
+		$LJ
 		LEFT JOIN Frequencies f ON f.id = tc.frequency
-
 		WHERE v.elemId = $elemId AND v.type = '$type'
 		";
 		// echo "\nSQL: $sql\n";

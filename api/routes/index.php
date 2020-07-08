@@ -25,9 +25,13 @@ $app->group('/v1', function () use ($app) {
 $app->group('/siapApp', function () use ($app) {
 	
 	require 'siapApp/getAll.php';
+	require 'siapApp/getGeneral.php';
 	require 'siapApp/sendDimensionesElems.php';
 	require 'siapApp/sendTargetsElems.php';
 	require 'siapApp/sendVisitas.php';
+	require 'siapApp/sendUserConsultationsChecklist.php';
+	require 'siapApp/sendPolls.php';
+	require 'siapApp/signup.php';
 	require 'users.php';
 
 });

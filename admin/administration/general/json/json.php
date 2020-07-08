@@ -6,7 +6,7 @@
 	switch ($_POST['acc']) {
 		case 1:
 
-			$elems = ['about'];
+			$elems = ['about','privacy'];
 
 			if(!in_array($_POST['elem'], $elems)){
 				exit('{"ok":0}');

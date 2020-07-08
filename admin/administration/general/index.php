@@ -10,7 +10,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.edt').click(function(event) {
-
 			var elem = this.id;
 			popUp('admin/administration/general/edtGral.php',{elem:elem});
 		});
@@ -32,6 +31,12 @@
 						<td><?php echo TR('about'); ?></td>
 						<td>
 							<i class="glyphicon glyphicon-pencil manita edt" id="about"></i>
+						</td>
+					</tr>
+					<tr>
+						<td><?php echo TR('noticeofprivacy'); ?></td>
+						<td>
+							<i class="glyphicon glyphicon-pencil manita edt" id="privacy"></i>
 						</td>
 					</tr>
 				</tbody>
