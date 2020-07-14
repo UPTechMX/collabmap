@@ -100,11 +100,11 @@
 				</td>
 				<td></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td><?php echo TR('inactive'); ?></td>
 				<td><input type="checkbox" id="inactive" <?php echo $datC['inactive'] == 1?'checked':''; ?>></td>
 				<td></td>
-			</tr>
+			</tr> -->
 		</table>		
 	</form>
 </div>
