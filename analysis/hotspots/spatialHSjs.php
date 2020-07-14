@@ -681,7 +681,7 @@
 		// Set the coordinate system
 		var projection_epsg_no = '900913';
 		// Set the variable for storing the workspace:layername
-		var campground_geoserverlayer = 'CMPy:KMLGeometries';
+		var campground_geoserverlayer = '<?php echo $geoserverWorkSpaceName; ?>:KMLGeometries';
 		// Creating the full vectorTile url
 		var tilesURL = 'http://'+server+':8080/geoserver/gwc/service/wmts?REQUEST=GetTile'+
 			'&SERVICE=WMTS&VERSION=1.0.0'+
