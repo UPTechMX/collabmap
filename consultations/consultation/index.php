@@ -349,18 +349,18 @@
 		</div>
 		<div style="margin: 30px 0px;">
 			<div class="row justify-content-md-center">
-				<div class="col-2">
-					<div class="calif" id="calif_0" style="text-align: center;color: #999;font-size: 7em;">
+				<div class="col-3" style="">
+					<div class="calif" id="calif_0" style="text-align: center;color: #999;font-size: 9vw;">
 						<i class="far fa-frown"></i>
 					</div>
 				</div>
-				<div class="col-2">
-					<div class="calif" id="calif_5" style="text-align: center;color: #999;font-size: 7em;">
+				<div class="col-3" style="">
+					<div class="calif" id="calif_5" style="text-align: center;color: #999;font-size: 9vw;">
 						<i class="far fa-meh"></i>
 					</div>
 				</div>
-				<div class="col-2">
-					<div class="calif" id="calif_10" style="text-align: center;color: #999;font-size: 7em;">
+				<div class="col-3" style="">
+					<div class="calif" id="calif_10" style="text-align: center;color: #999;font-size: 9vw;">
 						<i class="far fa-smile"></i>
 					</div>
 				</div>
