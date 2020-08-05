@@ -70,7 +70,7 @@
 				var elemNom = $('#name').val();
 				var datCopy = dat;
 
-				if(elemNom.length != 2){ // check digits
+				/*if(elemNom.length != 2){ // check digits
 					$('#nTrgt #name').css({backgroundColor:'rgba(255,0,0,.5)'});
 						$('#nTrgt #name').after(() => {
 							return '<span id="duplicateWarning"><?php echo TR('2digitsName'); ?></span>'
@@ -103,7 +103,7 @@
 
 						allOk = false;
 					}
-				}
+				}*/
 
 				if(allOk){
 					// hide selection modal
@@ -217,9 +217,14 @@
 						<?php } ?>
 					</td>
 				</tr>
+
 			<?php } ?>
-		</table>		
-	</form>
+				
+		</form>
+		</table>
+		<div style="color:#FF0000;"	>
+					<?php echo TR('mnjTargetAdd') ?>
+		</div>
 </div>
 <div class="modal-footer">
 	<div style="text-align: right;">

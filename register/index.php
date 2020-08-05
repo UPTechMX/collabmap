@@ -49,7 +49,6 @@ include_once '../../lib/j/j.func.php';
 	<link href="../../lib/j/j.css" rel="stylesheet" type="text/css" />
 	<link href="../../lib/css/general.css" rel="stylesheet" type="text/css" />
 
-
 	<link href="../../lib/js/jqueryUI/jquery-ui.css" rel="stylesheet" type="text/css" />
 	
 	<!-- LIBRERIAS JAVASCRIPT -->

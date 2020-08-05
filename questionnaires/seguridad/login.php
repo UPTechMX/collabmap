@@ -13,6 +13,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?php echo TR('systemName'); ?></title>
+	<!-- Login.php -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  	<!-- Captcha -->
 	<!-- LIBRERIAS CSS -->
 	<link href="<?php echo $rootLoginQuest; ?>lib/js/bootstrap4/css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo $rootLoginQuest; ?>lib/j/j.css" rel="stylesheet" type="text/css" />
@@ -118,6 +122,15 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+			var refreshButton = document.getElementById("refresh-captcha");
+			var captchaImage = document.getElementById("image-captcha");
+
+			refreshButton.onclick = function(event) {
+				event.preventDefault();
+				captchaImage.src = 'captcha/image.php?' + Date.now();
+			}
+		</script>
 
 </body>
 </html>

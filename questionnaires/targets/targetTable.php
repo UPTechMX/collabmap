@@ -109,15 +109,20 @@
 <table class="table" id="tableUT_<?php echo $utId; ?>">
 	<thead>
 		<tr>
+			<th><?php echo TR('identifier'); ?></th>
 			<th><?php echo TR('name'); ?></th>
 			<?php foreach ($targetsChecklist as $tc){ ?>
-				<th style="text-align: center;"><?php echo TR($tc['code']); ?></th>
+			<th style="text-align: center;"><?php echo TR($tc['code']); ?></th>
 			<?php } ?>
 		</tr>
 	</thead>
 	<tbody>
 		<?php foreach ($TargetsElems as $te){ ?>
+
 			<tr id="trDimElem_<?php echo $te['deId']; ?>">
+				<td>
+					<?php echo $te['deId']; ?>
+				</td>
 				<td>
 					<?php echo $te['deName']; ?>
 				</td>
