@@ -133,7 +133,7 @@
 
 	});
 </script>
-<div style="color:#2a6bd5;">
+<div style="color:#ffb919;">
 	<div class="prjName" style="font-size: 1.5em;">
 		<?php echo $consInf['pName']; ?>
 	</div>

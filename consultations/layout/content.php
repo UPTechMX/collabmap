@@ -1,6 +1,3 @@
-<div style="margin-right: 20%;">
-	<?php include raiz().'general/lang.php'; ?>
-</div>
 <div id="dAlerta"></div>
 
 <?php

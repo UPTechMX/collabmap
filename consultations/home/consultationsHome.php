@@ -122,7 +122,7 @@
 	<!-- <i class="fas fa-bacon"></i> -->
 </div>
 
-<?php $color='#2a6bd5'; ?>
+<?php $color='#ffb919'; ?>
 <div class="consultationsContainer">
 	<div class="sectionBanner">
 		<?php echo TR('ongoingConsultations') ?>

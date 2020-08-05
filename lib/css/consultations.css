@@ -193,7 +193,7 @@
 
 .sectionBanner{
     color: white;
-    background: #2a6bd5;
+    background: #ffb919;
     position: absolute;
     /*vertical-align: middle;*/
     text-transform: uppercase;
@@ -214,13 +214,13 @@
     left:100%;
     top:0;
     border:13px solid transparent;
-    border-left: 13px solid #2a6bd5;
+    border-left: 13px solid #ffb919;
 }
 
 .actionDiv{
     min-height: 300px;
     /*height: 300px;*/
-    border-top: solid 3px #2a6bd5;
+    border-top: solid 3px #ffb919;
     margin-top: 80px;
     background-color: #f7f7f7;
     padding-bottom:10px;
@@ -243,7 +243,7 @@
 }
 
 .liked{
-    color:#2a6bd5;
+    color:#ffb919;
 }
 
 .noLiked{
@@ -252,11 +252,11 @@
 
 .consultationsContainer{
     padding:10px;
-    background-color: rgba(42,107,213,.04);
+    background-color: rgba(255,136,34,.04);
     position: relative;
     margin-top: 50px;
-    border-top: solid 3px rgba(42,107,213);
-    border-bottom: solid 3px rgba(42,107,213);
+    border-top: solid 3px rgba(255,136,34);
+    border-bottom: solid 3px rgba(255,136,34);
 }
 
 .colorizaSurveys{

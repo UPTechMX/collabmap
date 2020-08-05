@@ -52,7 +52,7 @@
 		});
 	});
 </script>
-<div style="color:#2a6bd5; text-align: left;">
+<div style="color:#ffb919; text-align: left;">
 	<div class="consultationName" style="font-size: 2em;font-weight: bold;text-align: left;">
 		<?php echo TR('news'); ?>
 	</div>
