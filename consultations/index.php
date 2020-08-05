@@ -167,18 +167,15 @@ $htmlRoot = aRaizHtml($location);
 	    	background-repeat:no-repeat;background-size: 100%; ">
 	    	<?php include_once raiz().'consultations/layout/sidebar.php'; ?>
 	    </nav>
-
+		
 	    <div id="content">
 	    	<?php include 'layout/content.php'; ?>
 	    </div>
 
-	    <nav id="sidebar" class="d-none d-md-block"
+	    <!-- <nav id="sidebar" class="d-none d-md-block"
 	    	style="color:black;background-image: url('<?php echo $htmlRoot; ?>img/backgroundcm.png'); 
 	    	background-repeat:no-repeat;background-size: 100%; ">
-	    	<div style="margin-right: 20%;">
-	    		<?php include raiz().'general/lang.php'; ?>
-	    	</div>
-	    </nav>
+	    </nav> -->
 	</div>     
 	
 	<div class="modal fade" id="popUpCuest" role="dialog"  style="overflow-y: auto !important;" data-backdrop="static" data-keyboard="false">
