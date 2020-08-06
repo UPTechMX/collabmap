@@ -108,7 +108,7 @@
 
 		$.each($('.icoAcc'), function(index, val) {
 			var w = $(this).closest('.iconContainer').width();
-			w = w*.5;
+			w = w*.8;
 			$(this).css({width:w+'px'});
 		});
 
@@ -146,21 +146,24 @@
 	<hr/>
 	<div class="row">
 		<div class="col-md-4">
-			<div class="actionDiv"  style="color: #999;border-top: solid 3px #999;">
+			<div class="actionDiv"  style="color: #999;border-top: solid 5px #93c021;">
 				<div style="position: relative;">
 					<div class="icono" style="width:100%;position:absolute;top:0px;">
 						<div style="width:140px;margin-left: auto;margin-right: auto;" class="iconContainer">
 							<div class="colorizaSurveys">
-								<img file="../img/pendon.svg"  />
+								<!-- <img file="../img/pendon.svg"  /> -->
 							</div>
 						</div>
 					</div>
 					<div class="icono" style="margin-top: 20px;width:100%;position:absolute;top:-74px;">
 						<div style="width:100px;margin-left: auto;margin-right: auto;" class="iconContainer">
-							<div style="height: 120px;" class="imgFondo" style="background-repeat: no-repeat;">
+							<div style="height: 120px;" class="imgFondo2" style="background-repeat: no-repeat;">
 								<div style="width: 100%;height: 100%;">
-									<div style="text-align: center;padding-top: 15px;" class="iconDiv colorIcono">
+									<div style="text-align: center;padding-top: 15px;" class="">
 										<img file="surveys.png" class="icoAcc" />
+										<div style="text-align: center;font-weight: bold; color:#93c021;margin-top: 10px;">
+											MCP
+										</div>
 									</div>
 								</div>
 							</div>
@@ -168,7 +171,9 @@
 					</div>
 				</div>
 				<div style="margin-top: 100px;" class="actionName">
-					<?php echo TR('accmapandsurveys'); ?>
+					<span  style="color:#000;">
+						<?php echo TR('accmapandsurveys'); ?>
+					</span>
 				</div>
 				<div style="margin-top: 15px;padding: 10px;">
 					<ul class="list-group">
@@ -236,21 +241,25 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="actionDiv"  style="color: #999;border-top: solid 3px #999;">
+			<div class="actionDiv"  style="color: #999;border-top: solid 5px #e7403a;">
 				<div style="position: relative;">
 					<div class="icono" style="width:100%;position:absolute;top:0px;">
 						<div style="width:140px;margin-left: auto;margin-right: auto;" class="iconContainer">
 							<div class="colorizaComplains">
-								<img file="../img/pendon.svg"  />
+								<!-- <img file="../img/pendon.svg"  /> -->
 							</div>
 						</div>
 					</div>
 					<div class="icono" style="margin-top: 20px;width:100%;position:absolute;top:-74px;">
 						<div style="width:100px;margin-left: auto;margin-right: auto;" class="iconContainer">
-							<div style="height: 120px;" class="imgFondo" style="background-repeat: no-repeat;">
+							<div style="height: 120px;" class="imgFondo2" style="background-repeat: no-repeat;">
 								<div style="width: 100%;height: 100%;">
-									<div style="text-align: center;padding-top: 15px;" class="iconDiv colorIcono">
+									<div style="text-align: center;padding-top: 15px;" class="">
 										<img file="complaints.png" class="icoAcc" />
+										<div style="text-align: center;font-weight: bold; color:#e7403a;margin-top: 10px;">
+											MQR
+										</div>
+
 									</div>
 								</div>
 							</div>
@@ -258,7 +267,13 @@
 					</div>
 				</div>
 				<div style="margin-top: 100px;" class="actionName">
-					<?php echo TR('acccomplaints'); ?>
+					<span  style="color:#000;">
+						<span  style="color:#000;">
+					</span>
+
+						<?php echo TR('acccomplaints'); ?>
+					</span>
+
 				</div>
 				<div style="text-align: right;padding-right: 10px;margin-top:10px;font-size: 1em;">
 					<span class="manita" style="text-transform: uppercase;" id="complaintsFU">
@@ -271,21 +286,24 @@
 		</div>
 		
 		<div class="col-md-4">
-			<div class="actionDiv"  style="color: #999;border-top: solid 3px #999;">
+			<div class="actionDiv"  style="color: #999;border-top: solid 5px #0394c1;">
 				<div style="position: relative;">
 					<div class="icono" style="width:100%;position:absolute;top:0px;">
 						<div style="width:140px;margin-left: auto;margin-right: auto;" class="iconContainer">
 							<div class="colorizaDocuments">
-								<img file="../img/pendon.svg"  />
+								<!-- <img file="../img/pendon.svg"  /> -->
 							</div>
 						</div>
 					</div>
 					<div class="icono" style="margin-top: 20px;width:100%;position:absolute;top:-74px;">
 						<div style="width:100px;margin-left: auto;margin-right: auto;" class="iconContainer">
-							<div style="height: 120px;" class="imgFondo" style="background-repeat: no-repeat;">
+							<div style="height: 120px;" class="imgFondo2" style="background-repeat: no-repeat;">
 								<div style="width: 100%;height: 100%;">
-									<div style="text-align: center;padding-top: 15px;" class="iconDiv colorIcono">
+									<div style="text-align: center;padding-top: 15px;" class="">
 										<img file="documents.png" class="icoAcc" />
+										<div style="text-align: center;font-weight: bold; color:#0394c1;margin-top: 10px;">
+											MIC
+										</div>
 									</div>
 								</div>
 							</div>
@@ -293,7 +311,9 @@
 					</div>
 				</div>
 				<div style="margin-top: 100px;" class="actionName">
-					<?php echo TR('documents'); ?>
+					<span  style="color:#000;">
+						<?php echo TR('documents'); ?>
+					</span>
 				</div>
 				<div style="margin-top: 15px;padding: 10px;">
 					<ul class="list-group">

@@ -261,17 +261,17 @@
 
 .colorizaSurveys{
     /*filter: invert(38%) sepia(45%) saturate(3856%) hue-rotate(206deg) brightness(87%) contrast(90%);*/
-    filter: invert(17%) sepia(96%) saturate(2501%) hue-rotate(204deg) brightness(96%) contrast(106%);
+    filter: invert(66%) sepia(53%) saturate(619%) hue-rotate(34deg) brightness(94%) contrast(89%);
 }
 
 .colorizaComplains{
     /*filter: invert(55%) sepia(24%) saturate(662%) hue-rotate(223deg) brightness(89%) contrast(87%);*/
-    filter: invert(12%) sepia(60%) saturate(7495%) hue-rotate(358deg) brightness(102%) contrast(108%);
+    filter: invert(25%) sepia(61%) saturate(2032%) hue-rotate(337deg) brightness(114%) contrast(95%);
 }
 
 .colorizaDocuments{
     /*filter: invert(31%) sepia(85%) saturate(2279%) hue-rotate(208deg) brightness(89%) contrast(90%);;*/
-    filter: invert(0%) sepia(0%) saturate(17%) hue-rotate(324deg) brightness(102%) contrast(105%);
+    filter: invert(38%) sepia(58%) saturate(4587%) hue-rotate(171deg) brightness(100%) contrast(98%);
 }
 
 .colorIcono{
@@ -298,7 +298,9 @@
 
 .actionName{
     text-align: center;
-    text-transform: uppercase;
+    /*font-size: .9em;*/
+    font-weight: bold;
+    /*text-transform: uppercase;*/
 }
 
 .accSurvey{
