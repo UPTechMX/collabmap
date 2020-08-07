@@ -220,8 +220,8 @@
 
 			<?php } ?>
 				
-		</form>
 		</table>
+	</form>
 		<div style="color:#FF0000;"	>
 					<?php echo TR('mnjTargetAdd') ?>
 		</div>
