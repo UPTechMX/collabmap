@@ -1,6 +1,6 @@
 <?php  
 
-include raiz()."general/lang.php";
+// include raiz()."general/lang.php";
 // print2($_SERVER);
 
 

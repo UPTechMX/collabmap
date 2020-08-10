@@ -62,7 +62,7 @@
 	<div class="container">
 		<div class="header">
 		</div>
-		<?php include $rootLoginQuest.'general/lang.php'; ?>
+		<!-- <?php include $rootLoginQuest.'general/lang.php'; ?> -->
 		<img src="<?php echo $rootLoginQuest; ?>img/marquesina.png"  style="width:100%;" >
 		<hr />
 		<div class="content" style="margin:5%">
