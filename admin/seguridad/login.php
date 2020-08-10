@@ -21,7 +21,7 @@
 	<div class="container">
 		<div class="header">
 		</div>		
-		<?php include aRaiz().'general/lang.php'; ?>
+		<!-- <?php include aRaiz().'general/lang.php'; ?> -->
 		<img src="<?php echo aRaiz(); ?>img/marquesina.png"  style="width:100%;" >
 		<hr />
 		<div class="content" style="margin:5%">
