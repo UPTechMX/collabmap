@@ -28,8 +28,9 @@
 			var dimElemId = $(this).val();
 			var dimNivel = this.id.split('_')[1];
 			var niveles = $('.dimSelAdd').length;
-			// console.log(dimElemId,dimNivel,niveles);
-			if(dimNivel < niveles ){
+			console.log(dimElemId,parseInt(dimNivel),niveles);
+			if(parseInt(dimNivel) < parseInt(niveles) ){
+
 				var r = []
 				if(dimElemId != ''){
 					var rj = jsonF('questionnaires/targets/json/getDims.php',{padre:dimElemId});
@@ -192,7 +193,8 @@
 	<br/>
 	<form id="nTrgt">
 		<table class="table" border="0">
-			<?php 
+			<?php
+			$i = 1;
 			foreach ($dims as $k => $d){ 
 				if($k == 0){
 					$dimsElems = $db->query("SELECT * FROM DimensionesElem 
@@ -205,7 +207,7 @@
 					<td><?php echo $d['nombre']; ?></td>
 					<td>
 						<?php if ($k < count($dims) -1){ ?>						
-							<select class="form-control dimSelAdd oblig" id="dimSelAdd_<?php echo "$d[nivel]"; ?>">
+							<select class="form-control dimSelAdd oblig" id="dimSelAdd_<?php echo "$i"; ?>">
 								<option value="">- - - <?php echo $d['nombre']; ?> - - -</option>
 								<?php foreach ($dimsElems as $de){ ?>
 									<option value="<?php echo $de['id']; ?>"><?php echo $de['nombre']; ?></option>
@@ -218,7 +220,7 @@
 					</td>
 				</tr>
 
-			<?php } ?>
+			<?php $i++;} ?>
 				
 		</table>
 	</form>
