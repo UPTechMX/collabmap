@@ -4,6 +4,7 @@
 	session_start();
 	if($_REQUEST['logout'] == 1){
 		unset($_SESSION['CM']['consultations']);
+		unset($_SESSION['CM']['questionnaires']);
 	}
 	unset($_GET['logout']);
 	if(!function_exists('raiz')){
@@ -43,17 +44,17 @@
 		});
 	</script>
 	<div style="text-align: center;margin-top: 20px;">
-		<span class="sidebarElement loginBtn"><?php echo TR('log_in'); ?></span>
+		<span class="sidebarElement loginBtn negro"><?php echo TR('log_in'); ?></span>
 		<div class="loginInfoCont" style="padding: 20px;display: none;">
 			<hr>
 			<form class="loginForm">
 				<div>
-					<span class="loginElement" style="color:blue;"><?php echo TR('username'); ?></span>
+					<span class="loginElement azul" style="color:blue;"><?php echo TR('username'); ?></span>
 					<input type="text" class="form-control oblig" name="usuario" style="margin-top: 10px;" />
 				</div>
 				
 				<div style="margin-top: 10px;">
-					<span class="loginElement" style="color:blue;"><?php echo TR('password'); ?></span>
+					<span class="loginElement azul" style="color:blue;"><?php echo TR('password'); ?></span>
 					<input type="password" class="form-control oblig" name="pwd" style="margin-top: 10px;" />
 				</div>
 				<div style="margin-top: 10px;">
@@ -81,17 +82,34 @@
 				else
 					url += '&';
 			}
+
+			$('.facilitator').click(function(event) {
+				var request = {acc:'facilitator'};
+				$('#content').load(rz+'questionnaires/targets/index.php');
+				chUrl(request,'acc','facilitator',true,true);
+				location.reload();
+			});
+
 			
 			$('.logoutBtn').attr({href:url+'logout=1'});
 
 		});
 	</script>
+	<div style="text-align: center;margin-top: 40px;">
+		<span class="sidebarElement facilitator <?= $_REQUEST['acc'] == 'facilitator'?'azul':'negro'; ?>"><?php echo TR('facilitator'); ?></span><br/>
+	</div>
+
 	<div style="text-align: center;margin-top: 30px;">
-		<div class="" style="color:grey;">
-			<i class="fas fa-user manita edtProfile"></i>
+
+		<div class="" style="height: 25px;width: 25px;
+			background-color: #e80000;margin-left: auto;margin-right: auto;border-radius: 50%;color: white;" >
+			<i class="fas fa-user manita edtProfile" style="margin-right: auto;margin-left: auto;margin-top: 3px;"></i>
+		</div>
+		<div style="text-transform: uppercase; margin-top: 20px;" class="negro">
+			<?= $_SESSION['CM']['consultations']['name']; ?>
 		</div>
 		<div style="margin-top: 10px;">
-			<span class="loginElement">
+			<span class="loginElement negro">
 				<a class="logoutBtn" href="<?php echo $_SERVER['PHP_SELF'];?>?logout=1"><?php echo TR('close_session'); ?></a>
 			</span>
 		</div>

@@ -134,32 +134,37 @@
 	});
 </script>
 <div style="color:#2a6bd5;">
-	<div class="prjName" style="font-size: 1.5em;">
+	<!-- <div class="prjName" style="font-size: 1.5em;">
 		<?php echo $consInf['pName']; ?>
-	</div>
-	<div class="consultationName" style="font-size: 2em;font-weight: bold;text-align: left;">
+	</div> -->
+	<div class="consultationName azul" style="font-size: 2em;font-weight: bold;text-align: left;">
 		<?php echo $consInf['name']; ?>
 	</div>
-	<div class="" style="text-align: left;color: grey;text-align: justify;">
+	<div class="negro descriptionConsultation" style="text-align: left;text-align: justify;">
 		<?php echo $consInf['description']; ?>
 	</div>
-	<hr/>
+	<div style="position: relative; margin-bottom: 30px;margin-top: 30px;">
+		<hr>
+		<div style="background-color: #CCC;width: 10px;height: 10px;border-radius: 50%;position: absolute;top:-4px;"></div>
+		<div style="background-color: #CCC;width: 10px;height: 10px;border-radius: 50%;position: absolute;top:-4px;left: 20px;"></div>
+	</div>
+
 	<div class="row">
 		<div class="col-md-4">
-			<div class="actionDiv"  style="color: #999;border-top: solid 3px #999;">
+			<div class="actionDiv"  style="color: #999;border-top: solid 3px #004aad;">
 				<div style="position: relative;">
-					<div class="icono" style="width:100%;position:absolute;top:0px;">
+					<!-- <div class="icono" style="width:100%;position:absolute;top:0px;">
 						<div style="width:140px;margin-left: auto;margin-right: auto;" class="iconContainer">
 							<div class="colorizaSurveys">
 								<img file="../img/pendon.svg"  />
 							</div>
 						</div>
-					</div>
-					<div class="icono" style="margin-top: 20px;width:100%;position:absolute;top:-74px;">
-						<div style="width:100px;margin-left: auto;margin-right: auto;" class="iconContainer">
-							<div style="height: 120px;" class="imgFondo" style="background-repeat: no-repeat;">
-								<div style="width: 100%;height: 100%;">
-									<div style="text-align: center;padding-top: 15px;" class="iconDiv colorIcono">
+					</div> -->
+					<div class="icono" style="margin-top: 20px;width:100%;position:absolute;top:-63px;">
+						<div style="width:75px;margin-left: auto;margin-right: auto;" class="iconContainer">
+							<div style="height: 75px;" class="imgFondo-" style="background-repeat: no-repeat;">
+								<div style="width: 100%;height: 100%;background-color: #004aad ;border-radius: 50%;">
+									<div style="text-align: center;padding-top: 12px;" class="iconDiv colorIcono">
 										<img file="surveys.png" class="icoAcc" />
 									</div>
 								</div>
@@ -236,20 +241,20 @@
 			</div>
 		</div>
 		<div class="col-md-4">
-			<div class="actionDiv"  style="color: #999;border-top: solid 3px #999;">
+			<div class="actionDiv"  style="color: #999;border-top: solid 3px #e80000;">
 				<div style="position: relative;">
-					<div class="icono" style="width:100%;position:absolute;top:0px;">
+					<!-- <div class="icono" style="width:100%;position:absolute;top:0px;">
 						<div style="width:140px;margin-left: auto;margin-right: auto;" class="iconContainer">
 							<div class="colorizaComplains">
 								<img file="../img/pendon.svg"  />
 							</div>
 						</div>
-					</div>
-					<div class="icono" style="margin-top: 20px;width:100%;position:absolute;top:-74px;">
-						<div style="width:100px;margin-left: auto;margin-right: auto;" class="iconContainer">
-							<div style="height: 120px;" class="imgFondo" style="background-repeat: no-repeat;">
-								<div style="width: 100%;height: 100%;">
-									<div style="text-align: center;padding-top: 15px;" class="iconDiv colorIcono">
+					</div> -->
+					<div class="icono" style="margin-top: 20px;width:100%;position:absolute;top:-63px;">
+						<div style="width:75px;margin-left: auto;margin-right: auto;" class="iconContainer">
+							<div style="height: 75px;" class="imgFondo-" style="background-repeat: no-repeat;">
+								<div style="width: 100%;height: 100%;background-color: #e80000 ;border-radius: 50%;">
+									<div style="text-align: center;padding-top: 12px;" class="iconDiv colorIcono">
 										<img file="complaints.png" class="icoAcc" />
 									</div>
 								</div>
@@ -261,30 +266,30 @@
 					<?php echo TR('acccomplaints'); ?>
 				</div>
 				<div style="text-align: right;padding-right: 10px;margin-top:10px;font-size: 1em;">
-					<span class="manita" style="text-transform: uppercase;" id="complaintsFU">
-						<!-- <?php echo TR("complaintsFU"); ?> -->
+					<!-- <span class="manita" style="text-transform: uppercase;" id="complaintsFU">
+						
 						<i class="glyphicon glyphicon-check"></i>	
-					</span>
+					</span> -->
 				</div>
 				<div><?php include 'complaintsStructure.php'; ?></div>
 			</div>
 		</div>
 		
 		<div class="col-md-4">
-			<div class="actionDiv"  style="color: #999;border-top: solid 3px #999;">
+			<div class="actionDiv"  style="color: #999;border-top: solid 3px #004aad;">
 				<div style="position: relative;">
-					<div class="icono" style="width:100%;position:absolute;top:0px;">
+					<!-- <div class="icono" style="width:100%;position:absolute;top:0px;">
 						<div style="width:140px;margin-left: auto;margin-right: auto;" class="iconContainer">
 							<div class="colorizaDocuments">
 								<img file="../img/pendon.svg"  />
 							</div>
 						</div>
-					</div>
-					<div class="icono" style="margin-top: 20px;width:100%;position:absolute;top:-74px;">
-						<div style="width:100px;margin-left: auto;margin-right: auto;" class="iconContainer">
-							<div style="height: 120px;" class="imgFondo" style="background-repeat: no-repeat;">
-								<div style="width: 100%;height: 100%;">
-									<div style="text-align: center;padding-top: 15px;" class="iconDiv colorIcono">
+					</div> -->
+					<div class="icono" style="margin-top: 20px;width:100%;position:absolute;top:-63px;">
+						<div style="width:75px;margin-left: auto;margin-right: auto;" class="iconContainer">
+							<div style="height: 75px;" class="imgFondo-" style="background-repeat: no-repeat;">
+								<div style="width: 100%;height: 100%;background-color: #004aad ;border-radius: 50%;">
+									<div style="text-align: center;padding-top: 12px;" class="iconDiv colorIcono">
 										<img file="documents.png" class="icoAcc" />
 									</div>
 								</div>
@@ -325,13 +330,13 @@
 					<?php if (!empty($usrId)){ ?>
 						// console.log('aaa');
 						var value = this.id.split('_')[1];
-						$('.calif').css({color:'#999'});
+						$('.calif').css({color:'#000'});
 						var rj = jsonF('consultations/consultation/json/json.php',{acc:11,consultationId:<?php echo $consInf['id']; ?>,value:value});
 						// console.log(rj);
 						var r = $.parseJSON(rj);
 						if(r.ok == 1){
 							alerta('success','<?php echo TR("pollSend"); ?>');
-							$(this).css({color:'green'});
+							$(this).css({color:'#004aad'});
 						}
 					<?php }else{ ?>
 						alerta('success','<?php echo TR("needLogin"); ?>');
@@ -341,30 +346,34 @@
 			});
 		</script>
 		<div style="border-top: solid 1px #CCC;margin-top: 20px">&nbsp;</div>
-		<div style="text-align: left;text-transform: uppercase;font-size: 1.5em;" class="prjName">
+		<!-- <div style="text-align: left;text-transform: uppercase;font-size: 1.5em;" class="prjName">
 			<?php echo TR('quickvote'); ?>
-		</div>
-		<div style="color:#999;text-align: justify;">
-			<?php echo $consInf['poll']; ?>
-		</div>
-		<div style="margin: 30px 0px;">
-			<div class="row justify-content-md-center">
-				<div class="col-3" style="">
-					<div class="calif" id="calif_0" style="text-align: center;color: #999;font-size: 9vw;">
-						<i class="far fa-frown"></i>
+		</div> -->
+		<div class="row" style="border-bottom: solid 1px #CCC;">
+			<div class="col-md-8" style="color:#000;text-align: justify;">
+				<?php echo $consInf['poll']; ?>
+			</div>
+			<div style="margin: 0px 0px;" class="col-md-4">
+				<div class="row justify-content-md-center">
+					<div class="col-3" style="">
+						<div class="calif" id="calif_0" style="text-align: center;color: #000;font-size: 3vw;">
+							<i class="far fa-frown"></i>
+						</div>
 					</div>
-				</div>
-				<div class="col-3" style="">
-					<div class="calif" id="calif_5" style="text-align: center;color: #999;font-size: 9vw;">
-						<i class="far fa-meh"></i>
+					<div class="col-3" style="">
+						<div class="calif" id="calif_5" style="text-align: center;color: #000;font-size: 3vw;">
+							<i class="far fa-meh"></i>
+						</div>
 					</div>
-				</div>
-				<div class="col-3" style="">
-					<div class="calif" id="calif_10" style="text-align: center;color: #999;font-size: 9vw;">
-						<i class="far fa-smile"></i>
+					<div class="col-3" style="">
+						<div class="calif" id="calif_10" style="text-align: center;color: #000;font-size: 3vw;">
+							<i class="far fa-smile"></i>
+						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
+		
 	<?php } ?>
 </div>

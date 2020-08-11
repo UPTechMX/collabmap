@@ -40,6 +40,9 @@
 	// print2($_SESSION);
 
 	// print2($TargetsElems);
+	if (!isset($dims)) {
+		$dims = $db->query("SELECT * FROM Dimensiones WHERE elemId = '$_POST[targetId]' AND type = 'structure'")->fetchAll(PDO::FETCH_ASSOC);
+	}
 ?>
 
 <script type="text/javascript">
@@ -100,29 +103,51 @@
 			// },500);
 		});
 
-
+		$('.trgInfo').tooltip();
+		$('.test').tooltip();
 
 	});
 </script>
 
 
 <table class="table" id="tableUT_<?php echo $utId; ?>">
-	<thead>
-		<tr>
-			<th><?php echo TR('name'); ?></th>
-			<?php foreach ($targetsChecklist as $tc){ ?>
-				<th style="text-align: center;"><?php echo TR($tc['code']); ?></th>
-			<?php } ?>
+	<thead class="borderAzulBottom">
+		<tr class="borderAzulBottom">
+			<th></th>
+			<th><?php echo $dims[count($dims)-1]['nombre']; ?></th>
+			<th><?= TR('survey'); ?></th>
+			<th><?= TR('frequency'); ?></th>
+			<th style="text-align: center;"><?= TR('status'); ?></th>
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach ($TargetsElems as $te){ ?>
-			<tr id="trDimElem_<?php echo $te['deId']; ?>">
+		<?php foreach ($TargetsElems as $te){ 
+		?>
+			<tr id="trDimElem_<?php echo $te['deId']; ?>" class="borderAzul">
+				<td style="text-align: center;">
+					<?php 
+						$arr = [];
+						getStruct($te['dimensionesElemId'],$arr);
+						// print2( $arr);
+						$arr = array_reverse($arr);
+						// print2($arr);
+						$html = '';
+						foreach ($arr as $t) {
+							$html .= "$t[dimension]:<strong>$t[nombre]</strong><br/>";
+						}
+
+					?>
+					<div class="azulBkg trgInfo" style="width: 20px;height: 20px;margin-left: auto;
+						margin-right: auto;border-radius: 50%;color: white;padding-top: 3px;font-size: small;"
+						data-toggle="tooltip" data-placement="right" data-html="true" title="<?= $html; ?>">
+						<i class="fas fa-info" aria-hidden="true"></i>
+					</div>
+				</td>
 				<td>
 					<?php echo $te['deName']; ?>
 				</td>
 				<?php 
-				foreach ($targetsChecklist as $tc){ 
+				foreach ($targetsChecklist as $k => $tc){ 
 					$vis = $db->query("SELECT v.*, f.code as fCode
 						FROM Visitas v
 						LEFT JOIN TargetsElems te ON te.id = v.elemId
@@ -130,16 +155,18 @@
 						LEFT JOIN Frequencies f ON f.id = tc.frequency
 						WHERE v.type = 'trgt' AND v.elemId = $te[id] AND v.checklistId = $tc[cId]
 						ORDER BY v.timestamp DESC LIMIT 1")->fetchAll(PDO::FETCH_ASSOC)[0];
-
-				?>
+				?>	
+					<?= $k!=0?'<td></td><td></td>':''; ?>
+					<td><?= $tc['cNom']; ?></td>
+					<td><?= TR($tc['code']) ?></td>
 					<td id='tdTrgtChk_<?php echo "$te[id]_$tc[cId]" ?>' style="text-align: center;" >
 						
 						<?php if (empty($vis)){ ?>
-							<span class="newVisita manita action" style="color:grey;">
+							<span class="newVisita manita action rojo" style="color:grey;">
 								<?php echo TR('answerSurvey'); ?>
 							</span>							
 						<?php }elseif(empty($vis['finalizada'])){ ?>
-							<span class="contVisita manita action" style="color:grey;"  id="idVis_<?php echo $vis['id']; ?>">
+							<span class="contVisita manita action rojo"  id="idVis_<?php echo $vis['id']; ?>">
 								<?php echo TR('continue'); ?>
 							</span>							
 						<?php 
@@ -184,26 +211,27 @@
 							}
 						?>
 							<?php if ($vis['fCode'] == 'oneTime'){ ?>
-								<span style="font-size: x-small;">
+								<span style="font-size: x-small;" class="verde">
 									<?php echo TR('sended').": ".$visDate; ?>
 								</span><br/>
-								<span class="seeResults manita action" style="color:grey;"  id="idVis_<?php echo $vis['id']; ?>">
+								<span class="seeResults manita action verde" style="color:grey;"  id="idVis_<?php echo $vis['id']; ?>">
 									<?php echo TR('seeResults'); ?>
 								</span>							
 							<?php }elseif($today >= $nextDate){ ?>
-								<span class="newVisita manita action" style="color:grey;">
+								<span class="newVisita manita action rojo" style="">
 									<?php echo TR('answerSurvey'); ?>
 								</span>							
 							<?php }elseif($today < $nextDate){ ?>
-								<span style="font-size: x-small;">
+								<span style="font-size: x-small;" class="verde">
 									<?php echo TR('sended').": ".$visDate; ?>
 								</span><br/>
-								<span class="seeResults manita action" style="color:grey;"  id="idVis_<?php echo $vis['id']; ?>">
+								<span class="seeResults manita action verde" style=""  id="idVis_<?php echo $vis['id']; ?>">
 									<?php echo TR('seeResults'); ?>
 								</span>							
 							<?php } ?>
 						<?php } ?>
 					</td>
+					</tr><tr class="borderDotted">
 				<?php } ?>
 			</tr>
 		<?php } ?>

@@ -122,17 +122,17 @@
 	<!-- <i class="fas fa-bacon"></i> -->
 </div>
 
-<?php $color='#2a6bd5'; ?>
+<?php $color='#004aad'; ?>
 <div class="consultationsContainer">
-	<div class="sectionBanner">
+	<!-- <div class="sectionBanner">
 		<?php echo TR('ongoingConsultations') ?>
-	</div>
-	<div class="imgFondo icoSeccionFondo" style="">
+	</div> -->
+	<!-- <div class="imgFondo icoSeccionFondo" style="">
 		<img src="" width="40" style="margin-left: 2px;margin-top: 2px;" file="inProgress.svg" />
-	</div>
+	</div> -->
 	<div class="row" style="margin-top: 20px;">
 		<?php foreach ($now as $c){ ?>
-			<div class="col-md-6" style="padding: 10px;">
+			<div class="col-md-3" style="padding: 10px;">
 				<?php include 'consultationCard.php'; ?>
 			</div>
 		<?php } ?>

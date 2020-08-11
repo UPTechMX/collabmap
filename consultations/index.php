@@ -30,6 +30,7 @@ function root(){
 
 
 include_once root().'lib/j/j.func.php';
+// print2($_SESSION);
 
 $location = empty($location)?'consultations':$location;
 $htmlRoot = aRaizHtml($location);
@@ -168,7 +169,7 @@ $htmlRoot = aRaizHtml($location);
 	    	<?php include_once raiz().'consultations/layout/sidebar.php'; ?>
 	    </nav>
 		
-	    <div id="content">
+	    <div id="content" style="margin-right: 50px;">
 	    	<?php include 'layout/content.php'; ?>
 	    </div>
 

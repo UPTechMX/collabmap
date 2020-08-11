@@ -53,8 +53,8 @@
 	});
 </script>
 <div style="color:#2a6bd5; text-align: left;">
-	<div class="consultationName" style="font-size: 2em;font-weight: bold;text-align: left;">
-		<?php echo TR('news'); ?>
+	<div class="consultationName azul" style="font-size: 2em;font-weight: bold;text-align: left;">
+		<?php echo TR('publicNews'); ?>
 	</div>
 	<div style="margin-top: 20px;">
 		<?php 
@@ -64,10 +64,10 @@
 		?>
 			<hr>
 			<div class="divNews" id="divNews_<?php echo $n['id']; ?>">
-				<div class="extNewsName"><?php echo $n['name']; ?></div>
-				<div class="extNewsHeader"><?php echo $n['header']; ?></div>
+				<div class="extNewsName azul"><?php echo $n['name']; ?></div>
+				<div class="extNewsHeade negro"><?php echo $n['header']; ?></div>
 				<div style="margin-top: 10px;">
-					<span class="sidebarElement readMore" style="font-size: .9em;" >
+					<span class="sidebarElement readMore azul" style="font-size: .9em;" >
 						<i class="glyphicon glyphicon-forward"></i><?php echo TR('iWantMore') ?>
 					</span>
 				</div>
@@ -78,7 +78,7 @@
 						?>
 						<i class="fas fa-thumbs-up manita like <?php echo $class; ?>"></i>
 					</span>&nbsp;&nbsp;
-					<strong class="count"><?php echo $count; ?></strong> 
+					<strong class="count rojo"><?php echo $count; ?></strong> 
 				</div>
 			</div>
 		<?php } ?>

@@ -112,9 +112,19 @@ $dims = $db->query("SELECT * FROM Dimensiones
 			<textarea class="form-control" id="complaintText"></textarea>
 		</div>
 	</div>
-	<div style="text-align: center">
-		<span class="btn btn-shop" id="sendComplaint"><?php echo TR('send'); ?></span>
+	<div class="row justify-content-between" >
+		<div class="col-4" style="text-align: center; ">
+			<span id="sendComplaint" class="manita" style="border:solid 2px #e80000; padding: 5px 20px; border-radius: 3px;">
+				<?php echo TR('send'); ?>
+			</span>	
+		</div>
+		<div class="col-7" style="text-align: center; ">
+			<span id="complaintsFU" class="manita" style="background-color: #e80000;color: white; padding: 5px 20px; border-radius: 3px;">
+				<?php echo TR('complaintsFU'); ?>
+			</span>	
+		</div>
 	</div>
+	
 </div>
 
 

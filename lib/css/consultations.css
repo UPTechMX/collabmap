@@ -174,8 +174,8 @@
 
 .consultationCardCont{
     overflow-y: auto;
-    border:solid;
-    height: 340px;
+    border:solid 2px;
+    height: 290px;
     background-color: white;
 }
 
@@ -243,7 +243,7 @@
 }
 
 .liked{
-    color:#2a6bd5;
+    color:#e80000;
 }
 
 .noLiked{
@@ -252,11 +252,11 @@
 
 .consultationsContainer{
     padding:10px;
-    background-color: rgba(42,107,213,.04);
+    background-color: rgba(232,0,0,.03);
     position: relative;
     margin-top: 50px;
-    border-top: solid 3px rgba(42,107,213);
-    border-bottom: solid 3px rgba(42,107,213);
+    border-top: solid 3px #e80000;
+    border-bottom: solid 3px #e80000;
 }
 
 .colorizaSurveys{
@@ -275,7 +275,7 @@
 }
 
 .colorIcono{
-    filter: invert(69%) sepia(7%) saturate(9%) hue-rotate(37deg) brightness(87%) contrast(89%);
+    /*filter: invert(69%) sepia(7%) saturate(9%) hue-rotate(37deg) brightness(87%) contrast(89%);*/
 }
 
 .icoSeccionFondo{
@@ -527,5 +527,7 @@ a.article, a.article:hover {
 
 }
 
-
+.descriptionConsultation p{
+    color: black !important;
+}
 

@@ -48,15 +48,3 @@
 		<img src="<?php echo $htmlRoot; ?>img/cmLogo.png" style="width: 95%;" />
 	</a>
 </div>
-
-<div style="text-align: center;margin-top: 100px;">
-	<span class="sidebarElement news  <?= $_REQUEST['acc'] == 'news' || $_REQUEST['acc'] == ''?'azul':'negro'; ?>">
-		<?php echo TR('news'); ?>
-	</span><br/>
-</div>
-<div style="text-align: center;margin-top: 40px;">
-	<span class="sidebarElement participate <?= $_REQUEST['acc'] == 'participate'?'azul':'negro'; ?>"><?php echo TR('participate'); ?></span><br/>
-</div>
-
-
-<div id="loginCont"><?php include raiz().'consultations/seguridad/login.php'; ?></div>
