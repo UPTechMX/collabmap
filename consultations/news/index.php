@@ -56,13 +56,18 @@
 	<div class="consultationName azul" style="font-size: 2em;font-weight: bold;text-align: left;">
 		<?php echo TR('publicNews'); ?>
 	</div>
+	<div style="position: relative; margin-bottom: 30px; margin-top: 30px;" >
+		<hr>
+		<div style="background-color: #CCC;width: 10px;height: 10px;border-radius: 50%;position: absolute;top:-4px;"></div>
+		<div style="background-color: #CCC;width: 10px;height: 10px;border-radius: 50%;position: absolute;top:-4px;left: 20px;"></div>
+	</div>
+
 	<div style="margin-top: 20px;">
 		<?php 
 			foreach ($news as $n){ 
 				// print2($n);
 			$count = $db->query("SELECT COUNT(*) as cuenta FROM UsersLikes WHERE newsId = $n[id]")->fetchAll(PDO::FETCH_NUM)[0][0];
 		?>
-			<hr>
 			<div class="divNews" id="divNews_<?php echo $n['id']; ?>">
 				<div class="extNewsName azul"><?php echo $n['name']; ?></div>
 				<div class="extNewsHeade negro"><?php echo $n['header']; ?></div>

@@ -163,7 +163,7 @@
 					<div class="icono" style="margin-top: 20px;width:100%;position:absolute;top:-63px;">
 						<div style="width:75px;margin-left: auto;margin-right: auto;" class="iconContainer">
 							<div style="height: 75px;" class="imgFondo-" style="background-repeat: no-repeat;">
-								<div style="width: 100%;height: 100%;background-color: #004aad ;border-radius: 50%;">
+								<div class="azulBkg" style="width: 100%;height: 100%;border-radius: 50%;">
 									<div style="text-align: center;padding-top: 12px;" class="iconDiv colorIcono">
 										<img file="surveys.png" class="icoAcc" />
 									</div>
@@ -252,8 +252,8 @@
 					</div> -->
 					<div class="icono" style="margin-top: 20px;width:100%;position:absolute;top:-63px;">
 						<div style="width:75px;margin-left: auto;margin-right: auto;" class="iconContainer">
-							<div style="height: 75px;" class="imgFondo-" style="background-repeat: no-repeat;">
-								<div style="width: 100%;height: 100%;background-color: #e80000 ;border-radius: 50%;">
+							<div style="height: 75px;" class="imgFondo- " style="background-repeat: no-repeat;">
+								<div class= "rojoBkg" style="width: 100%;height: 100%;border-radius: 50%;">
 									<div style="text-align: center;padding-top: 12px;" class="iconDiv colorIcono">
 										<img file="complaints.png" class="icoAcc" />
 									</div>

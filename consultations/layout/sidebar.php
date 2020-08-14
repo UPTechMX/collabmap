@@ -33,7 +33,7 @@
 			$('#content').load(rz+'consultations/layout/content.php',request);
 		});
 		$('.forgotPwd').click(function(event) {
-			console.log('aa');
+			// console.log('aa');
 			var request = {};
 			request['acc'] = 'forgotPwd';
 			// chUrl(request,'acc','sign_up',true,true);
@@ -43,19 +43,26 @@
 	});
 </script>
 
+<div style="padding: 0px 10px;">
+	<?php include raiz().'general/lang.php'; ?>
+</div>
+
 <div style="margin: 40px 10px;padding-left: 10%;padding-top: 10px;">
 	<a href="<?php echo $_SERVER['PHP_SELF'];?>?">
 		<img src="<?php echo $htmlRoot; ?>img/cmLogo.png" style="width: 95%;" />
 	</a>
 </div>
 
-<div style="text-align: center;margin-top: 100px;">
+<div style="text-align: center;margin-top: 100px;text-transform: uppercase;">
 	<span class="sidebarElement news  <?= $_REQUEST['acc'] == 'news' || $_REQUEST['acc'] == ''?'azul':'negro'; ?>">
-		<?php echo TR('news'); ?>
+		<?php echo TR('publicNews'); ?>
 	</span><br/>
 </div>
-<div style="text-align: center;margin-top: 40px;">
-	<span class="sidebarElement participate <?= $_REQUEST['acc'] == 'participate'?'azul':'negro'; ?>"><?php echo TR('participate'); ?></span><br/>
+<div style="text-align: center;margin-top: 40px; text-transform: uppercase;">
+	<span class="sidebarElement participate 
+		<?= $_REQUEST['acc'] == 'participate'||$_REQUEST['acc'] == 'consultation'?'azul':'negro'; ?>">
+		<?php echo TR('participate'); ?>
+	</span><br/>
 </div>
 
 

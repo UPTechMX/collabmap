@@ -86,7 +86,7 @@
 
 	});
 </script>
-<h1 class="azul"><?= TR('forTargets'); ?></h1>
+<h1 class="azul" style="font-weight: bold;"> <?= TR('forTargets'); ?></h1>
 <div style="position: relative; margin-bottom: 30px;">
 	<hr>
 	<div style="background-color: #CCC;width: 10px;height: 10px;border-radius: 50%;position: absolute;top:-4px;"></div>
@@ -101,10 +101,10 @@ foreach ($targets as $targetsChecklist){
 	<div style="margin-top: 10px;" class="divTrgt" id="divTrgt_<?php echo $targetsChecklist[0]['tId']."_".$targetsChecklist[0]['utId']; ?>">
 		<table width="100%">
 			<tr>
-				<td width="80%" class="nuevo azulBkg">
+				<td width="80%" class="nuevo azulBkg" style="font-weight: bold;text-align: left;">
 					<?php echo $targetsChecklist[0]['pName']; ?>
 				</td>
-				<td width="20%" class="nuevo rojoBkg">
+				<td width="20%" class="nuevo rojoBkg" style="font-weight: bold;">
 					<?php echo $targetsChecklist[0]['tName']; ?>
 				</td>
 			</tr>

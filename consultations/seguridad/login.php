@@ -58,13 +58,13 @@
 					<input type="password" class="form-control oblig" name="pwd" style="margin-top: 10px;" />
 				</div>
 				<div style="margin-top: 10px;">
-					<span class="btn btn-shop loginSend"><?php echo TR('log_in'); ?></span>
+					<span class="btn btn-shop loginSend" style="text-transform: uppercase;"><?php echo TR('log_in'); ?></span>
 				</div>
 				<div style="margin-top: 10px;">
-					<span class="loginElement sign_up"><?php echo TR('sign_up'); ?></span>
+					<span class="loginElement sign_up" style="text-transform: uppercase;"><?php echo TR('sign_up'); ?></span>
 				</div>
 				<div style="margin-top: 10px;">
-					<span class="loginElement forgotPwd"><?php echo TR('forgotPwd'); ?></span>
+					<span class="loginElement forgotPwd" style="text-transform: uppercase;"><?php echo TR('forgotPwd'); ?></span>
 				</div>
 			</form>
 		</div>
@@ -96,13 +96,14 @@
 		});
 	</script>
 	<div style="text-align: center;margin-top: 40px;">
-		<span class="sidebarElement facilitator <?= $_REQUEST['acc'] == 'facilitator'?'azul':'negro'; ?>"><?php echo TR('facilitator'); ?></span><br/>
+		<span class="sidebarElement facilitator <?= $_REQUEST['acc'] == 'facilitator'?'azul':'negro'; ?>"  style="text-transform: uppercase;">
+			<?php echo TR('facilitator'); ?></span><br/>
 	</div>
 
 	<div style="text-align: center;margin-top: 30px;">
 
-		<div class="" style="height: 25px;width: 25px;
-			background-color: #e80000;margin-left: auto;margin-right: auto;border-radius: 50%;color: white;" >
+		<div class="rojoBkg" style="height: 25px;width: 25px;
+			margin-left: auto;margin-right: auto;border-radius: 50%;color: white;" >
 			<i class="fas fa-user manita edtProfile" style="margin-right: auto;margin-left: auto;margin-top: 3px;"></i>
 		</div>
 		<div style="text-transform: uppercase; margin-top: 20px;" class="negro">
@@ -110,7 +111,8 @@
 		</div>
 		<div style="margin-top: 10px;">
 			<span class="loginElement negro">
-				<a class="logoutBtn" href="<?php echo $_SERVER['PHP_SELF'];?>?logout=1"><?php echo TR('close_session'); ?></a>
+				<a class="logoutBtn" href="<?php echo $_SERVER['PHP_SELF'];?>?logout=1"  style="text-transform: uppercase;">
+					<?php echo TR('close_session'); ?></a>
 			</span>
 		</div>
 	</div>

@@ -194,12 +194,6 @@
 	height: 10px;
 }
 
-.negro{
-	background-color: #004aad;
-	color:#000;
-	vertical-align: middle;
-}
-
 .NA{
 	background-color: #000;
 	color:#000;
@@ -427,7 +421,7 @@ li.disabled a{
 }
 
 .negroBkg{
-	background-color: #000000 !important;
+	background-color: #e80000 !important;
 }
 
 .borderAzul td{

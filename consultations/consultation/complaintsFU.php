@@ -17,7 +17,7 @@
 
 ?>
 
-<div class="modal-header nuevo" style="background-color: #e80000;">
+<div class="modal-header nuevo rojoBkg" >
 	<div style="text-align: center;">
 		<h4 class="modal-title">
 			<?php echo TR('complaintsFU'); ?>

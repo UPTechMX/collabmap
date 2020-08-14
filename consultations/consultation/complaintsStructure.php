@@ -109,7 +109,7 @@ $dims = $db->query("SELECT * FROM Dimensiones
 	<?php } ?>
 	<div class="" style="padding:5px 10px 0px 10px; margin-bottom: 10px;" >
 		<div>
-			<textarea class="form-control" id="complaintText"></textarea>
+			<textarea class="form-control" rows="8" id="complaintText"></textarea>
 		</div>
 	</div>
 	<div class="row justify-content-between" >
@@ -119,7 +119,7 @@ $dims = $db->query("SELECT * FROM Dimensiones
 			</span>	
 		</div>
 		<div class="col-7" style="text-align: center; ">
-			<span id="complaintsFU" class="manita" style="background-color: #e80000;color: white; padding: 5px 20px; border-radius: 3px;">
+			<span id="complaintsFU" class="manita rojoBkg" style="color: white; padding: 5px 20px; border-radius: 3px;">
 				<?php echo TR('complaintsFU'); ?>
 			</span>	
 		</div>

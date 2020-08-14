@@ -4,9 +4,7 @@
 		include_once '../../lib/j/j.func.php';
 	}
 ?>
-<div style="margin-right: 20%;">
-	<?php include raiz().'general/lang.php'; ?>
-</div>
+
 <div id="dAlerta"></div>
 
 <?php

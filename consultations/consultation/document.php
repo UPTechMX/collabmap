@@ -114,7 +114,7 @@
 </script>
 
 
-<div class="modal-header nuevo" style="background-color: #004aad;" >
+<div class="modal-header nuevo azulBkg" >
 	<div style="text-align: center;">
 		<h4 class="modal-title">
 			<?php echo TR('document')." ($document[name])"; ?>

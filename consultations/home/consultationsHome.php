@@ -105,7 +105,7 @@
 	});
 </script>
 <div style="margin-top: 50px;" class="d-none d-md-block"></div>
-<div class="title">
+<div class="title azul" style="font-weight: 800;font-size: 2em;text-transform: uppercase;">
 	<?php echo TR('about'); ?>...
 </div>
 <div style="text-align: justify;">
@@ -115,11 +115,21 @@
 		<?php } ?>
 	</div>
 	<div style="margin-top: 10px;">
-		<span class="sidebarElement" style="font-size: .9em;" id="iWantMore">
+		<span class="sidebarElement azul" style="font-size: .9em;" id="iWantMore">
 			<i class="glyphicon glyphicon-forward"></i><?php echo TR('iWantMore') ?>
 		</span>
 	</div>
 	<!-- <i class="fas fa-bacon"></i> -->
+</div>
+<div style="position: relative; margin-bottom: 30px; margin-top: 30px;" >
+	<hr>
+	<div style="background-color: #CCC;width: 10px;height: 10px;border-radius: 50%;position: absolute;top:-4px;"></div>
+	<div style="background-color: #CCC;width: 10px;height: 10px;border-radius: 50%;position: absolute;top:-4px;left: 20px;"></div>
+</div>
+
+
+<div class="title azul" style="font-weight: 800;font-size: 2em;text-transform: uppercase; margin-top: 30px;">
+	<?php echo TR('consultations'); ?>
 </div>
 
 <?php $color='#004aad'; ?>
