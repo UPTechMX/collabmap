@@ -11,7 +11,7 @@
 }
 
 .btn-shop:hover {
-  background-color: #004aad;
+  background-color: #f8b621;
   color: whitesmoke ;
 }
 
@@ -276,7 +276,7 @@
 .nomSubArea{
 	font-size: 1.7em;
 	text-align: center;
-	background-color: #004aad;
+	background-color: #f8b621;
 	padding: 5px;
 	border-radius: 2px;
 	margin-top: 10px;
@@ -389,17 +389,17 @@ li.disabled a{
 }
 
 .azul{
-	color: #004aad !important;
+	color: #f8b621 !important;
 	background-color: transparent;
 }
 
 .verde{
-	color: #60a534 !important;
+	color: #0092c1 !important;
 	background-color: transparent;
 }
 
 .rojo{
-	color: #e80000 !important;
+	color: #e63e39 !important;
 	background-color: transparent;
 }
 
@@ -409,26 +409,26 @@ li.disabled a{
 }
 
 .azulBkg{
-	background-color: #004aad !important;
+	background-color: #f8b621 !important;
 }
 
 .verdeBkg{
-	background-color: #60a534 !important;
+	background-color: #0092c1 !important;
 }
 
 .rojoBkg{
-	background-color: #e80000 !important;
+	background-color: #e63e39 !important;
 }
 
 .negroBkg{
-	background-color: #e80000 !important;
+	background-color: #e63e39 !important;
 }
 
 .borderAzul td{
-	border-top: 2px solid #004aad !important;
+	border-top: 2px solid #f8b621 !important;
 }
 .borderAzulBottom th{
-	border-bottom: : 2px solid #004aad !important;
+	border-bottom: : 2px solid #f8b621 !important;
 }
 
 .borderDotted td{

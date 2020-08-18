@@ -252,11 +252,11 @@
 
 .consultationsContainer{
     padding:10px;
-    background-color: rgba(0,0,0,.03);
+    background-color: rgba(248,182,33,.03);
     position: relative;
     margin-top: 20px;
-    border-top: solid 3px #e80000;
-    border-bottom: solid 3px #e80000;
+    border-top: solid 3px #f8b621;
+    border-bottom: solid 3px #f8b621;
 }
 
 .colorizaSurveys{
