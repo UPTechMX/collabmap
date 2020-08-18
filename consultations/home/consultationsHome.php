@@ -105,7 +105,7 @@
 	});
 </script>
 <div style="margin-top: 50px;" class="d-none d-md-block"></div>
-<div class="title">
+<div class="title azul" style="font-weight: 800;font-size: 2em;text-transform: uppercase;">
 	<?php echo TR('about'); ?>...
 </div>
 <div style="text-align: justify;">
@@ -115,24 +115,34 @@
 		<?php } ?>
 	</div>
 	<div style="margin-top: 10px;">
-		<span class="sidebarElement" style="font-size: .9em;" id="iWantMore">
+		<span class="sidebarElement azul" style="font-size: .9em;" id="iWantMore">
 			<i class="glyphicon glyphicon-forward"></i><?php echo TR('iWantMore') ?>
 		</span>
 	</div>
 	<!-- <i class="fas fa-bacon"></i> -->
 </div>
+<div style="position: relative; margin-bottom: 30px; margin-top: 30px;" >
+	<hr>
+	<div style="background-color: #CCC;width: 10px;height: 10px;border-radius: 50%;position: absolute;top:-4px;"></div>
+	<div style="background-color: #CCC;width: 10px;height: 10px;border-radius: 50%;position: absolute;top:-4px;left: 20px;"></div>
+</div>
 
-<?php $color='#ffb919'; ?>
+
+<div class="title azul" style="font-weight: 800;font-size: 2em;text-transform: uppercase; margin-top: 30px;">
+	<?php echo TR('consultations'); ?>
+</div>
+
+<?php $color='#004aad'; ?>
 <div class="consultationsContainer">
-	<div class="sectionBanner">
+	<!-- <div class="sectionBanner">
 		<?php echo TR('ongoingConsultations') ?>
-	</div>
-	<div class="imgFondo icoSeccionFondo" style="">
+	</div> -->
+	<!-- <div class="imgFondo icoSeccionFondo" style="">
 		<img src="" width="40" style="margin-left: 2px;margin-top: 2px;" file="inProgress.svg" />
-	</div>
+	</div> -->
 	<div class="row" style="margin-top: 20px;">
 		<?php foreach ($now as $c){ ?>
-			<div class="col-md-6" style="padding: 10px;">
+			<div class="col-md-3" style="padding: 10px;">
 				<?php include 'consultationCard.php'; ?>
 			</div>
 		<?php } ?>

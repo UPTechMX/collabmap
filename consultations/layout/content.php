@@ -1,10 +1,14 @@
+<?php 
+
+	if(!function_exists('raiz')){
+		include_once '../../lib/j/j.func.php';
+	}
+?>
+
 <div id="dAlerta"></div>
 
 <?php
 
-if(!function_exists('raiz')){
-	include_once '../../lib/j/j.func.php';
-}
 // print2(atj($_REQUEST));
 $location = empty($location)?'consultations':$location;
 $htmlRoot = aRaizHtml($location);
@@ -30,6 +34,9 @@ switch ($Act) {
 		break;
 	case 'consultation':
 		include_once raiz().'consultations/consultation/index.php';
+		break;
+	case 'facilitator':
+		include_once raiz().'questionnaires/targets/index.php';
 		break;
 	case 'edtProfile':
 		include_once raiz().'consultations/profile/index.php';

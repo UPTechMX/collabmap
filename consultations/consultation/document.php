@@ -114,7 +114,7 @@
 </script>
 
 
-<div class="modal-header nuevo" >
+<div class="modal-header nuevo azulBkg" >
 	<div style="text-align: center;">
 		<h4 class="modal-title">
 			<?php echo TR('document')." ($document[name])"; ?>
@@ -135,12 +135,12 @@
 				<h2><?php echo TR('comments'); ?></h2>
 			</div>
 			<?php if (count($dims) != 0){ ?>			
-				<div style="text-align: right;padding-right: 10px;margin-top:10px;font-size: 1em;">
+				<!-- <div style="text-align: right;padding-right: 10px;margin-top:10px;font-size: 1em;">
 					<span class="manita" style="text-transform: uppercase;" id="allComments">
-						<!-- <?php echo TR("allComments"); ?> -->
+						
 						<i class="glyphicon glyphicon-check"></i>	
 					</span>
-				</div>
+				</div> -->
 				<div class="structCont" style="margin-top: 10px;">
 					<?php 
 					foreach ($dims as $k => $d){
@@ -169,11 +169,19 @@
 							<textarea class="form-control" id="docCommentText"></textarea>
 						</div>
 					</div>
-					<div style="text-align: center">
-						<span class="btn btn-shop" id="sendDocComment"><?php echo TR('send'); ?></span>
+					<div class="row justify-content-between" >
+						<div class="col-4" style="text-align: center; ">
+							<span id="sendDocComment" class="manita" style="border:solid 2px #004aad; padding: 5px 20px; border-radius: 3px;">
+								<?php echo TR('send'); ?>
+							</span>	
+						</div>
+						<div class="col-7" style="text-align: center; ">
+							<span id="allComments" class="manita" style="background-color: #004aad;color: white; padding: 5px 20px; border-radius: 3px;">
+								<?php echo TR('myComments'); ?>
+							</span>	
+						</div>
 					</div>
 				</div>
-
 			<?php } ?>
 		</div>
 	</div>

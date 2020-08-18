@@ -383,6 +383,10 @@
   "requestAccepted" : "Solucitud aceptada, revisa tu correo electrónico",
   "pwdChanged" : "La contraseña se cambió existosamente",
   "header": "Encabezado",
+  "publicNews": "Mantente informado",
+  "forTargets": "Monitoreo por facilitadores",
+  "facilitator":"Soy facilitator",
+  "myComments":"Mis comentarios",
 
   "selspaChk": "Selecciona una pregunta georreferenciada de un cuestionario:",
   "selChkUH": "Selecciona una pregunta de interés:",  

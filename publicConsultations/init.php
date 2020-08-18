@@ -9,6 +9,6 @@
 ?>
 
 
-<div class="nuevo"><?php echo $pcInfo['name']; ?></div>
-<div><?php echo $pcInfo['description']; ?></div>
+<h1 class="azul"><?php echo $pcInfo['name']; ?></h1 class="azul">
+<div class="negro"><?php echo $pcInfo['description']; ?></div>
 <div id="register"><?php include 'register.php'; ?></div>

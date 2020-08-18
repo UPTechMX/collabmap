@@ -30,6 +30,7 @@ function root(){
 
 
 include_once root().'lib/j/j.func.php';
+// print2($_SESSION);
 
 $location = empty($location)?'consultations':$location;
 $htmlRoot = aRaizHtml($location);
@@ -138,6 +139,12 @@ $htmlRoot = aRaizHtml($location);
 	<link rel="stylesheet" href="<?php echo $htmlRoot; ?>lib/js/slick/slick-theme.css">
 	<script src="<?php echo $htmlRoot; ?>lib/js/slick/slick.js"></script>
 	<script src="https://kit.fontawesome.com/7debf3cc4b.js" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:200" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400" rel="stylesheet">
+
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script type="text/javascript">
@@ -159,16 +166,16 @@ $htmlRoot = aRaizHtml($location);
 	
 
 </head>
-<body style="background-color: #fff;">
+<body style="background-color: #fff;font-family: Montserrat; font-weight: 400;">
 	<?php include 'layout/navbar.php'; ?>
 	<div class="wrapper">
 	    <nav id="sidebar" class="d-none d-md-block"
-	    	style="color:black;background-image: url('<?php echo $htmlRoot; ?>img/sideBarBg.png'); 
-	    	background-repeat:no-repeat;background-size: 100%; ">
+	    	style="color:black;background-image: url('<?php echo $htmlRoot; ?>img/sideBarBg.png');
+	    	background-repeat:no-repeat;background-size: 100%;">
 	    	<?php include_once raiz().'consultations/layout/sidebar.php'; ?>
 	    </nav>
 		
-	    <div id="content">
+	    <div id="content" style="margin-right: 50px;margin-left: 50px;">
 	    	<?php include 'layout/content.php'; ?>
 	    </div>
 

@@ -174,8 +174,8 @@
 
 .consultationCardCont{
     overflow-y: auto;
-    border:solid;
-    height: 340px;
+    border:solid 2px;
+    height: 290px;
     background-color: white;
 }
 
@@ -193,7 +193,7 @@
 
 .sectionBanner{
     color: white;
-    background: #ffb919;
+    background: #2a6bd5;
     position: absolute;
     /*vertical-align: middle;*/
     text-transform: uppercase;
@@ -214,13 +214,13 @@
     left:100%;
     top:0;
     border:13px solid transparent;
-    border-left: 13px solid #ffb919;
+    border-left: 13px solid #2a6bd5;
 }
 
 .actionDiv{
     min-height: 300px;
     /*height: 300px;*/
-    border-top: solid 3px #ffb919;
+    border-top: solid 3px #2a6bd5;
     margin-top: 80px;
     background-color: #f7f7f7;
     padding-bottom:10px;
@@ -243,7 +243,7 @@
 }
 
 .liked{
-    color:#ffb919;
+    color:#e80000;
 }
 
 .noLiked{
@@ -252,30 +252,30 @@
 
 .consultationsContainer{
     padding:10px;
-    background-color: rgba(255,136,34,.04);
+    background-color: rgba(0,0,0,.03);
     position: relative;
-    margin-top: 50px;
-    border-top: solid 3px rgba(255,136,34);
-    border-bottom: solid 3px rgba(255,136,34);
+    margin-top: 20px;
+    border-top: solid 3px #e80000;
+    border-bottom: solid 3px #e80000;
 }
 
 .colorizaSurveys{
     /*filter: invert(38%) sepia(45%) saturate(3856%) hue-rotate(206deg) brightness(87%) contrast(90%);*/
-    filter: invert(66%) sepia(53%) saturate(619%) hue-rotate(34deg) brightness(94%) contrast(89%);
+    filter: invert(17%) sepia(96%) saturate(2501%) hue-rotate(204deg) brightness(96%) contrast(106%);
 }
 
 .colorizaComplains{
     /*filter: invert(55%) sepia(24%) saturate(662%) hue-rotate(223deg) brightness(89%) contrast(87%);*/
-    filter: invert(25%) sepia(61%) saturate(2032%) hue-rotate(337deg) brightness(114%) contrast(95%);
+    filter: invert(12%) sepia(60%) saturate(7495%) hue-rotate(358deg) brightness(102%) contrast(108%);
 }
 
 .colorizaDocuments{
     /*filter: invert(31%) sepia(85%) saturate(2279%) hue-rotate(208deg) brightness(89%) contrast(90%);;*/
-    filter: invert(38%) sepia(58%) saturate(4587%) hue-rotate(171deg) brightness(100%) contrast(98%);
+    filter: invert(0%) sepia(0%) saturate(17%) hue-rotate(324deg) brightness(102%) contrast(105%);
 }
 
 .colorIcono{
-    filter: invert(69%) sepia(7%) saturate(9%) hue-rotate(37deg) brightness(87%) contrast(89%);
+    /*filter: invert(69%) sepia(7%) saturate(9%) hue-rotate(37deg) brightness(87%) contrast(89%);*/
 }
 
 .icoSeccionFondo{
@@ -298,9 +298,7 @@
 
 .actionName{
     text-align: center;
-    /*font-size: .9em;*/
-    font-weight: bold;
-    /*text-transform: uppercase;*/
+    text-transform: uppercase;
 }
 
 .accSurvey{
@@ -364,8 +362,8 @@ a, a:hover, a:focus {
 
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 300px;
+    max-width: 300px;
     background: transparent;
     color: #fff;
     transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
@@ -529,5 +527,7 @@ a.article, a.article:hover {
 
 }
 
-
+.descriptionConsultation p{
+    color: black !important;
+}
 

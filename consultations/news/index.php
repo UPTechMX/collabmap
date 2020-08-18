@@ -52,22 +52,27 @@
 		});
 	});
 </script>
-<div style="color:#ffb919; text-align: left;">
-	<div class="consultationName" style="font-size: 2em;font-weight: bold;text-align: left;">
-		<?php echo TR('news'); ?>
+<div style="color:#2a6bd5; text-align: left;">
+	<div class="consultationName azul" style="font-size: 2em;font-weight: bold;text-align: left;">
+		<?php echo TR('publicNews'); ?>
 	</div>
+	<div style="position: relative; margin-bottom: 30px; margin-top: 30px;" >
+		<hr>
+		<div style="background-color: #CCC;width: 10px;height: 10px;border-radius: 50%;position: absolute;top:-4px;"></div>
+		<div style="background-color: #CCC;width: 10px;height: 10px;border-radius: 50%;position: absolute;top:-4px;left: 20px;"></div>
+	</div>
+
 	<div style="margin-top: 20px;">
 		<?php 
 			foreach ($news as $n){ 
 				// print2($n);
 			$count = $db->query("SELECT COUNT(*) as cuenta FROM UsersLikes WHERE newsId = $n[id]")->fetchAll(PDO::FETCH_NUM)[0][0];
 		?>
-			<hr>
 			<div class="divNews" id="divNews_<?php echo $n['id']; ?>">
-				<div class="extNewsName"><?php echo $n['name']; ?></div>
-				<div class="extNewsHeader"><?php echo $n['header']; ?></div>
+				<div class="extNewsName azul"><?php echo $n['name']; ?></div>
+				<div class="extNewsHeade negro"><?php echo $n['header']; ?></div>
 				<div style="margin-top: 10px;">
-					<span class="sidebarElement readMore" style="font-size: .9em;" >
+					<span class="sidebarElement readMore azul" style="font-size: .9em;" >
 						<i class="glyphicon glyphicon-forward"></i><?php echo TR('iWantMore') ?>
 					</span>
 				</div>
@@ -78,7 +83,7 @@
 						?>
 						<i class="fas fa-thumbs-up manita like <?php echo $class; ?>"></i>
 					</span>&nbsp;&nbsp;
-					<strong class="count"><?php echo $count; ?></strong> 
+					<strong class="count rojo"><?php echo $count; ?></strong> 
 				</div>
 			</div>
 		<?php } ?>

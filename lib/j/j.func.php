@@ -1075,8 +1075,7 @@ function checaAccesoConsult( $cId = 0 ){
 
 }
 
-function validateDate($date, $format = 'Y-m-d')
-{
+function validateDate($date, $format = 'Y-m-d'){
     $d = DateTime::createFromFormat($format, $date);
     // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
     return $d && $d->format($format) === $date;
@@ -1804,7 +1803,27 @@ function saveFile64($strFile,$dir,$fileName){
   	file_put_contents($name,$realImage);
 }
 
+function getStruct($elemId,&$arr){
 
+	global $db;
+
+	$elem = $db->query("SELECT de.nombre, d.nombre as dimension, de.padre 
+		FROM DimensionesElem de
+		LEFT JOIN Dimensiones d ON d.id = de.dimensionesId
+		WHERE de.id = $elemId")->fetchAll(PDO::FETCH_ASSOC)[0];
+	// print2($elem);
+	$arr[] = $elem;
+	if($elem['padre'] != 0){
+		$elem = getStruct($elem['padre'],$arr);
+	}else{
+		return $arr;
+	}
+
+
+
+
+
+}
 
 
 

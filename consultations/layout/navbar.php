@@ -23,6 +23,6 @@
 		</div>
 	</div>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<div id="loginContNavBar"><?php include 'seguridad/login.php'; ?></div>
+		<div id="loginContNavBar"><?php include raiz().'consultations/seguridad/login.php'; ?></div>
 	</div>
 </nav>

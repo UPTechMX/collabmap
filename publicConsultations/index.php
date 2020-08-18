@@ -55,6 +55,8 @@ $htmlRoot = aRaizHtml($location);
 	<link href="<?php echo $htmlRoot; ?>lib/js/selectpicker/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo $htmlRoot; ?>lib/js/jquery-upload-file/css/uploadfile.css " rel="stylesheet" type="text/css" />
 	<link href="<?php echo $htmlRoot; ?>lib/css/general.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo $htmlRoot; ?>lib/css/consultations.css" rel="stylesheet" type="text/css" />
+
 	<link href="<?php echo $htmlRoot; ?>lib/css/font-awesome.min.css " rel="stylesheet" type="text/css" />
 	<link href="<?php echo $htmlRoot; ?>lib/js/sumoselect/sumoselect.css " rel="stylesheet" type="text/css" />
 	<link href="<?php echo $htmlRoot; ?>lib/js/starrr/starrr.css " rel="stylesheet" type="text/css" />
@@ -139,18 +141,27 @@ $htmlRoot = aRaizHtml($location);
 
 </head>
 <body style="background-color: #fff;">
-	<div class="container" >
-		<div class="header" id="header"><?php include 'layout/header.php'; ?></div>
-		<div>
-			<div class="content" style="min-height:30px;" id="content">
-				<?php include 'init.php'; ?>
+	
+
+	<div class="wrapper">
+	    <nav id="sidebar" class="d-none d-md-block"
+	    	style="color:black;background-image: url('<?php echo $htmlRoot; ?>img/sideBarBg.png'); 
+	    	background-repeat:no-repeat;background-size: 100%; ">
+	    	<?php include_once raiz().'publicConsultations/layout/sidebar.php'; ?>
+	    </nav>
+		
+	    <div id="content" style="margin-right: 50px;margin-top: 60px;margin-left: 20px;">
+	    	<?php include 'init.php'; ?>
+	    </div>
+
+	    <!-- <nav id="sidebar" class="d-none d-md-block"
+	    	style="color:black;background-image: url('<?php echo $htmlRoot; ?>img/backgroundcm.png'); 
+	    	background-repeat:no-repeat;background-size: 100%; ">
+	    </nav> -->
+	</div>     
 
 
-			</div>
-			<br/>
-			<div class="footerL"><?php include 'layout/footer.php'; ?></div>
-		</div>
-	</div>
+
 	<div class="modal fade" id="popUpCuest" role="dialog"  style="overflow-y: auto !important;" data-backdrop="static" data-keyboard="false">
 		<div id="modalCuest" class="modal-dialog modal-xl">
 			<div class="modal-content" style="border-radius: 0px;" id="popContCuest">

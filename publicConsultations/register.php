@@ -89,11 +89,8 @@
 	});
 </script>
 
- <div class="container">
-   <div class="row justify-content-md-center">
-    
-	<div class="col-4">
-		<div align="center" style="border:solid #00aeef;padding:20px 10px 20px 10px;
+	<div class="">
+		<div style="padding:20px 0px;
 			background:#fff;width:100%;border-radius:10px;color:black;">
 			<?php if ($pcInfo['emailReq'] == 1){ ?>
 
@@ -108,8 +105,9 @@
 				<br/>
 			<?php } ?>
 
-			<span id="enter" class="btn btn-shop"><?php echo TR('startQuestionnaire'); ?></span>
+			<span id="enter" class="" style="border:solid 2px #e80000; padding: 5px 20px; border-radius: 3px;">
+				<?php echo TR('startQuestionnaire'); ?>
+			</span>
 		</div>
      
    </div>
- </div>

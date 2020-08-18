@@ -169,26 +169,30 @@ foreach ($res as $r) {
 	});
 </script>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<button class="navbar-toggler" type="button" data-toggle="collapse" 
-			data-target="#bloquesNav" aria-controls="bloquesNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark"  style="margin-bottom::; 0px;">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<button class="navbar-toggler" type="button" data-toggle="collapse" 
+		data-target="#bloquesNav" aria-controls="bloquesNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
 
-		<div class="collapse navbar-collapse" id="bloquesNav">
+	<div class="collapse navbar-collapse" id="bloquesNav">
 
-			<ul class="navbar-nav mr-auto" id="bloques">
-					<!-- <li class="bloqueBtn active nav-item" id="general"><a class="nav-link"  href="#"><?php echo TR('general'); ?></a></li> -->
-				<?php foreach ($est['bloques'] as $bId => $b){ ?>
-					<li class="bloqueBtn disabled nav-item" id="<?php echo $bId; ?>">
-						<a class="nav-link" href="#" ><?php echo $b['nombre']; ?></a>
-					</li>
-				<?php } ?>
-					<li class="bloqueBtn nav-item" id="finalizar"><a class="nav-link" href="#"><?php echo TR('finalize') ?></a></li>
-			</ul>
-		</div>
+		<ul class="navbar-nav mr-auto" id="bloques">
+				<!-- <li class="bloqueBtn active nav-item" id="general"><a class="nav-link"  href="#"><?php echo TR('general'); ?></a></li> -->
+			<?php foreach ($est['bloques'] as $bId => $b){ ?>
+				<li class="bloqueBtn disabled nav-item" id="<?php echo $bId; ?>">
+					<a class="nav-link manita" ><?php echo $b['nombre']; ?></a>
+				</li>
+			<?php } ?>
+				<li class="bloqueBtn nav-item" id="finalizar"><a class="nav-link manita"><?php echo TR('finalize') ?></a></li>
+		</ul>
+	</div>
 </nav>
+<!-- ------- -->
+
+<!-- ------- -->
+
 <div class="row">
 	<div class="col-md-3 areas">
 		<div id="a_general" class="areasBloque">

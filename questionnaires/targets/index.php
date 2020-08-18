@@ -21,7 +21,7 @@
 	")->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_GROUP);
 
 
-	// print2($targets);
+	// print2($_SESSION);
 ?>
 
 <script type="text/javascript">
@@ -86,7 +86,12 @@
 
 	});
 </script>
-
+<h1 class="azul" style="font-weight: bold;"> <?= TR('forTargets'); ?></h1>
+<div style="position: relative; margin-bottom: 30px;">
+	<hr>
+	<div style="background-color: #CCC;width: 10px;height: 10px;border-radius: 50%;position: absolute;top:-4px;"></div>
+	<div style="background-color: #CCC;width: 10px;height: 10px;border-radius: 50%;position: absolute;top:-4px;left: 20px;"></div>
+</div>
 <?php 
 foreach ($targets as $targetsChecklist){ 
 	$tId = $targetsChecklist[0]['tId'];
@@ -94,7 +99,17 @@ foreach ($targets as $targetsChecklist){
 	$dims = $db->query("SELECT * FROM Dimensiones WHERE elemId = $tId AND type = 'structure'")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 	<div style="margin-top: 10px;" class="divTrgt" id="divTrgt_<?php echo $targetsChecklist[0]['tId']."_".$targetsChecklist[0]['utId']; ?>">
-		<div class="nuevo"><?php echo $targetsChecklist[0]['tName']; ?></div>
+		<table width="100%">
+			<tr>
+				<td width="80%" class="nuevo azulBkg" style="font-weight: bold;text-align: left;">
+					<?php echo $targetsChecklist[0]['pName']; ?>
+				</td>
+				<td width="20%" class="nuevo rojoBkg" style="font-weight: bold;">
+					<?php echo $targetsChecklist[0]['tName']; ?>
+				</td>
+			</tr>
+		</table>
+		
 		<div style="margin-top: 10px;">
 			<?php echo $targetsChecklist[0]['description']; ?>
 		</div>

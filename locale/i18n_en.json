@@ -382,7 +382,10 @@
   "noExistingUser" : "The user does not exist in our database",
   "requestAccepted" : "Accepted request, check your email",
   "pwdChanged" : "The password was successfully changed",
-  "header": "Header"
-
+  "header": "Header",
+  "publicNews": "News",
+  "forTargets": "Monitoring by facilitators",
+  "facilitator":"I am a facilitator",
+  "myComments":"My comments"
 
 }
