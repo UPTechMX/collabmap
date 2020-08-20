@@ -229,10 +229,14 @@
 
 	$estructura = estructura($chkId);
 	// print2($estructura);
-	foreach ($visitas as $v) {
+	foreach ($visitas as $k =>$v) {
 		
 		// if($v['POS'] != 'Mont-PR-02'){continue;} // BORRAR;
 		// print2($v);
+
+		// if($k == 20){
+		// 	break;
+		// }
 
 		$chk2 = new CheckList($v['vId']);
 		// print2($chk2->id);
@@ -353,8 +357,9 @@
 				case 'op':
 					// print2($pregs[$c['identificador']]);
 					$rvId = $pregs[$c['identificador']]['respuestasVisitaId'];
-					$pointJ = $db->query("SELECT ST_AsGeoJSON(geometry) as geometry 
-							FROM Problems WHERE RespuestasVisitaId = $rvId")->fetchAll(PDO::FETCH_ASSOC)[0];
+					$sql = "SELECT ST_AsGeoJSON(geometry) as geometry FROM Problems WHERE RespuestasVisitaId = '$rvId'";
+
+					$pointJ = $db->query($sql)->fetchAll(PDO::FETCH_ASSOC)[0];
 					$point = json_decode($pointJ['geometry'],true);
 					$coordinates = $point['coordinates'];
 					// print2($coordinates);
@@ -362,6 +367,11 @@
 					$csvL .= '<ss:Cell><ss:Data ss:Type="String"></ss:Data></ss:Cell>'."\n";
 					$csvL .= '<ss:Cell><ss:Data ss:Type="String">'.$coordinates[1].'</ss:Data></ss:Cell>'."\n";
 					$csvL .= '<ss:Cell><ss:Data ss:Type="String">'.$coordinates[0].'</ss:Data></ss:Cell>'."\n";
+					// print2($coordinates);
+					// echo "<br/>=====$rvId=====<br/>";
+					// echo '<ss:Cell><ss:Data ss:Type="String"></ss:Data></ss:Cell>'."<br/>";
+					// echo '<ss:Cell><ss:Data ss:Type="String">'.$coordinates[1].'</ss:Data></ss:Cell>'."<br/>";
+					// echo '<ss:Cell><ss:Data ss:Type="String">'.$coordinates[0].'</ss:Data></ss:Cell>'."<br/>";
 					break;
 				case 'pregVal':
 					$pond = $calc['bloques'][$pregs[$c['identificador']]['bloque']]['areas'][$pregs[$c['identificador']]['area']]['pond'];
