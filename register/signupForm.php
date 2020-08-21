@@ -210,7 +210,8 @@
 						<td><?php echo TR('captcha'); ?></td>
 						<td>
 								
-									<input type="text" value="<?php echo $datC['token']; ?>" class="form-control"  id="token" placeholder="Captcha" style="min-width: 150px;">
+									<input type="text" value="<?php echo $datC['token']; ?>" class="form-control"  id="token" 
+									placeholder="Masukkan kode yang tampil di bawah" style="min-width: 150px;">
 								
 									<img src="captcha/image.php?12325" alt="CAPTCHA" id="image-captcha">
 									<a href="#" id="refresh-captcha" class="align-middle" title="refresh"><i class="material-icons align-middle">refresh</i></a>
