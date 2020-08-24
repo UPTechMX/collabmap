@@ -275,12 +275,11 @@
 					</span>
 
 				</div>
-				<div style="text-align: right;padding-right: 10px;margin-top:10px;font-size: 1em;">
+				<!-- <div style="text-align: right;padding-right: 10px;margin-top:10px;font-size: 1em;">
 					<span class="manita" style="text-transform: uppercase;" id="complaintsFU">
-						<!-- <?php echo TR("complaintsFU"); ?> -->
 						<i class="glyphicon glyphicon-check"></i>	
 					</span>
-				</div>
+				</div> -->
 				<div><?php include 'complaintsStructure.php'; ?></div>
 			</div>
 		</div>
