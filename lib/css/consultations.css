@@ -528,6 +528,14 @@ a.article, a.article:hover {
 
 }
 
+@media (min-width:992px ){
+
+    #content {
+        margin-right: 50px;
+        margin-left: 50px;
+    }
+}
+
 .descriptionConsultation p{
     color: black !important;
 }

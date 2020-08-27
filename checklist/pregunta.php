@@ -333,7 +333,7 @@ if($p['tipo'] == 'mult'){
 	<form id="datosPreg">
 
 		<!-- Respuesta -->
-		<div class="resp" style="width: 80%;margin-left: auto;margin-right: auto;">
+		<div class="resp" style="width: 100%;margin-left: auto;margin-right: auto;">
 			<?php if ($p['tipo'] == 'mult'){ ?>
 				<select id="respuesta_<?php echo $pId; ?>" name="respuesta" class="form-control oblig" style="height: 50px;">
 					<option value="">- - - <?php echo TR('selectAnswer'); ?> - - -</option>

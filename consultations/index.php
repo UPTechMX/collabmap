@@ -175,7 +175,7 @@ $htmlRoot = aRaizHtml($location);
 	    	<?php include_once raiz().'consultations/layout/sidebar.php'; ?>
 	    </nav>
 		
-	    <div id="content" style="margin-right: 50px;margin-left: 50px;">
+	    <div id="content" >
 	    	<?php include 'layout/content.php'; ?>
 	    </div>
 
