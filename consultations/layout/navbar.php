@@ -5,6 +5,10 @@
 </script>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-block d-md-none" style="margin-bottom: 0px;">
+	<div style="padding: 0px 10px;">
+		<?php include raiz().'general/lang.php'; ?>
+	</div>
+
 	<button class="navbar-toggler" type="button" data-toggle="collapse" 
 		data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
