@@ -130,7 +130,8 @@
 	<div class="row">
 		<div class="col-md-8">
 
-			<iframe src="http://docs.google.com/gview?url=<?= "$url/consultationDocuments/$document[file]" ?>&embedded=true" style="height:500px;" frameborder="0"></iframe>
+			<iframe src="http://docs.google.com/gview?url=<?= "$url/consultationDocuments/$document[file]" ?>&embedded=true" 
+				style="height:500px;width:100%;" frameborder="0"></iframe>
 
 		</div>
 		<div class="col-md-4">
