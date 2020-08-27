@@ -27,7 +27,7 @@
 	  <span aria-hidden="true">&times;</span>
 	</button>
 </div>
-<div class="modal-body" id='pano' style='width:100%;border: none 1px;'>
+<div class="modal-body" id='pano' style='width:100%;border: none 1px;overflow-x: auto;'>
 	<table class="table">
 		<thead>
 			<tr>
