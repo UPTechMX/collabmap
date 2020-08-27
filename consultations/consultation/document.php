@@ -15,6 +15,8 @@
 	$dims = $db->query("SELECT * FROM Dimensiones 
 		WHERE elemId = $_POST[documentId] AND type = 'documents' ORDER BY nivel")->fetchAll(PDO::FETCH_ASSOC);
 
+	$url = explode('?', $_SERVER['HTTP_REFERER'])[0];
+
 
 ?>
 
@@ -127,8 +129,9 @@
 <div class="modal-body" id='pano' style='width:100%;border: none 1px;'>
 	<div class="row">
 		<div class="col-md-8">
-			<embed src="" file="<?php echo $document['file'];?>"
-				width= "100%" style=" max-height:600px;min-height: 500px;" class="documentDiv">
+
+			<iframe src="http://docs.google.com/gview?url=<?= "$url/consultationDocuments/$document[file]" ?>&embedded=true" style="height:500px;" frameborder="0"></iframe>
+
 		</div>
 		<div class="col-md-4">
 			<div style="text-align: center;">
