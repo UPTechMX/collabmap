@@ -1524,7 +1524,7 @@ function insertaUsersConsultationsChecklist($ucc,$check){
 	// echo "AAAA: $check";
 
 	$visitas = empty($te['visitas'])?array():$te['visitas'];
-	print2($visitas);
+	// print2($visitas);
 
 	foreach ($visitas as $v) {
 
