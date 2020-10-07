@@ -28,8 +28,9 @@
 			var dimElemId = $(this).val();
 			var dimNivel = this.id.split('_')[1];
 			var niveles = $('.dimSelAdd').length;
-			// console.log(dimElemId,dimNivel,niveles);
-			if(dimNivel < niveles ){
+			console.log(dimElemId,parseInt(dimNivel),niveles);
+			if(parseInt(dimNivel) < parseInt(niveles) ){
+
 				var r = []
 				if(dimElemId != ''){
 					var rj = jsonF('questionnaires/targets/json/getDims.php',{padre:dimElemId});
@@ -70,7 +71,7 @@
 				var elemNom = $('#name').val();
 				var datCopy = dat;
 
-				if(elemNom.length != 2){ // check digits
+				/*if(elemNom.length != 2){ // check digits
 					$('#nTrgt #name').css({backgroundColor:'rgba(255,0,0,.5)'});
 						$('#nTrgt #name').after(() => {
 							return '<span id="duplicateWarning"><?php echo TR('2digitsName'); ?></span>'
@@ -103,7 +104,7 @@
 
 						allOk = false;
 					}
-				}
+				}*/
 
 				if(allOk){
 					// hide selection modal
@@ -192,7 +193,8 @@
 	<br/>
 	<form id="nTrgt">
 		<table class="table" border="0">
-			<?php 
+			<?php
+			$i = 1;
 			foreach ($dims as $k => $d){ 
 				if($k == 0){
 					$dimsElems = $db->query("SELECT * FROM DimensionesElem 
@@ -205,7 +207,7 @@
 					<td><?php echo $d['nombre']; ?></td>
 					<td>
 						<?php if ($k < count($dims) -1){ ?>						
-							<select class="form-control dimSelAdd oblig" id="dimSelAdd_<?php echo "$d[nivel]"; ?>">
+							<select class="form-control dimSelAdd oblig" id="dimSelAdd_<?php echo "$i"; ?>">
 								<option value="">- - - <?php echo $d['nombre']; ?> - - -</option>
 								<?php foreach ($dimsElems as $de){ ?>
 									<option value="<?php echo $de['id']; ?>"><?php echo $de['nombre']; ?></option>
@@ -217,9 +219,14 @@
 						<?php } ?>
 					</td>
 				</tr>
-			<?php } ?>
-		</table>		
+
+			<?php $i++;} ?>
+				
+		</table>
 	</form>
+		<div style="color:#FF0000;"	>
+					<?php echo TR('mnjTargetAdd') ?>
+		</div>
 </div>
 <div class="modal-footer">
 	<div style="text-align: right;">

@@ -22,23 +22,25 @@
 
 	});
 </script>
-<table class="table">
-	<thead>
-		<tr>
-			<th><?php echo TR('name'); ?></th>
-			<th></th>
-			<!-- <th></th> -->
-			<!-- <th></th> -->
-		</tr>
-	</thead>
-	<tbody id="tabDims">
-		<?php foreach ($dimensiones as $d): ?>
+<div style="overflow-x: auto;">
+	<table class="table">
+		<thead>
 			<tr>
-				<td><span class="verDim" id="verDim_<?php echo $d['id'];?>"><?php echo $d['nombre']; ?></span></td>
-				<td><i class="glyphicon glyphicon-pencil edtDim manita" id="edtDim_<?php echo $d['id'];?>"></i></td>
-				<!-- <td><i class="glyphicon glyphicon-user usrDim manita" id="usrDim_<?php echo $d['id'];?>"></i></td> -->
-				<!-- <td><i class="glyphicon glyphicon-th dimDim manita" id="dimDim_<?php echo $d['id'];?>"></i></td> -->
+				<th><?php echo TR('name'); ?></th>
+				<th></th>
+				<!-- <th></th> -->
+				<!-- <th></th> -->
 			</tr>
-		<?php endforeach ?>
-	</tbody>
-</table>
+		</thead>
+		<tbody id="tabDims">
+			<?php foreach ($dimensiones as $d): ?>
+				<tr>
+					<td><span class="verDim" id="verDim_<?php echo $d['id'];?>"><?php echo $d['nombre']; ?></span></td>
+					<td><i class="glyphicon glyphicon-pencil edtDim manita" id="edtDim_<?php echo $d['id'];?>"></i></td>
+					<!-- <td><i class="glyphicon glyphicon-user usrDim manita" id="usrDim_<?php echo $d['id'];?>"></i></td> -->
+					<!-- <td><i class="glyphicon glyphicon-th dimDim manita" id="dimDim_<?php echo $d['id'];?>"></i></td> -->
+				</tr>
+			<?php endforeach ?>
+		</tbody>
+	</table>
+</div>

@@ -13,6 +13,8 @@
 	}else{
 		$chkCode = false;
 	}
+
+	
 ?>
 
 <script type="text/javascript">
@@ -123,10 +125,12 @@
 			}
 
 			if(allOk){
-				var rj = jsonF('register/json/json.php',{data:dat,acc:'signup',opt:1,trgtCode:trgtCode});
+				var token = $("#token").val();
+				var rj = jsonF('register/json/json.php',{data:dat,acc:'signup',opt:1,trgtCode:trgtCode,token:token});
 				console.log(rj);
 				var r = $.parseJSON(rj);
-				// console.log(r);
+				console.log(r);
+				console.log(r.ok);
 				if(r.ok == 1){
 					
 					// $('#signupContent').load(rz+'register/confirm.php');
@@ -147,7 +151,14 @@
 						$('#registerConfSection').remove();
 						$('#loginContent').show();
 					});
+
+					location.reload(true);
 					
+				}
+				else if(r.ok == 2){
+					//console.log("ok22:"+r.ok);
+					setTimeout(function(){alertar('<?php echo TR('errorCaptcha'); ?>')},1000);
+
 				}
 			}
 		}
@@ -184,6 +195,27 @@
 						<td><?php echo TR('name'); ?></td>
 						<td>
 							<input type="text" value="<?php echo $datC['name']; ?>" name="name" id="name" class="form-control oblig" >
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><?php echo TR('phone'); ?></td>
+						<td>
+							<input type="text" value="<?php echo $datC['telephone']; ?>" name="telephone" id="telephone" maxlength="15" class="form-control oblig" >
+						</td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td><?php echo TR('captcha'); ?></td>
+						<td>
+								
+									<input type="text" value="<?php echo $datC['token']; ?>" class="form-control"  id="token" 
+									placeholder="Masukkan kode yang tampil di bawah" style="min-width: 150px;">
+								
+									<img src="captcha/image.php?12325" alt="CAPTCHA" id="image-captcha">
+									<a href="#" id="refresh-captcha" class="align-middle" title="refresh"><i class="material-icons align-middle">refresh</i></a>
+								
 						</td>
 						<td></td>
 					</tr>
