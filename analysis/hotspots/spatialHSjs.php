@@ -121,7 +121,19 @@
 		var valNumMax = -999999999999;
 		var valNumMin = 999999999999;
 		var acums = {};
+
+		// console.log(points);
+		// console.log(polygons);
+		// console.log(o.kmlId);
 		for(var i in points){
+
+			if(typeof polygons[i] == 'undefined'){
+				if(o.kmlId != -1){
+					delete points[i];
+				}
+				continue;
+			}
+
 			var count = points[i].length;
 			// console.log('count: ',count, points[i]);
 			numRespMax = Math.max(numRespMax,count);
@@ -559,6 +571,8 @@
 		  interactive: false,
 		}
 
+
+
 		var vectorTileOptions = {
 			vectorTileLayerStyles: {
 				'KMLGeometries': function(e) {
@@ -633,7 +647,7 @@
 									}else{
 										fillOpacity = 0;
 									}
-									acum.text = '';//acum.countMultAns['ans0']['value'];
+									acum.text = acum.countMultAns['ans0']['value'];
 									break;
 
 								case 4:
@@ -643,7 +657,7 @@
 										fillOpacity = 0;
 									}
 									
-									acum.text = '';//acum.sums['ans0'];
+									acum.text = acum.sums['ans0'];
 
 									// console.log(acum);
 									break;

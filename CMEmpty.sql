@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-10-2020 a las 02:18:47
+-- Tiempo de generación: 21-10-2020 a las 22:23:44
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.9
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `collabdata`
+-- Base de datos: `cm`
 --
 
 -- --------------------------------------------------------
@@ -333,7 +333,7 @@ CREATE TABLE `DimensionesElem` (
 --
 
 INSERT INTO `DimensionesElem` (`id`, `padre`, `dimensionesId`, `nombre`) VALUES
-(24, NULL, NULL, NULL);
+(0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -415,6 +415,23 @@ CREATE TABLE `Frequencies` (
   `code` varchar(15) DEFAULT NULL,
   `orden` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `Frequencies`
+--
+
+INSERT INTO `Frequencies` (`id`, `code`, `orden`) VALUES
+(1, 'oneTime', 1),
+(2, 'daily', 2),
+(3, 'weekly', 3),
+(4, '2weeks', 4),
+(5, '3weeks', 5),
+(6, 'monthly', 6),
+(7, '2months', 7),
+(8, '3months', 8),
+(9, '4months', 9),
+(10, '6months', 10),
+(11, 'yearly', 11);
 
 -- --------------------------------------------------------
 
@@ -1499,7 +1516,7 @@ ALTER TABLE `estatusHist`
 -- AUTO_INCREMENT de la tabla `Frequencies`
 --
 ALTER TABLE `Frequencies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `General`
