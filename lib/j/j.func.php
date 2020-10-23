@@ -1527,7 +1527,8 @@ function insertaUsersConsultationsChecklist($ucc,$check){
 	// print2($visitas);
 
 	foreach ($visitas as $v) {
-
+		
+		$v['elemId'] = $uccId;
 		$rj = insertaVisitasA($uccId,$v,$check);
 
 		$r = json_decode($rj,true);
