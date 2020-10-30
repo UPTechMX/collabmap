@@ -27,7 +27,7 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th><?php echo TR('name'); ?></th>
+			<th style="text-align: left;"><?php echo TR('name'); ?></th>
 			<th></th>
 			<!-- <th></th> -->
 			<!-- <th></th> -->
@@ -36,8 +36,8 @@
 	<tbody id="tabDims">
 		<?php foreach ($dimensiones as $d): ?>
 			<tr>
-				<td><span class="verDim" id="verDim_<?php echo $d['id'];?>"><?php echo $d['nombre']; ?></span></td>
-				<td><i class="glyphicon glyphicon-pencil edtDim manita" id="edtDim_<?php echo $d['id'];?>"></i></td>
+				<td style="text-align: left;"><span class="verDim" id="verDim_<?php echo $d['id'];?>"><?php echo $d['nombre']; ?></span></td>
+				<td style="text-align: right;"><i class="glyphicon glyphicon-pencil edtDim manita" id="edtDim_<?php echo $d['id'];?>"></i></td>
 				<!-- <td><i class="glyphicon glyphicon-user usrDim manita" id="usrDim_<?php echo $d['id'];?>"></i></td> -->
 				<!-- <td><i class="glyphicon glyphicon-th dimDim manita" id="dimDim_<?php echo $d['id'];?>"></i></td> -->
 			</tr>

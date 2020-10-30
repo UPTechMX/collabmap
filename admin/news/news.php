@@ -15,7 +15,12 @@
 </script>
 
 <div class="nuevo"><?php echo TR('news'); ?></div>
-<div style="text-align: right;margin-bottom: 10px;">
-	<span class="btn btn-shop" id="newsAdd"><i class="glyphicon glyphicon-plus"></i>&nbsp;<?php echo TR('news'); ?></span>
+
+<div class="row justify-content-between" style="margin-top: 20px;">
+	<div class="col-4" style="font-weight: bold;"><?= TR('news'); ?></div>
+	<div class="col-4" style="text-align: right;">
+		<span class="btn btn-shop" id="newsAdd"><i class="glyphicon glyphicon-plus"></i>&nbsp;<?php echo TR('news'); ?></span>
+	</div>
 </div>
+
 <div id="newsList" style="max-height: 500px;overflow-y: auto;"><?php include_once 'newsList.php'; ?></div>

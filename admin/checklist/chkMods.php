@@ -5,7 +5,9 @@
 	}
 	checaAcceso(50); // checaAcceso Checklist
 
-	// print2($_POST);
+	$checklist = $db->query("SELECT * FROM Checklist WHERE id = $_POST[checklistId]") -> fetchAll(PDO::FETCH_ASSOC)[0];
+	// print2($checklist);
+
 ?>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -34,9 +36,25 @@
 </script>
 <div class="nuevo"><?php echo TR('surveyConfig'); ?></div>
 <div class="row">
-	<div class="col-4" style="border:none 1px;">
-		<span class="btn btn-shop" id="edtInfoChk"><?php echo TR('editSurvey'); ?></span>
-	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th><?= TR('name'); ?></th>
+				<th><?= TR('code'); ?></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><?= $checklist['nombre']; ?></td>
+				<td><?= $checklist['siglas']; ?></td>
+				<td style="text-align: right;">
+					<i class="glyphicon glyphicon-pencil manita" id="edtInfoChk"></i>
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
 	<!-- <div class="col-4" style="border:none 1px;">
 		<span class="btn btn-shop" id="condChk"><?php echo TR('conditional'); ?></span>
 	</div> -->

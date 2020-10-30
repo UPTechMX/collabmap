@@ -19,14 +19,15 @@ checaAcceso(60);// checaAcceso Targets
 	});
 </script>
 
-<div class="nuevo"><?php echo TR('structure'); ?></div>
-<span id="importStr" class="btn btn-shop"><?php echo TR('importStr'); ?></span>
-<span id="dwlExample" class="btn btn-shop">
-	<i class="glyphicon glyphicon-download-alt"></i>&nbsp;
-	<?php echo TR('example'); ?>		
-</span>
-<form id="exampleFile" action="examples/structure.php" method="post" target="_blank" >
-	<input type="hidden" name="elemId" value="<?php echo $_POST['targetsId']; ?>">
-	<input type="hidden" name="type" value="structure">
-</form>
-<div><?php include 'structure/dimensiones.php'; ?></div>
+<!-- <div class="nuevo grisBkg"><?php echo TR('structure'); ?></div> -->
+
+<?php
+	$_POST['type'] = 'structure';
+	$_POST['elemId'] = $_POST['targetsId'];
+	$_POST['elemName'] = 'aaa';
+	
+
+
+?>
+<?php include_once raiz().'admin/structures/index.php'; ?>
+

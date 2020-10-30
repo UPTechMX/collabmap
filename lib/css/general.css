@@ -90,11 +90,12 @@
 .nuevo{
 	background-color:#004aad; 
 	color:white;
-	text-align: center;
+	text-align: left;
 	border-radius:0px;
 	padding: 10px;
 	margin-bottom: 10px;
-	
+	text-transform: uppercase;
+	font-weight: bold;
 }
 
 .widgetBar{
@@ -145,7 +146,7 @@
 
 
 .seleccionado{
-	background-color: #b5b5b5;
+	background-color: rgba(0,74,173,.5);
 }
 
 .jqte{
@@ -334,11 +335,6 @@ li.disabled a{
 	background:#006060 !important;
 }
 
-.tooltip .arrow:before {
-	border-bottom-color:#006060 !important;
-	border-top-color:#006060 !important;
-}
-
 /* ANALYSIS*/
 
 .bloqueAnalysis{
@@ -424,6 +420,15 @@ li.disabled a{
 	background-color: #e80000 !important;
 }
 
+.grisBkg{
+	background-color: #999 !important;
+	color:black;
+}
+
+.rojoBorderBottom{
+	border-bottom: solid #e80000 !important;
+}
+
 .borderAzul td{
 	border-top: 2px solid #004aad !important;
 }
@@ -456,13 +461,26 @@ li.disabled a{
 
 .tooltip-inner {
   max-width: 236px !important;
-  height: 76px;
+  /*height: 76px;*/
   font-size: 12px;
   padding: 10px 15px 10px 20px;
   background: #EEE;
   color: rgb(0, 0, 0, .7);
   border: 1px solid #737373;
   text-align: left;
+}
+
+.bs-tooltip-auto[x-placement^=bottom] .arrow::before, .bs-tooltip-bottom .arrow::before {
+    border-bottom-color: #f3f3f3 !important;
+}
+.bs-tooltip-auto[x-placement^=top] .arrow::before, .bs-tooltip-top .arrow::before {
+    border-top-color: #f3f3f3 !important;
+}
+.bs-tooltip-auto[x-placement^=left] .arrow::before, .bs-tooltip-left .arrow::before {
+    border-left-color: #f3f3f3 !important;
+}
+.bs-tooltip-auto[x-placement^=right] .arrow::before, .bs-tooltip-right .arrow::before {
+    border-right-color: #f3f3f3 !important;
 }
 
 .tooltip.show {
@@ -474,4 +492,23 @@ li.disabled a{
   border-bottom-color: #f00;
   /* Red */
 }
+
+.sideMenuTitle{
+	font-size: .9em;
+	border-bottom: solid 1px #004aad;
+	padding-top: 30px;
+}
+
+.sideMenuOption{
+	text-transform: uppercase;
+	padding: 5px 0px;
+}
+
+
+
+
+
+
+
+
 

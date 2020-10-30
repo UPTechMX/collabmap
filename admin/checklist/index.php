@@ -45,22 +45,33 @@
 	});
 </script>
 <div class="row" style="margin-top: 10px;">
-	<div class="col-5" >
+	<div class="col-12" >
 		<div class="nuevo"><?php echo TR('surveys'); ?></div>
-		<div>
+		<div style="width:30%;">
 			<select class="form-control" id="chkSel">
 				<option value="">- - - <?php echo TR('surveys'); ?> - - -</option>
 				<?php foreach ($checklist as $c){ ?>
 					<option value="<?php echo $c['id'] ?>"><?php echo $c['nombre']; ?></option>
 				<?php } ?>
 			</select>
-			<span id="addChk" class="btn btn-sm btn-shop" style="margin: 10px 0px;">
-				<i class="glyphicon glyphicon-plus"></i> &nbsp;<?php echo TR('survey'); ?>
-			</span>
-			<span id="dupChk" class="btn btn-sm btn-shop"><?php echo TR('duplicateSurvey'); ?></span>
 		</div>
 	</div>
-	<div class="col-7" id="chkMods"></div>
+	<div class="col-12" style="border-top: solid 1px #ccc;border-bottom: solid 1px #ccc; margin-top: 20px;">
+		<div class="row justify-content-between" style="margin: 20px 0px 0px 0px;">
+			<div class="col-6" style="font-weight: bold;text-align: left;">
+				<?= TR('surveys'); ?>
+			</div>
+			<div class="col-6" style="text-align: right;padding: 0px 0px 10px 0px;">
+				<span id="dupChk" class="btn btn-sm btn-shop">
+					<?php echo TR('duplicateSurvey'); ?>
+				</span>
+				<span id="addChk" class="btn btn-sm btn-shop">
+					<i class="glyphicon glyphicon-plus"></i> &nbsp;<?php echo TR('survey'); ?>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="col-12" id="chkMods"></div>
 </div>
 <hr/>
 <div class="row" id="general" style="margin-top:20px;margin-bottom: 10px;"></div>

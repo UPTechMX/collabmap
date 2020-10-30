@@ -28,11 +28,19 @@
 			}
 		});
 
+		$('[data-toggle="tooltip"]').tooltip({
+			html:true,
+		});
+
+
 
 	});
 </script>
-<div class="nuevo">
+<div class="nuevo grisBkg">
 	<?php echo TR('blocks'); ?>
+	<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
+		data-toggle="tooltip" data-placement="right" title="<?= TR('blocksTooltip') ?>"></i>
+
 </div>
 	<span class="btn btn-shop btn-sm" id="addBloque">
 		<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('addBlock'); ?>

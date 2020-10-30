@@ -21,7 +21,7 @@ $scores = $db->query("SELECT COUNT(*) as cuenta, score
 ?>
 
 
-<div class="nuevo"><?php echo TR('quickvote'); ?></div>
+<div class="nuevo grisBkg"><?php echo TR('quickvote'); ?></div>
 
 <div style="padding: 10px 0px;">
 	<?php if (empty($cPoll['poll'])){ ?>

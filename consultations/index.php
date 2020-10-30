@@ -172,7 +172,7 @@ $htmlRoot = aRaizHtml($location);
 	    <nav id="sidebar" class="d-none d-md-block"
 	    	style="color:black;background-image: url('<?php echo $htmlRoot; ?>img/sideBarBg.png');
 	    	background-repeat:no-repeat;background-size: 100%;">
-	    	<?php include_once raiz().'consultations/layout/sidebar.php'; ?>
+	    	<?php include_once 'layout/sidebar.php'; ?>
 	    </nav>
 		
 	    <div id="content" style="margin-right: 50px;margin-left: 50px;">

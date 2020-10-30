@@ -25,8 +25,14 @@
 
 
 <?php if (isset($_POST['padreId'])): ?>
-	<span class="btn btn-shop btn-sm addDimEle" id="addDimEle_<?php echo "$dim[id]_$_POST[padreId]";?>">
-		<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('addElement'); ?>
-	</span>
+	<div class="row justify-content-between" style="margin: 20px 0px;">
+		<div class="col-4" style="font-weight: bold;text-align: left;"><?= TR('element'); ?></div>
+		<div class="col-4" style="text-align: right;">
+			<span class="btn btn-shop btn-sm addDimEle" id="addDimEle_<?php echo "$dim[id]_$_POST[padreId]";?>">
+				<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('new'); ?>
+			</span>
+		</div>
+	</div>
+
 	<div id="dimensionesElemList_<?php echo $_POST['dimensionId']; ?>"><?php include_once 'dimensionesElemList.php' ?></div>
 <?php endif ?>

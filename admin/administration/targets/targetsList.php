@@ -27,6 +27,11 @@ $elementos = $db->query("SELECT t.*, p.name as pName
 			var targetId = $(this).closest('tr').attr('id').split('_')[1];
 			$('#targetsInfo').load(rz+'admin/administration/targets/targetsInfo.php',{targetId:targetId});
 			$('#targetsStructure').load(rz+'admin/administration/targets/targetsStructure.php',{targetsId:targetId});
+
+			$(this).closest('table').find('tr').removeClass('seleccionado');
+			$(this).closest('tr').addClass('seleccionado');
+
+			
 		});
 	});
 </script>

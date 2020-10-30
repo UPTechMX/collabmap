@@ -20,7 +20,7 @@
 		$(".audStruc").click(function(event) {
 			var eleId = $(this).closest('tr').attr('id').split('_')[1];
 			var elemName = $(this).closest('tr').find('.audName').text();
-			$('#structures').load(rz+'admin/structures/index.php',{type:'audiences',elemId:eleId,elemName:elemName});
+			$('#audStructures').load(rz+'admin/structures/index.php',{type:'audiences',elemId:eleId,elemName:elemName});
 		});
 
 		$(".delAud").click(function(event) {
