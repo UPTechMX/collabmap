@@ -101,10 +101,10 @@ foreach ($targets as $targetsChecklist){
 	<div style="margin-top: 10px;" class="divTrgt" id="divTrgt_<?php echo $targetsChecklist[0]['tId']."_".$targetsChecklist[0]['utId']; ?>">
 		<table width="100%">
 			<tr>
-				<td width="80%" class="nuevo azulBkg" style="font-weight: bold;text-align: left;">
+				<td width="80%" class="nuevo titleL1Bkg" style="font-weight: bold;text-align: left;">
 					<?php echo $targetsChecklist[0]['pName']; ?>
 				</td>
-				<td width="20%" class="nuevo rojoBkg" style="font-weight: bold;">
+				<td width="20%" class="nuevo titleL2Bkg" style="font-weight: bold;">
 					<?php echo $targetsChecklist[0]['tName']; ?>
 				</td>
 			</tr>

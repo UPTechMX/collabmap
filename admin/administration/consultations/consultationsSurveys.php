@@ -38,7 +38,7 @@ $frequencies = $db->query("SELECT * FROM Frequencies ORDER BY orden")->fetchAll(
 	});
 </script>
 
-<div class="nuevo"><?php echo TR('surveys'); ?></div>
+<div class="nuevo titleL3Bkg"><?php echo TR('surveys'); ?></div>
 <div class="row">
 	<div class="col-6">
 		<select class="form-control" id="chkSel">
@@ -57,10 +57,19 @@ $frequencies = $db->query("SELECT * FROM Frequencies ORDER BY orden")->fetchAll(
 		</select>
 	</div>
 </div>
-<div style="text-align: right;margin-top: 10px;">
-	<span class="btn btn-shop" id="addTrgUsr">
-		<i class="glyphicon  glyphicon-plus"></i>&nbsp;<?php echo TR("survey"); ?>
-	</span>
+<div class="row justify-content-between" style="margin: 20px 0px;">
+	<div class="col-4" style="font-weight: bold;text-align: left;text-transform: uppercase;">
+		<?= TR('survey'); ?>
+	</div>
+	<div class="col-4" style="text-align: right;">
+
+		<span class="btn btn-shop" id="addTrgUsr">
+			<i class="glyphicon  glyphicon-plus"></i>&nbsp;<?php echo TR("add"); ?>
+		</span>
+
+
+		
+	</div>
 </div>
 
 

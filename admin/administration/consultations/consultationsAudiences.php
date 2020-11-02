@@ -28,7 +28,7 @@ $_POST['consultationsId'] = $consultation['id'];
 		});
 	});
 </script>
-<div class="nuevo"><?php echo TR('audiences'); ?></div>
+<div class="nuevo titleL3Bkg"><?php echo TR('audiences'); ?></div>
 <div>
 	<div style="font-weight: bold;font-size: .8em;">*<?php echo TR('noAudienceMsg'); ?></div>
 	<select class="form-control" id="audSel">

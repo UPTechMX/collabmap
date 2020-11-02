@@ -47,7 +47,7 @@
 		</div>
 		<div class="col-4">
 			<div style="text-align: right;">
-				<span class="btn btn-sm btn-shop" id="addUsr"><i class="glyphicon glyphicon-plus"></i>&nbsp;<?php echo TR('user') ?></span>
+				<span class="btn btn-sm btn-shop" id="addUsr"><i class="glyphicon glyphicon-plus"></i>&nbsp;<?php echo TR('add') ?></span>
 			</div>			
 		</div>
 	</div>

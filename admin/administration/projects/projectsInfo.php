@@ -25,14 +25,21 @@
 		$('#viewComplaintStr').click(function(event) {
 			var eleId = <?php echo $_POST['prjId']; ?>;
 			var elemName = '<?php echo TR("complaints")." - $project[name]" ?>';
-			console.log('aa');
-			$('#structures').load(rz+'admin/structures/index.php',{type:'complaints',elemId:eleId,elemName:elemName});
+			
+			$('#structuresComplaints').load(rz+'admin/structures/index.php',{type:'complaints',elemId:eleId,elemName:elemName});
 
 		});
+
+		$('[data-toggle="tooltip"]').tooltip({
+			html:true,
+		});
+
 	});
+
+
 </script>
 
-<div class="nuevo"><?php echo $project['name']; ?></div>
+<div class="nuevo titleL3Bkg"><?php echo $project['name']; ?></div>
 <div>
 	<table class="table">
 		<tr>
@@ -47,7 +54,11 @@
 </div>
 
 <div>
-	<div class="nuevo"><?php echo TR('audiences'); ?></div>
+	<div class="nuevo titleL3Bkg">
+		<?php echo TR('audiences'); ?>
+		<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
+			data-toggle="tooltip" data-placement="right" title="<?= TR('audiencesProjectTooltip') ?>"></i>	
+	</div>
 	<div style="text-align: right;">
 		<span class="btn btn-shop" id="addAudience"><?php echo TR('addAudience'); ?></span>
 	</div>
@@ -55,15 +66,31 @@
 </div>
 
 <div>
-	<div class="nuevo"><?php echo TR('complaints'); ?></div>
+	<div class="nuevo titleL3Bkg">
+		<?php echo TR('complaints'); ?>
+		<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
+			data-toggle="tooltip" data-placement="right" title="<?= TR('complaintsProjectTooltip') ?>"></i>	
+
+	</div>
 	<div style="text-align: right;">
-		<span class="btn btn-shop" id="viewComplaintStr"><?php echo TR('structure'); ?></span>
+		<div class="row justify-content-between" style="margin: 20px 0px;">
+			<div class="col-4" style="font-weight: bold;text-align: left;"><?= TR('structure'); ?></div>
+			<div class="col-4" style="text-align: right;">
+				<span class="btn btn-shop" id="viewComplaintStr"><?php echo TR('view'); ?></span>
+			</div>
+		</div>
+		<div id="structuresComplaints"></div>
 	</div>
 	<div id="audiencesList" style="margin-top: 10px;"></div>
+	
 </div>
 
 <div>
-	<div class="nuevo"><?php echo TR('maps'); ?></div>
+	<div class="nuevo titleL3Bkg">
+		<?php echo TR('maps'); ?>
+		<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
+			data-toggle="tooltip" data-placement="right" title="<?= TR('mapsProjectTooltip') ?>"></i>	
+	</div>
 	<div style="text-align: right;">
 		<span class="btn btn-shop" id="importar"><?php echo TR('importKML'); ?></span>
 	</div>

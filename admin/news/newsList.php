@@ -31,16 +31,9 @@ $news = $db->query("SELECT * FROM News ORDER BY `timestamp` DESC ")->fetchAll(PD
 
 	});
 </script>
-
-<div>
+<div class="nuevo titleL2Bkg" style="margin-top: 20px;"><?= TR('manage'); ?></div>
+<div style="margin-top: 20px;">
 	<table class="table" id="newsTable">
-		<thead>
-			<tr>
-				<th><?php echo TR('news'); ?></th>
-				<th></th>
-				<th></th>
-			</tr>
-		</thead>
 		<tbody>
 			<?php 
 			foreach($news as $n){ 

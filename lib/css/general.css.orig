@@ -409,6 +409,22 @@ li.disabled a{
 	background-color: transparent;
 }
 
+<<<<<<< HEAD
+.azulBkg{
+	background-color: #f8b621 !important;
+}
+
+.verdeBkg{
+	background-color: #0092c1 !important;
+}
+
+.rojoBkg{
+	background-color: #e63e39 !important;
+}
+
+.negroBkg{
+	background-color: #e63e39 !important;
+=======
 
 .rojoBorderBottom{
 	border-bottom: solid #e80000 !important;
@@ -445,6 +461,7 @@ li.disabled a{
 .quejaAttended{
 	background-color: #999 !important;
 	color:black;
+>>>>>>> master
 }
 
 .borderAzul td{

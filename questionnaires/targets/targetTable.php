@@ -137,7 +137,7 @@
 						}
 
 					?>
-					<div class="azulBkg trgInfo" style="width: 20px;height: 20px;margin-left: auto;
+					<div class="titleL1Bkg trgInfo" style="width: 20px;height: 20px;margin-left: auto;
 						margin-right: auto;border-radius: 50%;color: white;padding-top: 3px;font-size: small;"
 						data-toggle="tooltip" data-placement="right" data-html="true" title="<?= $html; ?>">
 						<i class="fas fa-info" aria-hidden="true"></i>

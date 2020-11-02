@@ -60,10 +60,10 @@
 				<div style="margin-top: 10px;">
 					<span class="btn btn-shop loginSend" style="text-transform: uppercase;"><?php echo TR('log_in'); ?></span>
 				</div>
-				<div style="margin-top: 10px;">
+				<div style="margin-top: 40px;">
 					<span class="loginElement sign_up" style="text-transform: uppercase;"><?php echo TR('sign_up'); ?></span>
 				</div>
-				<div style="margin-top: 10px;">
+				<div style="margin-top: 40px;">
 					<span class="loginElement forgotPwd" style="text-transform: uppercase;"><?php echo TR('forgotPwd'); ?></span>
 				</div>
 			</form>
@@ -102,7 +102,7 @@
 
 	<div style="text-align: center;margin-top: 30px;">
 
-		<div class="rojoBkg" style="height: 25px;width: 25px;
+		<div class="titleL2Bkg" style="height: 25px;width: 25px;
 			margin-left: auto;margin-right: auto;border-radius: 50%;color: white;" >
 			<i class="fas fa-user manita edtProfile" style="margin-right: auto;margin-left: auto;margin-top: 3px;"></i>
 		</div>

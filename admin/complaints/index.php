@@ -8,7 +8,7 @@ checaAcceso(10);// checaAcceso complaints
 
 <div style="margin-top: 10px;">
 	<div class="row">
-		<div class="col-6" id="complaintsList"><?php include_once 'complaintsList.php'; ?></div>
-		<div class="col-6" id="complaintsInfo"></div>
+		<div class="col-12" id="complaintsList"><?php include_once 'complaintsList.php'; ?></div>
+		<div class="col-12" id="complaintsInfo"></div>
 	</div>
 </div>

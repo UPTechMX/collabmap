@@ -37,7 +37,7 @@ checaAcceso(60);// checaAcceso Consultations
 	});
 </script>
 
-<div class="nuevo"><?php echo TR('documents'); ?></div>
+<div class="nuevo titleL3Bkg"><?php echo TR('documents'); ?></div>
 
 <div id="uplDocs" style="margin-top: 10px;">
 	<div>

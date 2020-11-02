@@ -26,6 +26,11 @@ $elementos = $db->query("SELECT t.*, p.name as pName
 		$(".trgtInfo").click(function(event) {
 			var consultationId = $(this).closest('tr').attr('id').split('_')[1];
 			$('#consultationsInfo').load(rz+'admin/administration/consultations/consultationsInfo.php',{consultationId:consultationId});
+
+
+			$(this).closest('table').find('tr').removeClass('seleccionado');
+			$(this).closest('tr').addClass('seleccionado');
+
 			// $('#consultationsStructure').load(rz+'admin/administration/consultations/consultationsStructure.php',
 			// 	{consultationsId:consultationId});
 		});
@@ -35,9 +40,9 @@ $elementos = $db->query("SELECT t.*, p.name as pName
 <table class="table" id="consultationsTable">
 	<thead>
 		<tr>
-			<th></th>
-			<th>Project</th>
-			<th>Name</th>
+			<th><?= TR('icon'); ?></th>
+			<th><?= TR('project'); ?></th>
+			<th><?= TR('name') ?></th>
 			<th></th>
 			<th></th>
 		</tr>

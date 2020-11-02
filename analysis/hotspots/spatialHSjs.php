@@ -121,7 +121,19 @@
 		var valNumMax = -999999999999;
 		var valNumMin = 999999999999;
 		var acums = {};
+
+		// console.log(points);
+		// console.log(polygons);
+		// console.log(o.kmlId);
 		for(var i in points){
+
+			if(typeof polygons[i] == 'undefined'){
+				if(o.kmlId != -1){
+					delete points[i];
+				}
+				continue;
+			}
+
 			var count = points[i].length;
 			// console.log('count: ',count, points[i]);
 			numRespMax = Math.max(numRespMax,count);
@@ -451,6 +463,9 @@
 			}
 		}
 
+		if(numPoints == 0){
+			alertar('<?= TR('numPoints0') ?>');
+		}
 		$('#numAns').text(numPoints);
 		// console.log(numPoints);
 
@@ -543,12 +558,10 @@
 
 
 
-		L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-			subdomains: 'abcd',
-			maxZoom: 30
+		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 19,
+			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
-
 		var hide = {
 		  color: 'grey',
 		  weight: 1,
@@ -558,6 +571,8 @@
 		  fillOpacity: 0,
 		  interactive: false,
 		}
+
+
 
 		var vectorTileOptions = {
 			vectorTileLayerStyles: {
@@ -633,7 +648,7 @@
 									}else{
 										fillOpacity = 0;
 									}
-									acum.text = '';//acum.countMultAns['ans0']['value'];
+									acum.text = acum.countMultAns['ans0']['value'];
 									break;
 
 								case 4:
@@ -643,7 +658,7 @@
 										fillOpacity = 0;
 									}
 									
-									acum.text = '';//acum.sums['ans0'];
+									acum.text = acum.sums['ans0'];
 
 									// console.log(acum);
 									break;
@@ -656,12 +671,23 @@
 						}
 
 
-						fillColor = 'green';
+						fillColor = 'variable';
 						
 						opacity = 1;
 						interactive = true;	
 					}
 					// console.log(e.id,fillOpacity);
+
+					if(fillColor == 'variable'){
+						// fillColor = 'green';
+						colorR = 255+fillOpacity*(192-255);
+						colorG = 255+fillOpacity*(14-255);
+						colorB = 255+fillOpacity*(26-255);
+						fillColor = `rgba(${colorR},${colorG},${colorB},1)`;
+						fillOpacity = 1;
+						console.log(fillColor,fillOpacity);
+					}
+
 					return {
 					  color: 'grey',
 					  weight: 1,

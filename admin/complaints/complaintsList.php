@@ -29,9 +29,32 @@
 
 <div class="nuevo"><?php echo TR("complaints"); ?></div>
 
-<?php foreach ($status as $s ){ ?>
-	<div class="nuevo" style="margin-top: 10px;">
+<?php 
+foreach ($status as $s ){ 
+	switch ($s['name']) {
+		case 'received':
+			$class = 'quejaRec';
+			break;
+		case 'read':
+			$class = 'quejaRead';
+			break;
+		case 'channeled':
+			$class = 'quejaChanneled';
+			break;
+		case 'attended':
+			$class = 'quejaAttended';
+			break;
+		
+		default:
+			$class = 'azul';
+			break;
+	}
+
+?>
+	<div class="nuevo <?= $class; ?>" style="margin-top: 10px;">
 		<?php echo TR($s['name']); ?>
+		<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
+			data-toggle="tooltip" data-placement="right" title="<?= TR($s['name'].'Tooltip') ?>"></i>
 	</div>
 	<table class="table">
 		<thead>

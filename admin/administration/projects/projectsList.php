@@ -23,13 +23,18 @@ $elementos = $db->query(" SELECT * FROM Projects ORDER BY name") -> fetchAll(PDO
 			// console.log(prjId);
 			$('#projectsInfo').load(rz+'admin/administration/projects/projectsInfo.php',{prjId:prjId});
 			
+			$(this).closest('table').find('tr').removeClass('seleccionado');
+			$(this).closest('tr').addClass('seleccionado');
+			
 		});
 
 	});
 </script>
-
+<div class="nuevo titleL2Bkg">
+	<?= TR('projectList'); ?>
+</div>
 <table class="table" id="projectsTable">
-	<thead>
+	<thead class="rojoBorderBottom">
 		<tr>
 			<th>Name</th>
 			<th>Code</th>

@@ -27,13 +27,21 @@
 			if(r.ok == 1){
 				$('#saveAreaOrden').hide();
 			}
+
+		});
+
+		$('[data-toggle="tooltip"]').tooltip({
+			html:true,
 		});
 
 
 	});
 </script>
-<div class="nuevo">
+<div class="nuevo titleL3Bkg">
 	<?php echo TR('areas'); ?> (<?php echo TR('block').": ". $_POST['nomBloq']; ?>)
+	<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
+		data-toggle="tooltip" data-placement="right" title="<?= TR('areasTooltip') ?>"></i>
+
 </div>
 	<span class="btn btn-shop btn-sm" id="addArea">
 		<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('addArea'); ?>

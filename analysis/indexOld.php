@@ -28,11 +28,12 @@ function root(){
 	}
 }
 
-
 include_once root().'lib/j/j.func.php';
-// print2($_SESSION);
+include_once 'seguridad/seguridad.php';
+checaAcceso(5); // checaAcceso analysis;
 
-$location = empty($location)?'consultations':$location;
+
+$location = empty($location)?'analysis':$location;
 $htmlRoot = aRaizHtml($location);
 
 
@@ -57,9 +58,7 @@ $htmlRoot = aRaizHtml($location);
 	<link href="<?php echo $htmlRoot; ?>lib/js/selectpicker/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo $htmlRoot; ?>lib/js/jquery-upload-file/css/uploadfile.css " rel="stylesheet" type="text/css" />
 	<link href="<?php echo $htmlRoot; ?>lib/css/general.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo $htmlRoot; ?>lib/css/consultations.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo $htmlRoot; ?>lib/css/font-awesome.min.css " rel="stylesheet" type="text/css" />
-	
 	<link href="<?php echo $htmlRoot; ?>lib/js/sumoselect/sumoselect.css " rel="stylesheet" type="text/css" />
 	<link href="<?php echo $htmlRoot; ?>lib/js/starrr/starrr.css " rel="stylesheet" type="text/css" />
 
@@ -84,8 +83,13 @@ $htmlRoot = aRaizHtml($location);
 	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
+	<script src="<?php echo $htmlRoot; ?>lib/js/hereMaps/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/hereMaps/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="<?php echo $htmlRoot; ?>lib/js/hereMaps/mapsjs-ui.js"></script>
+	<script type="text/javascript" src="<?php echo $htmlRoot; ?>lib/js/hereMaps/mapsjs-mapevents.js"></script>
 	<script type="text/javascript" src="<?php echo $htmlRoot; ?>lib/js/jquery-confirm/dist/jquery-confirm.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo $htmlRoot; ?>lib/js/jquery-confirm/dist/jquery-confirm.min.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $htmlRoot; ?>lib/js/hereMaps/mapsjs-ui.css" media="screen" />
 
 
 	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -94,6 +98,10 @@ $htmlRoot = aRaizHtml($location);
 	<script src="<?php echo $htmlRoot; ?>lib/js/leaflet/leaflet.js"></script>
 	<script src="<?php echo $htmlRoot; ?>lib/js/LeafletHeat/dist/leaflet-heat.js"></script>
 	<link href="<?php echo $htmlRoot; ?>lib/js/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
+
+	<script src="<?php echo $htmlRoot; ?>lib/js/heatmap/build/heatmap.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/heatmap/plugins/leaflet-heatmap/leaflet-heatmap.js"></script>
+
 
 	<script src="<?php echo $htmlRoot; ?>lib/js/leaflet.draw/Leaflet.draw.js"></script>
 	<script src="<?php echo $htmlRoot; ?>lib/js/leaflet.draw/Leaflet.Draw.Event.js"></script>
@@ -133,62 +141,41 @@ $htmlRoot = aRaizHtml($location);
 	<script src="<?php echo $htmlRoot; ?>lib/js/leaflet.draw/edit/handler/Edit.CircleMarker.js"></script>
 	<script src="<?php echo $htmlRoot; ?>lib/js/leaflet.draw/edit/handler/Edit.Circle.js"></script>
 
-	<script src="<?php echo $htmlRoot; ?>lib/js/leaflet/wise-leaflet-pip.js"></script>
+	<script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/LeafletVectorGrid/src/Leaflet.VectorGrid.bundled.js"></script>
 
-	<link rel="stylesheet" href="<?php echo $htmlRoot; ?>lib/js/slick/slick.css">
-	<link rel="stylesheet" href="<?php echo $htmlRoot; ?>lib/js/slick/slick-theme.css">
-	<script src="<?php echo $htmlRoot; ?>lib/js/slick/slick.js"></script>
-	<script src="https://kit.fontawesome.com/7debf3cc4b.js" crossorigin="anonymous"></script>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:200" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400" rel="stylesheet">
+
+	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/highcharts.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/highcharts-more.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/modules/solid-gauge.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/modules/exporting.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/modules/data.js"></script>
+	<script src="<?php echo $htmlRoot; ?>lib/js/highcharts/code/modules/drilldown.js"></script>
+	<script src="<?php echo $htmlRoot; ?>analysis/socialMon/chartSMJS.js"></script>
 
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('.loginBtn').click(function(event) {
-				$(this).closest('div').find('.loginInfoCont').slideToggle();
-			});
-			
-			$(window).on("popstate", function(e) {
-				e.preventDefault();
-				// console.log(e);
-			    location.reload();
-			});
-
-
-		});
 	</script>
 
 	
 
 </head>
-<body style="background-color: #fff;font-family: Montserrat; font-weight: 400;">
-	<?php include 'layout/navbar.php'; ?>
-	   
-	<div class="wrapper">
-	    <nav id="sidebar" class="d-none d-md-block"
-	    	style="color:black;background-image: url('<?php echo $htmlRoot; ?>img/sideBarBg.png');
-	    	background-repeat:no-repeat;background-size: 100%;">
-	    	<?php include_once 'layout/sidebar.php'; ?>
-	    </nav>
 
-	    <div id="content" >
-	    	<?php include 'layout/content.php'; ?>
-	    </div>
+<?php include_once raiz().'analysis/analysis.php' ?>
 
-	    <!-- <nav id="sidebar" class="d-none d-md-block"
-	    	style="color:black;background-image: url('<?php echo $htmlRoot; ?>img/backgroundcm.png'); 
-	    	background-repeat:no-repeat;background-size: 100%; ">
-	    	<div style="margin-right: 20%;">
-	    		<?php include raiz().'general/lang.php'; ?>
-	    	</div>
-	    </nav> -->
-	</div>     
-	
+
+<body style="background-color: #fff;">
+	<div class="container" >
+		<div class="header" id="header"><?php include 'layout/header.php'; ?></div>
+		<div>
+			<div class="content" style="min-height:30px;" id="content">
+				<?php include raiz().'analysis/layout/content.php'; ?>
+			</div>
+			<br/>
+			<div class="footerL"><?php include 'layout/footer.php'; ?></div>
+		</div>
+	</div>
 	<div class="modal fade" id="popUpCuest" role="dialog"  style="overflow-y: auto !important;" data-backdrop="static" data-keyboard="false">
 		<div id="modalCuest" class="modal-dialog modal-xl">
 			<div class="modal-content" style="border-radius: 0px;" id="popContCuest">

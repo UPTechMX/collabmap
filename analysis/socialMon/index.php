@@ -112,13 +112,20 @@ include_once 'spatialSMJS.php';
 					$('.numMod').show();
 				}else if(type == 'mult'){
 					var preg = pregsNumMult[index];
+					// console.log(pregsNumMult[index]);
 					// console.log(preg);
 					$('.multMod').show();
 					$('#SMAnswer').empty();
 					var o = new Option('- - - <?php echo TR('answer'); ?> - - -','');
 					// $('#SMAnswer').append(o);
-					for(var i in preg.respuestas){
-						var resp = preg.respuestas[i][0];
+					// console.log(preg.respuestas,preg.respuestas[1].length);
+					for(var i = 0; i< preg.respuestas[1].length;i++){
+						// console.log(i);
+						var resp = preg.respuestas[1][i];
+						if(resp['elim'] == 1){
+							continue;
+						}
+						// console.log(resp);
 						// console.log(i,resp);
 						var o = new Option(resp['respuesta'],resp.id);
 						$('#SMAnswer').append(o);
