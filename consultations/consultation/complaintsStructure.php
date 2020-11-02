@@ -119,7 +119,7 @@ $dims = $db->query("SELECT * FROM Dimensiones
 			</span>	
 		</div>
 		<div class="col-7" style="text-align: center; ">
-			<span id="complaintsFU" class="manita rojoBkg" style="color: white; padding: 5px 20px; border-radius: 3px;">
+			<span id="complaintsFU" class="manita titleL2Bkg" style="color: white; padding: 5px 20px; border-radius: 3px;">
 				<?php echo TR('complaintsFU'); ?>
 			</span>	
 		</div>

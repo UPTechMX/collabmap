@@ -31,7 +31,7 @@ $news = $db->query("SELECT * FROM News ORDER BY `timestamp` DESC ")->fetchAll(PD
 
 	});
 </script>
-<div class="nuevo rojoBkg" style="margin-top: 20px;"><?= TR('manage'); ?></div>
+<div class="nuevo titleL2Bkg" style="margin-top: 20px;"><?= TR('manage'); ?></div>
 <div style="margin-top: 20px;">
 	<table class="table" id="newsTable">
 		<tbody>

@@ -155,14 +155,14 @@
 .sidebarElement{
     font-size: 1.2em;
     color: grey;
-    font-weight: lighter;
+    font-weight: bold;
     cursor: pointer;
 }
 
 .loginElement{
     font-size: 1.1em;
     color: grey;
-    font-weight: lighter;
+    font-weight: bold;
     cursor: pointer;
 }
 

@@ -44,13 +44,13 @@
 				<span class="manita" id="edtAbout">
 					<?= TR('about'); ?>
 				</span>
-				<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;"></i>
+				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;"></i>
 			</td>
 		</tr>
 		<tr>
 			<td class="sideMenuOption">
 				<a href="<?php echo $_SERVER['PHP_SELF'];?>?Act=news"><?= TR('news'); ?></a>
-				<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;"></i>
+				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;"></i>
 			</td>
 		</tr>
 		<tr>
@@ -58,7 +58,7 @@
 				<span class="manita" id="edtPrivacy">
 					<?= TR('noticeofprivacy'); ?>
 				</span>
-				<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;"></i>
+				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;"></i>
 			</td>
 		</tr>
 
@@ -68,7 +68,7 @@
 		<tr>
 			<td class="sideMenuOption">
 				<a href="<?php echo $_SERVER['PHP_SELF'];?>?Act=prjs"><?= TR('projects'); ?></a>
-				<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
+				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
 					data-toggle="tooltip" data-placement="right" title="<?= TR('projectsTooltip') ?>"></i>
 			</td>
 		</tr>
@@ -79,7 +79,7 @@
 		<tr>
 			<td class="sideMenuOption">
 				<a href="<?php echo $_SERVER['PHP_SELF'];?>?Act=chk"><?= TR('surveys'); ?></a>
-				<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
+				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
 					data-toggle="tooltip" data-placement="right" title="<?= TR('surveysTooltip') ?>"></i>
 			</td>
 		</tr>
@@ -90,21 +90,29 @@
 		<tr>
 			<td class="sideMenuOption">
 				<a href="<?php echo $_SERVER['PHP_SELF'];?>?Act=cons"><?= TR('consultations'); ?></a>
-				<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
+				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
 					data-toggle="tooltip" data-placement="right" title="<?= TR('consultationsTooltip') ?>"></i>
+				
+				<ul style="margin-top: 5px;">
+					<li>
+						<a href="<?php echo $_SERVER['PHP_SELF'];?>?Act=complaints" style="display: inline;"  ><?= TR('complaints'); ?></a>
+						<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
+							data-toggle="tooltip" data-placement="right" title="<?= TR('complaintsTooltip') ?>"></i>
+					</li>
+				</ul>
 			</td>
 		</tr>
 		<tr>
 			<td class="sideMenuOption">
 				<a href="<?php echo $_SERVER['PHP_SELF'];?>?Act=trg"><?= TR('targets'); ?></a>
-				<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
+				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
 					data-toggle="tooltip" data-placement="right" title="<?= TR('tergetsTooltip') ?>"></i>
 			</td>
 		</tr>
 		<tr>
 			<td class="sideMenuOption">
 				<a href="<?php echo $_SERVER['PHP_SELF'];?>?Act=pubC"><?= TR('publicCons'); ?></a>
-				<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
+				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
 					data-toggle="tooltip" data-placement="right" title="<?= TR('publicCTooltip') ?>"></i>
 			</td>
 		</tr>
@@ -115,14 +123,14 @@
 		<tr>
 			<td class="sideMenuOption">
 				<a href="<?php echo $_SERVER['PHP_SELF'];?>?Act=extUsr"><?= TR('externalUsers'); ?></a>
-				<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
+				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
 					data-toggle="tooltip" data-placement="right" title="<?= TR('usersTooltip') ?>"></i>
 			</td>
 		</tr>
 		<tr>
 			<td class="sideMenuOption">
 				<a href="<?php echo $_SERVER['PHP_SELF'];?>?Act=usrInt"><?= TR('internalUsers'); ?></a>
-				<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
+				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
 					data-toggle="tooltip" data-placement="right" title="<?= TR('adminsTooltip') ?>"></i>
 			</td>
 		</tr>

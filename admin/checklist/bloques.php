@@ -36,7 +36,7 @@
 
 	});
 </script>
-<div class="nuevo grisBkg">
+<div class="nuevo titleL3Bkg">
 	<?php echo TR('blocks'); ?>
 	<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
 		data-toggle="tooltip" data-placement="right" title="<?= TR('blocksTooltip') ?>"></i>

@@ -11,7 +11,7 @@ $target = $db -> query("SELECT t.name as tName, p.name as pName, t.addStructure
 	WHERE t.id = $_POST[targetId]")->fetchAll(PDO::FETCH_ASSOC)[0];
 
 ?>
-<div class="nuevo grisBkg"><?php echo TR('targetInfo'); ?></div>
+<div class="nuevo titleL3Bkg"><?php echo TR('targetInfo'); ?></div>
 <div>
 	<table class="table">
 		<tr>

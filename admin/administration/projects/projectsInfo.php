@@ -39,7 +39,7 @@
 
 </script>
 
-<div class="nuevo grisBkg"><?php echo $project['name']; ?></div>
+<div class="nuevo titleL3Bkg"><?php echo $project['name']; ?></div>
 <div>
 	<table class="table">
 		<tr>
@@ -54,7 +54,7 @@
 </div>
 
 <div>
-	<div class="nuevo grisBkg">
+	<div class="nuevo titleL3Bkg">
 		<?php echo TR('audiences'); ?>
 		<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
 			data-toggle="tooltip" data-placement="right" title="<?= TR('audiencesProjectTooltip') ?>"></i>	
@@ -66,7 +66,7 @@
 </div>
 
 <div>
-	<div class="nuevo grisBkg">
+	<div class="nuevo titleL3Bkg">
 		<?php echo TR('complaints'); ?>
 		<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
 			data-toggle="tooltip" data-placement="right" title="<?= TR('complaintsProjectTooltip') ?>"></i>	
@@ -82,11 +82,11 @@
 		<div id="structuresComplaints"></div>
 	</div>
 	<div id="audiencesList" style="margin-top: 10px;"></div>
-	<div id="audStructures"></div>
+	
 </div>
 
 <div>
-	<div class="nuevo grisBkg">
+	<div class="nuevo titleL3Bkg">
 		<?php echo TR('maps'); ?>
 		<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
 			data-toggle="tooltip" data-placement="right" title="<?= TR('mapsProjectTooltip') ?>"></i>	

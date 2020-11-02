@@ -463,6 +463,9 @@
 			}
 		}
 
+		if(numPoints == 0){
+			alertar('<?= TR('numPoints0') ?>');
+		}
 		$('#numAns').text(numPoints);
 		// console.log(numPoints);
 
@@ -668,12 +671,23 @@
 						}
 
 
-						fillColor = 'green';
+						fillColor = 'variable';
 						
 						opacity = 1;
 						interactive = true;	
 					}
 					// console.log(e.id,fillOpacity);
+
+					if(fillColor == 'variable'){
+						// fillColor = 'green';
+						colorR = 255+fillOpacity*(192-255);
+						colorG = 255+fillOpacity*(14-255);
+						colorB = 255+fillOpacity*(26-255);
+						fillColor = `rgba(${colorR},${colorG},${colorB},1)`;
+						fillOpacity = 1;
+						console.log(fillColor,fillOpacity);
+					}
+
 					return {
 					  color: 'grey',
 					  weight: 1,

@@ -66,3 +66,5 @@
 		<?php } ?>
 	</tbody>
 </table>
+
+<div id="audStructures" style="margin-bottom: 20px;"></div>

@@ -22,7 +22,7 @@ $counts = $db->query("SELECT v.finalizada as vFin, v.finalizada, COUNT(*) as cue
 
 ?>
 
-<div class="nuevo grisBkg"><?php echo TR('information'); ?></div>
+<div class="nuevo titleL3Bkg"><?php echo TR('information'); ?></div>
 
 <table class="table">
 	<tr>

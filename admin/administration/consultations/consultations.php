@@ -28,5 +28,5 @@
 	</div>
 </div>
 
-<div class="nuevo rojoBkg"><?= TR('consultationsLIst'); ?></div>
+<div class="nuevo titleL2Bkg"><?= TR('consultationsLIst'); ?></div>
 <div id="consultationsList" style="max-height: 500px;overflow-y: auto;"><?php include_once 'consultationsList.php'; ?></div>

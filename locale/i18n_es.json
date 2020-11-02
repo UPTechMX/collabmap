@@ -130,7 +130,7 @@
   "surveysTooltip":"<strong>CUESTIONARIOS</strong><br/><br/>Los cuestionarios son conjuntos de preguntas (espaciales, numéricas, de opción múltiple o texto abierto) mediante los cuales se obtiene información en cualquiera de los módulos de participación.",
   "blocksTooltip":"<strong>BLOQUES</strong><br/><br/>Cada cuestionario está compuesto por bloques. Los bloques permiten clasificar preguntas de distintos temas dentro de un cuestionario.",
   "areasTooltip":"<strong>AREAS</strong><br/><br/>Cada bloque puede tener áreas. Las áreas permiten clasificar y organizar las preguntas de un mismo tema o bloque.",
-  "modules":"Modules",
+  "modules":"Modulos",
   "consultationsTooltip":"<strong>CONSULTAS</strong><br/><br/>El módulo de Consultas promueve la comunicación y participación de la comunidad en los procesos de consulta de un plan o proyecto específico. <br/>Dentro de las Consultas existen que audiencias podrán contestar cuestionarios sobre el proyecto, levantar quejas e inquietudes, leer y comentar documentos de interés y enterarse de las noticias más relevantes del mismo. Estos usuarios deberán crear un usuario y contraseña para acceder a la plataforma.",
   "consultationsLIst":"Lista- Consultas",
   "tergetsTooltip":"<strong>MONITOREO POR FACILITADORES</strong><br/><br/>La modalidad de Monitoreo por Facilitadores permite incluir información de un barrio por medio de una sola persona. A través de esta modalidad es posible que un referente comunitario o censista responda información agregada en un solo cuestionario en nombre de una familia o habitante del barrio. Estos usuarios deberán crear un usuario y contraseña para acceder a la plataforma.",
@@ -139,6 +139,13 @@
   "usersAndAdminitratorsTooltip":"<strong>USUARIOS Y ADMINISTRADORES</strong><br/><br/>En esta sección se puede crear, editar y gestionar credenciales de los usuarios y administradores de la plataforma.",
   "usersTooltip":"<strong>USUARIOS</strong><br/><br/>Los usuarios son aquellos que se registran en la plataforma para participar en los proyectos de los diversos módulos.",
   "adminsTooltip":"<strong>ADMINISTRADORES</strong><br/><br/>Los administradores son aquellos que tienen credenciales específicas para gestionar la plataforma. Existen 4 tipos de credenciales: Seguimiento de Quejas, Administrador, Analista y Superusuario.",
+  "complaintsTooltip":"<strong>QUEJAS</strong><br/><br/>",
+  "receivedTooltip":"<strong>QUEJAS RECIBIDAS</strong><br/><br/>Este es el estado inicial de una queja. Todas las quejas realizadas por los usuarios caen automáticamente dentro de esta categoría. ",
+  "readTooltip":"<strong>QUEJAS LEÍDAS</strong><br/><br/>Una vez que una queja ha sido leída o visualizada por un administrador, pasa a este estado o categoría.",
+  "channeledTooltip":"<strong>QUEJAS CANALIZADAS</strong><br/><br/>En esta estado se colocan las quejas que han sido direccionadas a las autoridades e instituciones correspondientes para su resolución. ",
+  "attendedTooltip":"<strong>QUEJAS ATENDIDAS</strong><br/><br/>",
+  "numPoints0":"No hay respuestas para este polígono",
+  
 
   "targets": "Monitoreo por objetivos",
   "target": "Objetivo",

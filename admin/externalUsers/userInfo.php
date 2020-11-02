@@ -9,7 +9,7 @@
 
 
 ?>
-<div class="nuevo grisBkg"><?php echo TR('userInfo'); ?></div>
+<div class="nuevo titleL3Bkg"><?php echo TR('userInfo'); ?></div>
 <div>
 	<table class="table">
 		<tbody>
@@ -38,6 +38,6 @@
 </div>
 
 <div>
-	<div class="nuevo grisBkg"><?php echo TR('targets'); ?></div>
+	<div class="nuevo titleL3Bkg"><?php echo TR('targets'); ?></div>
 	<div id="usrTargets"><?php include_once 'usrTargets.php'; ?></div>
 </div>

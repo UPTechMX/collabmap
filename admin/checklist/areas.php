@@ -37,7 +37,7 @@
 
 	});
 </script>
-<div class="nuevo grisBkg">
+<div class="nuevo titleL3Bkg">
 	<?php echo TR('areas'); ?> (<?php echo TR('block').": ". $_POST['nomBloq']; ?>)
 	<i class="glyphicon glyphicon-info-sign" style="margin-left: 30px;" 
 		data-toggle="tooltip" data-placement="right" title="<?= TR('areasTooltip') ?>"></i>

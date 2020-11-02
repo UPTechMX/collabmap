@@ -38,7 +38,7 @@ $frequencies = $db->query("SELECT * FROM Frequencies ORDER BY orden")->fetchAll(
 	});
 </script>
 
-<div class="nuevo grisBkg"><?php echo TR('surveys'); ?></div>
+<div class="nuevo titleL3Bkg"><?php echo TR('surveys'); ?></div>
 <div class="row">
 	<div class="col-6">
 		<select class="form-control" id="chkSel">

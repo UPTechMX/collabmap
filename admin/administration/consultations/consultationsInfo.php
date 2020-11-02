@@ -11,7 +11,7 @@ $consultation = $db -> query("SELECT c.name as tName, p.name as pName, p.id as p
 	WHERE c.id = $_POST[consultationId]")->fetchAll(PDO::FETCH_ASSOC)[0];
 
 ?>
-<div class="nuevo grisBkg"><?php echo TR('consultationInfo'); ?></div>
+<div class="nuevo titleL3Bkg"><?php echo TR('consultationInfo'); ?></div>
 <div>
 	<table class="table">
 		<tr>

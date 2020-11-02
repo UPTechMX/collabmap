@@ -19,12 +19,12 @@ checaAcceso(60);// checaAcceso Targets
 	});
 </script>
 
-<!-- <div class="nuevo grisBkg"><?php echo TR('structure'); ?></div> -->
+<!-- <div class="nuevo titleL3Bkg"><?php echo TR('structure'); ?></div> -->
 
 <?php
 	$_POST['type'] = 'structure';
 	$_POST['elemId'] = $_POST['targetsId'];
-	$_POST['elemName'] = 'aaa';
+	$_POST['elemName'] = null;
 	
 
 

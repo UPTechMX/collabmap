@@ -30,7 +30,7 @@ $elementos = $db->query(" SELECT * FROM Projects ORDER BY name") -> fetchAll(PDO
 
 	});
 </script>
-<div class="nuevo rojoBkg">
+<div class="nuevo titleL2Bkg">
 	<?= TR('projectList'); ?>
 </div>
 <table class="table" id="projectsTable">

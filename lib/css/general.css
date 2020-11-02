@@ -399,34 +399,52 @@ li.disabled a{
 	background-color: transparent;
 }
 
+.gris{
+	color: #999 !important;
+	background-color: transparent;
+}
+
 .negro{
 	color: #000000 !important;
 	background-color: transparent;
 }
 
-.azulBkg{
+
+.rojoBorderBottom{
+	border-bottom: solid #e80000 !important;
+}
+
+
+.titleL1Bkg{
 	background-color: #004aad !important;
+	color:black;
 }
 
-.verdeBkg{
-	background-color: #60a534 !important;
-}
-
-.rojoBkg{
+.titleL2Bkg{
 	background-color: #e80000 !important;
+	color:black;
 }
 
-.negroBkg{
-	background-color: #e80000 !important;
-}
-
-.grisBkg{
+.titleL3Bkg{
 	background-color: #999 !important;
 	color:black;
 }
 
-.rojoBorderBottom{
-	border-bottom: solid #e80000 !important;
+.quejaRec{
+	background-color: #e63f39 !important;
+	color:black;
+}
+.quejaRead{
+	background-color: #0093c1 !important;
+	color:black;
+}
+.quejaChanneled{
+	background-color: #92c021 !important;
+	color:black;
+}
+.quejaAttended{
+	background-color: #999 !important;
+	color:black;
 }
 
 .borderAzul td{
@@ -460,8 +478,9 @@ li.disabled a{
 }
 
 .tooltip-inner {
-  max-width: 236px !important;
+  /*max-width: 236px !important;*/
   /*height: 76px;*/
+  /*width:500px !important;*/
   font-size: 12px;
   padding: 10px 15px 10px 20px;
   background: #EEE;
@@ -494,14 +513,16 @@ li.disabled a{
 }
 
 .sideMenuTitle{
-	font-size: .9em;
+	font-size: 1.5em;
 	border-bottom: solid 1px #004aad;
+	font-weight: bold;
 	padding-top: 30px;
 }
 
 .sideMenuOption{
 	text-transform: uppercase;
 	padding: 5px 0px;
+	
 }
 
 

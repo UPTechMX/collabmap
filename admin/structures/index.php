@@ -22,7 +22,8 @@ checaAcceso(60);// checaAcceso Structures
 	});
 </script>
 
-<div class="nuevo grisBkg"><?php echo TR('structure')." ($_POST[elemName])"; ?></div>
+<?php $name = !empty($_POST['elemName'])?" ($_POST[elemName])":'';  ?>
+<div class="nuevo titleL3Bkg"><?php echo TR('structure').$name; ?></div>
 <span id="importStr" class="btn btn-shop"><?php echo TR('importStr'); ?></span>
 <span id="dwlExample" class="btn btn-shop">
 	<i class="glyphicon glyphicon-download-alt"></i>&nbsp;
