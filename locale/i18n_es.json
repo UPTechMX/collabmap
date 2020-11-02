@@ -144,13 +144,16 @@
   "readTooltip":"<strong>QUEJAS LEÍDAS</strong><br/><br/>Una vez que una queja ha sido leída o visualizada por un administrador, pasa a este estado o categoría.",
   "channeledTooltip":"<strong>QUEJAS CANALIZADAS</strong><br/><br/>En esta estado se colocan las quejas que han sido direccionadas a las autoridades e instituciones correspondientes para su resolución. ",
   "attendedTooltip":"<strong>QUEJAS ATENDIDAS</strong><br/><br/>",
+  "newsTooltip":"<strong>NOTICIAS</strong><br/><br/>En esta sección puedes crear y editar las entradas en la sección de Noticias de la plataforma digital e informar al usuario sobre los aspectos más relevantes del proyecto o programa.",
+  "aboutTooltip":"<strong>ACERCA DE</strong><br/><br/>En esta sección puedes editar la descripción de la plataforma digital que leen los usuarios.",
+  "privacyTooltip":"<strong>AVISO DE PRIVACIDAD</strong><br/><br/>En esta sección puedes editar la descripción del aviso de privacidad y uso de datos de la plataforma general que leen los usuarios.",
   "numPoints0":"No hay respuestas para este polígono",
   
 
-  "targets": "Monitoreo por objetivos",
+  "targets": "Monitoreo facilitadores",
   "target": "Objetivo",
   "description": "Descripción",
-  "targetInfo": "Información del objetivo",
+  "targetInfo": "Información del facilitador",
   "structure": "Estructura",
   "noStructure": "No se encontró ninguna estructura",
   "level": "Nivel",
@@ -290,7 +293,7 @@
   "deleteProblem":"¿Deseas eliminar el reporte?",
 
   "project": "Proyecto",
-  "projects": "Proyectos",
+  "projects": "Temas de proyectos",
   "inactive": "Desactivado",
   "importKML": "Importar KML",
 
@@ -377,7 +380,7 @@
   "finishDate":"Fecha de cierre",
 
   "news":"Noticias",
-  "complaints":"Quejas",
+  "complaints":"Seguimiento quejas",
   "complaint":"Queja",
   "complaintSent":"Queja enviada",
   "complaintsFU":"Seguimiento de quejas",

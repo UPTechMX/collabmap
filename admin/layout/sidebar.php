@@ -25,7 +25,7 @@
 </script>
 
 <div style="padding: 0px 10px;">
-	<?php include raiz().'general/lang.php'; ?>
+	<!-- <?php include raiz().'general/lang.php'; ?> -->
 </div>
 
 <div style="margin: 40px 10px;padding-left: 10%;padding-top: 10px;">
@@ -44,13 +44,15 @@
 				<span class="manita" id="edtAbout">
 					<?= TR('about'); ?>
 				</span>
-				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;"></i>
+				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
+					data-toggle="tooltip" data-placement="right" title="<?= TR('aboutTooltip') ?>"></i>
 			</td>
 		</tr>
 		<tr>
 			<td class="sideMenuOption">
 				<a href="<?php echo $_SERVER['PHP_SELF'];?>?Act=news"><?= TR('news'); ?></a>
-				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;"></i>
+				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
+					data-toggle="tooltip" data-placement="right" title="<?= TR('newsTooltip') ?>"></i>
 			</td>
 		</tr>
 		<tr>
@@ -58,7 +60,8 @@
 				<span class="manita" id="edtPrivacy">
 					<?= TR('noticeofprivacy'); ?>
 				</span>
-				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;"></i>
+				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
+					data-toggle="tooltip" data-placement="right" title="<?= TR('privacyTooltip') ?>"></i>
 			</td>
 		</tr>
 
@@ -93,11 +96,10 @@
 				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
 					data-toggle="tooltip" data-placement="right" title="<?= TR('consultationsTooltip') ?>"></i>
 				
-				<ul style="margin-top: 5px;">
+				<ul style="margin-top: 5px;margin-block-end:0px;font-size: .9em;">
 					<li>
 						<a href="<?php echo $_SERVER['PHP_SELF'];?>?Act=complaints" style="display: inline;"  ><?= TR('complaints'); ?></a>
-						<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
-							data-toggle="tooltip" data-placement="right" title="<?= TR('complaintsTooltip') ?>"></i>
+						
 					</li>
 				</ul>
 			</td>

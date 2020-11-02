@@ -44,7 +44,7 @@
 </script>
 
 <div style="padding: 0px 10px;">
-	<?php include raiz().'general/lang.php'; ?>
+	<!-- <?php include raiz().'general/lang.php'; ?> -->
 </div>
 
 <div style="margin: 40px 10px;padding-left: 10%;padding-top: 10px;">
