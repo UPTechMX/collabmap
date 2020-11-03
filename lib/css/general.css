@@ -514,7 +514,7 @@ li.disabled a{
 
 .sideMenuTitle{
 	font-size: 1.5em;
-	border-bottom: solid 1px #004aad;
+	border-bottom: solid 1px #000;
 	font-weight: bold;
 	padding-top: 30px;
 }
