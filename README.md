@@ -4,9 +4,24 @@ CollabData is a digital platform that captures the needs, challenges and ground 
 
 ## Documentation
 
+### Brochure
+The CollabData brochure explains the main functionalities of the tool in a brief two-pager pamphlet.
+
 [Brochure](https://docs.google.com/presentation/d/1cn-GMQRDLWvNWqt6snN6bx9FEzwd0IcFKbU8wzVbTV8/edit?usp=sharing)
+
+### Case studies
+The CollabData case studies document includes a selection of applications that we have performed with the tool.
+
 [Case studies](https://docs.google.com/presentation/d/1_XhcyJJ7WuMTIlEh21QwxI0BRl5TeK6XX_eF5ZZb9tg/edit?usp=sharing)
+
+### User Manual
+The CollabData user manual explains all functionalities and basic operation of the tool. 
+
 [User manual](https://docs.google.com/presentation/d/10AiJfQyb_M3Tf4GhkzQ3Xa-gcBT2wVNmjqb6hwNB50s/edit?usp=sharing)
+
+### Technical Report
+The CollabData technical report includes a detailed description of methods, data inputs, required formats, and outputs.
+
 [Technical report](https://docs.google.com/document/d/1o8Xe606uJvrQkNmL5yw4hHcx1wMyXCl3OzUY-HqBwBc/edit?usp=sharing)
 
 ## Requirements
@@ -40,3 +55,6 @@ Geoserver 2.17.1
 12. In the Tiles and cache tab, activate the application / vnd.mapbox-vector-tile option
 To access go to http: // <installation address> / admin
 u: admin p: root
+
+# Acknowledgements
+We acknowledge the invaluable support of the World Bank’s Trust Fund for Statistical Capacity Building (TFSCB) in making this project. This tool was conceptualized at City Planning Labs. The tool was developed by CAPSUS and UPTech and is maintained by a community of developers.
