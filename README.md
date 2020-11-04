@@ -2,6 +2,13 @@
 
 CollabData is a digital platform that captures the needs, challenges and ground realities of the communities, strengthens public consultations and simplifies the analysis of collected data with powerful visualizations. The analysis can be presented in the form of heatmaps, spatial word clouds, emotion maps and gender statistics to transform data into information that can be easily utilized for decision making.
 
+## Documentation
+
+[Brochure](https://docs.google.com/presentation/d/1cn-GMQRDLWvNWqt6snN6bx9FEzwd0IcFKbU8wzVbTV8/edit?usp=sharing)
+[Case studies](https://docs.google.com/presentation/d/1_XhcyJJ7WuMTIlEh21QwxI0BRl5TeK6XX_eF5ZZb9tg/edit?usp=sharing)
+[User manual](https://docs.google.com/presentation/d/10AiJfQyb_M3Tf4GhkzQ3Xa-gcBT2wVNmjqb6hwNB50s/edit?usp=sharing)
+[Technical report](https://docs.google.com/document/d/1o8Xe606uJvrQkNmL5yw4hHcx1wMyXCl3OzUY-HqBwBc/edit?usp=sharing)
+
 ## Requirements
 
 Apache2
