@@ -50,7 +50,7 @@ switch ($preg['tSiglas']) {
 		$answers = $db->query("
 			SELECT COUNT(*) as cuenta,rv.respuesta as respuestasId,r.respuesta as respuesta
 			FROM RespuestasVisita rv
-			LEFT JOIN Visitas v ON rv.visitasId = v.id AND type = 'trgt'
+			LEFT JOIN Visitas v ON rv.visitasId = v.id AND type = 'cons'
 			LEFT JOIN UsersConsultationsChecklist te ON te.id = v.elemId
 			LEFT JOIN ConsultationsChecklist tc ON tc.id = te.consultationsChecklistId
 			LEFT JOIN Respuestas r ON r.id = rv.respuesta
@@ -58,6 +58,7 @@ switch ($preg['tSiglas']) {
 			WHERE tc.id = $_POST[consChk] AND rv.preguntasId = $_POST[pId] AND v.type = 'cons'  AND v.finalizada = 1
 			GROUP BY rv.respuesta
 		")->fetchALL(PDO::FETCH_ASSOC);
+
 		include 'mult.php';
 
 		break;
@@ -66,7 +67,7 @@ switch ($preg['tSiglas']) {
 		$answers = $db->query("
 			SELECT COUNT(*) as cuenta,rv.respuesta
 			FROM RespuestasVisita rv
-			LEFT JOIN Visitas v ON rv.visitasId = v.id AND type = 'trgt'
+			LEFT JOIN Visitas v ON rv.visitasId = v.id AND type = 'cons'
 			LEFT JOIN UsersConsultationsChecklist te ON te.id = v.elemId
 			LEFT JOIN ConsultationsChecklist tc ON tc.id = te.consultationsChecklistId
 			$LJ

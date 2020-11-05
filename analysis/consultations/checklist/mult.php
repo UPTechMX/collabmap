@@ -13,7 +13,7 @@ if(!is_numeric($_POST['pId']) && !is_numeric($_POST['trgtChk'])){
 <script type="text/javascript">
 	$(document).ready(function() {
 		var answers = <?php echo atj($answers); ?>;
-		// console.log(answers);
+		console.log(answers);
 		var pieData = [];
 		for(var i = 0; i<answers.length; i++){
 			var tmp = {};
