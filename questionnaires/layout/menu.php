@@ -41,7 +41,7 @@
 				<a  href="<?php echo $_SERVER['PHP_SELF'];?>?Act=questionnaire" class="nav-link"><?php echo TR('mainPage') ?></a>
 			</li>
 			<li class="nav-item">
-				<a  href="https://docs.google.com/forms/d/e/1FAIpQLSf79SblRdMXkp3xaL6JOJADlH93EjCODxyceYQ2xbdBEi04Ew/viewform" target="_blank" class="nav-link"><?php echo TR('reportProblems') ?></a>
+				<a  href=" https://forms.gle/HgM2WG676EcvGdG99" target="_blank" class="nav-link"><?php echo TR('reportProblems') ?></a>
 			</li>
 			<li class="nav-item">
 				<a  href="<?php echo $_SERVER['PHP_SELF'];?>?Act=tutorials" id="tutorials" class="nav-link"><?php echo TR('tutorials') ?></a>
