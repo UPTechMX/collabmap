@@ -17,7 +17,7 @@
 		<div class="col-md-6" >
 			<div class="row" style="padding-top: 10px;">
 				<div class="col-4" style="padding-right: 0px;">
-					<a href="https://www.youtube.com/watch?v=Ro-aHLC6N2o" target="_blank">
+					<a href="https://youtu.be/bATV_alIUN0" target="_blank">
 						<img class="imgTut" file="tutorial0.png" width="100%" />
 					</a>
 				</div>
@@ -32,7 +32,7 @@
 		<div class="col-md-6">
 			<div class="row" style="padding-top: 10px;">
 				<div class="col-4" style="padding-right: 0px;">
-					<a href="https://docs.google.com/presentation/d/1peJmf30ESzwH0nMUvSM_R8bsIAvfHYDoc-CcvzyvXgI/edit#slide=id.g8598ae5746_0_0" target="_blank">
+					<a href="https://docs.google.com/presentation/d/1ZJauWajBo2KsntpV-tpZN7tUy16PAdDOs_U2v_fnHcw" target="_blank">
 					<!-- <a class="aFile" file="Siap Tanggap Panduan Pengguna  (One-Pager).pdf" target="_blank"> -->
 						<img class="imgTut" file="tutorial1.png" width="100%" />
 					</a>

@@ -20,7 +20,7 @@
 	<div style="margin-top: 10px; color: grey;">
 		<div class="row" style="border:solid 0px;">
 			<div class="col-md-6" >
-				<a href="https://www.youtube.com/watch?v=Ro-aHLC6N2o" target="_blank">
+				<a href="https://youtu.be/bATV_alIUN0" target="_blank">
 					<div class="row" style="padding-top: 10px;">
 						<div class="col-4" style="padding-right: 0px;">
 								<img class="imgTut" file="tutorial0.png" width="100%" />
@@ -35,7 +35,7 @@
 				</a>
 			</div>
 			<div class="col-md-6">
-				<a href="https://docs.google.com/presentation/d/1peJmf30ESzwH0nMUvSM_R8bsIAvfHYDoc-CcvzyvXgI/edit#slide=id.g8598ae5746_0_0" target="_blank">
+				<a href="https://docs.google.com/presentation/d/1ZJauWajBo2KsntpV-tpZN7tUy16PAdDOs_U2v_fnHcw" target="_blank">
 					<div class="row" style="padding-top: 10px;">
 						<div class="col-4" style="padding-right: 0px;">
 								<img class="imgTut" file="tutorial1.png" width="100%" />
@@ -74,7 +74,7 @@
 		<div>&#169;&nbsp;<?php echo $y?>. CAPSUS.</div>
 
 		<!-- show the tutorial if only user not logged in -->
-		<?php if($_SESSION['CM']['questionnaires']['usrId'] == "") echo '<div id="tutorial"><a href="https://docs.google.com/forms/d/e/1FAIpQLSf79SblRdMXkp3xaL6JOJADlH93EjCODxyceYQ2xbdBEi04Ew/viewform" target="_blank"><i class="fas fa-bug"></i> ' . TR('reportProblems') . '</a> | <a href="javascript:void(0)" id="tutorialButton"><i class="far fa-file-alt"></i> ' . TR('tutorials') . '</a></div>'; ?>
+		<?php if($_SESSION['CM']['questionnaires']['usrId'] == "") echo '<div id="tutorial"><a href="https://forms.gle/HgM2WG676EcvGdG99" target="_blank"><i class="fas fa-bug"></i> ' . TR('reportProblems') . '</a> | <a href="javascript:void(0)" id="tutorialButton"><i class="far fa-file-alt"></i> ' . TR('tutorials') . '</a></div>'; ?>
 	</div>
 
 </div>

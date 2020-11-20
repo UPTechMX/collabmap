@@ -351,7 +351,7 @@
   "RTPlaceholder": "Masukkan dua digit nomor RT Anda",
 
   "unregisteredLogin": "NIK tidak terdaftar. Silakan mendaftar atau kembali ke halaman masuk.",
-  "registerConfirmationText1": "<u>Survey ini hanya ditujukan untuk ketua RT.</u> <br/><br/>Periksa sekali lagi NIK dan Nama Anda,<br/><b><table><tr><td>NIK</td><td>:</td><td>",
+  "registerConfirmationText1": "<u>Kuesioner ini hanya ditujukan untuk target survey.</u> <br/><br/>Periksa sekali lagi NIK dan Nama Anda,<br/><b><table><tr><td>NIK</td><td>:</td><td>",
   "registerConfirmationText2": "</td></tr><tr><td>NAMA</td><td>:</td><td>",
   "registerConfirmationText3": "</td></tr></table></b>apakah data yang Anda masukkan sudah benar?<br/><br/>Tekan <b>Batal</b> untuk memperbaiki atau tekan <b>OK</b> untuk melanjutkan.",
 
@@ -359,6 +359,6 @@
   "selectRTConfirmationText2": "</table></b><br/>Apakah lokasi RT Anda sudah tepat?<br/><br/>Tekan <b>Batal</b> untuk memperbaiki atau tekan <b>OK</b> untuk melanjutkan.<br/>",
   "captcha":"Captcha",
   "errorCaptcha": "Captcha tidak benar",
-  "mnjTargetAdd":"- Untuk Ketua RT, tuliskan lokasi RT anda dalam format: <b>RT/RW</b>, <br>(contoh, jika anda berasal dari RT 9 dan RW 12, ketikkan: <b>009/012</b>)<br> - Untuk Kepala lainnya, ketikkan nama Banjar/Kapling/Dusun/lainnya"
+  "mnjTargetAdd":"Tuliskan lokasi RT anda dalam format 2 digit. Jika anda berasal dari RT 9, ketikkan 09."
    
 }

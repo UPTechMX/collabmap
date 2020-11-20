@@ -342,5 +342,5 @@
   "level": "Nivel",
   "captcha":"Captcha",
   "errorCaptcha": "El captcha es incorrecto",
-  "mnjTargetAdd":"- Untuk Ketua RT, tuliskan lokasi RT anda dalam format: <b>RT/RW</b>, <br>(contoh, jika anda berasal dari RT 9 dan RW 12, ketikkan: <b>009/012</b>)<br> - Untuk Kepala lainnya, ketikkan nama Banjar/Kapling/Dusun/lainnya"
+  "mnjTargetAdd":"Tuliskan lokasi RT anda dalam format 2 digit. Jika anda berasal dari RT 9, ketikkan 09."
   }
