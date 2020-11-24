@@ -10,4 +10,3 @@ if ($_SESSION['CM']['questionnaires']['validated'] != 1){
   exit;
 }
 ?>
-

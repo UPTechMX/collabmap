@@ -106,6 +106,7 @@
 								<?php } ?>
 
 							</div>
+							<input type="hidden" name="code" value="<?= !empty($_GET['code'])?$_GET['code']:""; ?>">
 						</form>
 					</div>
 				</div>
