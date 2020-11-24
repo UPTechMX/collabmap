@@ -38,9 +38,9 @@ $htmlRoot = aRaizHtml($location);
 // print2(datCodigoPostal('85203'));;
 if(!empty($_POST['code'])){
 	$chkCode = true;
-	if( !empty($_GET['code']) ){
+	if( !empty($_REQUEST['code']) ){
 		$buscTrgt = $db->prepare("SELECT * FROM Targets WHERE code = ?");
-		$buscTrgt->execute(array($_GET['code']));
+		$buscTrgt->execute(array($_REQUEST['code']));
 
 		$trgt = $buscTrgt->fetchAll(PDO::FETCH_ASSOC)[0];
 		if(empty($trgt)){
