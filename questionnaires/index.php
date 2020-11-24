@@ -36,37 +36,32 @@ $htmlRoot = aRaizHtml($location);
 
 
 // print2(datCodigoPostal('85203'));;
-if(!empty($_POST['code'])){
-	$chkCode = true;
-	if( !empty($_REQUEST['code']) ){
-		$buscTrgt = $db->prepare("SELECT * FROM Targets WHERE code = ?");
-		$buscTrgt->execute(array($_REQUEST['code']));
+$chkCode = true;
+if( !empty($_REQUEST['code']) ){
+	$buscTrgt = $db->prepare("SELECT * FROM Targets WHERE code = ?");
+	$buscTrgt->execute(array($_REQUEST['code']));
 
-		$trgt = $buscTrgt->fetchAll(PDO::FETCH_ASSOC)[0];
-		if(empty($trgt)){
-			$chkCode = false;
-		}
-
-	}else{
+	$trgt = $buscTrgt->fetchAll(PDO::FETCH_ASSOC)[0];
+	if(empty($trgt)){
 		$chkCode = false;
 	}
 
-	$usrId = $_SESSION['CM']['questionnaires']['usrId'];
-	// print2($trgt);
+}else{
+	$chkCode = false;
+}
 
-	if($chkCode){
-		$cuenta = $db->query("SELECT COUNT(*) as cuenta
-			FROM UsersTargets WHERE usersId = $usrId AND targetsId = $trgt[id]")->fetchAll(PDO::FETCH_ASSOC)[0]['cuenta'];
+$usrId = $_SESSION['CM']['questionnaires']['usrId'];
+// print2($trgt);
 
-		// print2($cuenta);
+if($chkCode){
+	$cuenta = $db->query("SELECT COUNT(*) as cuenta
+		FROM UsersTargets WHERE usersId = $usrId AND targetsId = $trgt[id]")->fetchAll(PDO::FETCH_ASSOC)[0]['cuenta'];
 
-		if($cuenta == 0){
-			$db->query("INSERT INTO UsersTargets SET usersId = $usrId, targetsId = $trgt[id]");
-		}
+	// print2($cuenta);
+
+	if($cuenta == 0){
+		$db->query("INSERT INTO UsersTargets SET usersId = $usrId, targetsId = $trgt[id]");
 	}
-
-	// print2($_SESSION);
-
 }
 
 // echo $_TRANSLATE['pollHealth'];
