@@ -306,7 +306,7 @@
 									$ok = false;
 									$pregunta = $est[$preg]['pregunta'];
 									$respuesta = $col[$preg];
-									$err = TR('amswerNotFoundRow')." $row , ".
+									$err = TR('amswerNotFoundRow').($row+1)." , ".
 										TR('amswerNotFoundQuestion')." $pregunta. <br/>".TR("amswerNotFoundAnswer")." $respuesta column: $preg";
 									break 3;
 
@@ -314,7 +314,7 @@
 									$ok = false;
 									$pregunta = $est[$preg]['pregunta'];
 									$respuesta = $col[$preg];
-									$err = TR('amswerNotFoundRow')." $row , ".
+									$err = TR('amswerNotFoundRow').($row+1)." , ".
 										TR('amswerNotFoundQuestion')." $pregunta. <br/>".TR("amswerNotFoundAnswer")." column: $preg";
 									break 3;
 								}

@@ -14,7 +14,8 @@
 			    type: 'pie'
 			},
 			title: {
-			    text: name
+			    text: name,
+			    useHTML:true
 			},
 			tooltip: {
 			    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
