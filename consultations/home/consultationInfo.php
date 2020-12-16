@@ -48,7 +48,7 @@
 	</button>
 
 </div>
-<div class="modal-body" id='pano' style='width:100%;border: none 1px;color: #ffb919;'>
+<div class="modal-body" id='pano' style='width:100%;border: none 1px;color: #92C021;'>
 	<div class="row">
 		<div class="col-md-2">
 			<div class="icono" style="margin-top: 20px;">

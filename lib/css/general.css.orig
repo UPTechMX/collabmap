@@ -88,7 +88,7 @@
 }
 
 .nuevo{
-	background-color:#ffb919; 
+	background-color:#92C021; 
 	color:white;
 	text-align: left;
 	border-radius:0px;

@@ -49,7 +49,7 @@
 
 <div style="margin: 40px 10px;padding-left: 10%;padding-top: 10px;">
 	<a href="<?php echo $_SERVER['PHP_SELF'];?>?">
-		<img src="<?php echo $htmlRoot; ?>img/cmLogo.png" style="width: 95%;" />
+		<img src="<?php echo $htmlRoot; ?>img/cmLogo.png" style="width: 65%;margin-left:17%" />
 	</a>
 </div>
 
