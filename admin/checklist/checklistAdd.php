@@ -121,11 +121,11 @@
 				<td><input type="text" value="<?php echo $datM['siglas']; ?>" name="siglas" id="siglas" class="form-control oblig"></td>
 				<td></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td><?php echo TR('photos'); ?></td>
 				<td><input type="checkbox" id="photos" <?php echo $datM['photos'] == 1?'checked':''; ?>></td>
 				<td></td>
-			</tr>
+			</tr> -->
 
 		</table>		
 	</form>

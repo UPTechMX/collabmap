@@ -48,6 +48,7 @@
 		// console.log(checklistId);
 		$('#env').click(function(event) {
 			var dat = $('#nEmp').serializeObject();
+			dat.tipoProm = 1; // para quitar la opción múltiple
 			dat.encabezado = $('#encabezado').is(':checked')?1:0;
 			var allOk = camposObligatorios('#nEmp');
 			<?php 
@@ -102,7 +103,7 @@
 				</td>
 				<td></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td><?php echo TR('avgType'); ?></td>
 				<td>
 					<select class="form-control" id="tipoProm" name="tipoProm">
@@ -112,7 +113,7 @@
 					</select>
 				</td>
 				<td></td>
-			</tr>
+			</tr> -->
 			<!-- <tr>
 				<td><?php echo TR('blockWeighting'); ?></td>
 				<td>

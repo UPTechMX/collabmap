@@ -96,7 +96,7 @@
 		});
 	</script>
 	<div style="text-align: center;margin-top: 40px;">
-		<span class="sidebarElement facilitator <?= $_REQUEST['acc'] == 'facilitator'?'azul':'negro'; ?>"  style="text-transform: uppercase;">
+		<span class="sidebarElement facilitator <?= $_REQUEST['acc'] == 'facilitator'?'verde':'azul'; ?>"  style="text-transform: uppercase;">
 			<?php echo TR('facilitator'); ?></span><br/>
 	</div>
 
@@ -106,11 +106,11 @@
 			margin-left: auto;margin-right: auto;border-radius: 50%;color: white;" >
 			<i class="fas fa-user manita edtProfile" style="margin-right: auto;margin-left: auto;margin-top: 3px;"></i>
 		</div>
-		<div style="text-transform: uppercase; margin-top: 20px;" class="negro">
+		<div style="text-transform: uppercase; margin-top: 20px;" class="azul">
 			<?= $_SESSION['CM']['consultations']['name']; ?>
 		</div>
 		<div style="margin-top: 10px;">
-			<span class="loginElement negro">
+			<span class="loginElement azul">
 				<a class="logoutBtn" href="<?php echo $_SERVER['PHP_SELF'];?>?logout=1"  style="text-transform: uppercase;">
 					<?php echo TR('close_session'); ?></a>
 			</span>

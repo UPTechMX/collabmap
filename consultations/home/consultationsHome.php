@@ -105,7 +105,7 @@
 	});
 </script>
 <div style="margin-top: 50px;" class="d-none d-md-block"></div>
-<div class="title negro" style="font-weight: 800;font-size: 2em;text-transform: uppercase;">
+<div class="title azul" style="font-weight: 800;font-size: 2em;text-transform: uppercase;">
 	<?php echo TR('about'); ?>...
 </div>
 <div style="text-align: justify;">
@@ -128,7 +128,7 @@
 </div>
 
 
-<div class="title negro" style="font-weight: 800;font-size: 2em;text-transform: uppercase; margin-top: 30px;">
+<div class="title azul" style="font-weight: 800;font-size: 2em;text-transform: uppercase; margin-top: 30px;">
 	<?php echo TR('consultations'); ?>
 </div>
 

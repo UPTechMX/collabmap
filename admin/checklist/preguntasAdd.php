@@ -69,6 +69,7 @@
 			var dat = $('#nEmp').serializeObject();
 			dat.justif = $('#justif').is(':checked')?1:0;
 			dat.fichaTec = $('#fichaTec').is(':checked')?1:0;
+			dat.puntos = 1; // para quitar el textbox
 			var allOk = camposObligatorios('#nEmp');
 			<?php 
 				if(isset($_POST['pregId'])){
@@ -151,14 +152,14 @@
 				</td>
 				<td></td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td><?php echo TR('points'); ?></td>
 				<td>
 					<input type="text" value="<?php echo isset($datP['puntos'])?$datP['puntos']:1; ?>" name="puntos" id="puntos" class="form-control oblig" >
 				</td>
 				<td></td>
-			</tr>
-			<tr>
+			</tr> -->
+			<!-- <tr>
 				<td><?php echo TR('toRecord'); ?></td>
 				<td>
 					<?php if ($_POST['pregId'] != ''): ?>
@@ -169,7 +170,7 @@
 					<?php endif ?>
 				</td>
 				<td></td>
-			</tr>
+			</tr> -->
 			<tr>
 				<td><?php echo TR('justify'); ?></td>
 				<td><input type="checkbox" name="justif" id="justif" <?php echo $datP['justif'] == 1?'checked':''; ?> ></td>

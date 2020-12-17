@@ -137,7 +137,7 @@
 	<div class="prjName" style="font-size: 1.5em;">
 		<?php echo $consInf['pName']; ?>
 	</div>
-	<div class="consultationName" style="font-size: 2em;font-weight: bold;text-align: left;">
+	<div class="consultationName azul" style="font-size: 2em;font-weight: bold;text-align: left;">
 		<?php echo $consInf['name']; ?>
 	</div>
 	<div class="" style="text-align: left;color: grey;text-align: justify;">
