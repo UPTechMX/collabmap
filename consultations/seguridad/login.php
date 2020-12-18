@@ -63,9 +63,9 @@
 				<div style="margin-top: 40px;">
 					<span class="loginElement sign_up" style="text-transform: uppercase;"><?php echo TR('sign_up'); ?></span>
 				</div>
-				<div style="margin-top: 40px;">
+				<!-- <div style="margin-top: 40px;">
 					<span class="loginElement forgotPwd" style="text-transform: uppercase;"><?php echo TR('forgotPwd'); ?></span>
-				</div>
+				</div> -->
 			</form>
 		</div>
 	</div>
