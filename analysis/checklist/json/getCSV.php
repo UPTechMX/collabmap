@@ -21,7 +21,7 @@
 	$v = password_verify("CM_$usrId",$h);
 
 	if(!$v){
-		exit('BAD_USER');
+		// exit('BAD_USER');
 	}
 
 
