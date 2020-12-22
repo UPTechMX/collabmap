@@ -81,19 +81,25 @@
 	foreach ($dims as $d) {
 		$csv .= '"'.$d['nombre'].'"'.",";	
 	}
+
+	$AREA = TR('area');
+	$SUBAREA = TR('subarea');
+	$BLOQUE = TR('block');
+	$PREGUNTAS = TR('questions');
+	$JUSTIFICACION = TR('justify');
 	
 	$col = array();
 	$i = count($dims);
 	foreach ($bloques as $bId=> $b) {
-		$csv .= '"BLOQUE"'.","; $col[$i++] = array('tipo'=>"nada");
+		$csv .= '"'.$BLOQUE.'"'.","; $col[$i++] = array('tipo'=>"nada");
 		$csv .= '"'.strip_tags($b['nombre']).'"'.","; 
 			$col[$i++] = array('tipo'=>"bloque",'identificador'=>$b['identificador']);
 		$areas = $db->query("SELECT * FROM Areas WHERE bloquesId = $b[id] AND (elim != 1 OR elim IS NULL) ORDER BY orden")->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($areas as $a) {
-			$csv .= '"AREA"'.","; $col[$i++] = array('tipo'=>"nada");
+			$csv .= '"'.$AREA.'"'.","; $col[$i++] = array('tipo'=>"nada");
 			$csv .= '"'.strip_tags($a['nombre']).'"'.","; 
 				$col[$i++] = array('tipo'=>"area",'identificador'=>$a['identificador'],'bId'=>$b['identificador']);;
-			$csv .= '"PREGUNTAS"'.","; $col[$i++] = array('tipo'=>"nada");
+			$csv .= '"'.$PREGUNTAS.'"'.","; $col[$i++] = array('tipo'=>"nada");
 
 			$pregs = $db->query("SELECT p.id,p.identificador,p.pregunta,p.influyeValor,p.subareasId,p.orden,p.puntos, 
 				t.siglas as tsiglas, t.nombre as nTipo, p.justif FROM Preguntas p
@@ -104,7 +110,7 @@
 				// print2($p);
 				switch ($p['tsiglas']) {
 					case 'sub':
-						$csv .= '"SUBAREA"'.","; $col[$i++] = array('tipo'=>"nada");
+						$csv .= '"'.$SUBAREA.'"'.","; $col[$i++] = array('tipo'=>"nada");
 						$csv .= '"'.trim(str_replace('"', '', strip_tags($p['pregunta']))).'"'.",";
 							$col[$i++] = array('tipo'=>'subArea','id'=>$p['id'],'campo'=>'valor','identificador'=>$p['identificador']);;
 						$subpregs = $db->query("SELECT p.id,p.identificador,p.pregunta,p.influyeValor,p.subareasId,p.orden,p.puntos,
@@ -117,7 +123,7 @@
 								case 'mult':
 									$csv .= '"'.trim(str_replace('"', '', strip_tags($sp['pregunta']))).'"'.",";
 									// $csv .= '"valor"'.",";
-									$csv .= '"justificacion"'.",";
+									$csv .= '"'.$JUSTIFICACION.'"'.",";
 									$col[$i++] = array('tipo'=>'pregResp','id'=>$sp['id'],
 											'identificador'=>$sp['identificador']);
 									$col[$i++] = array('tipo'=>'pregVal','id'=>$sp['id'],
@@ -133,7 +139,7 @@
 									$col[$i++] = array('tipo'=>'pregVal','id'=>$sp['id'],
 										'identificador'=>$sp['identificador']);//$sp['id']."_val";
 									if($p['justif'] == 1){
-										$csv .= '"justificacion"'.",";
+										$csv .= '"'.$JUSTIFICACION.'"'.",";
 										$col[$i++] = array('tipo'=>'pregJustif','id'=>$sp['id'],
 												'identificador'=>$sp['identificador']);
 									}
@@ -168,7 +174,7 @@
 					case 'mult':
 						$csv .= '"'.trim(str_replace('"', '', strip_tags($p['pregunta']))).'"'.",";
 						// $csv .= '"valor"'.",";
-						$csv .= '"justificacion"'.",";
+						$csv .= '"'.$JUSTIFICACION.'"'.",";
 						$col[$i++] = array('tipo'=>'pregResp','id'=>$p['id'],
 							'identificador'=>$p['identificador']);//$p['id'];
 						$col[$i++] = array('tipo'=>'pregVal','id'=>$p['id'],
@@ -186,7 +192,7 @@
 						$col[$i++] = array('tipo'=>'pregVal','id'=>$p['id'],
 								'identificador'=>$p['identificador']);
 						if($p['justif'] == 1){
-							$csv .= '"justificacion"'.",";
+							$csv .= '"'.$JUSTIFICACION.'"'.",";
 							$col[$i++] = array('tipo'=>'pregJustif','id'=>$p['id'],
 								'identificador'=>$p['identificador']);//$p['id']."_justif";
 						}
