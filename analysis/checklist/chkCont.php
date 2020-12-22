@@ -122,11 +122,50 @@
 
 		});
 
+		$('#getURL').click(function(event) {
+		
+			var checklistId = <?php echo $checklistId; ?>;
+			var nivelMax = <?php echo $nivelMax; ?>;
+			var padre = <?php echo $padre; ?>;
+			var targetsId = <?php echo $targetChecklist['targetsId']; ?>;
+
+			// $('<form>')
+			// .attr({
+			// 	id: 'descPrueba',
+			// 	action: rz+'analysis/checklist/json/getURL.php',
+			// 	target:'_blank',
+			// 	method:'post'
+			// })
+			// .html(
+			// 	'<input type="text" name="chkId" value="'+checklistId+'"\>'+
+			// 	'<input type="text" name="nivelMax" value="'+nivelMax+'"\>'+
+			// 	'<input type="text" name="padre" value="'+padre+'"\>'+
+			// 	'<input type="text" name="targetsId" value="'+targetsId+'"\>'
+			// )
+			// .appendTo(document.body)
+			// .submit()
+			// .remove();
+
+			var dat = {};
+			dat.chkId = checklistId
+			dat.nivelMax = nivelMax
+			dat.padre = padre
+			dat.targetsId = targetsId
+			// console.log(dat);
+
+			popUp('analysis/checklist/json/getURL.php',dat)
+
+
+		});
+
 	});
 </script>
 
+
+
 <div style="text-align: right;margin-top: 10px;">
 	<span class="btn btn-shop" id="dwlAns"><?php echo TR('dwlAns'); ?></span>
+	<span class="btn btn-shop" id="getURL"><?php echo 'CSV URL'; ?></span>
 </div>
 <div>
 	<?php foreach ($est['bloques'] as $b){ ?>

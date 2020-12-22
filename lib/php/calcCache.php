@@ -895,6 +895,48 @@ function promTotComp($prys,$params,$etapa){
 	return $vis;
 }
 
+function promTotCompSQL($prys,$params,$etapa){
+	global $db;
+
+	// print2($params);
+
+	$where = $params['where'];
+	$JOINS = $params['JOINS'];
+	$camposInt = $params['camposInt'];
+	$camposExt = $params['camposExt'];
+	$grpInt = $params['grpInt'];
+	$grpExt = $params['grpExt'];
+	$orderInt = $params['orderInt'];
+	$orderExt = $params['orderExt'];
+	$wCampo = $params['wCampo'];
+
+
+	// echo " =-=-=-=-=- $nivel =-=-=-=-=- \n";
+	
+	$sql = "SELECT $camposInt
+		FROM Visitas v 
+		LEFT JOIN CalculosVisita cv ON cv.visitasId = v.id
+		
+		$JOINS
+		WHERE 1 $where
+		$grpInt $orderInt";
+
+	// echo "$sql\n\n<br/><br/>";
+	
+
+	
+	// echo "AAA\n";
+	$sql2 = "SELECT $camposExt FROM ($sql) cache $grpExt $orderExt";
+	// echo "$sql2\n\n<br/><br/>";
+
+	
+	// $vis = $db->query($sql2)->fetchAll(PDO::FETCH_ASSOC);
+
+	// echo "$sql\n\n\n\n\n\n";
+	// print2($vis);
+	return $sql2;
+}
+
 
 
 function promTotCompOrig($elem,$reps,$proyectoId,$params){

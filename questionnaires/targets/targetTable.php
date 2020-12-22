@@ -109,7 +109,7 @@
 <table class="table" id="tableUT_<?php echo $utId; ?>">
 	<thead>
 		<tr>
-			<th><?php echo TR('identifier'); ?></th>
+			<!-- <th><?php echo TR('identifier'); ?></th> -->
 			<th><?php echo TR('name'); ?></th>
 			<?php foreach ($targetsChecklist as $tc){ ?>
 			<th style="text-align: center;"><?php echo TR($tc['code']); ?></th>
@@ -120,9 +120,9 @@
 		<?php foreach ($TargetsElems as $te){ ?>
 
 			<tr id="trDimElem_<?php echo $te['deId']; ?>">
-				<td>
+				<!-- <td>
 					<?php echo $te['deId']; ?>
-				</td>
+				</td> -->
 				<td>
 					<?php echo $te['deName']; ?>
 				</td>
@@ -140,11 +140,11 @@
 					<td id='tdTrgtChk_<?php echo "$te[id]_$tc[cId]" ?>' style="text-align: center;" >
 						
 						<?php if (empty($vis)){ ?>
-							<span class="newVisita manita action" style="color:grey;">
+							<span class="newVisita btn btn-sm btn-shop" >
 								<?php echo TR('answerSurvey'); ?>
 							</span>							
 						<?php }elseif(empty($vis['finalizada'])){ ?>
-							<span class="contVisita manita action" style="color:grey;"  id="idVis_<?php echo $vis['id']; ?>">
+							<span class="contVisita btn btn-sm btn-shop"   id="idVis_<?php echo $vis['id']; ?>">
 								<?php echo TR('continue'); ?>
 							</span>							
 						<?php 
@@ -189,21 +189,21 @@
 							}
 						?>
 							<?php if ($vis['fCode'] == 'oneTime'){ ?>
-								<span style="font-size: x-small;">
+								<span style="font-size: x-small;" >
 									<?php echo TR('sended').": ".$visDate; ?>
 								</span><br/>
-								<span class="seeResults manita action" style="color:grey;"  id="idVis_<?php echo $vis['id']; ?>">
+								<span class="seeResults btn btn-sm btn-shop"   id="idVis_<?php echo $vis['id']; ?>">
 									<?php echo TR('seeResults'); ?>
 								</span>							
 							<?php }elseif($today >= $nextDate){ ?>
-								<span class="newVisita manita action" style="color:grey;">
+								<span class="newVisita btn btn-sm btn-shop" >
 									<?php echo TR('answerSurvey'); ?>
 								</span>							
 							<?php }elseif($today < $nextDate){ ?>
 								<span style="font-size: x-small;">
 									<?php echo TR('sended').": ".$visDate; ?>
 								</span><br/>
-								<span class="seeResults manita action" style="color:grey;"  id="idVis_<?php echo $vis['id']; ?>">
+								<span class="seeResults btn btn-sm btn-shop"   id="idVis_<?php echo $vis['id']; ?>">
 									<?php echo TR('seeResults'); ?>
 								</span>							
 							<?php } ?>
