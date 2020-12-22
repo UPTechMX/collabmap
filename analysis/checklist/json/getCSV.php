@@ -1,10 +1,10 @@
 <?php  
 
-	ini_set('memory_limit', '512M');
 	session_start();
 	if(!function_exists('raiz')){
 		include_once '../../../lib/j/j.func.php';
 	}
+	checaAcceso(5); // checaAcceso analysis;
 
 	// exit();
 
@@ -13,7 +13,6 @@
 		exit('ERROR');
 	}
 
-
 	$usrId = $_REQUEST['u'];
 	$h = '$2y$10$'.$_REQUEST['h'];
 
@@ -21,10 +20,8 @@
 	$v = password_verify("CM_$usrId",$h);
 
 	if(!$v){
-		// exit('BAD_USER');
+		exit('BAD_USER');
 	}
-
-
 
 	// print2($_REQUEST);
 	
@@ -231,7 +228,8 @@
 	$csv = str_replace('<u>', ' ', $csv);
 	$csv = str_replace('</u>', ' ', $csv);
 	$csv = str_replace('&nbsp;', ' ', $csv);
-	// $csv = rtrim($csv,',');
+	$csv = rtrim($csv,',');
+	// $csv .="\n";
 	$csv .= "\n";
 
 
@@ -318,37 +316,24 @@
 					break;
 				case 'bloque':
 					if( is_numeric($calc['bloques'][$c['identificador']]['prom']) ){
-						$csvL .= '"'.
-							// ($calc['bloques'][$c['identificador']]['prom']*100).
-							'"'.","; 
+						$csvL .= '""'.","; 
 					}else{
-						$csvL .= '"'.
-							// $calc['bloques'][$c['identificador']]['prom'].
-						'"'.",";
+						$csvL .= '""'.",";
 					}
 					break;
 				case 'area':
 					if(is_numeric($calc['bloques'][$c['bId']]['areas'][$c['identificador']]['prom'])){
-						$csvL .= '"'.
-							// ($calc['bloques'][$c['bId']]['areas'][$c['identificador']]['prom']*100).
-							'"'.",";
+						$csvL .= '""'.",";
 					}else{
-						$csvL .= '"'.
-							// $calc['bloques'][$c['bId']]['areas'][$c['identificador']]['prom'].
-							'"'.",";
+						$csvL .= '""'.",";
 					}
 					break;
 				case 'subArea':
 					$pond = $calc['bloques'][$pregs[$c['identificador']]['bloque']]['areas'][$pregs[$c['identificador']]['area']]['pond'];
 					if(is_numeric($pond)){					
-						$csvL .= '"'.
-							// ($pregs[$c['identificador']]['influyeValor'] == 1 ? 
-							// 	is_numeric($pregs[$c['identificador']]['valPreg']?$pregs[$c['identificador']]['valPreg']:0)*$pond:'-').
-							'"'.",";
+						$csvL .= '""'.",";
 					}else{
-						$csvL .= '"'.
-							// ($pregs[$c['identificador']]['influyeValor'] == 1 ? '-':'-').
-							'"'.",";
+						$csvL .= '""'.",";
 					}
 					// $csvL .= '"SUBAREA"'.",";
 
@@ -422,13 +407,14 @@
 		$csvL = str_replace('<u>', ' ', $csvL);
 		$csvL = str_replace('</u>', ' ', $csvL);
 		$csvL = str_replace('&nbsp;', ' ', $csvL);
-		// $csvL = rtrim($csvL,',');
-		// $csvL .= "\n";
+		$csvL = rtrim($csvL,',');
+		$csvL .= "\n";
 
-		$csv .= $csvL."\n";
+		$csv .= $csvL;
 		// echo "$csvL<br/>";
 		// break;
 	}
+
 
 	// print2($visitas);
 
