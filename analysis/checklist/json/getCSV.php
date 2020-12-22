@@ -1,5 +1,6 @@
 <?php  
 
+	ini_set('memory_limit', '512M');
 	session_start();
 	if(!function_exists('raiz')){
 		include_once '../../../lib/j/j.func.php';
