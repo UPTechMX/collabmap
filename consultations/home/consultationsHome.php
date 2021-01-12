@@ -99,7 +99,14 @@
 
 		$('.consultationCardCont').click(function(event) {
 			var cId = this.id.split('_')[1];
-			popUp('consultations/home/consultationInfo.php',{elemId:cId});
+			//popUp('consultations/home/consultationInfo.php',{elemId:cId});
+
+			var request = {};
+			request['acc'] = 'consultation';
+			request['consultationId'] = cId;
+
+			$('#content').load(rz+'consultations/layout/content.php',request);
+			chUrl(request,'consultationId',cId,true,true);
 		});
 
 	});
