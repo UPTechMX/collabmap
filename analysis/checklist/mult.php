@@ -35,19 +35,19 @@ if(!is_numeric($_POST['pId']) && !is_numeric($_POST['trgtChk'])){
 
 
 
-		// console.log(answers);
+		console.log('<?php echo $preg['pregunta']; ?>');
 		
-		pieChart($("#grafica_<?php echo $_POST['pId']; ?>"), pieData,"<?php echo $preg['pregunta']; ?>");
+		pieChart($("#grafica_<?php echo $_POST['pId']; ?>"), pieData,'<?php echo $preg['pregunta']; ?>');
 
 		$("#divAnswer_<?php echo $_POST['pId']; ?>").on('click', '.pieChart', function(event) {
 			event.preventDefault();
 			$("#grafica_<?php echo $_POST['pId']; ?>").empty();
-			pieChart($("#grafica_<?php echo $_POST['pId']; ?>"), pieData,"<?php echo $preg['pregunta']; ?>");
+			pieChart($("#grafica_<?php echo $_POST['pId']; ?>"), pieData,'<?php echo $preg['pregunta']; ?>');
 		});
 		$("#divAnswer_<?php echo $_POST['pId']; ?>").on('click', '.barChart', function(event) {
 			event.preventDefault();
 			$("#grafica_<?php echo $_POST['pId']; ?>").empty();
-			barChart($("#grafica_<?php echo $_POST['pId']; ?>"), barData, cats, "<?php echo $preg['pregunta']; ?>");
+			barChart($("#grafica_<?php echo $_POST['pId']; ?>"), barData, cats, '<?php echo $preg['pregunta']; ?>');
 		});
 
 		
