@@ -140,11 +140,11 @@
 					<td id='tdTrgtChk_<?php echo "$te[id]_$tc[cId]" ?>' style="text-align: center;" >
 						
 						<?php if (empty($vis)){ ?>
-							<span class="newVisita btn btn-sm btn-shop" >
+							<span class="newVisita action btn btn-sm btn-shop" >
 								<?php echo TR('answerSurvey'); ?>
 							</span>							
 						<?php }elseif(empty($vis['finalizada'])){ ?>
-							<span class="contVisita btn btn-sm btn-shop"   id="idVis_<?php echo $vis['id']; ?>">
+							<span class="contVisita action btn btn-sm btn-shop"   id="idVis_<?php echo $vis['id']; ?>">
 								<?php echo TR('continue'); ?>
 							</span>							
 						<?php 
@@ -192,18 +192,18 @@
 								<span style="font-size: x-small;" >
 									<?php echo TR('sended').": ".$visDate; ?>
 								</span><br/>
-								<span class="seeResults btn btn-sm btn-shop"   id="idVis_<?php echo $vis['id']; ?>">
+								<span class="seeResults action btn btn-sm btn-shop"   id="idVis_<?php echo $vis['id']; ?>">
 									<?php echo TR('seeResults'); ?>
 								</span>							
 							<?php }elseif($today >= $nextDate){ ?>
-								<span class="newVisita btn btn-sm btn-shop" >
+								<span class="newVisita action btn btn-sm btn-shop" >
 									<?php echo TR('answerSurvey'); ?>
 								</span>							
 							<?php }elseif($today < $nextDate){ ?>
 								<span style="font-size: x-small;">
 									<?php echo TR('sended').": ".$visDate; ?>
 								</span><br/>
-								<span class="seeResults btn btn-sm btn-shop"   id="idVis_<?php echo $vis['id']; ?>">
+								<span class="seeResults action btn btn-sm btn-shop"   id="idVis_<?php echo $vis['id']; ?>">
 									<?php echo TR('seeResults'); ?>
 								</span>							
 							<?php } ?>
