@@ -45,7 +45,7 @@
 	</script>
 	<div style="text-align: center;margin-top: 20px;">
 		<span class="sidebarElement loginBtn negro"><?php echo TR('log_in'); ?></span>
-		<div class="loginInfoCont" style="padding: 20px;display: none;">
+		<div class="loginInfoCont" style="padding: 20px;display: block;">
 			<hr>
 			<form class="loginForm">
 				<div>

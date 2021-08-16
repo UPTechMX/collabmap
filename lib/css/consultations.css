@@ -189,7 +189,7 @@
     text-align: center;
     font-size: 1.2em;
     text-transform: uppercase;
-    color:#92C021;
+    color:#008357;
 }
 
 .sectionBanner{
@@ -256,8 +256,8 @@
     background-color: rgba(30,48,79,.1);
     position: relative;
     margin-top: 20px;
-    border-top: solid 3px #1E304F;
-    border-bottom: solid 3px #1E304F;
+    border-top: solid 3px #000001;
+    border-bottom: solid 3px #000001;
 }
 
 .colorizaSurveys{

@@ -32,7 +32,7 @@
 
 <div style="margin: 40px 10px;padding-left: 10%;padding-top: 10px;">
 	<a href="<?php echo $_SERVER['PHP_SELF'];?>?">
-		<img src="../img/cmLogo.png" style="width: 65%;margin-left:17%" />
+		<img src="../img/cmLogo.png" style="width: 90%;margin-left:5%" />
 	</a>
 </div>
 

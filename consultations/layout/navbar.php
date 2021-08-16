@@ -23,7 +23,7 @@
 	</div>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<div style="text-align: center;margin-top: 20px;">
-			<span class="sidebarElement participate"><?php echo TR('participate'); ?></span>
+			<!-- <span class="sidebarElement participate"><?php echo TR('participate'); ?></span> -->
 		</div>
 	</div>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">

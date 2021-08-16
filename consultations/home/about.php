@@ -10,7 +10,7 @@
 
 ?>
 
-<div style="color:#92C021; text-align: left;">
+<div style="color:#008357; text-align: left;">
 	<div class="consultationName" style="font-size: 2em;font-weight: bold;text-align: left;">
 		<?php echo TR('about'); ?>
 	</div>

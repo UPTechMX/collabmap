@@ -76,7 +76,8 @@
 						<i class="glyphicon glyphicon-forward"></i><?php echo TR('iWantMore') ?>
 					</span>
 				</div>
-				<div class="extLikes" style="margin-top: 5px;">
+				<br/>
+				<!-- <div class="extLikes" style="margin-top: 5px;">
 					<span">
 						<?php
 							$class = empty($n['newsId'])?'noLiked':'liked';
@@ -84,7 +85,7 @@
 						<i class="fas fa-thumbs-up manita like <?php echo $class; ?>"></i>
 					</span>&nbsp;&nbsp;
 					<strong class="count rojo"><?php echo $count; ?></strong> 
-				</div>
+				</div> -->
 			</div>
 		<?php } ?>
 	</div>

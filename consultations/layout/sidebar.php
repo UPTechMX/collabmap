@@ -49,7 +49,7 @@
 
 <div style="margin: 40px 10px;padding-left: 10%;padding-top: 10px;">
 	<a href="<?php echo $_SERVER['PHP_SELF'];?>?">
-		<img src="<?php echo $htmlRoot; ?>img/cmLogo.png" style="width: 65%;margin-left:17%" />
+		<img src="<?php echo $htmlRoot; ?>img/cmLogo.png" style="width: 90%;margin-left:5%" />
 	</a>
 </div>
 
@@ -59,10 +59,10 @@
 	</span><br/>
 </div>
 <div style="text-align: center;margin-top: 40px; text-transform: uppercase;">
-	<span class="sidebarElement participate 
+	<!-- <span class="sidebarElement participate 
 		<?= $_REQUEST['acc'] == 'participate'||$_REQUEST['acc'] == 'consultation'?'verde':'azul'; ?>">
 		<?php echo TR('participate'); ?>
-	</span><br/>
+	</span><br/> -->
 </div>
 
 
