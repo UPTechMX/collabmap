@@ -312,9 +312,6 @@ CREATE TABLE `Dimensiones` (
 -- Volcado de datos para la tabla `Dimensiones`
 --
 
-INSERT INTO `Dimensiones` (`id`, `nombre`, `nivel`, `elemId`, `type`) VALUES
-(1, 'sdsd', 1, 1, 'structure');
-
 -- --------------------------------------------------------
 
 --
@@ -332,8 +329,6 @@ CREATE TABLE `DimensionesElem` (
 -- Volcado de datos para la tabla `DimensionesElem`
 --
 
-INSERT INTO `DimensionesElem` (`id`, `padre`, `dimensionesId`, `nombre`) VALUES
-(0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -605,8 +600,6 @@ CREATE TABLE `Projects` (
 -- Volcado de datos para la tabla `Projects`
 --
 
-INSERT INTO `Projects` (`id`, `name`, `description`, `inactive`, `code`) VALUES
-(1, 'asd', 'asd', 0, 'asd');
 
 -- --------------------------------------------------------
 
@@ -728,8 +721,6 @@ CREATE TABLE `Targets` (
 -- Volcado de datos para la tabla `Targets`
 --
 
-INSERT INTO `Targets` (`id`, `name`, `description`, `projectsId`, `addStructure`) VALUES
-(1, 'asd', 'asd', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -809,38 +800,6 @@ CREATE TABLE `Users` (
 -- Volcado de datos para la tabla `Users`
 --
 
-INSERT INTO `Users` (`id`, `username`, `name`, `lastname`, `email`, `pwd`, `gender`, `age`, `hashConf`, `confirmed`, `validated`) VALUES
-(1, 'juanma', 'juan manuel', 'gomez', 'xpektro@hotmail.com', '$2y$10$rNQNf3PqPZ8yX5ByqHIMB.pt0TAvFpYIRNRXgnkjFxzPZzgcofybu', 'M', 38, NULL, 1, 1),
-(2, 'juanma2', 'juan manuel', 'gomez Perez figueroa', 'xpektro3@hotmail.com', '$2y$10$FJ.DUpNxZR4x2GB6H7v.D.abIuVS1re/8y5dJT1KsiAlY735JLrGW', 'M', 38, NULL, NULL, NULL),
-(3, 'Daniela', 'Daniela', 'Evia ', 'daniela.evia@capsus.mx', '$2y$10$xxB9X37wIWffFpk2xy1WcetW.c9Jz6W25DDsKRZV7Hm4K4Xlk6d8q', 'F', 41, NULL, 1, 1),
-(4, 'dante', 'Dante', 'Zayas', 'dante.zayas@capsus.mx', '$2y$10$5qS.s3mLETYLfS8.8/aj8u6FHmPK.tbw38ozDl/UxjPkVnAR/bwmG', 'M', 22, NULL, 1, 1),
-(9, 'juanma3', 'juanma', '123', 'xpektro@hotmail.com', '$2y$10$r6C9jUJGgsYvrwC2yVju7.CtQg/XPfHA32zYIgU1fx1/BquGjsTvG', 'M', 38, 'YL9pM5Bb6lSUyiP157VCeeB5Ey15fjiMQjZazEYN0tbazRrQERZNW', NULL, NULL),
-(14, 'facilitador1', 'facilitador', 'uno', 'facilitador@capsus.mx', '$2y$10$YXnCr6ot2sKkXWzda4dVPODpVnNGqkJZV4UGOLzB8Xi7l2O7XV/GG', 'M', 23, NULL, 1, 1),
-(24, 'luis', 'Luis', 'García', 'luis.garcia@capsus.mx', '$2y$10$.Mom5S97iHX4RnpvYW6cquFFYExGLcZMGO11Iz/6fO.asVOYNhC66', 'M', 25, NULL, 1, 1),
-(25, 'jose', 'Jose', 'Diaz', 'jd@capsus.mx', '$2y$10$CHfY25iHyIUKqyhsFiRyOuAiDPrc8/Ru/nwtKTYsxcVWvPiXsi2.6', 'M', 26, NULL, 1, 1),
-(30, 'pruebas', 'Pruebin', 'De la Prueba', 'prueba@otraprueba.comprueba', '$2y$10$nTp.xSWnrYbPW.u9VMTusOx7Gdk2/zRRWQxVHYke2NmT27G/dE0rq', 'M', 25, NULL, 1, 1),
-(31, 'fernando', 'Fernando', 'Pérez', 'fernando', '$2y$10$YQMwteqerlOWL/z92opLE.8r7M8aArsRUwE8uAwoFuJLnwAI6NgQS', 'M', 22, NULL, 1, 1),
-(32, 'jsilva', 'Jorge', 'Silva', 'jorgesilva.py@gmail.com', '$2y$10$hEkDQrOHHwMHEiAmKkI7AO31H7EKQn2O2WT3aVtzYj/ytqO9RQfs2', 'M', 0, NULL, 1, 1),
-(33, 'epereira', 'Enrique', 'Pereira', '.', '$2y$10$JOKuvG9D/MO0jHox3KS9peH3X9qD/5P1fMjoVxFspEDAOAHXMscWC', 'M', 0, NULL, 1, 1),
-(34, 'gcane', 'Guillermo', 'Cane', '.', '$2y$10$L85dE6E5.pHopIelJ/56COVtFBtXbgadVLQugFMHlC2Bt.WQ6GiBm', 'M', 0, NULL, 1, 1),
-(35, 'rortigoza', 'Richard', 'Ortigoza', '.', '$2y$10$W5hywc9PIkCcb4/4iXG0zOhNlSlc373wsPRIorI1bc1Auw/yUV7g2', 'M', 0, NULL, 1, 1),
-(36, 'malarcon', 'Marcos', 'Alarcon', '.', '$2y$10$trGvLb.kdC8sV2lTyozkN.TwOxMfxBYySKFQ2CIKmoF3phVHTYNSC', 'M', 0, NULL, 1, 1),
-(37, 'inuñez', 'Idalina', 'Nuñez', '.', '$2y$10$/W2nIdtekgibWFkwQEj7SuhhuXf9EWF3jGAiqNbt3hLkkUW19Ue4.', 'F', 0, NULL, 1, 1),
-(38, 'emendoza', 'Emilia', 'Mendoza León', '.', '$2y$10$r.ESXBh85Fqm3vk49h4eZ.LwK67g.wzqaeMyIIbTh6zyAMSMAOacO', 'F', 0, NULL, 1, 1),
-(39, 'elafarja', 'Eugenia', 'Lafarja', '.', '$2y$10$WiZkiKO1D9fORxaoGHBuOuexBsxht6gVWZ5RKbLZqOek0uwCRNvoa', 'F', 0, NULL, 1, 1),
-(40, 'Bruja1', 'Bruja', 'Escaldufa', 'bruja@noimporta.com', '$2y$10$I2UVocWQKO3NuQKVsNKZPOoiwcrgald3Z02iOZn/RSL80bMj.tBLS', 'F', 46, 'sjECUKjWiJ1OgFa.JTCI5.FS9G9j9A9VGVy5OGps/Ije30ze7iB66', 1, 1),
-(41, 'Cap1', 'Usuario', 'Prueba 1', 'usuario@prueba.com', '$2y$10$kexEJshWsRu9JizHVkzbE.5y/efeY/ekuCqoXWSm4qtwsM9GTjePS', 'F', 30, 'gp8L9x/A0y5ZfT7KRWZPde8G1BpRedse6GXa8grUQM6gFzNc5QaJa', 1, 1),
-(42, 'Cap2', 'Usuario', 'Prueba 2', 'usuario2@prueba.com', '$2y$10$K4cBnimMKd5.G5boNopa5eUJWu1Dwi.iwC26QfrtigNOSvA4aWwqy', 'M', 25, 'uRHNCcxSNy0knPoWHN3gb.NY8m0xCWw77O8YSHIDB01U.UueEmSTK', 1, 1),
-(43, 'Cap3', 'Usuario', 'Prueba 3', 'usuario3@prueba.com', '$2y$10$mIaq4kDnYOXvhBlAfFza1eyi7r8Ta/NjK5lv.oosWW4QyOhyjxBEC', 'F', 35, 'wkEG5e.16/SiL/eIkU9Roux7NKFkqXdZ5tMfNgoly1.Y/rSANU/Se', 1, 1),
-(44, 'Cap4', 'Usuario', 'Prueba 4', 'usuario4@prueba.com', '$2y$10$BXTAGS71YzbFG98eMUV7/.GzykpKvz7eTNzhdOaLMDAYtU1HxU9vm', 'M', 41, 'stdR1YTduzJydHy90YvzRe3jEy/C7IDQIDW1klV2j0pyyZ.uGCm0S', 1, 1),
-(45, 'juan', 'Juan', 'Díaz', 'juandiaz@gmail.com', '$2y$10$XRtNcF9a6Nz6CwMVKk8rLOKFNOqopEgqjmNOm.OQZR8WPsPGSzLNy', 'M', 33, NULL, 1, 1),
-(46, 'jgarcia', 'Judá', 'García', 'juda.garcia@capsus.mx', '$2y$10$ulph90ZO0N3./YvW1w0W9O5iJgaQRjqHdypdHG8aqntvgU9HCnAg6', 'M', 26, 'ob/Eme/1VGKhbhOncyd3Qeq9DqJeBjnHlP/J0iAV05gcfywNZqOU2', 1, 1),
-(48, 'pedro', 'pedro', 'pedro', 'acosta.aleoli@gmail.com', '$2y$10$SVP3umcMb6vjrJ6QddSN1.JYQaDN5C5LZZh8qMkx6EwmCiOuRtEFi', 'M', 0, NULL, 1, 1),
-(49, 'valeria', 'Valeria', 'Jensen-Buhl', 'vjensen@muvh.gov.py', '$2y$10$SdB7WJExmLg65bxKtuWu.OhrU/T9uvyImVaPPurxt2Ehg0BPkqz0W', 'F', 0, NULL, 1, 1),
-(50, 'patriciag', 'Patricia', 'Gimenez Franco', 'pgimfran@muvh.gov.py', '$2y$10$4o20YwYS/XeJE1P7baKbSus5EEnNPWXoz35XeiCIybFQ1fADEpLk.', 'F', 0, NULL, 1, 1),
-(51, 'patriciaf', 'Patricia ', 'Filippini', 'filipatty1706@gmail.com>', '$2y$10$IZABzMOKRKSOljsm8c.cR.7ZUb4nVtoWLJ4.Ew9UttqWCmSEyyvwi', 'F', 0, NULL, 1, 1),
-(52, 'rosa', 'Rosa', 'Ugarte', 'roshayd@gmail.com', '$2y$10$T7dZ9mgFcyi9z9S5ouV6Y.iiK6iLHo0PpZbhFgMPeFMoGVPv6ECqq', 'F', 0, NULL, 1, 1),
-(53, 'beatriz', 'Beatriz', 'Bogado', 'boggloria@gmail.com', '$2y$10$yR7vkfo9bvQ82f03nFSF8uvCYRa5O.trgFe6oapYj9UJLbxCSIbBW', 'F', 0, NULL, 1, 1);
 
 -- --------------------------------------------------------
 
