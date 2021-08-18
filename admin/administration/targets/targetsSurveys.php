@@ -3,7 +3,7 @@
 if (!function_exists('raiz')) {
 	include_once '../../../lib/j/j.func.php';
 }
-checaAcceso(60);// checaAcceso Targets
+checaAcceso(50);// checaAcceso Targets
 
 $checklist = $db->query("SELECT * FROM Checklist ORDER BY nombre") -> fetchAll(PDO::FETCH_ASSOC);
 $frequencies = $db->query("SELECT * FROM Frequencies ORDER BY orden")->fetchAll(PDO::FETCH_ASSOC);

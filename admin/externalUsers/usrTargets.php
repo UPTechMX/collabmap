@@ -2,7 +2,7 @@
 	if(!function_exists('raiz')){
 		include_once '../../lib/j/j.func.php';
 	}
-	checaAcceso(60);// checaAcceso externalUsers
+	checaAcceso(50);// checaAcceso externalUsers
 
 	$projects = $db->query("SELECT p.* FROM Projects p ORDER BY p.name")->fetchAll(PDO::FETCH_ASSOC);
 	$targets = $db->query("SELECT t.projectsId as pId, t.name as nom, t.id as val, 'clase' as clase

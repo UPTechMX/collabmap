@@ -2,7 +2,7 @@
 	if(!function_exists('raiz')){
 		include_once '../../lib/j/j.func.php';
 	}
-	checaAcceso(60);// checaAcceso externalUsers
+	checaAcceso(50);// checaAcceso externalUsers
 
 	$usrInfo = $db->query("SELECT * FROM Users WHERE id = $_POST[usrId]")->fetchAll(PDO::FETCH_ASSOC)[0];
 	// print2($usrInfo);
