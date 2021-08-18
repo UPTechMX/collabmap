@@ -2,7 +2,7 @@
 
 	include_once '../../../../../lib/j/j.func.php';
 	
-	checaAcceso(60);// checaAcceso Targets
+	checaAcceso(50);// checaAcceso Targets
 
 	// $_POST['clienteId'] = isset($_POST['clienteId'])?$_POST['clienteId']:8;
 

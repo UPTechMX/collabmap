@@ -2,7 +2,7 @@
 
 	include_once '../../lib/j/j.func.php';
 	
-	checaAcceso(60);// checaAcceso externalUsers
+	checaAcceso(50);// checaAcceso externalUsers
 
 	$usuariosPrep = $db->prepare("SELECT * 
 		FROM Users u

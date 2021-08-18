@@ -3,7 +3,7 @@
 if (!function_exists('raiz')) {
 	include_once '../../../lib/j/j.func.php';
 }
-checaAcceso(60);// checaAcceso Targets
+checaAcceso(50);// checaAcceso Targets
 
 // print2($_POST);
 $targetsChecklist = $db->query("SELECT c.nombre, c.id as cId, tc.id as tcId, tc.frequency, f.code

@@ -2,7 +2,7 @@
 
 include_once '../../../lib/j/j.func.php';
 // print2($_POST);
-checaAcceso(60);// checaAcceso externalUsers
+checaAcceso(50);// checaAcceso externalUsers
 $usr = $db->query("SELECT * FROM usrAdmin WHERE id = $_POST[usrId]")->fetchAll(PDO::FETCH_ASSOC)[0];
 // print2($usr);
 

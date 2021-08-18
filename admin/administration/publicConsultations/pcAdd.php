@@ -1,6 +1,6 @@
 <?php  
 	include_once '../../../lib/j/j.func.php';
-	checaAcceso(60);// checaAcceso Public consultations
+	checaAcceso(50);// checaAcceso Public consultations
 	$p = $_POST;
 	// print2($_POST);
 	$projects = $db->query("SELECT * FROM Projects ORDER BY name") -> fetchAll(PDO::FETCH_ASSOC);

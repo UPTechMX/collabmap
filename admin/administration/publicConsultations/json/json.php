@@ -1,6 +1,6 @@
 <?php  
 	include_once '../../../../lib/j/j.func.php';
-	checaAcceso(60);// checaAcceso Public consultations
+	checaAcceso(50);// checaAcceso Public consultations
 
 	
 	switch ($_POST['opt']) {

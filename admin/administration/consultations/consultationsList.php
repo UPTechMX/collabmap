@@ -3,7 +3,7 @@
 if (!function_exists('raiz')) {
 	include_once '../../../lib/j/j.func.php';
 }
-checaAcceso(60);// checaAcceso Consultations
+checaAcceso(50);// checaAcceso Consultations
 
 
 $elementos = $db->query("SELECT t.*, p.name as pName
