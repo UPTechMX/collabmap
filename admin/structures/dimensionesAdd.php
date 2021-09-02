@@ -55,7 +55,7 @@
 			if(allOk){
 
 				var rj = jsonF('admin/structures/json/json.php',{datos:dat,acc:acc,opt:4});
-				// console.log(rj);
+				console.log(rj);
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){

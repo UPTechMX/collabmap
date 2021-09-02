@@ -24,7 +24,7 @@
 
 
 <?php if (isset($_POST['padreId'])): ?>
-	<span class="btn btn-shop btn-sm addDimEle" id="addDimEle_<?php echo "$dim[id]_$_POST[padreId]";?>">
+	<span class="btn btn-shop btn-sm addDimEle" id="addDimEle_<?php echo "$dim[id]_$_POST[padreId]";?>">AAA
 		<i class="glyphicon glyphicon-plus">&nbsp;</i><?php echo TR('addElement'); ?>
 	</span>
 	<div id="dimensionesElemList_<?php echo $_POST['dimensionId']; ?>"><?php include_once 'dimensionesElemList.php' ?></div>

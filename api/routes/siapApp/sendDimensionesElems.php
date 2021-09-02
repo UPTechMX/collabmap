@@ -37,7 +37,7 @@ $app->group('/sendDimensionesElems', function () use ($app) {
 	}
 
 	if($ok){
-		$db->rollback();
+		$db->commit();
 		return '{"ok":1}';
 	}else{
 		$db->rollback();
