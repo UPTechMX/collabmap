@@ -1573,6 +1573,7 @@ function insertaVisitasA($elemId,$v,$check){
 			LEFT JOIN TargetsElems te ON te.id = v.elemId
 			LEFT JOIN TargetsChecklist tc ON tc.targetsId = te.targetsId AND tc.checklistId = $chkId
 			";
+
 			break;
 		case 'cons':
 			$LJ = "
@@ -1629,6 +1630,19 @@ function insertaVisitasA($elemId,$v,$check){
 			$check = false;
 		}
 	}
+
+	if($v['visita']['TEcreadoOffline'] == 1){
+		$pTE['tabla'] = 'TargetsElems';
+		$pTE['datos']['targetsId'] = $v['visita']['targetsId'];
+		$pTE['datos']['usersTargetsId'] = $v['visita']['usersTargetsId'];
+		$pTE['datos']['usersId'] = $v['visita']['usersId'];
+		$pTE['datos']['dimensionesElemId'] = $v['visita']['dimensionesElemId'];
+
+		$rTEj = inserta($pTE);
+		$rTE = json_decode($rTE,true);
+		$elemId = $rTE['nId'];
+	}
+
 
 	$pV['tabla'] = 'Visitas';
 	$pV['datos']['timestamp'] = $vis['timestamp'];
