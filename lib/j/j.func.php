@@ -1631,7 +1631,9 @@ function insertaVisitasA($elemId,$v,$check){
 		}
 	}
 
-	if($v['visita']['TEcreadoOffline'] == 1){
+	// $db -> query("")
+
+	if($v['visita']['DEcreadoOffline'] != 1){
 		$pTE['tabla'] = 'TargetsElems';
 		$pTE['datos']['targetsId'] = $v['visita']['targetsId'];
 		$pTE['datos']['usersTargetsId'] = $v['visita']['usersTargetsId'];
@@ -1640,7 +1642,7 @@ function insertaVisitasA($elemId,$v,$check){
 
 		$rTEj = inserta($pTE);
 		$rTE = json_decode($rTE,true);
-		$elemId = $rTE['nId'];
+		$elemId = !empty($elemId)? $elemId : $rTE['nId'];
 	}
 
 
