@@ -1565,7 +1565,7 @@ function insertaVisitasA($elemId,$v,$check){
 	$inserta = true;
 	$type = $vis['type'];
 	$chkId = $vis['checklistId'];
-	$teId = $vis['elemId'];1
+	$teId = $vis['elemId'];
 
 	switch ($type) {
 		case 'trgt':
