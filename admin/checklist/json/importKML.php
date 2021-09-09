@@ -7,7 +7,7 @@
 	$childs = $xml->Document->Folder->children();
 
 
-	// print2($childs);
+	print2($childs->MultiGeometry);
 	$ok = true;
 	$db->beginTransaction();
 	foreach ($childs as $c) {

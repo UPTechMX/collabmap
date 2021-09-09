@@ -1565,7 +1565,7 @@ function insertaVisitasA($elemId,$v,$check){
 	$inserta = true;
 	$type = $vis['type'];
 	$chkId = $vis['checklistId'];
-	$teId = $vis['elemId'];
+	$teId = $vis['elemId'];1
 
 	switch ($type) {
 		case 'trgt':
@@ -1641,8 +1641,12 @@ function insertaVisitasA($elemId,$v,$check){
 		$pTE['datos']['dimensionesElemId'] = $v['visita']['dimensionesElemId'];
 
 		$rTEj = inserta($pTE);
-		$rTE = json_decode($rTE,true);
-		$elemId = !empty($elemId)? $elemId : $rTE['nId'];
+		$rTE = json_decode($rTEj,true);
+		$elemId = !empty($elemId) ? $elemId : $rTE['nId'];
+
+		if($vis['TEcreadoOffline'] == 1){
+			$elemId = $rTE['nId'];
+		}
 	}
 
 
