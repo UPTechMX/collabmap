@@ -41,7 +41,7 @@ $app->group('/sendTargetsElems', function () use ($app) {
 		$db->commit();
 		return '{"ok":1}';
 	}else{
-		$db->rollback();
+		$db->commit();
 		return '{"ok":0,"err":"'.$err.'"}';
 	}
 

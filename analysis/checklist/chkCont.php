@@ -121,12 +121,39 @@
 
 
 		});
+		$('#dwlKML').click(function(event) {
+		
+			var checklistId = <?php echo $checklistId; ?>;
+			var nivelMax = <?php echo $nivelMax; ?>;
+			var padre = <?php echo $padre; ?>;
+			var targetsId = <?php echo $targetChecklist['targetsId']; ?>;
+
+			$('<form>')
+			.attr({
+				id: 'descPrueba',
+				action: rz+'analysis/checklist/json/createKML.php',
+				target:'_blank',
+				method:'post'
+			})
+			.html(
+				'<input type="text" name="chkId" value="'+checklistId+'"\>'+
+				'<input type="text" name="nivelMax" value="'+nivelMax+'"\>'+
+				'<input type="text" name="padre" value="'+padre+'"\>'+
+				'<input type="text" name="targetsId" value="'+targetsId+'"\>'
+			)
+			.appendTo(document.body)
+			.submit()
+			.remove();
+
+
+		});
 
 	});
 </script>
 
 <div style="text-align: right;margin-top: 10px;">
 	<span class="btn btn-shop" id="dwlAns"><?php echo TR('dwlAns'); ?></span>
+	<span class="btn btn-shop" id="dwlKML"><?php echo 'KML'; ?></span>
 </div>
 <div>
 	<?php foreach ($est['bloques'] as $b){ ?>
