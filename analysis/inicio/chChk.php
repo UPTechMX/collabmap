@@ -171,18 +171,18 @@
 	    <a class="nav-link active" id="targets-tab" data-toggle="tab" 
 	    	href="#targets" role="tab" aria-controls="targets" aria-selected="true"><?php echo TR('targets'); ?></a>
 	  </li>
-	  <li class="nav-item">
+	 <!--  <li class="nav-item">
 	    <a class="nav-link" id="consultations-tab" data-toggle="tab" 
 	    	href="#consultations" role="tab" aria-controls="consultations" aria-selected="true"><?php echo TR('consultations'); ?></a>
-	  </li>
+	  </li> -->
 	  <li class="nav-item">
 	    <a class="nav-link " id="pc-tab" data-toggle="tab" 
 	    	href="#pc" role="tab" aria-controls="pc" aria-selected="false"><?php echo TR('publicCons'); ?></a>
 	  </li>
-	  <li class="nav-item">
+	 <!--  <li class="nav-item">
 	    <a class="nav-link " id="hs-tab" data-toggle="tab" 
 	    	href="#hs" role="tab" aria-controls="hs" aria-selected="false"><?php echo TR('hotspots'); ?></a>
-	  </li>
+	  </li> -->
 	</ul>
 	<div class="tab-content" id="chChkTabContent">
 	  <div class="tab-pane fade show active" id="targets" role="tabpanel" aria-labelledby="targets-tab">
