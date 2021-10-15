@@ -90,7 +90,7 @@
 		<tr>
 			<td class="sideMenuTitle azul"><?= TR('modules'); ?></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td class="sideMenuOption">
 				<a href="<?php echo $_SERVER['PHP_SELF'];?>?Act=cons"><?= TR('consultations'); ?></a>
 				<i class="glyphicon glyphicon-info-sign" style="margin-left: 15px;" 
@@ -103,7 +103,7 @@
 					</li>
 				</ul>
 			</td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td class="sideMenuOption">
 				<a href="<?php echo $_SERVER['PHP_SELF'];?>?Act=trg"><?= TR('targets'); ?></a>

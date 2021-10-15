@@ -58,12 +58,12 @@
 		<?php echo TR('publicNews'); ?>
 	</span><br/>
 </div>
-<div style="text-align: center;margin-top: 40px; text-transform: uppercase;">
+<!-- <div style="text-align: center;margin-top: 40px; text-transform: uppercase;">
 	<span class="sidebarElement participate 
 		<?= $_REQUEST['acc'] == 'participate'||$_REQUEST['acc'] == 'consultation'?'verde':'azul'; ?>">
 		<?php echo TR('participate'); ?>
 	</span><br/>
-</div>
+</div> -->
 
 
 <div id="loginCont"><?php include raiz().'consultations/seguridad/login.php'; ?></div>
