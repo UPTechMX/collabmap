@@ -13,7 +13,7 @@ function valid($locale) {
 //setting the source/default locale, for informational purposes
 if(empty($_SESSION['CM']['lang']) || !empty($_GET['lang'])){
     // echo "AAA";
-    $lang = 'en_US';
+    $lang = 'es_MX';
 
     if (isset($_GET['lang']) && valid($_GET['lang'])) {
         // the locale can be changed through the query-string

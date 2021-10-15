@@ -168,20 +168,24 @@ $htmlRoot = aRaizHtml($location);
 </head>
 <body style="background-color: #fff;font-family: Montserrat; font-weight: 400;">
 	<?php include 'layout/navbar.php'; ?>
+	   
 	<div class="wrapper">
 	    <nav id="sidebar" class="d-none d-md-block"
 	    	style="color:black;background-image: url('<?php echo $htmlRoot; ?>img/sideBarBg.png');
 	    	background-repeat:no-repeat;background-size: 100%;">
 	    	<?php include_once 'layout/sidebar.php'; ?>
 	    </nav>
-		
-	    <div id="content" style="margin-right: 50px;margin-left: 50px;">
+
+	    <div id="content" >
 	    	<?php include 'layout/content.php'; ?>
 	    </div>
 
 	    <!-- <nav id="sidebar" class="d-none d-md-block"
 	    	style="color:black;background-image: url('<?php echo $htmlRoot; ?>img/backgroundcm.png'); 
 	    	background-repeat:no-repeat;background-size: 100%; ">
+	    	<div style="margin-right: 20%;">
+	    		<?php include raiz().'general/lang.php'; ?>
+	    	</div>
 	    </nav> -->
 	</div>     
 	

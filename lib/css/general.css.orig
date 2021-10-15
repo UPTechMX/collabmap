@@ -11,7 +11,7 @@
 }
 
 .btn-shop:hover {
-  background-color: #1E304F;
+  background-color: #f8b621;
   color: whitesmoke ;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .nuevo{
-	background-color:#1E304F; 
+	background-color:#92C021; 
 	color:white;
 	text-align: left;
 	border-radius:0px;
@@ -277,7 +277,7 @@
 .nomSubArea{
 	font-size: 1.7em;
 	text-align: center;
-	background-color: #1E304F;
+	background-color: #f8b621;
 	padding: 5px;
 	border-radius: 2px;
 	margin-top: 10px;
@@ -385,12 +385,12 @@ li.disabled a{
 }
 
 .azul{
-	color: #1E304F !important;
+	color: #f8b621 !important;
 	background-color: transparent;
 }
 
 .verde{
-	color: #92C021 !important;
+	color: #0092c1 !important;
 	background-color: transparent;
 }
 
@@ -405,10 +405,26 @@ li.disabled a{
 }
 
 .negro{
-	color: #92C021 !important;
+	color: #000000 !important;
 	background-color: transparent;
 }
 
+<<<<<<< HEAD
+.azulBkg{
+	background-color: #f8b621 !important;
+}
+
+.verdeBkg{
+	background-color: #0092c1 !important;
+}
+
+.rojoBkg{
+	background-color: #e63e39 !important;
+}
+
+.negroBkg{
+	background-color: #e63e39 !important;
+=======
 
 .rojoBorderBottom{
 	border-bottom: solid #e80000 !important;
@@ -416,13 +432,13 @@ li.disabled a{
 
 
 .titleL1Bkg{
-	background-color: #1E304F !important;
-	color:white;
+	background-color: #004aad !important;
+	color:black;
 }
 
 .titleL2Bkg{
-	background-color: #1E304F !important;
-	color:white;
+	background-color: #e80000 !important;
+	color:black;
 }
 
 .titleL3Bkg{
@@ -445,13 +461,14 @@ li.disabled a{
 .quejaAttended{
 	background-color: #999 !important;
 	color:black;
+>>>>>>> master
 }
 
 .borderAzul td{
-	border-top: 2px solid #1E304F !important;
+	border-top: 2px solid #f8b621 !important;
 }
 .borderAzulBottom th{
-	border-bottom: : 2px solid #1E304F !important;
+	border-bottom: : 2px solid #f8b621 !important;
 }
 
 .borderDotted td{
@@ -514,7 +531,7 @@ li.disabled a{
 
 .sideMenuTitle{
 	font-size: 1.5em;
-	border-bottom: solid 1px #000;
+	border-bottom: solid 1px #004aad;
 	font-weight: bold;
 	padding-top: 30px;
 }

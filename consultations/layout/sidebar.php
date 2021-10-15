@@ -49,18 +49,18 @@
 
 <div style="margin: 40px 10px;padding-left: 10%;padding-top: 10px;">
 	<a href="<?php echo $_SERVER['PHP_SELF'];?>?">
-		<img src="<?php echo $htmlRoot; ?>img/cmLogo.png" style="width: 95%;" />
+		<img src="<?php echo $htmlRoot; ?>img/cmLogo.png" style="width: 65%;margin-left:17%" />
 	</a>
 </div>
 
 <div style="text-align: center;margin-top: 100px;text-transform: uppercase;">
-	<span class="sidebarElement news  <?= $_REQUEST['acc'] == 'news' || $_REQUEST['acc'] == ''?'azul':'negro'; ?>">
+	<span class="sidebarElement news  <?= $_REQUEST['acc'] == 'news' || $_REQUEST['acc'] == ''?'verde':'azul'; ?>">
 		<?php echo TR('publicNews'); ?>
 	</span><br/>
 </div>
 <div style="text-align: center;margin-top: 40px; text-transform: uppercase;">
 	<span class="sidebarElement participate 
-		<?= $_REQUEST['acc'] == 'participate'||$_REQUEST['acc'] == 'consultation'?'azul':'negro'; ?>">
+		<?= $_REQUEST['acc'] == 'participate'||$_REQUEST['acc'] == 'consultation'?'verde':'azul'; ?>">
 		<?php echo TR('participate'); ?>
 	</span><br/>
 </div>

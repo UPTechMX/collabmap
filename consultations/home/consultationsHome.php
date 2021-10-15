@@ -99,7 +99,14 @@
 
 		$('.consultationCardCont').click(function(event) {
 			var cId = this.id.split('_')[1];
-			popUp('consultations/home/consultationInfo.php',{elemId:cId});
+			//popUp('consultations/home/consultationInfo.php',{elemId:cId});
+
+			var request = {};
+			request['acc'] = 'consultation';
+			request['consultationId'] = cId;
+
+			$('#content').load(rz+'consultations/layout/content.php',request);
+			chUrl(request,'consultationId',cId,true,true);
 		});
 
 	});
@@ -142,7 +149,7 @@
 	</div> -->
 	<div class="row" style="margin-top: 20px;">
 		<?php foreach ($now as $c){ ?>
-			<div class="col-md-3" style="padding: 10px;">
+			<div class="col-md-4" style="padding: 10px;">
 				<?php include 'consultationCard.php'; ?>
 			</div>
 		<?php } ?>

@@ -112,8 +112,8 @@
 							<hr/>
 
 							<?php echo TR('type'); ?>: <strong><?php echo TR($p['tsiglas']); ?></strong><br/>
-							<?php echo TR('points'); ?>: <strong><?php echo $p['puntos']; ?></strong><br/>
-							<?php echo TR('toRecord'); ?>: <strong><?php echo $p['influyeValor'] == 1?TR('yes'):TR('no'); ?></strong><br/>
+							<!-- <?php echo TR('points'); ?>: <strong><?php echo $p['puntos']; ?></strong><br/> -->
+							<!-- <?php echo TR('toRecord'); ?>: <strong><?php echo $p['influyeValor'] == 1?TR('yes'):TR('no'); ?></strong><br/> -->
 							Id: <strong><?php echo $p['identificador']; ?></strong><br/>
 							<i class="glyphicon glyphicon-pencil manita edtPreg" id="edtPreg_<?php echo $p['id'];?>"></i>&nbsp;
 							<i class="glyphicon glyphicon-question-sign manita condPreg" id="condPreg_<?php echo $p['id'];?>"></i>&nbsp;
@@ -145,8 +145,8 @@
 							<?php echo $p['pregunta']; ?>
 						</div>
 						<hr/>
-						<?php echo TR('points'); ?>: <strong><?php echo $p['puntos']; ?></strong><br/>
-						<?php echo TR('toRecord'); ?>: <strong><?php echo $p['influyeValor'] == 1?'Sí':'No'; ?></strong><br/>
+						<!-- <?php echo TR('points'); ?>: <strong><?php echo $p['puntos']; ?></strong><br/> -->
+						<!-- <?php echo TR('toRecord'); ?>: <strong><?php echo $p['influyeValor'] == 1?'Sí':'No'; ?></strong><br/> -->
 						Id: <strong><?php echo $p['identificador']; ?></strong><br/>
 						<i class="glyphicon glyphicon-pencil manita edtPreg" id="edtPreg_<?php echo $p['id'];?>"></i>&nbsp;
 						<i class="glyphicon glyphicon-question-sign manita condPreg" id="condPreg_<?php echo $p['id'];?>"></i>&nbsp;
@@ -177,8 +177,8 @@
 							</div>
 							<hr/>
 							<?php echo TR('type'); ?>: <strong><?php echo TR($p['tsiglas']); ?></strong><br/>
-							<?php echo TR('points'); ?>: <strong><?php echo $p['puntos']; ?></strong><br/>
-							<?php echo TR('toRecord'); ?>: <strong><?php echo $p['influyeValor'] == 1?TR('yes'):TR('no'); ?></strong><br/>
+							<!-- <?php echo TR('points'); ?>: <strong><?php echo $p['puntos']; ?></strong><br/> -->
+							<!-- <?php echo TR('toRecord'); ?>: <strong><?php echo $p['influyeValor'] == 1?TR('yes'):TR('no'); ?></strong><br/> -->
 							Id: <strong><?php echo $p['identificador']; ?></strong><br/>
 							<i class="glyphicon glyphicon-pencil manita edtPreg" id="edtPreg_<?php echo $p['id'];?>"></i>&nbsp;
 							<i class="glyphicon glyphicon-question-sign manita condPreg" id="condPreg_<?php echo $p['id'];?>"></i>&nbsp;
@@ -200,8 +200,8 @@
 							<hr/>
 
 							<?php echo TR('type'); ?>: <strong><?php echo TR($spatial['tsiglas']); ?></strong><br/>
-							<?php echo TR('points'); ?>: <strong><?php echo $spatial['puntos']; ?></strong><br/>
-							<?php echo TR('toRecord'); ?>: <strong><?php echo $spatial['influyeValor'] == 1?TR('yes'):TR('no'); ?></strong><br/>
+							<!-- <?php echo TR('points'); ?>: <strong><?php echo $spatial['puntos']; ?></strong><br/> -->
+							<!-- <?php echo TR('toRecord'); ?>: <strong><?php echo $spatial['influyeValor'] == 1?TR('yes'):TR('no'); ?></strong><br/> -->
 							Id: <strong><?php echo $spatial['identificador']; ?></strong><br/>
 							<i class="glyphicon glyphicon-pencil manita edtPreg" id="edtPreg_<?php echo $spatial['id'];?>"></i>&nbsp;
 							<i class="glyphicon glyphicon-question-sign manita condPreg" id="condPreg_<?php echo $spatial['id'];?>"></i>&nbsp;
