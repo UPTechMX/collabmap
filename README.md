@@ -46,7 +46,7 @@ Generate the frames automatically.
 
 In the Tiles and cache tab, activate the application: ```application/vnd.mapbox-vector-tile```
 
-To access go to ```http://<dirección de instalación>/admin```
+To access go to ```http://<your installation address>/admin```
 The default username and passwrod will be:
 ```
 u:admin
