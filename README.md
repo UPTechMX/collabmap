@@ -48,5 +48,7 @@ In the Tiles and cache tab, activate the application: ```application/vnd.mapbox-
 
 To access go to ```http://<dirección de instalación>/admin```
 The default username and passwrod will be:
-```u:admin
-p:root```
+```
+u:admin
+p:root
+```
