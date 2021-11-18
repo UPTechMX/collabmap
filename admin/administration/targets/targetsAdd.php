@@ -53,13 +53,18 @@
 				var rj = jsonF('admin/administration/targets/json/json.php',{datos:dat,acc:acc,opt:1});
 				console.log(rj);
 				var r = $.parseJSON(rj);
-				// console.log(r);
+				console.log('r:',r);
+				var tId = '';
 				if(r.ok == 1){
-					if(dat.acc == 1){
+					console.log('ok=1',dat,r);
+					if(acc == 1){
+						console.log('acc=1',r);
 						tId = r.nId;
 					}else{
 						tId = dat.id;
 					}
+
+					console.log(tId);
 					$('#popUp').modal('toggle');
 					$('#targetsList').load(rz+'admin/administration/targets/targetsList.php',{ajax:1});
 					$('#targetsInfo').load(rz+'admin/administration/targets/targetsInfo.php',{targetId:tId});
