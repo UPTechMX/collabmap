@@ -98,6 +98,13 @@
 				</td>
 				<td></td>
 			</tr>
+			<tr>
+				<td><?php echo TR('ID'); ?></td>
+				<td>
+					<input type="text" value="<?php echo $datM['idGeo']; ?>" name="idGeo" id="idGeo" class="form-control oblig" >
+				</td>
+				<td></td>
+			</tr>
 		</table>		
 	</form>
 </div>

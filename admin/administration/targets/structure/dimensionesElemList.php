@@ -108,7 +108,10 @@
 	<tbody>
 		<?php foreach ($dimElem as $de): ?>
 			<tr>
-				<td><?php echo "$de[nombre]"; ?></td>
+				<td>
+					<?php echo "$de[nombre]"; ?><br/>
+					ID: <strong><?php echo "$de[idGeo]"; ?></strong>
+				</td>
 				<td><i class="glyphicon glyphicon-pencil edtDimElem manita" id="edtDimElem_<?php echo $de['id'];?>"></i></td>
 				<td><i class="glyphicon glyphicon-trash manita rojo delElemDim" id="delElemDim_<?php echo $de['id'];?>"></i></td>
 				<?php if (!empty($dimSig)): ?>
