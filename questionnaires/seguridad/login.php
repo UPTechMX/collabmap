@@ -59,6 +59,11 @@
 										<td><input type="text" name="usuario" id="usuario" class="form-control" style="border-radius:0px;" /></td>
 									</tr>
 									<tr>
+										<td>NIK:</td>
+										<td>&nbsp;&nbsp;</td>
+										<td><input type="text" name="pwd" id="pwd" class="form-control" style="border-radius:0px;" /></td>
+									</tr>
+									<tr>
 										<td>&nbsp;</td>
 										<td>&nbsp;&nbsp;</td>
 										<td></td>

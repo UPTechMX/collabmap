@@ -678,7 +678,8 @@ function verifPWD($usr,$pwd,$acceso){
 	
 
 	$r['verif'] = password_verify($pwd,$usrInf['pwd']);
-	if($r['verif'] || $accQuest){
+	// if($r['verif'] || $accQuest){
+	if($r['verif']){
 
 		$r['usrId'] = $usrInf['id'];
 		if($acceso == 'admin'){
@@ -699,6 +700,8 @@ function verifPWD($usr,$pwd,$acceso){
 		}
 	}
 
+	// print2($r);
+	// exit();
 	return $r;
 }
 
