@@ -4,3 +4,5 @@ basepdo.php
 problemsPhotos/*
 chkPhotos/*
 externalFiles/*
+lib/j/j.func.php
+.gitignore

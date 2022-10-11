@@ -21,14 +21,14 @@ if(!function_exists('raiz')){
 
 		if(empty($_SESSION['CM']['raiz'])){
 			$dir = getcwd();
-			$dirE = explode('/',$dir);
+			$dirE = explode('\\',$dir);
 			$ciclos = count($dirE);
 			for($i = $ciclos; $i > 0; $i--){
 				$dN = '';
 				for($j = 0; $j<$i;$j++){
-					$dN .= $dirE[$j].'/';
+					$dN .= $dirE[$j].'\\';
 				}
-				if(file_exists($dN.'/raiz')){
+				if(file_exists($dN.'\\raiz')){
 					$_SESSION['CM']['raiz'] = $dN;
 					return $dN;
 				}else{
@@ -557,10 +557,10 @@ function upd($post){
 			$post['datos']['id'] = $post['id'];
 		}
 		$stmt->execute($post['datos']);
-		$r .= '{"ok":"1"}';
+		$r = '{"ok":"1"}';
 		// print2($post['datos']);
 	} catch (PDOException $e) {
-		$r .= '{"ok":"0","err":"'.$e.'","sql":"'.$sql.'"}';
+		$r = '{"ok":"0","err":"'.$e.'","sql":"'.$sql.'"}';
 	}
 	// echo 'aaaaaa';
 	return $r;
@@ -584,9 +584,9 @@ function del($post){
 	try {
 		$sql = "DELETE FROM $tabla WHERE $where";
 		$db->exec($sql);
-		$r .= '{"ok":"1"}';
+		$r = '{"ok":"1"}';
 	} catch (PDOException $e) {
-		$r .= '{"ok":"0","e":"'.$e->getMessage().'","sql":"'.$sql.'"}';
+		$r = '{"ok":"0","e":"'.$e->getMessage().'","sql":"'.$sql.'"}';
 	}
 
 	return $r;

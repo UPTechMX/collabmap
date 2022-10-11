@@ -40,7 +40,7 @@ if(empty($_SESSION['CM']['lang']) || !empty($_GET['lang'])){
 }
 
 // $lang = explode("_", $lang)[0];
-$lang = 'id';
+$lang = 'en';
 
 $jsonLang = file_get_contents($rz."locale/i18n_$lang.json");
 $_TR = json_decode($jsonLang, true);
