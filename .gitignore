@@ -6,3 +6,4 @@ chkPhotos/*
 externalFiles/*
 lib/j/j.func.php
 .gitignore
+lib/php/i18n_setup.php
