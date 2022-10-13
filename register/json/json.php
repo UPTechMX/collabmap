@@ -22,6 +22,7 @@
 
 			$_POST['data']['hashConf'] = substr(encriptaUsr($rand), 7);
 
+			$_POST['data']['pwd'] = '';
 			$_POST['data']['pwd'] = encriptaUsr($_POST['data']['pwd']);
 				
 			try{

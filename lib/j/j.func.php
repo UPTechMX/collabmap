@@ -19,16 +19,23 @@ if(!function_exists('raiz')){
 		    @session_start();
 		}
 
+
+		if (PHP_OS == 'WIN') {
+			$slash = '\\';
+		}else{
+			$slash = '/';
+		}
+
 		if(empty($_SESSION['CM']['raiz'])){
 			$dir = getcwd();
-			$dirE = explode('\\',$dir);
+			$dirE = explode($slash,$dir);
 			$ciclos = count($dirE);
 			for($i = $ciclos; $i > 0; $i--){
 				$dN = '';
 				for($j = 0; $j<$i;$j++){
-					$dN .= $dirE[$j].'\\';
+					$dN .= $dirE[$j].$slash;
 				}
-				if(file_exists($dN.'\\raiz')){
+				if(file_exists($dN.$slash.'raiz')){
 					$_SESSION['CM']['raiz'] = $dN;
 					return $dN;
 				}else{
@@ -675,9 +682,22 @@ function verifPWD($usr,$pwd,$acceso){
 	$usrInf = $stmt -> fetch(PDO::FETCH_ASSOC);
 
 	$accQuest = $acceso == 'questionnaires' && $usrInf['id'] != null;
-	
+	switch ($acceso) {
+		case 'admin':
+			$r['verif'] = password_verify($pwd,$usrInf['pwd']);
+			break;
+		case 'questionnaires':
+			$r['verif'] = $pwd == $usrInf['telephone'];			
+			break;
+		
+		default:
+			# code...
+			break;
+	}
 
-	$r['verif'] = password_verify($pwd,$usrInf['pwd']);
+
+	
+	
 	// if($r['verif'] || $accQuest){
 	if($r['verif']){
 

@@ -152,7 +152,7 @@
 						$('#loginContent').show();
 					});
 
-					location.reload(true);
+					// location.reload(true);
 					
 				}
 				else if(r.ok == 2){
@@ -188,13 +188,6 @@
 								<input type="text" value='<?php echo $_POST['usuario']; ?>' name="username" id="username" class="form-control oblig" maxlength="16" >
 							<?php endif ?>
 
-						</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>NIK</td>
-						<td>
-							<input type="text" value="<?php echo $datC['nik']; ?>" name="pwd" id="pwd" class="form-control oblig" >
 						</td>
 						<td></td>
 					</tr>

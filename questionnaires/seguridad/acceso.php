@@ -12,7 +12,18 @@ if($_POST['usuario'] != "") {
     // $_SESSION['CM']['questionnaires']['privs'] = (count($v['priv'])>0?$v['priv'] :array());
   }else{
     unset($_SESSION['CM']['questionnaires']);
-    $failedLogin = 1;
+    $stmt = $db->prepare("SELECT u.*
+      FROM Users u
+      WHERE username = ?");
+
+    $stmt ->execute($_POST['usuario']);
+    if (empty($stmt)) {
+      $failedLogin = 1;
+    }else{
+      $failedLogin = 2;
+    }
+
+    
   }
   // print2($_SESSION);
 }

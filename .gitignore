@@ -1,9 +1,12 @@
 **/.DS_Store*
 *.DS_Store*
 basepdo.php
+
 problemsPhotos/*
+!problemsPhotos/.gitkeep
+
 chkPhotos/*
+!chkPhotos/.gitkeep
+
 externalFiles/*
-lib/j/j.func.php
-.gitignore
-lib/php/i18n_setup.php
+!externalFiles/.gitkeep

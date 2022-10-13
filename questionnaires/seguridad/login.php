@@ -43,8 +43,15 @@
 			// });`;
 			
 		<?php } ?>
+		<?php if($failedLoginStatus == 2) { ?>
+		
+			alertar('<?php echo TR("wrongPhoneNIK"); ?>',function(e){},{});
+						
+		<?php } ?>
+
 
 		soloNumeros($('#usuario'));
+		soloNumeros($('#pwd'));
 
 		$("#login").click(function(event) {
 			var length = $('#usuario').val().length;
@@ -84,7 +91,7 @@
 										</td>
 									</tr>
 									<tr>
-										<td>NIK:</td>
+										<td><?= TR('phone') ?></td>
 										<td>&nbsp;&nbsp;</td>
 										<td><input type="text" name="pwd" id="pwd" class="form-control" style="border-radius:0px;" /></td>
 									</tr>
