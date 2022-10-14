@@ -21,7 +21,7 @@
 
 	$insDims = $db->prepare("INSERT INTO Dimensiones SET elemId = ?, nombre = ?,nivel = ?, type='structure'");
 	$buscElemDim = $db->prepare("SELECT id FROM DimensionesElem WHERE nombre = ? AND dimensionesId = ? AND padre = ?");
-	$insDimElem = $db->prepare("INSERT INTO DimensionesElem SET  nombre = ?, dimensionesId = ?, padre = ?");
+	$insDimElem = $db->prepare("INSERT INTO DimensionesElem SET  nombre = ?, dimensionesId = ?, padre = ?, ID2 = ?");
 	
 	// if (($handle = fopen(raiz()."lib/archivos/9_PDV.csv", "r")) !== FALSE) {
 	$ok = true;
@@ -32,13 +32,14 @@
 			if($row == 0){
 				// print2($col);
 				
-				$numDims = count($col);
+				$numDims = count($col)%2 == 0 ? count($col)/2 : (count($col)+1)/2;
 				$dims = array();
 				$j = 0;
-				for($i = 0;$i<$numDims;$i++){
+				for($i = 0;$i<$numDims*2;$i=$i+2){
 					$dims[$j++] = $col[$i];
 				}
 				// print2($numDims);
+				// exit();
 
 				$buscaDims = $db->query("SELECT id FROM Dimensiones 
 					WHERE elemId = $targetsId AND type = 'structure'
@@ -64,15 +65,17 @@
 					}
 				}
 				// print2($dimsTarget);
+				// exit();
 			}else{
 
 
-				for($i = 0;$i<$numDims;$i++){
+				for($i = 0;$i<$numDims*2;$i=$i+2){
 					try{
 						if(empty($col[$i])){
+							// print2($i);
 							break;
 						}
-						$padre = $i == 0?0:$ids[$i-1];
+						$padre = $i == 0?0:$ids[$i-2];
 						if( !isset($dimsElems[$padre.'-'.$col[$i]]) ){
 							// echo "padre: $padre\n";
 							$buscElemDim -> execute([$col[$i],$dimsTarget[$i],$padre]);
@@ -84,7 +87,9 @@
 								$ids[$i] = $dimsElems[$padre.'-'.$col[$i]];
 							}else{
 								// $insDimElem = $db->prepare("INSERT INTO DimensionesElem SET  nombre = ?, dimensionesId = ?, padre = ?");
-								$insDimElem -> execute([ $col[$i],$dimsTarget[$i], $padre]);
+								$data = [ $col[$i],$dimsTarget[$i/2], $padre,$col[$i+1]];
+								// print2($data);
+								$insDimElem -> execute($data);
 								// echo "padre: $padre, nombre:".$col[$i].", col:$i   \n";
 								$dimsElems[$padre.'-'.$col[$i]] = $db->lastInsertId();
 								$ids[$i] = $dimsElems[$padre.'-'.$col[$i]];

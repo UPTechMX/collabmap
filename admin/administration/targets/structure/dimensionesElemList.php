@@ -110,7 +110,7 @@
 			<tr>
 				<td>
 					<?php echo "$de[nombre]"; ?><br/>
-					ID: <strong><?php echo "$de[idGeo]"; ?></strong>
+					ID: <strong><?php echo "$de[ID2]"; ?></strong>
 				</td>
 				<td><i class="glyphicon glyphicon-pencil edtDimElem manita" id="edtDimElem_<?php echo $de['id'];?>"></i></td>
 				<td><i class="glyphicon glyphicon-trash manita rojo delElemDim" id="delElemDim_<?php echo $de['id'];?>"></i></td>

@@ -101,7 +101,7 @@
 			<tr>
 				<td><?php echo TR('ID'); ?></td>
 				<td>
-					<input type="text" value="<?php echo $datM['idGeo']; ?>" name="idGeo" id="idGeo" class="form-control oblig" >
+					<input type="text" value="<?php echo $datM['ID2']; ?>" name="ID2" id="ID2" class="form-control oblig" >
 				</td>
 				<td></td>
 			</tr>

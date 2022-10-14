@@ -36,9 +36,9 @@
 	// print2($dims);
 	foreach ($dims as $k => $d)  {
 		if($k == 0){
-			$csv .= '"'.$d['nombre'].'"';
+			$csv .= '"'.$d['nombre'].'","ID_GEO"';
 		}else{
-			$csv .= ', "'.$d['nombre'].'"';
+			$csv .= ', "'.$d['nombre'].'","ID_GEO"';
 		}
 	}
 	$csv .= "\n";
