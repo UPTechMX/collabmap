@@ -54,6 +54,11 @@ switch ($_POST['acc']) {
 		$post['datos'] = $_POST['datos'];
 		// print2($post);
 		echo atj(upd($post));
+		if ($_POST['opt'] == 5) {
+			if (!empty($_POST['kmlFile'])) {
+				// code...
+			}
+		}
 		break;	
 	case '3':
 		// print2($_POST);

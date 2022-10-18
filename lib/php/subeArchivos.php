@@ -12,6 +12,9 @@ switch ($_POST['rutaId']) {
 	case 3:
 		$dir = 'externalFiles';
 		break;
+	case 4:
+		$dir = 'kml';
+		break;
 	
 	default:
 		# code...

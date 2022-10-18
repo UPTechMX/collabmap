@@ -18,6 +18,7 @@
 	// print2($numDims);
 	$ultimo = $numDims == $dimension['nivel'];
 
+
 ?>
 
 <script type="text/javascript">
@@ -37,6 +38,17 @@
 		});
 
 
+		<?php if (isset($_POST['dimensionElemId'])){ ?>
+			subArch($('#KMLupload'),4,'kml_<?php echo $_POST['dimensionElemId']; ?>_','kml',false,function(e){
+				// console.log(e);
+				file = e.prefijo+e.nombreArchivo;
+				$('#KMLFile').val(e.prefijo+e.nombreArchivo);
+
+			},false,'<?php echo TR('selFile'); ?>','<?php echo TR('extErrorStr'); ?>');
+		<?php } ?>
+
+
+
 		$('#env').click(function(event) {
 			var dat = $('#nEmp').serializeObject();
 			var allOk = camposObligatorios('#nEmp');
@@ -52,7 +64,9 @@
 				}
 			?>
 
-			if(allOk){
+			console.log(dat);
+
+			if(false){
 				// console.log(dat);
 				var rj = jsonF('admin/administration/targets/structure/json/json.php',{datos:dat,acc:acc,opt:5});
 				// console.log(rj);
@@ -101,10 +115,21 @@
 			<tr>
 				<td><?php echo TR('ID'); ?></td>
 				<td>
-					<input type="text" value="<?php echo $datM['ID2']; ?>" name="ID2" id="ID2" class="form-control oblig" >
+					<input type="text" value="<?php echo $datM['ID2']; ?>" name="ID2" id="ID2" class="form-control" >
 				</td>
 				<td></td>
 			</tr>
+			<?php if (isset($_POST['dimensionElemId'])){ ?>
+				<tr>
+					<td>KML:</td>
+					<td>
+						<div id="KMLupload"></div>
+					</td>
+					<td>
+						<input type="hidden" id="kmlFile" name="kmlFile" />
+					</td>
+				</tr>
+			<?php } ?>
 		</table>		
 	</form>
 </div>

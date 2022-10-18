@@ -10,3 +10,6 @@ chkPhotos/*
 
 externalFiles/*
 !externalFiles/.gitkeep
+
+kml/*
+!kml/.gitkeep

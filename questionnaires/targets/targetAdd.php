@@ -150,9 +150,9 @@
 						// console.log(r);
 						if(r.ok == 1){
 							$('#divTrgt_'+targetId+'_'+usersTargetsId+' #dimSel_1').val('').trigger('change');
-	
+							console.log(datCopy);
 							if(sels.length == 0){
-								var o = new Option(dat.nombre,r.nId);
+								var o = new Option(datCopy.nombre,r.nId);
 								$('#divTrgt_'+targetId+'_'+usersTargetsId+' #dimSel_1').append(o);							
 							}
 	
