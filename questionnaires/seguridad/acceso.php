@@ -16,8 +16,9 @@ if($_POST['usuario'] != "") {
       FROM Users u
       WHERE username = ?");
 
-    $stmt ->execute($_POST['usuario']);
-    if (empty($stmt)) {
+    $stmt ->execute([$_POST['usuario']]);
+    $info = $stmt  -> fetch(PDO::FETCH_ASSOC);
+    if (empty($info)) {
       $failedLogin = 1;
     }else{
       $failedLogin = 2;
