@@ -1,10 +1,10 @@
 <?php
 
 	if(!function_exists('raiz')){
-		include_once '../../../../lib/j/j.func.php';
+		include_once '../../../../../lib/j/j.func.php';
 	}
 
-	exit();
+	// exit();
 	checaAcceso(50);// checaAcceso Projects
 
 	// print2($_POST);
@@ -19,12 +19,14 @@
 
 	$pKML = array();
 	$pKML['tabla'] = 'KML';
-	$pKML['datos']['projectsId'] = $_POST['prjId'];
+	$pKML['datos']['elemId'] = $_POST['elemId'];
+	$pKML['datos']['type'] = $_POST['type'];
 	$pKML['datos']['name'] = $_POST['KMLName'];
 	$pKML['datos']['idField'] = $_POST['idAttr'];
 
 	$rKMLj = atj(inserta($pKML));
 	// print($rKMLj);
+
 	$rKML = json_decode($rKMLj,true);
 
 	if($rKML['ok'] != 1){
@@ -207,7 +209,7 @@
 				$pSA['geo']['wkt'] = $wkt;
 				$rrj = atj(inserta($pSA));
 				$rr = json_decode($rrj,true);
-
+				// print2($rr);
 				if($rr['ok'] != 1){
 					$ok = false;
 					$err = 'Err: EIA:3433';
@@ -225,9 +227,10 @@
 						$atts['post'][$k]['datos']['geometriesId'] = $rr['nId'];
 						$rpj = inserta($atts['post'][$k]);
 						$rp = json_decode($rpj,true);
+						// print2($rpj);
 						if($rp['ok'] != 1){
 							$ok = false;
-							$err = 'Err: EIA:3433';
+							$err = 'Err: EIA:3435';
 							break 2;
 						}
 					}
@@ -250,15 +253,13 @@
 	if($ok){
 		try {
 			$folder = '/usr/share/geoserver/data_dir/gwc/'.$geoserverWorkSpaceName.'_KMLGeometries';
-			delDirContent($folder,'all');
-			// deleteDirectory('/usr/share/geoserver/data_dir/gwc/'.$geoserverWorkSpaceName.'_KMLGeometries');
+			delDirContent($geoserverWorkSpaceName);
 		} catch (Exception $e) {
 			
 		}
 		try {
 			$folder = '/usr/local/geoserver/data_dir/gwc/'.$geoserverWorkSpaceName.'_KMLGeometries';
-			delDirContent($folder,'all');
-			// deleteDirectory('/usr/local/geoserver/data_dir/gwc/CMPy_KMLGeometries');
+			delDirContent($geoserverWorkSpaceName);
 		} catch (Exception $e) {
 			
 		}

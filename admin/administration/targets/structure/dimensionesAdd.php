@@ -6,12 +6,46 @@
 	// print2($_POST);
 
 	if($_POST['dimensionId'] != ''){
-		$datM = $db-> query("SELECT * FROM Dimensiones WHERE id = $_POST[dimensionId]")->fetch(PDO::FETCH_ASSOC);
+		$datM = $db
+		-> query("
+			SELECT d.*, kml.id as KMLId
+			FROM Dimensiones d 
+			LEFT JOIN KML kml ON kml.elemId = d.id AND kml.type = 'dim'
+			WHERE d.id = $_POST[dimensionId]")
+		->fetch(PDO::FETCH_ASSOC);
 	}
+
+	
 ?>
 
 <script type="text/javascript">
 	$(document).ready(function() {
+
+		<?php if (isset($_POST['dimensionId'])){ ?>
+			var elemId = '<?= $_POST['dimensionId']; ?>';
+			var type = 'dim';
+
+			$('#btnKML').click(function (e) {
+				e.preventDefault();
+				popUpImg('admin/administration/targets/structure/importKML.php',{elemId:elemId,type:type});
+			});
+
+			$('#delKML').click(function (e) {
+				e.preventDefault();
+				var dat = {};
+
+				dat.kmlId = $('#kmlId').val();
+				var rj = jsonF('admin/administration/targets/structure/json/json.php',{datos:dat,acc:9,opt:5});
+				// console.log(rj);
+				var r = $.parseJSON(rj);
+				// console.log(r);
+				if(r.ok == 1){
+					$('#popUp').modal('toggle');
+				}
+			});
+
+		<?php } ?>
+
 
 		$('.form-control').keydown(function(event) {
 			$(this).css({backgroundColor:''});
@@ -97,6 +131,36 @@
 				</td>
 				<td></td>
 			</tr>
+			<?php if (isset($_POST['dimensionId'])){ ?>
+				<?php if (!empty($datM['KMLId'])){ ?>
+					<tr>
+						<td>KML:</td>
+						<td><span id="delKML" class="btn btn-sm btn-cancel"><?= TR('delete'); ?></span></td>
+						<td><input type="hidden" id="kmlId" value="<?= $datM['KMLId']; ?>" /></td>
+					</tr>
+					<tr>
+						<?php $_POST['KMLId'] = $datM['KMLId']; ?>
+						<td colspan="2">
+							<?php
+								include_once 'KMLview.php';
+
+							?>
+						</td>
+					</tr>
+				<?php }else{ ?>
+					<tr>
+						<td>KML:</td>
+						<td>
+							<div>
+								<span id="btnKML" class="btn btn-sm btn-primary"><?= TR('upload'); ?></span>
+							</div>
+						</td>
+						<td>
+							<input type="hidden" id="kmlFile" name="kmlFile" />
+						</td>
+					</tr>
+				<?php } ?>
+			<?php } ?>
 		</table>		
 	</form>
 </div>

@@ -176,14 +176,14 @@
 
 	if($ok){
 		try {
-			
-			deleteDirectory('/usr/share/geoserver/data_dir/gwc/CMPy_KMLGeometries');
+			delDirContent($geoserverWorkSpaceName);
+			// deleteDirectory('/usr/share/geoserver/data_dir/gwc/CMPy_KMLGeometries');
 		} catch (Exception $e) {
 			
 		}
 		try {
-			
-			deleteDirectory('/usr/local/geoserver/data_dir/gwc/CMPy_KMLGeometries');
+			delDirContent($geoserverWorkSpaceName);
+			// deleteDirectory('/usr/local/geoserver/data_dir/gwc/CMPy_KMLGeometries');
 		} catch (Exception $e) {
 			
 		}

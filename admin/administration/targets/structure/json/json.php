@@ -108,6 +108,15 @@ switch ($_POST['acc']) {
 		// print2($multimedia);
 		echo '{"ok":"1"}';
 		break;
+	case 9:
+		$kmlId = $_POST['datos']['kmlId'];
+		// print2("DELETE FROM KML WHERE id = $kmlId");
+
+		$db->exec("DELETE FROM KML WHERE id = $kmlId");
+		// @unlink(raiz()."admin/administration/targets/structure/archivos/$multimedia[archivo]");
+		// print2($multimedia);
+		echo '{"ok":"1"}';
+		break;
 
 
 	default:

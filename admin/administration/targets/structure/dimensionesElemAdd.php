@@ -6,7 +6,16 @@
 	// print2($_POST);
 
 	if($_POST['dimensionElemId'] != ''){
-		$datM = $db-> query("SELECT * FROM DimensionesElem WHERE id = $_POST[dimensionElemId]")->fetch(PDO::FETCH_ASSOC);
+		$datM = $db 
+			-> query("
+				SELECT de.*, kml.id as KMLId 
+				FROM DimensionesElem de 
+				LEFT JOIN KML kml ON kml.elemId = de.id AND kml.type = 'de'
+				WHERE de.id = $_POST[dimensionElemId]
+				")
+			->fetch(PDO::FETCH_ASSOC);
+
+		// print2($datM);
 	}
 
 	$dimensionesId = $_POST['dimensionElemId'] != ''?$datM['dimensionesId']:$_POST['dimensionId'];
@@ -39,12 +48,28 @@
 
 
 		<?php if (isset($_POST['dimensionElemId'])){ ?>
-			subArch($('#KMLupload'),4,'kml_<?php echo $_POST['dimensionElemId']; ?>_','kml',false,function(e){
-				// console.log(e);
-				file = e.prefijo+e.nombreArchivo;
-				$('#KMLFile').val(e.prefijo+e.nombreArchivo);
+			var elemId = '<?= $_POST['dimensionElemId']; ?>';
+			var type = 'de';
 
-			},false,'<?php echo TR('selFile'); ?>','<?php echo TR('extErrorStr'); ?>');
+			$('#btnKML').click(function (e) {
+				e.preventDefault();
+				popUpImg('admin/administration/targets/structure/importKML.php',{elemId:elemId,type:type});
+			});
+
+			$('#delKML').click(function (e) {
+				e.preventDefault();
+				var dat = {};
+
+				dat.kmlId = $('#kmlId').val();
+				var rj = jsonF('admin/administration/targets/structure/json/json.php',{datos:dat,acc:9,opt:5});
+				// console.log(rj);
+				var r = $.parseJSON(rj);
+				// console.log(r);
+				if(r.ok == 1){
+					$('#popUp').modal('toggle');
+				}
+			});
+
 		<?php } ?>
 
 
@@ -66,10 +91,10 @@
 
 			console.log(dat);
 
-			if(false){
+			if(allOk){
 				// console.log(dat);
 				var rj = jsonF('admin/administration/targets/structure/json/json.php',{datos:dat,acc:acc,opt:5});
-				// console.log(rj);
+				console.log(rj);
 				var r = $.parseJSON(rj);
 				// console.log(r);
 				if(r.ok == 1){
@@ -120,15 +145,34 @@
 				<td></td>
 			</tr>
 			<?php if (isset($_POST['dimensionElemId'])){ ?>
-				<tr>
-					<td>KML:</td>
-					<td>
-						<div id="KMLupload"></div>
-					</td>
-					<td>
-						<input type="hidden" id="kmlFile" name="kmlFile" />
-					</td>
-				</tr>
+				<?php if (!empty($datM['KMLId'])){ ?>
+					<tr>
+						<td>KML:</td>
+						<td><span id="delKML" class="btn btn-sm btn-cancel"><?= TR('delete'); ?></span></td>
+						<td><input type="hidden" id="kmlId" value="<?= $datM['KMLId']; ?>" /></td>
+					</tr>
+					<tr>
+						<?php $_POST['KMLId'] = $datM['KMLId']; ?>
+						<td colspan="2">
+							<?php
+								include_once 'KMLview.php';
+
+							?>
+						</td>
+					</tr>
+				<?php }else{ ?>
+					<tr>
+						<td>KML:</td>
+						<td>
+							<div>
+								<span id="btnKML" class="btn btn-sm btn-primary"><?= TR('upload'); ?></span>
+							</div>
+						</td>
+						<td>
+							<input type="hidden" id="kmlFile" name="kmlFile" />
+						</td>
+					</tr>
+				<?php } ?>
 			<?php } ?>
 		</table>		
 	</form>
